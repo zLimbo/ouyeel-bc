@@ -63,7 +63,7 @@ public class MainWindowController implements Initializable {
 
             System.out.println("query sql: " + sql);
             ResultSet resultSet = stmt.executeQuery(sql);
-            
+
 
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
