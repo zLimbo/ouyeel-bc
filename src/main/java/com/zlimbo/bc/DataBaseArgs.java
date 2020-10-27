@@ -1,0 +1,15 @@
+package com.zlimbo.bc;
+
+public class DataBaseArgs {
+
+    public static final String URL =
+            "jdbc:mysql://localhost:3306/ouyeel" +
+                    "?useSSL=false" +
+                    "&useUnicode=true" +
+                    "&characterEncoding=UTF8" +
+                    "&serverTimezone=GMT" +
+                    "&allowPublicKeyRetrieval=true";
+    //  Database credentials
+    public static final String USER = "root";
+    public static final String PASS = "123456";
+}

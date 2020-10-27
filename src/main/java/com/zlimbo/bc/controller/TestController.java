@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class TestController implements Initializable {
 
     @FXML
     private Button myButton;
