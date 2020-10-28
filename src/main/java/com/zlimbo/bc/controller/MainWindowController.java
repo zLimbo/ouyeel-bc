@@ -6,20 +6,39 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class MainWindowController implements Initializable {
 
+    //private static final Logger logger = Logger.getLogger(MainWindowController.class.getName());
+
     @FXML
-    private TextField sqlTextField;
+    public TabPane resultTabPane;
+
+    @FXML
+    public TextArea sqlInput;
+
+    @FXML
+    public AnchorPane sqlAnchorPane;
+
+    @FXML
+    public TreeView dbTreeView;
+
+    @FXML
+    public AnchorPane leftAnchorPane;
 
     @FXML
     private Button sqlRunButton;
@@ -34,36 +53,88 @@ public class MainWindowController implements Initializable {
     public TextArea sqlMessage;
 
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("============> [initialize] start");
+        Connection connection = null;
+        Statement statement = null;
+        List<String> tables = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("show tables");
+            while (resultSet.next()) {
+                System.out.println("====> table: " + resultSet.getString(1));
+                tables.add(resultSet.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        TreeItem<String> dbItem = new TreeItem<>(DataBaseArgs.DB_NAME);
+        for (String table: tables) {
 
+            TreeItem<String> tableItem = new TreeItem<>(table);
+            //tableItem.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> showTable(table));
+            dbItem.getChildren().add(tableItem);
+        }
+        dbTreeView.setRoot(dbItem);
+
+        dbTreeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("============> [handle] start\n");
+                if (event.getClickCount() == 2) {
+                    TreeItem<String> item = (TreeItem<String>) dbTreeView.getSelectionModel().getSelectedItem();
+                    System.out.println("====> item name: " + item.getValue());
+                    if (item.getValue() != DataBaseArgs.DB_NAME) {
+                        showTable(item.getValue());
+                    }
+                }
+                System.out.println("============> [handle] end\n");
+            }
+        });
+        System.out.println("============> [initialize] end\n");
     }
 
+    
+    public void showTable(String table) {
+        System.out.println("============> [showTable] start");
+        String sql = "select * from " + table;
+        sqlExecuteAndShow(sql);
+        System.out.println("============> [showTable] end");
+    }
+    
+    
     public void sqlRun(ActionEvent actionEvent) {
+        System.out.println("============> [sqlRun] start");
+        String sql = sqlInput.getText().trim();
+        sqlExecuteAndShow(sql);
+        System.out.println("============> [sqlRun] end\n");
+    }
 
-        String sql = sqlTextField.getText();
 
-        System.out.println("============> sqlRun");
-
-
+    public void sqlExecuteAndShow(String sql) {
+        System.out.println("====================> [sqlExecuteAndShow] start");
+        long start = System.currentTimeMillis();
+        String errorMessage = null;
         List<String> columns = new ArrayList<>();
         List<List<String>> records = new ArrayList<>();
-        Connection conn = null;
-        Statement stmt = null;
+        Connection connection = null;
+        Statement statement = null;
         try {
             //STEP 2: Register JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             //STEP 3: Open a connection
             System.out.println("Connecting to a selected database...");
-            conn = DriverManager.getConnection(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
+            connection = DriverManager.getConnection(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
             System.out.println("Connected database successfully...");
 
             //STEP 4: Execute a query
             System.out.println("Creating statement...");
-            stmt = conn.createStatement();
+            statement = connection.createStatement();
 
-            System.out.println("query sql: " + sql);
-            ResultSet resultSet = stmt.executeQuery(sql);
-
+            System.out.println("====> query sql: " + sql);
+            ResultSet resultSet = statement.executeQuery(sql);
 
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
@@ -82,7 +153,7 @@ public class MainWindowController implements Initializable {
             }
             resultSet.close();
         } catch (Exception e) {
-            sqlMessage.setText(e.getMessage());
+            errorMessage = e.getMessage();
             //Handle errors for Class.forName
             System.out.println("====> Exception");
             e.printStackTrace();
@@ -90,39 +161,48 @@ public class MainWindowController implements Initializable {
         } finally {
             //finally block used to close resources
             try {
-                if (stmt != null)
-                    conn.close();
+                if (statement != null)
+                    connection.close();
             } catch (SQLException se) {
             }// do nothing
             try {
-                if (conn != null)
-                    conn.close();
+                if (connection != null)
+                    connection.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }//end finally try
         }
 
-        TableView tableView = new TableView();
-        tableView.getSelectionModel().setCellSelectionEnabled(true);
+        long end = System.currentTimeMillis();
+        double spendSeconds = ((double)end - (double)start) / 1000.0;
 
-        for (int i = 0; i < columns.size(); ++i) {
-            TableColumn<List<StringProperty>, String> tableColumn = new TableColumn<>(columns.get(i));
-            int finalI = i;
-            tableColumn.setCellValueFactory(data -> data.getValue().get(finalI));
-            tableView.getColumns().add(tableColumn);
-        }
-        ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
-        for (List<String> record: records) {
-            List<StringProperty> row = new ArrayList<>();
-            for (int i = 0; i < record.size(); ++i) {
-                row.add(i, new SimpleStringProperty(record.get(i)));
+        if (errorMessage == null) {
+            TableView tableView = new TableView();
+            tableView.getSelectionModel().setCellSelectionEnabled(true);
+
+            for (int i = 0; i < columns.size(); ++i) {
+                TableColumn<List<StringProperty>, String> tableColumn = new TableColumn<>(columns.get(i));
+                int finalI = i;
+                tableColumn.setCellValueFactory(data -> data.getValue().get(finalI));
+                tableView.getColumns().add(tableColumn);
             }
-            data.add(row);
+            ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
+            for (List<String> record : records) {
+                List<StringProperty> row = new ArrayList<>();
+                for (int i = 0; i < record.size(); ++i) {
+                    row.add(i, new SimpleStringProperty(record.get(i)));
+                }
+                data.add(row);
+            }
+            tableView.setItems(data);
+            tablePane.setContent(tableView);
+            resultTabPane.getSelectionModel().select(tablePane);
+            sqlMessage.setText(sql + "\n> OK" + "\n> Time: " + spendSeconds + "s");
+        } else {
+            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + spendSeconds + "s");
+            resultTabPane.getSelectionModel().select(messagePane);
         }
-        tableView.setItems(data);
-
-        tablePane.setContent(tableView);
-
-        System.out.println("================> End\n");
+        System.out.println("====================> [sqlExecuteAndShow] end\n");
     }
+
 }
