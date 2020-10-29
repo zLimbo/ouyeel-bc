@@ -10,7 +10,10 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -19,13 +22,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 public class MainWindowController implements Initializable {
-
-    //private static final Logger logger = Logger.getLogger(MainWindowController.class.getName());
-
-    @FXML
+    
+    @FXML 
     public TabPane resultTabPane;
 
     @FXML
@@ -69,14 +69,15 @@ public class MainWindowController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        TreeItem<String> dbItem = new TreeItem<>(DataBaseArgs.DB_NAME);
+        TreeItem<String> databaseItem = new TreeItem<>(DataBaseArgs.DB_NAME, new ImageView(
+                new Image(getClass().getResourceAsStream("/image/database.png"))));
         for (String table: tables) {
-
-            TreeItem<String> tableItem = new TreeItem<>(table);
+            TreeItem<String> tableItem = new TreeItem<>(table, new ImageView(
+                    new Image(getClass().getResourceAsStream("/image/table.png"))));
             //tableItem.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> showTable(table));
-            dbItem.getChildren().add(tableItem);
+            databaseItem.getChildren().add(tableItem);
         }
-        dbTreeView.setRoot(dbItem);
+        dbTreeView.setRoot(databaseItem);
 
         dbTreeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

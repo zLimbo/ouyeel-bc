@@ -50,6 +50,11 @@
         </Menu>
       </menus>
     </MenuBar>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+          <Button mnemonicParsing="false" text="New" />
+        </items>
+      </ToolBar>
     <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane fx:id="leftAnchorPane">
@@ -60,9 +65,17 @@
               <items>
                 <AnchorPane fx:id="sqlAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="23.0" prefHeight="32.0" prefWidth="63.0" text="Query" />
-                        <Button fx:id="sqlRunButton" layoutX="89.0" layoutY="23.0" mnemonicParsing="false" onAction="#sqlRun" prefHeight="32.0" prefWidth="55.0" text="运行" />
-                        <TextArea fx:id="sqlInput" layoutX="-5.0" layoutY="71.0" prefHeight="198.0" prefWidth="441.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0" />
+                        <VBox prefHeight="162.0" prefWidth="441.0" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                <items>
+                                    <Label prefHeight="32.0" prefWidth="63.0" text="Query" />
+                                    <Button fx:id="sqlRunButton" mnemonicParsing="false" onAction="#sqlRun" prefHeight="32.0" prefWidth="55.0" text="运行" />
+                                </items>
+                              </ToolBar>
+                           </children>
+                        </VBox>
+                        <TextArea fx:id="sqlInput" layoutY="45.0" prefHeight="202.0" prefWidth="441.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
                      </children>
                   </AnchorPane>
                 <AnchorPane fx:id="sqlResult" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
