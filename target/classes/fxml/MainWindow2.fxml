@@ -69,14 +69,7 @@
                      </tabs>
                   </TabPane>
                </children></AnchorPane>
-        <AnchorPane>
-               <children>
-                  <SplitPane layoutX="38.0" layoutY="364.0" prefHeight="160.0" prefWidth="200.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-                    </items>
-                  </SplitPane>
-               </children></AnchorPane>
+        <AnchorPane />
       </items>
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">

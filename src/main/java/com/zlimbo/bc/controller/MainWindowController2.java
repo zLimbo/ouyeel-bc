@@ -6,17 +6,18 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.util.Pair;
+import jnr.ffi.annotations.In;
 
 import java.net.URL;
 import java.sql.*;
@@ -29,22 +30,19 @@ public class MainWindowController2 implements Initializable {
     public @FXML TabPane showTabPane;
     public @FXML TreeView dbTreeView;
 
-    Map<String, Tab> tabMap = new HashMap<>();
+    Map<String, Tab> tableTabMap = new HashMap<>();
     int queryId = 1;
+
+    SqlControl sqlControl = new SqlControl(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
 
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("============> [initialize] start");
 
         //showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
-        
 
-        Connection connection = null;
-        Statement statement = null;
         List<String> tables = new ArrayList<>();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
-            statement = connection.createStatement();
+            Statement statement = sqlControl.connection.createStatement();
             ResultSet resultSet = statement.executeQuery("show tables");
             while (resultSet.next()) {
                 System.out.println("====> table: " + resultSet.getString(1));
@@ -71,13 +69,13 @@ public class MainWindowController2 implements Initializable {
                     System.out.println("====> item name: " + item.getValue());
                     if (item.getValue() != DataBaseArgs.DB_NAME) {
                         Tab tableTab;
-                        if (tabMap.containsKey(item.getValue())) {
-                            tableTab = tabMap.get(item.getValue());
+                        if (tableTabMap.containsKey(item.getValue())) {
+                            tableTab = tableTabMap.get(item.getValue());
                         } else {
                             tableTab = new Tab(item.getValue() + " @" + dbTreeView.getRoot().getValue());
                             showTabPane.getTabs().add(tableTab);
                             showTable(item.getValue(), tableTab);
-                            tabMap.put(item.getValue(), tableTab);
+                            tableTabMap.put(item.getValue(), tableTab);
                         }
                         showTabPane.getSelectionModel().select(tableTab);
                     } else {
@@ -94,112 +92,95 @@ public class MainWindowController2 implements Initializable {
     public void showTable(String tableName, Tab tableTab) {
         System.out.println("============> [showTable] start");
         String sql = "select * from " + tableName;
+
         BorderPane borderPane = new BorderPane();
         ToolBar toolBar = new ToolBar();
-        Button button = new Button("Sort");
-        toolBar.getItems().add(button);
+        Button closeButton = new Button("Close");
+        Button addButton = new Button("Add");
+        toolBar.getItems().addAll(closeButton, addButton);
         borderPane.setTop(toolBar);
         TableView tableView = new TableView();
         borderPane.setCenter(tableView);
         tableTab.setContent(borderPane);
-        sqlExecuteAndShow(sql, tableView);
+
+        sqlControl.sqlQueryAndShow(sql, tableView);
+
+        closeButton.setOnAction(event -> {
+            showTabPane.getTabs().remove(tableTab);
+            tableTabMap.remove(tableName);
+        });
+
+        addButton.setOnAction(event -> addRecord(tableName));
+
         System.out.println("============> [showTable] end");
     }
 
 
-    public void sqlExecuteAndShow(String sql, TableView tableView) {
-        System.out.println("====================> [sqlExecuteAndShow] start");
-        long start = System.currentTimeMillis();
-
-        String errorMessage = null;
-        List<String> columns = new ArrayList<>();
-        List<List<String>> records = new ArrayList<>();
-        Connection connection = null;
-        Statement statement = null;
+    private void addRecord(String tableName) {
+        System.out.println("====================> [addRecord] start");
+        List<String> columnNames = new ArrayList<>();
         try {
-            //STEP 2: Register JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            //STEP 3: Open a connection
-            System.out.println("Connecting to a selected database...");
-            connection = DriverManager.getConnection(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
-            System.out.println("Connected database successfully...");
-
-            //STEP 4: Execute a query
-            System.out.println("Creating statement...");
-            statement = connection.createStatement();
-
-            System.out.println("====> query sql: " + sql);
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-            int columnCount = resultSetMetaData.getColumnCount();
-
-            for (int i = 0; i < columnCount; ++i) {
-                String columnName = resultSetMetaData.getColumnName(i + 1);
-                columns.add(columnName);
+            DatabaseMetaData databaseMetaData = sqlControl.connection.getMetaData();
+            ResultSet columnSet = databaseMetaData.getColumns(null, "%", tableName, "%");
+            while (columnSet.next()) {
+                String columnName = columnSet.getString("COLUMN_NAME");
+                columnNames.add(columnName);
+                System.out.println("== columnName: " + columnName);
             }
-
-            while (resultSet.next()) {
-                List<String> record = new ArrayList<String>();
-                for (int i = 0; i < columnCount; ++i) {
-                    record.add(resultSet.getString(i + 1));
-                }
-                records.add(record);
-            }
-            resultSet.close();
         } catch (Exception e) {
-            errorMessage = e.getMessage();
-            //Handle errors for Class.forName
-            System.out.println("====> Exception");
             e.printStackTrace();
-            //System.out.println("e.message: " + e.getMessage());
-        } finally {
-            //finally block used to close resources
-            try {
-                if (statement != null)
-                    connection.close();
-            } catch (SQLException se) {
-            }// do nothing
-            try {
-                if (connection != null)
-                    connection.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
         }
 
-        long end = System.currentTimeMillis();
-        double spendSeconds = ((double)end - (double)start) / 1000.0;
+        List<TextField> textFields = new ArrayList<>();
 
-        if (errorMessage == null) {
-            tableView.getSelectionModel().setCellSelectionEnabled(true);
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Add Record");
+        dialog.setHeaderText(null);
 
-            for (int i = 0; i < columns.size(); ++i) {
-                TableColumn<List<StringProperty>, String> tableColumn = new TableColumn<>(columns.get(i));
-                int finalI = i;
-                tableColumn.setCellValueFactory(data -> data.getValue().get(finalI));
-                tableView.getColumns().add(tableColumn);
-            }
-            ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
-            for (List<String> record : records) {
-                List<StringProperty> row = new ArrayList<>();
-                for (int i = 0; i < record.size(); ++i) {
-                    row.add(i, new SimpleStringProperty(record.get(i)));
+        ButtonType submitButtonType = new ButtonType("Submit", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, ButtonType.CANCEL);
+        Button submitButton = (Button) dialog.getDialogPane().lookupButton(submitButtonType);
+        submitButton.setDisable(true);
+
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+        for (int i = 0; i < columnNames.size(); ++i) {
+            String columnName = columnNames.get(i);
+            Label label = new Label(columnName);
+            TextField textField = new TextField();
+            textField.setPromptText(columnName);
+            gridPane.add(label, 0, i);
+            gridPane.add(textField, 1, i);
+            // 监听，输入不得为空，否则提交按钮为灰色
+            textField.textProperty().addListener(((observable, oldValue, newValue) -> {
+                submitButton.setDisable(newValue.trim().isEmpty());
+            }));
+            textFields.add(textField);
+        }
+        dialog.getDialogPane().setContent(gridPane);
+        // 点击提交，插入数据
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == submitButtonType) {
+                StringBuilder stringBuilder = new StringBuilder("INSERT INTO TABLE " + tableName + " VALUES(");
+                for (int i = 0; i < textFields.size(); ++i) {
+                    stringBuilder.append(textFields.get(i));
+                    if (i != textFields.size() - 1) {
+                        stringBuilder.append(",");
+                    }
                 }
-                data.add(row);
+                stringBuilder.append((");"));
+                String sql = stringBuilder.toString();
+                sqlControl.sqlInsert(sql);
             }
-            tableView.setItems(data);
-//            tablePane.setContent(tableView);
-//            resultTabPane.getSelectionModel().select(tablePane);
-//            sqlMessage.setText(sql + "\n> OK" + "\n> Time: " + spendSeconds + "s");
-        } else {
-            tableView.getColumns().clear();
-            tableView.getItems().clear();
-//            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + spendSeconds + "s");
-//            resultTabPane.getSelectionModel().select(messagePane);
-        }
-        System.out.println("====================> [sqlExecuteAndShow] end\n");
+            return null;
+        });
+
+        dialog.showAndWait();
+        
+        System.out.println("====================> [addRecord] end\n");
     }
 
 
@@ -235,7 +216,7 @@ public class MainWindowController2 implements Initializable {
         menuItem.setOnAction(event -> {
             showTabPane.getTabs().remove(queryTab);
         });
-        runButton.setOnAction(event -> sqlExecuteAndShow(textArea.getText(), tableView));
+        runButton.setOnAction(event -> sqlControl.sqlQueryAndShow(textArea.getText(), tableView));
 
         System.out.println("============> [newQuery] end");
     }
@@ -246,7 +227,7 @@ public class MainWindowController2 implements Initializable {
 //    public void sqlRun(ActionEvent actionEvent) {
 //        System.out.println("============> [sqlRun] start");
 //        String sql = sqlInput.getText().trim();
-//        sqlExecuteAndShow(sql);
+//        sqlQueryAndShow(sql);
 //        System.out.println("============> [sqlRun] end\n");
 //    }
 }
