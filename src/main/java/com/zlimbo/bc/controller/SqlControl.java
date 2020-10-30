@@ -12,21 +12,48 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class SqlControl {
+
 
     Connection connection = null;
 
+
+    Connection getConnection() {
+        return connection;
+    }
+
+
     SqlControl(String dbName, String user, String passwd) {
+        System.out.println("====================> [SqlControl] start");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(dbName, user, passwd);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("====================> [sqlQueryAndShow] end\n");
     }
 
+
+    List<String> getTables() {
+        List<String> tables = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("show tables");
+            while (resultSet.next()) {
+                System.out.println("====> table: " + resultSet.getString(1));
+                tables.add(resultSet.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tables;
+    }
+
+
     public void sqlQueryAndShow(String sql, TableView tableView) {
-        System.out.println("====================> [sqlQueryAndShow] start");
+        System.out.println("====================> [SqlControl] start");
         long start = System.currentTimeMillis();
 
         String errorMessage = null;
@@ -120,7 +147,16 @@ public class SqlControl {
         System.out.println("====================> [sqlQueryAndShow] end\n");
     }
 
-    public void sqlInsert(String sql) {
 
+    public void sqlInsert(String sql) {
+        System.out.println("====================> [sqlInsert] start");
+        System.out.println("== sql:" + sql);
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("====================> [sqlInsert] end\n");
     }
 }

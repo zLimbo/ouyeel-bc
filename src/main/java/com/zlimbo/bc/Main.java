@@ -22,5 +22,4 @@ public class Main extends Application {
                 getClass().getResourceAsStream("/image/ouyeel_bc.png")));
         primaryStage.show();
     }
-
 }

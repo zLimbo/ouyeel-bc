@@ -1,10 +1,6 @@
 package com.zlimbo.bc.controller;
 
 import com.zlimbo.bc.DataBaseArgs;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,13 +13,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.util.Pair;
-import jnr.ffi.annotations.In;
 
 import java.net.URL;
 import java.sql.*;
 import java.util.*;
 
+
 public class MainWindowController2 implements Initializable {
+
 
     public @FXML Button newQueryButton;
     public @FXML Tab objectsTab;
@@ -35,22 +32,13 @@ public class MainWindowController2 implements Initializable {
 
     SqlControl sqlControl = new SqlControl(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
 
+
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("============> [initialize] start");
 
         //showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
 
-        List<String> tables = new ArrayList<>();
-        try {
-            Statement statement = sqlControl.connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("show tables");
-            while (resultSet.next()) {
-                System.out.println("====> table: " + resultSet.getString(1));
-                tables.add(resultSet.getString(1));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        List<String> tables = sqlControl.getTables();
         TreeItem<String> databaseItem = new TreeItem<>(DataBaseArgs.DB_NAME,
                 new ImageView(new Image(getClass().getResourceAsStream("/image/database.png"))));
         for (String table: tables) {
@@ -74,8 +62,8 @@ public class MainWindowController2 implements Initializable {
                         } else {
                             tableTab = new Tab(item.getValue() + " @" + dbTreeView.getRoot().getValue());
                             showTabPane.getTabs().add(tableTab);
-                            showTable(item.getValue(), tableTab);
                             tableTabMap.put(item.getValue(), tableTab);
+                            showTable(item.getValue());
                         }
                         showTabPane.getSelectionModel().select(tableTab);
                     } else {
@@ -89,7 +77,7 @@ public class MainWindowController2 implements Initializable {
     }
 
 
-    public void showTable(String tableName, Tab tableTab) {
+    public void showTable(String tableName) {
         System.out.println("============> [showTable] start");
         String sql = "select * from " + tableName;
 
@@ -101,6 +89,7 @@ public class MainWindowController2 implements Initializable {
         borderPane.setTop(toolBar);
         TableView tableView = new TableView();
         borderPane.setCenter(tableView);
+        Tab tableTab = tableTabMap.get(tableName);
         tableTab.setContent(borderPane);
 
         sqlControl.sqlQueryAndShow(sql, tableView);
@@ -120,7 +109,7 @@ public class MainWindowController2 implements Initializable {
         System.out.println("====================> [addRecord] start");
         List<String> columnNames = new ArrayList<>();
         try {
-            DatabaseMetaData databaseMetaData = sqlControl.connection.getMetaData();
+            DatabaseMetaData databaseMetaData = sqlControl.getConnection().getMetaData();
             ResultSet columnSet = databaseMetaData.getColumns(null, "%", tableName, "%");
             while (columnSet.next()) {
                 String columnName = columnSet.getString("COLUMN_NAME");
@@ -138,7 +127,8 @@ public class MainWindowController2 implements Initializable {
         dialog.setHeaderText(null);
 
         ButtonType submitButtonType = new ButtonType("Submit", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, ButtonType.CANCEL);
+        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, cancelButtonType);
         Button submitButton = (Button) dialog.getDialogPane().lookupButton(submitButtonType);
         submitButton.setDisable(true);
 
@@ -147,6 +137,7 @@ public class MainWindowController2 implements Initializable {
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(20, 150, 10, 10));
 
+        BitSet bitset = new BitSet(columnNames.size());
         for (int i = 0; i < columnNames.size(); ++i) {
             String columnName = columnNames.get(i);
             Label label = new Label(columnName);
@@ -155,8 +146,21 @@ public class MainWindowController2 implements Initializable {
             gridPane.add(label, 0, i);
             gridPane.add(textField, 1, i);
             // 监听，输入不得为空，否则提交按钮为灰色
+            int finalI = i;
             textField.textProperty().addListener(((observable, oldValue, newValue) -> {
-                submitButton.setDisable(newValue.trim().isEmpty());
+                if (newValue.trim().isEmpty()) {
+                    bitset.clear(finalI);
+                } else {
+                    bitset.set(finalI);
+                }
+                boolean allSet = true;
+                for (int j = 0; j < columnNames.size(); ++j) {
+                    if (!bitset.get(j)) {
+                        allSet = false;
+                        break;
+                    }
+                }
+                submitButton.setDisable(!allSet);
             }));
             textFields.add(textField);
         }
@@ -164,9 +168,10 @@ public class MainWindowController2 implements Initializable {
         // 点击提交，插入数据
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == submitButtonType) {
-                StringBuilder stringBuilder = new StringBuilder("INSERT INTO TABLE " + tableName + " VALUES(");
+                StringBuilder stringBuilder = new StringBuilder("INSERT INTO " + tableName + " VALUES(");
                 for (int i = 0; i < textFields.size(); ++i) {
-                    stringBuilder.append(textFields.get(i));
+                    TextField textField = textFields.get(i);
+                    stringBuilder.append(textField.getText());
                     if (i != textFields.size() - 1) {
                         stringBuilder.append(",");
                     }
@@ -174,6 +179,7 @@ public class MainWindowController2 implements Initializable {
                 stringBuilder.append((");"));
                 String sql = stringBuilder.toString();
                 sqlControl.sqlInsert(sql);
+                showTable(tableName);   // 更新表显示
             }
             return null;
         });
@@ -220,14 +226,4 @@ public class MainWindowController2 implements Initializable {
 
         System.out.println("============> [newQuery] end");
     }
-
-
-
-
-//    public void sqlRun(ActionEvent actionEvent) {
-//        System.out.println("============> [sqlRun] start");
-//        String sql = sqlInput.getText().trim();
-//        sqlQueryAndShow(sql);
-//        System.out.println("============> [sqlRun] end\n");
-//    }
 }
