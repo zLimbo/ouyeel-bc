@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SqlControl {
+public class SqlController {
 
 
     Connection connection = null;
@@ -24,7 +24,7 @@ public class SqlControl {
     }
 
 
-    SqlControl(String dbName, String user, String passwd) {
+    SqlController(String dbName, String user, String passwd) {
         System.out.println("====================> [SqlControl] start");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

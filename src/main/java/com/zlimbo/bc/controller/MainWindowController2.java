@@ -30,7 +30,7 @@ public class MainWindowController2 implements Initializable {
     Map<String, Tab> tableTabMap = new HashMap<>();
     int queryId = 1;
 
-    SqlControl sqlControl = new SqlControl(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
+    SqlController sqlController = new SqlController(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,7 +38,7 @@ public class MainWindowController2 implements Initializable {
 
         //showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
 
-        List<String> tables = sqlControl.getTables();
+        List<String> tables = sqlController.getTables();
         TreeItem<String> databaseItem = new TreeItem<>(DataBaseArgs.DB_NAME,
                 new ImageView(new Image(getClass().getResourceAsStream("/image/database.png"))));
         for (String table: tables) {
@@ -92,7 +92,7 @@ public class MainWindowController2 implements Initializable {
         Tab tableTab = tableTabMap.get(tableName);
         tableTab.setContent(borderPane);
 
-        sqlControl.sqlQueryAndShow(sql, tableView);
+        sqlController.sqlQueryAndShow(sql, tableView);
 
         closeButton.setOnAction(event -> {
             showTabPane.getTabs().remove(tableTab);
@@ -109,7 +109,7 @@ public class MainWindowController2 implements Initializable {
         System.out.println("====================> [addRecord] start");
         List<String> columnNames = new ArrayList<>();
         try {
-            DatabaseMetaData databaseMetaData = sqlControl.getConnection().getMetaData();
+            DatabaseMetaData databaseMetaData = sqlController.getConnection().getMetaData();
             ResultSet columnSet = databaseMetaData.getColumns(null, "%", tableName, "%");
             while (columnSet.next()) {
                 String columnName = columnSet.getString("COLUMN_NAME");
@@ -178,7 +178,7 @@ public class MainWindowController2 implements Initializable {
                 }
                 stringBuilder.append((");"));
                 String sql = stringBuilder.toString();
-                sqlControl.sqlInsert(sql);
+                sqlController.sqlInsert(sql);
                 showTable(tableName);   // 更新表显示
             }
             return null;
@@ -222,7 +222,7 @@ public class MainWindowController2 implements Initializable {
         menuItem.setOnAction(event -> {
             showTabPane.getTabs().remove(queryTab);
         });
-        runButton.setOnAction(event -> sqlControl.sqlQueryAndShow(textArea.getText(), tableView));
+        runButton.setOnAction(event -> sqlController.sqlQueryAndShow(textArea.getText(), tableView));
 
         System.out.println("============> [newQuery] end");
     }
