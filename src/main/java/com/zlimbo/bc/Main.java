@@ -15,7 +15,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow2.fxml"));
         primaryStage.setTitle("ouyeel-bc");
         primaryStage.setScene(new Scene(root));
         primaryStage.getIcons().add(new Image(

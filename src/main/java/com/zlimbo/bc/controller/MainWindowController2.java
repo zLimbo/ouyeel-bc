@@ -10,50 +10,34 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.image.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 
 import java.net.URL;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
-public class MainWindowController implements Initializable {
-    
-    @FXML
-    private TabPane resultTabPane;
+public class MainWindowController2 implements Initializable {
 
-    @FXML
-    private TextArea sqlInput;
+    public @FXML Button newQueryButton;
+    public @FXML Tab objectsTab;
+    public @FXML TabPane showTabPane;
+    public @FXML TreeView dbTreeView;
 
-    @FXML
-    private AnchorPane sqlAnchorPane;
-
-    @FXML
-    private TreeView dbTreeView;
-
-    @FXML
-    private AnchorPane leftAnchorPane;
-
-    @FXML
-    private Button sqlRunButton;
-
-    @FXML
-    private Tab tablePane;
-
-    @FXML
-    private Tab messagePane;
-
-    @FXML
-    private TextArea sqlMessage;
+    Map<String, Tab> tabMap = new HashMap<>();
+    int queryId = 1;
 
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("============> [initialize] start");
+
+        //showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+        
+
         Connection connection = null;
         Statement statement = null;
         List<String> tables = new ArrayList<>();
@@ -69,12 +53,11 @@ public class MainWindowController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        TreeItem<String> databaseItem = new TreeItem<>(DataBaseArgs.DB_NAME, new ImageView(
-                new Image(getClass().getResourceAsStream("/image/database.png"))));
+        TreeItem<String> databaseItem = new TreeItem<>(DataBaseArgs.DB_NAME,
+                new ImageView(new Image(getClass().getResourceAsStream("/image/database.png"))));
         for (String table: tables) {
-            TreeItem<String> tableItem = new TreeItem<>(table, new ImageView(
-                    new Image(getClass().getResourceAsStream("/image/table.png"))));
-            //tableItem.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> showTable(table));
+            TreeItem<String> tableItem = new TreeItem<>(table,
+                    new ImageView(new Image(getClass().getResourceAsStream("/image/table.png"))));
             databaseItem.getChildren().add(tableItem);
         }
         dbTreeView.setRoot(databaseItem);
@@ -87,7 +70,18 @@ public class MainWindowController implements Initializable {
                     TreeItem<String> item = (TreeItem<String>) dbTreeView.getSelectionModel().getSelectedItem();
                     System.out.println("====> item name: " + item.getValue());
                     if (item.getValue() != DataBaseArgs.DB_NAME) {
-                        showTable(item.getValue());
+                        Tab tableTab;
+                        if (tabMap.containsKey(item.getValue())) {
+                            tableTab = tabMap.get(item.getValue());
+                        } else {
+                            tableTab = new Tab(item.getValue() + " @" + dbTreeView.getRoot().getValue());
+                            showTabPane.getTabs().add(tableTab);
+                            showTable(item.getValue(), tableTab);
+                            tabMap.put(item.getValue(), tableTab);
+                        }
+                        showTabPane.getSelectionModel().select(tableTab);
+                    } else {
+                        showTabPane.getSelectionModel().select(objectsTab);
                     }
                 }
                 System.out.println("============> [handle] end\n");
@@ -96,26 +90,27 @@ public class MainWindowController implements Initializable {
         System.out.println("============> [initialize] end\n");
     }
 
-    
-    public void showTable(String table) {
+
+    public void showTable(String tableName, Tab tableTab) {
         System.out.println("============> [showTable] start");
-        String sql = "select * from " + table;
-        sqlExecuteAndShow(sql);
+        String sql = "select * from " + tableName;
+        BorderPane borderPane = new BorderPane();
+        ToolBar toolBar = new ToolBar();
+        Button button = new Button("Sort");
+        toolBar.getItems().add(button);
+        borderPane.setTop(toolBar);
+        TableView tableView = new TableView();
+        borderPane.setCenter(tableView);
+        tableTab.setContent(borderPane);
+        sqlExecuteAndShow(sql, tableView);
         System.out.println("============> [showTable] end");
     }
-    
-    
-    public void sqlRun(ActionEvent actionEvent) {
-        System.out.println("============> [sqlRun] start");
-        String sql = sqlInput.getText().trim();
-        sqlExecuteAndShow(sql);
-        System.out.println("============> [sqlRun] end\n");
-    }
 
 
-    public void sqlExecuteAndShow(String sql) {
+    public void sqlExecuteAndShow(String sql, TableView tableView) {
         System.out.println("====================> [sqlExecuteAndShow] start");
         long start = System.currentTimeMillis();
+
         String errorMessage = null;
         List<String> columns = new ArrayList<>();
         List<List<String>> records = new ArrayList<>();
@@ -178,7 +173,6 @@ public class MainWindowController implements Initializable {
         double spendSeconds = ((double)end - (double)start) / 1000.0;
 
         if (errorMessage == null) {
-            TableView tableView = new TableView();
             tableView.getSelectionModel().setCellSelectionEnabled(true);
 
             for (int i = 0; i < columns.size(); ++i) {
@@ -196,14 +190,63 @@ public class MainWindowController implements Initializable {
                 data.add(row);
             }
             tableView.setItems(data);
-            tablePane.setContent(tableView);
-            resultTabPane.getSelectionModel().select(tablePane);
-            sqlMessage.setText(sql + "\n> OK" + "\n> Time: " + spendSeconds + "s");
+//            tablePane.setContent(tableView);
+//            resultTabPane.getSelectionModel().select(tablePane);
+//            sqlMessage.setText(sql + "\n> OK" + "\n> Time: " + spendSeconds + "s");
         } else {
-            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + spendSeconds + "s");
-            resultTabPane.getSelectionModel().select(messagePane);
+            tableView.getColumns().clear();
+            tableView.getItems().clear();
+//            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + spendSeconds + "s");
+//            resultTabPane.getSelectionModel().select(messagePane);
         }
         System.out.println("====================> [sqlExecuteAndShow] end\n");
     }
 
+
+    public void newQuery(ActionEvent actionEvent) {
+        System.out.println("============> [newQuery] start");
+        Tab queryTab = new Tab("query" + queryId++);
+        BorderPane borderPane = new BorderPane();
+        ToolBar toolBar = new ToolBar();
+        Button closeButton = new Button("Close");
+        Button saveButton = new Button("Save");
+        Button runButton = new Button("Run");
+        toolBar.getItems().addAll(closeButton, saveButton, runButton);
+        borderPane.setTop(toolBar);
+        TextArea textArea = new TextArea();
+        TableView tableView = new TableView();
+        SplitPane splitPane = new SplitPane();
+        splitPane.getItems().addAll(textArea, tableView);
+        splitPane.setOrientation(Orientation.VERTICAL);
+        splitPane.setDividerPosition(0, 0.3);
+        borderPane.setCenter(splitPane);
+        queryTab.setContent(borderPane);
+        queryTab.setClosable(true);
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem menuItem = new MenuItem("关闭");
+        contextMenu.getItems().add(menuItem);
+        queryTab.setContextMenu(contextMenu);
+        showTabPane.getTabs().add(queryTab);
+        showTabPane.getSelectionModel().select(queryTab);
+
+        closeButton.setOnAction(event -> {
+            showTabPane.getTabs().remove(queryTab);
+        });
+        menuItem.setOnAction(event -> {
+            showTabPane.getTabs().remove(queryTab);
+        });
+        runButton.setOnAction(event -> sqlExecuteAndShow(textArea.getText(), tableView));
+
+        System.out.println("============> [newQuery] end");
+    }
+
+
+
+
+//    public void sqlRun(ActionEvent actionEvent) {
+//        System.out.println("============> [sqlRun] start");
+//        String sql = sqlInput.getText().trim();
+//        sqlExecuteAndShow(sql);
+//        System.out.println("============> [sqlRun] end\n");
+//    }
 }
