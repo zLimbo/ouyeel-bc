@@ -29,6 +29,8 @@ public class MainWindowController2 implements Initializable {
     public @FXML Tab objectsTab;
     public @FXML TabPane showTabPane;
     public @FXML TreeView dbTreeView;
+    public @FXML TextArea messageTextArea;
+    public @FXML Button newConnectionButton;
 
     Map<String, Tab> tableTabMap = new HashMap<>();
     int queryId = 1;
@@ -38,7 +40,17 @@ public class MainWindowController2 implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("============> [initialize] start");
-        //showDatabase();
+        newConnectionButton.setGraphic(
+                new ImageView(new Image(getClass().getResourceAsStream("/image/connection.png"))));
+        newQueryButton.setGraphic(
+                new ImageView(new Image(getClass().getResourceAsStream("/image/query.png"))));
+        newQueryButton.setDisable(true);
+
+        sqlController = new SqlController("ouyeel",
+                "localhost", "3306", "root", "123456");
+        showDatabase();
+        newQueryButton.setDisable(false);
+
         System.out.println("============> [initialize] end\n");
     }
 
@@ -48,8 +60,10 @@ public class MainWindowController2 implements Initializable {
 
         BorderPane borderPane = new BorderPane();
         ToolBar toolBar = new ToolBar();
-        Button closeButton = new Button("Close");
-        Button addButton = new Button("Add");
+        Button closeButton = new Button("Close",
+                new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
+        Button addButton = new Button("Add",
+                new ImageView(new Image(getClass().getResourceAsStream("/image/add.png"))));
         toolBar.getItems().addAll(closeButton, addButton);
         borderPane.setTop(toolBar);
         TableView tableView = new TableView();
@@ -71,6 +85,7 @@ public class MainWindowController2 implements Initializable {
 
 
     private void showTableView(String sql, TableView tableView) {
+        tableView.setTableMenuButtonVisible(true);
         tableView.getColumns().clear();
         tableView.getItems().clear();
         SqlController.SqlQueryResult sqlQueryResult = sqlController.sqlQuery(sql);
@@ -96,12 +111,11 @@ public class MainWindowController2 implements Initializable {
                 data.add(row);
             }
             tableView.setItems(data);
-//            tablePane.setContent(tableView);
-//            resultTabPane.getSelectionModel().select(tablePane);
-//            sqlMessage.setText(sql + "\n> OK" + "\n> Time: " + spendTime + "s");
+            messageTextArea.setStyle("-fx-text-fill:#000000;");
+            messageTextArea.setText(sql + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
         } else {
-//            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + spendTime + "s");
-//            resultTabPane.getSelectionModel().select(messagePane);
+            messageTextArea.setStyle("-fx-text-fill:#ff0000;");
+            messageTextArea.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
         }
     }
 
@@ -247,9 +261,19 @@ public class MainWindowController2 implements Initializable {
                 String port = portTextField.getText();
                 String userName = userNameTextField.getText();
                 String password = passwordField.getText();
-                sqlController = new SqlController(databaseName, host, port, userName, password);
-                showTabPane.getTabs().clear();
-                showDatabase();
+                SqlController sqlController1 = new SqlController(databaseName, host, port, userName, password);
+                if (sqlController1.isConnectSuccess()) {
+                    sqlController = sqlController1;
+                    showTabPane.getTabs().clear();
+                    showDatabase();
+                    newQueryButton.setDisable(false);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Connection");
+                    alert.setHeaderText("Parameter Error!");
+
+                    alert.showAndWait();
+                }
             }
             return null;
         });
@@ -292,6 +316,9 @@ public class MainWindowController2 implements Initializable {
                             tableTab = tableTabMap.get(item.getValue());
                         } else {
                             tableTab = new Tab(item.getValue() + " @" + dbTreeView.getRoot().getValue());
+                            tableTab.setGraphic(
+                                    new ImageView(new Image(getClass().getResourceAsStream("/image/table2.png")))
+                            );
                             showTabPane.getTabs().add(tableTab);
                             tableTabMap.put(item.getValue(), tableTab);
                             showTable(item.getValue());
@@ -314,12 +341,17 @@ public class MainWindowController2 implements Initializable {
         System.out.println("============> [newQuery] start");
 
         Tab queryTab = new Tab("query" + queryId++);
+        queryTab.setGraphic(
+                new ImageView(new Image(getClass().getResourceAsStream("/image/query2.png"))));
         BorderPane borderPane = new BorderPane();
 
         ToolBar toolBar = new ToolBar();
-        Button closeButton = new Button("Close");
-        Button saveButton = new Button("Save");
-        Button runButton = new Button("Run");
+        Button closeButton = new Button("Close",
+                new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
+        Button saveButton = new Button("Save",
+                new ImageView(new Image(getClass().getResourceAsStream("/image/save.png"))));
+        Button runButton = new Button("Run",
+                new ImageView(new Image(getClass().getResourceAsStream("/image/run.png"))));
         toolBar.getItems().addAll(closeButton, saveButton, runButton);
         borderPane.setTop(toolBar);
 

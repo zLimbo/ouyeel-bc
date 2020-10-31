@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.*;
@@ -198,9 +199,10 @@ public class MainWindowController implements Initializable {
             tableView.setItems(data);
             tablePane.setContent(tableView);
             resultTabPane.getSelectionModel().select(tablePane);
-            sqlMessage.setText(sql + "\n> OK" + "\n> Time: " + spendSeconds + "s");
+            sqlMessage.setText(sql + "\n> OK" + "\n> Time: " + (spendSeconds / 1000.0) + "s");
         } else {
-            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + spendSeconds + "s");
+            //sqlMessage.setTextFormatter();
+            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + (spendSeconds / 1000.0) + "s");
             resultTabPane.getSelectionModel().select(messagePane);
         }
         System.out.println("====================> [sqlExecuteAndShow] end\n");

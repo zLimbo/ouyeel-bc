@@ -1,7 +1,5 @@
 package com.zlimbo.bc.controller;
 
-import com.zlimbo.bc.DataBaseArgs;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +14,8 @@ public class SqlController {
     private String port;
     private String userName;
     private String password;
-    
+
+    private boolean connectSuccess;
     private String errorMessage;
 
     public String getErrorMessage() {
@@ -42,7 +41,21 @@ public class SqlController {
     public String getPassword() {
         return password;
     }
-    
+
+    public boolean isConnectSuccess() {
+        return connectSuccess;
+    }
+
+    public void finialize() {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public SqlController(String databaseName, String host, String port, String userName, String password) {
         System.out.println("====================> [SqlControl] start");
@@ -61,7 +74,10 @@ public class SqlController {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, userName, password);
+            connectSuccess = true;
         } catch (Exception e) {
+            errorMessage = e.getMessage();
+            connectSuccess = false;
             e.printStackTrace();
         }
 
