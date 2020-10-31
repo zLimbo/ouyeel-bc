@@ -52,6 +52,7 @@ public class MainWindowController2 implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 System.out.println("============> [handle] start\n");
+
                 if (event.getClickCount() == 2) {
                     TreeItem<String> item = (TreeItem<String>) dbTreeView.getSelectionModel().getSelectedItem();
                     System.out.println("====> item name: " + item.getValue());
@@ -70,9 +71,11 @@ public class MainWindowController2 implements Initializable {
                         showTabPane.getSelectionModel().select(objectsTab);
                     }
                 }
+
                 System.out.println("============> [handle] end\n");
             }
         });
+
         System.out.println("============> [initialize] end\n");
     }
 
@@ -107,6 +110,7 @@ public class MainWindowController2 implements Initializable {
 
     private void addRecord(String tableName) {
         System.out.println("====================> [addRecord] start");
+
         List<String> columnNames = new ArrayList<>();
         try {
             DatabaseMetaData databaseMetaData = sqlController.getConnection().getMetaData();
@@ -192,14 +196,17 @@ public class MainWindowController2 implements Initializable {
 
     public void newQuery(ActionEvent actionEvent) {
         System.out.println("============> [newQuery] start");
+
         Tab queryTab = new Tab("query" + queryId++);
         BorderPane borderPane = new BorderPane();
+
         ToolBar toolBar = new ToolBar();
         Button closeButton = new Button("Close");
         Button saveButton = new Button("Save");
         Button runButton = new Button("Run");
         toolBar.getItems().addAll(closeButton, saveButton, runButton);
         borderPane.setTop(toolBar);
+
         TextArea textArea = new TextArea();
         TableView tableView = new TableView();
         SplitPane splitPane = new SplitPane();
@@ -207,6 +214,7 @@ public class MainWindowController2 implements Initializable {
         splitPane.setOrientation(Orientation.VERTICAL);
         splitPane.setDividerPosition(0, 0.3);
         borderPane.setCenter(splitPane);
+
         queryTab.setContent(borderPane);
         queryTab.setClosable(true);
         ContextMenu contextMenu = new ContextMenu();

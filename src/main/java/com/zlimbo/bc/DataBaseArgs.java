@@ -2,7 +2,7 @@ package com.zlimbo.bc;
 
 public class DataBaseArgs {
 
-    public static final String DB_NAME = "mysql";
+    public static final String DB_NAME = "ouyeel";
 
     public static final String URL =
             "jdbc:mysql://localhost:3306/" + DB_NAME +

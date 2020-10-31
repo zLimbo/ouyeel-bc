@@ -18,7 +18,6 @@ public class SqlController {
 
     Connection connection = null;
 
-
     Connection getConnection() {
         return connection;
     }
@@ -54,6 +53,7 @@ public class SqlController {
 
     public void sqlQueryAndShow(String sql, TableView tableView) {
         System.out.println("====================> [SqlControl] start");
+
         long start = System.currentTimeMillis();
 
         String errorMessage = null;
@@ -144,12 +144,14 @@ public class SqlController {
 //            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + spendSeconds + "s");
 //            resultTabPane.getSelectionModel().select(messagePane);
         }
+
         System.out.println("====================> [sqlQueryAndShow] end\n");
     }
 
 
     public void sqlInsert(String sql) {
         System.out.println("====================> [sqlInsert] start");
+
         System.out.println("== sql:" + sql);
         try {
             Statement statement = connection.createStatement();
@@ -157,6 +159,7 @@ public class SqlController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         System.out.println("====================> [sqlInsert] end\n");
     }
 }
