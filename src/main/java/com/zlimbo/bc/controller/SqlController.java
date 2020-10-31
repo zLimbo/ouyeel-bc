@@ -1,12 +1,6 @@
 package com.zlimbo.bc.controller;
 
 import com.zlimbo.bc.DataBaseArgs;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -35,10 +29,11 @@ public class SqlController {
     }
 
 
-    List<String> sqlShowTables() {
+    public List<String> sqlShowTables() {
         List<String> tables = new ArrayList<>();
+        Statement statement = null;
         try {
-            Statement statement = connection.createStatement();
+            statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("show tables");
             while (resultSet.next()) {
                 System.out.println("====> table: " + resultSet.getString(1));
@@ -46,16 +41,25 @@ public class SqlController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
         }
         return tables;
     }
 
     
-    public class SqlQueryResult {
-        private List<String> columns;
-        private List<List<String>> records;
-        private String errorMessage;
-        private long spendTime;
+    public static class SqlQueryResult {
+        private final List<String> columns;
+        private final List<List<String>> records;
+        private final String errorMessage;
+        private final long spendTime;
 
         public SqlQueryResult(List<String> columns, List<List<String>> records, long spendTime, String errorMessage) {
             this.columns = columns;
@@ -90,7 +94,6 @@ public class SqlController {
         String errorMessage = null;
         List<String> columns = new ArrayList<>();
         List<List<String>> records = new ArrayList<>();
-        Connection connection = null;
         Statement statement = null;
         try {
             //STEP 2: Register JDBC driver
@@ -133,16 +136,12 @@ public class SqlController {
         } finally {
             //finally block used to close resources
             try {
-                if (statement != null)
-                    connection.close();
-            } catch (SQLException se) {
-            }// do nothing
-            try {
-                if (connection != null)
-                    connection.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException se) {
                 se.printStackTrace();
-            }//end finally try
+            }
         }
 
         long end = System.currentTimeMillis();
@@ -157,14 +156,23 @@ public class SqlController {
         System.out.println("====================> [sqlInsert] start");
 
         String errorMessage = null;
-        
+        Statement statement = null;
         System.out.println("== sql:" + sql);
         try {
-            Statement statement = connection.createStatement();
+            statement = connection.createStatement();
             statement.execute(sql);
         } catch (Exception e) {
             errorMessage = e.getMessage();
             e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
         }
         
         System.out.println("====================> [sqlInsert] end\n");
