@@ -51,7 +51,7 @@
     </MenuBar>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
          <items>
-            <Button mnemonicParsing="false" text="Connection" textFill="#171717" />
+            <Button fx:id="newConnectionButton" mnemonicParsing="false" onAction="#newConnection" text="New Connection" textFill="#171717" />
             <Button fx:id="newQueryButton" mnemonicParsing="false" onAction="#newQuery" text="New Query" />
          </items>
       </ToolBar>
@@ -63,11 +63,7 @@
                </children></AnchorPane>
       <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
                <children>
-                  <TabPane fx:id="showTabPane" prefHeight="545.0" prefWidth="441.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <tabs>
-                        <Tab fx:id="objectsTab" text="Objects" />
-                     </tabs>
-                  </TabPane>
+                  <TabPane fx:id="showTabPane" prefHeight="545.0" prefWidth="441.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
         <AnchorPane />
       </items>

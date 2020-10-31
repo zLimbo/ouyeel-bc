@@ -19,7 +19,6 @@ import javafx.scene.layout.*;
 import javafx.util.Pair;
 
 import java.net.URL;
-import java.sql.*;
 import java.util.*;
 
 
@@ -34,52 +33,12 @@ public class MainWindowController2 implements Initializable {
     Map<String, Tab> tableTabMap = new HashMap<>();
     int queryId = 1;
 
-    SqlController sqlController = new SqlController(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
+    SqlController sqlController;
 
 
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("============> [initialize] start");
-
-        //showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
-
-        List<String> tables = sqlController.sqlShowTables();
-        TreeItem<String> databaseItem = new TreeItem<>(DataBaseArgs.DB_NAME,
-                new ImageView(new Image(getClass().getResourceAsStream("/image/database.png"))));
-        for (String table: tables) {
-            TreeItem<String> tableItem = new TreeItem<>(table,
-                    new ImageView(new Image(getClass().getResourceAsStream("/image/table.png"))));
-            databaseItem.getChildren().add(tableItem);
-        }
-        dbTreeView.setRoot(databaseItem);
-
-        dbTreeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("============> [handle] start\n");
-
-                if (event.getClickCount() == 2) {
-                    TreeItem<String> item = (TreeItem<String>) dbTreeView.getSelectionModel().getSelectedItem();
-                    System.out.println("====> item name: " + item.getValue());
-                    if (item.getValue() != DataBaseArgs.DB_NAME) {
-                        Tab tableTab;
-                        if (tableTabMap.containsKey(item.getValue())) {
-                            tableTab = tableTabMap.get(item.getValue());
-                        } else {
-                            tableTab = new Tab(item.getValue() + " @" + dbTreeView.getRoot().getValue());
-                            showTabPane.getTabs().add(tableTab);
-                            tableTabMap.put(item.getValue(), tableTab);
-                            showTable(item.getValue());
-                        }
-                        showTabPane.getSelectionModel().select(tableTab);
-                    } else {
-                        showTabPane.getSelectionModel().select(objectsTab);
-                    }
-                }
-
-                System.out.println("============> [handle] end\n");
-            }
-        });
-
+        //showDatabase();
         System.out.println("============> [initialize] end\n");
     }
 
@@ -150,19 +109,7 @@ public class MainWindowController2 implements Initializable {
     private void addRecord(String tableName) {
         System.out.println("====================> [addRecord] start");
 
-        List<String> columnNames = new ArrayList<>();
-        try {
-            DatabaseMetaData databaseMetaData = sqlController.getConnection().getMetaData();
-            ResultSet columnSet = databaseMetaData.getColumns(null, "%", tableName, "%");
-            while (columnSet.next()) {
-                String columnName = columnSet.getString("COLUMN_NAME");
-                columnNames.add(columnName);
-                System.out.println("== columnName: " + columnName);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        List<String> columnNames = sqlController.getColumns(tableName);
         List<TextField> textFields = new ArrayList<>();
 
         Dialog<Pair<String, String>> dialog = new Dialog<>();
@@ -179,8 +126,6 @@ public class MainWindowController2 implements Initializable {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(20, 150, 10, 10));
-
-        BitSet bitset = new BitSet(columnNames.size());
         for (int i = 0; i < columnNames.size(); ++i) {
             String columnName = columnNames.get(i);
             Label label = new Label(columnName);
@@ -188,25 +133,21 @@ public class MainWindowController2 implements Initializable {
             textField.setPromptText(columnName);
             gridPane.add(label, 0, i);
             gridPane.add(textField, 1, i);
-            // 监听，输入不得为空，否则提交按钮为灰色
-            int finalI = i;
-            textField.textProperty().addListener(((observable, oldValue, newValue) -> {
-                if (newValue.trim().isEmpty()) {
-                    bitset.clear(finalI);
-                } else {
-                    bitset.set(finalI);
-                }
-                boolean allSet = true;
-                for (int j = 0; j < columnNames.size(); ++j) {
-                    if (!bitset.get(j)) {
-                        allSet = false;
-                        break;
-                    }
-                }
-                submitButton.setDisable(!allSet);
-            }));
             textFields.add(textField);
         }
+        // 监听，输入不得为空，否则提交按钮为灰色
+        for (TextField textField: textFields) {
+            textField.textProperty().addListener((observable) -> {
+                for (TextField textField1 : textFields) {
+                    if (textField1.getText().trim().isEmpty()) {
+                        submitButton.setDisable(true);
+                        return;
+                    }
+                }
+                submitButton.setDisable(false);
+            });
+        }
+
         dialog.getDialogPane().setContent(gridPane);
         // 点击提交，插入数据
         dialog.setResultConverter(dialogButton -> {
@@ -230,6 +171,142 @@ public class MainWindowController2 implements Initializable {
         dialog.showAndWait();
         
         System.out.println("====================> [addRecord] end\n");
+    }
+
+
+    public void newConnection(ActionEvent actionEvent) {
+        System.out.println("====================> [connectDatabase] start");
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("MySQL - New Connection");
+        dialog.setHeaderText(null);
+
+        ButtonType connectButtonType = new ButtonType("Connect", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(connectButtonType, cancelButtonType);
+        Button connectButton = (Button) dialog.getDialogPane().lookupButton(connectButtonType);
+        connectButton.setDisable(true);
+
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+        List<TextField> textFields = new ArrayList<>();
+        Label databaseNameLabel = new Label("Database Name: ");
+        TextField databaseNameTextField = new TextField();
+        gridPane.add(databaseNameLabel, 0, 0);
+        gridPane.add(databaseNameTextField, 1, 0);
+        textFields.add(databaseNameTextField);
+
+        Label hostLabel = new Label("Host: ");
+        TextField hostTextField = new TextField();
+        hostTextField.setText("localhost");
+        gridPane.add(hostLabel, 0, 1);
+        gridPane.add(hostTextField, 1, 1);
+        textFields.add(hostTextField);
+
+        Label portLabel = new Label("Port: ");
+        TextField portTextField = new TextField();
+        portTextField.setText("3306");
+        gridPane.add(portLabel, 0, 2);
+        gridPane.add(portTextField, 1, 2);
+        textFields.add(portTextField);
+
+        Label userNameLabel = new Label("User Name: ");
+        TextField userNameTextField = new TextField();
+        userNameTextField.setText("root");
+        gridPane.add(userNameLabel, 0, 3);
+        gridPane.add(userNameTextField, 1, 3);
+        textFields.add(userNameTextField);
+
+        Label passwordLabel = new Label("Password: ");
+        PasswordField passwordField = new PasswordField();
+        gridPane.add(passwordLabel, 0, 4);
+        gridPane.add(passwordField, 1, 4);
+        textFields.add(passwordField);
+
+        for (TextField textField: textFields) {
+            textField.textProperty().addListener((observable) -> {
+                boolean allSet = true;
+                for (TextField textField1 : textFields) {
+                    if (textField1.getText().trim().isEmpty()) {
+                        connectButton.setDisable(true);
+                        return;
+                    }
+                }
+                connectButton.setDisable(false);
+            });
+        }
+
+        dialog.getDialogPane().setContent(gridPane);
+        // 提交数据
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == connectButtonType) {
+                String databaseName = databaseNameTextField.getText();
+                String host = hostTextField.getText();
+                String port = portTextField.getText();
+                String userName = userNameTextField.getText();
+                String password = passwordField.getText();
+                sqlController = new SqlController(databaseName, host, port, userName, password);
+                showTabPane.getTabs().clear();
+                showDatabase();
+            }
+            return null;
+        });
+
+        dialog.showAndWait();
+
+        System.out.println("====================> [connectDatabase] end\n");
+    }
+
+
+    private void showDatabase() {
+        System.out.println("====================> [showDatabase] start");
+
+        //showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+        if (sqlController == null) {
+            return;
+        }
+
+        List<String> tables = sqlController.sqlShowTables();
+        TreeItem<String> databaseItem = new TreeItem<>(sqlController.getDatabaseName(),
+                new ImageView(new Image(getClass().getResourceAsStream("/image/database.png"))));
+        for (String table: tables) {
+            TreeItem<String> tableItem = new TreeItem<>(table,
+                    new ImageView(new Image(getClass().getResourceAsStream("/image/table.png"))));
+            databaseItem.getChildren().add(tableItem);
+        }
+        dbTreeView.setRoot(databaseItem);
+
+        dbTreeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("============> [handle] start\n");
+
+                if (event.getClickCount() == 2) {
+                    TreeItem<String> item = (TreeItem<String>) dbTreeView.getSelectionModel().getSelectedItem();
+                    System.out.println("====> item name: " + item.getValue());
+                    if (item.getValue() != DataBaseArgs.DB_NAME) {
+                        Tab tableTab;
+                        if (tableTabMap.containsKey(item.getValue())) {
+                            tableTab = tableTabMap.get(item.getValue());
+                        } else {
+                            tableTab = new Tab(item.getValue() + " @" + dbTreeView.getRoot().getValue());
+                            showTabPane.getTabs().add(tableTab);
+                            tableTabMap.put(item.getValue(), tableTab);
+                            showTable(item.getValue());
+                        }
+                        showTabPane.getSelectionModel().select(tableTab);
+                    } else {
+                        showTabPane.getSelectionModel().select(objectsTab);
+                    }
+                }
+
+                System.out.println("============> [handle] end\n");
+            }
+        });
+
+        System.out.println("====================> [showDatabase] end\n");
     }
 
 
@@ -273,4 +350,5 @@ public class MainWindowController2 implements Initializable {
 
         System.out.println("============> [newQuery] end");
     }
+
 }

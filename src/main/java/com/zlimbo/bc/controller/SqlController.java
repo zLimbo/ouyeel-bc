@@ -10,22 +10,67 @@ import java.util.List;
 public class SqlController {
 
 
-    Connection connection = null;
+    private Connection connection;
+    private String databaseName;
+    private String host;
+    private String port;
+    private String userName;
+    private String password;
+    
+    private String errorMessage;
 
-    Connection getConnection() {
-        return connection;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
+    public String getDatabaseName() {
+        return databaseName;
+    }
 
-    SqlController(String dbName, String user, String passwd) {
+    public String getHost() {
+        return host;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
+
+    public SqlController(String databaseName, String host, String port, String userName, String password) {
         System.out.println("====================> [SqlControl] start");
+
+        this.databaseName = databaseName;
+        this.host = host;
+        this.port = port;
+        this.userName = userName;
+        this.password = password;
+        String url = "jdbc:mysql://" + host + ":" + port + "/" + databaseName +
+                "?useSSL=false" +
+                "&useUnicode=true" +
+                "&characterEncoding=UTF8" +
+                "&serverTimezone=GMT" +
+                "&allowPublicKeyRetrieval=true";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(dbName, user, passwd);
+            connection = DriverManager.getConnection(url, userName, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("====================> [sqlQueryAndShow] end\n");
+
+        System.out.println("====================> [SqlController] end\n");
+    }
+
+
+    Connection getConnection() {
+        return connection;
     }
 
 
@@ -96,15 +141,7 @@ public class SqlController {
         List<List<String>> records = new ArrayList<>();
         Statement statement = null;
         try {
-            //STEP 2: Register JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            //STEP 3: Open a connection
-            System.out.println("Connecting to a selected database...");
-            connection = DriverManager.getConnection(DataBaseArgs.URL, DataBaseArgs.USER, DataBaseArgs.PASS);
             System.out.println("Connected database successfully...");
-
-            //STEP 4: Execute a query
             System.out.println("Creating statement...");
             statement = connection.createStatement();
 
@@ -177,5 +214,25 @@ public class SqlController {
         
         System.out.println("====================> [sqlInsert] end\n");
         return errorMessage;
+    }
+
+
+    public List<String> getColumns(String tableName) {
+        System.out.println("====================> [getColumns] start");
+
+        List<String> columns = new ArrayList<>();
+        try {
+            DatabaseMetaData databaseMetaData = connection.getMetaData();
+            ResultSet columnSet = databaseMetaData.getColumns(null, "%", tableName, "%");
+            while (columnSet.next()) {
+                String columnName = columnSet.getString("COLUMN_NAME");
+                columns.add(columnName);
+                System.out.println("== columnName: " + columnName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("====================> [getColumns] end\n");
+        return columns;
     }
 }
