@@ -1,6 +1,10 @@
 package com.zlimbo.bc.controller;
 
 import com.zlimbo.bc.DataBaseArgs;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -38,7 +42,7 @@ public class MainWindowController2 implements Initializable {
 
         //showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
 
-        List<String> tables = sqlController.getTables();
+        List<String> tables = sqlController.sqlShowTables();
         TreeItem<String> databaseItem = new TreeItem<>(DataBaseArgs.DB_NAME,
                 new ImageView(new Image(getClass().getResourceAsStream("/image/database.png"))));
         for (String table: tables) {
@@ -82,7 +86,6 @@ public class MainWindowController2 implements Initializable {
 
     public void showTable(String tableName) {
         System.out.println("============> [showTable] start");
-        String sql = "select * from " + tableName;
 
         BorderPane borderPane = new BorderPane();
         ToolBar toolBar = new ToolBar();
@@ -95,16 +98,52 @@ public class MainWindowController2 implements Initializable {
         Tab tableTab = tableTabMap.get(tableName);
         tableTab.setContent(borderPane);
 
-        sqlController.sqlQueryAndShow(sql, tableView);
-
         closeButton.setOnAction(event -> {
             showTabPane.getTabs().remove(tableTab);
             tableTabMap.remove(tableName);
         });
-
         addButton.setOnAction(event -> addRecord(tableName));
 
+        String sql = "select * from " + tableName;
+        showTableView(sql, tableView);
+
         System.out.println("============> [showTable] end");
+    }
+
+
+    private void showTableView(String sql, TableView tableView) {
+        tableView.getColumns().clear();
+        tableView.getItems().clear();
+        SqlController.SqlQueryResult sqlQueryResult = sqlController.sqlQuery(sql);
+        String errorMessage = sqlQueryResult.getErrorMessage();
+        List<String> columns = sqlQueryResult.getColumns();
+        List<List<String>> records = sqlQueryResult.getRecords();
+        long spendTime = sqlQueryResult.getSpendTime();
+        if (errorMessage == null) {
+            tableView.getSelectionModel().setCellSelectionEnabled(true);
+
+            for (int i = 0; i < columns.size(); ++i) {
+                TableColumn<List<StringProperty>, String> tableColumn = new TableColumn<>(columns.get(i));
+                int finalI = i;
+                tableColumn.setCellValueFactory(data -> data.getValue().get(finalI));
+                tableView.getColumns().add(tableColumn);
+            }
+            ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
+            for (List<String> record : records) {
+                List<StringProperty> row = new ArrayList<>();
+                for (int i = 0; i < record.size(); ++i) {
+                    row.add(i, new SimpleStringProperty(record.get(i)));
+                }
+                data.add(row);
+            }
+            tableView.setItems(data);
+//            tablePane.setContent(tableView);
+//            resultTabPane.getSelectionModel().select(tablePane);
+//            sqlMessage.setText(sql + "\n> OK" + "\n> Time: " + spendTime + "s");
+        } else {
+//            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + spendTime + "s");
+//            resultTabPane.getSelectionModel().select(messagePane);
+        }
     }
 
 
@@ -230,7 +269,7 @@ public class MainWindowController2 implements Initializable {
         menuItem.setOnAction(event -> {
             showTabPane.getTabs().remove(queryTab);
         });
-        runButton.setOnAction(event -> sqlController.sqlQueryAndShow(textArea.getText(), tableView));
+        runButton.setOnAction(event -> showTableView(textArea.getText(), tableView));
 
         System.out.println("============> [newQuery] end");
     }

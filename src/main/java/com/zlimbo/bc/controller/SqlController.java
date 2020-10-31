@@ -35,7 +35,7 @@ public class SqlController {
     }
 
 
-    List<String> getTables() {
+    List<String> sqlShowTables() {
         List<String> tables = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -50,9 +50,40 @@ public class SqlController {
         return tables;
     }
 
+    
+    public class SqlQueryResult {
+        private List<String> columns;
+        private List<List<String>> records;
+        private String errorMessage;
+        private long spendTime;
 
-    public void sqlQueryAndShow(String sql, TableView tableView) {
-        System.out.println("====================> [SqlControl] start");
+        public SqlQueryResult(List<String> columns, List<List<String>> records, long spendTime, String errorMessage) {
+            this.columns = columns;
+            this.records = records;
+            this.spendTime = spendTime;
+            this.errorMessage = errorMessage;
+        }
+
+        public List<String> getColumns() {
+            return columns;
+        }
+        
+        public List<List<String>> getRecords() {
+            return records;
+        }
+
+        public long getSpendTime() {
+            return spendTime;
+        }
+        
+        public String getErrorMessage() {
+            return errorMessage;
+        }
+    }
+
+
+    public SqlQueryResult sqlQuery(String sql) {
+        System.out.println("====================> [sqlQuery] start");
 
         long start = System.currentTimeMillis();
 
@@ -115,51 +146,28 @@ public class SqlController {
         }
 
         long end = System.currentTimeMillis();
-        double spendSeconds = ((double)end - (double)start) / 1000.0;
-
-        if (errorMessage == null) {
-            tableView.getSelectionModel().setCellSelectionEnabled(true);
-
-            for (int i = 0; i < columns.size(); ++i) {
-                TableColumn<List<StringProperty>, String> tableColumn = new TableColumn<>(columns.get(i));
-                int finalI = i;
-                tableColumn.setCellValueFactory(data -> data.getValue().get(finalI));
-                tableView.getColumns().add(tableColumn);
-            }
-            ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
-            for (List<String> record : records) {
-                List<StringProperty> row = new ArrayList<>();
-                for (int i = 0; i < record.size(); ++i) {
-                    row.add(i, new SimpleStringProperty(record.get(i)));
-                }
-                data.add(row);
-            }
-            tableView.setItems(data);
-//            tablePane.setContent(tableView);
-//            resultTabPane.getSelectionModel().select(tablePane);
-//            sqlMessage.setText(sql + "\n> OK" + "\n> Time: " + spendSeconds + "s");
-        } else {
-            tableView.getColumns().clear();
-            tableView.getItems().clear();
-//            sqlMessage.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + spendSeconds + "s");
-//            resultTabPane.getSelectionModel().select(messagePane);
-        }
-
-        System.out.println("====================> [sqlQueryAndShow] end\n");
+        long spendTime = end - start;
+        
+        System.out.println("====================> [sqlQuery] end\n");
+        return new SqlQueryResult(columns, records, spendTime, errorMessage);
     }
 
 
-    public void sqlInsert(String sql) {
+    public String sqlInsert(String sql) {
         System.out.println("====================> [sqlInsert] start");
 
+        String errorMessage = null;
+        
         System.out.println("== sql:" + sql);
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
         } catch (Exception e) {
+            errorMessage = e.getMessage();
             e.printStackTrace();
         }
-
+        
         System.out.println("====================> [sqlInsert] end\n");
+        return errorMessage;
     }
 }
