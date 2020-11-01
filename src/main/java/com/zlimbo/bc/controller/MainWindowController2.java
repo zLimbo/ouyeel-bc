@@ -31,11 +31,13 @@ public class MainWindowController2 implements Initializable {
     public @FXML TreeView dbTreeView;
     public @FXML TextArea messageTextArea;
     public @FXML Button newConnectionButton;
+    public @FXML Button citaButton;
 
-    Map<String, Tab> tableTabMap = new HashMap<>();
+    Map<String, Tab> tabMap = new HashMap<>();
     int queryId = 1;
 
     SqlController sqlController;
+    ChainControl chainControl = new ChainControl();
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -45,6 +47,8 @@ public class MainWindowController2 implements Initializable {
         newQueryButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query.png"))));
         newQueryButton.setDisable(true);
+        citaButton.setGraphic(
+                new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
 
         sqlController = new SqlController("ouyeel",
                 "localhost", "3306", "root", "123456");
@@ -68,12 +72,12 @@ public class MainWindowController2 implements Initializable {
         borderPane.setTop(toolBar);
         TableView tableView = new TableView();
         borderPane.setCenter(tableView);
-        Tab tableTab = tableTabMap.get(tableName);
+        Tab tableTab = tabMap.get(tableName);
         tableTab.setContent(borderPane);
 
         closeButton.setOnAction(event -> {
             showTabPane.getTabs().remove(tableTab);
-            tableTabMap.remove(tableName);
+            tabMap.remove(tableName);
         });
         addButton.setOnAction(event -> addRecord(tableName));
 
@@ -270,7 +274,7 @@ public class MainWindowController2 implements Initializable {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error Connection");
-                    alert.setHeaderText("Parameter Error!");
+                    alert.setHeaderText("Invalid connection!");
 
                     alert.showAndWait();
                 }
@@ -312,15 +316,15 @@ public class MainWindowController2 implements Initializable {
                     System.out.println("====> item name: " + item.getValue());
                     if (item.getValue() != DataBaseArgs.DB_NAME) {
                         Tab tableTab;
-                        if (tableTabMap.containsKey(item.getValue())) {
-                            tableTab = tableTabMap.get(item.getValue());
+                        if (tabMap.containsKey(item.getValue())) {
+                            tableTab = tabMap.get(item.getValue());
                         } else {
                             tableTab = new Tab(item.getValue() + " @" + dbTreeView.getRoot().getValue());
                             tableTab.setGraphic(
                                     new ImageView(new Image(getClass().getResourceAsStream("/image/table2.png")))
                             );
                             showTabPane.getTabs().add(tableTab);
-                            tableTabMap.put(item.getValue(), tableTab);
+                            tabMap.put(item.getValue(), tableTab);
                             showTable(item.getValue());
                         }
                         showTabPane.getSelectionModel().select(tableTab);
@@ -358,29 +362,68 @@ public class MainWindowController2 implements Initializable {
         TextArea textArea = new TextArea();
         TableView tableView = new TableView();
         SplitPane splitPane = new SplitPane();
-        splitPane.getItems().addAll(textArea, tableView);
+        splitPane.getItems().addAll(textArea, tableView); 
         splitPane.setOrientation(Orientation.VERTICAL);
         splitPane.setDividerPosition(0, 0.3);
         borderPane.setCenter(splitPane);
 
         queryTab.setContent(borderPane);
         queryTab.setClosable(true);
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem menuItem = new MenuItem("关闭");
-        contextMenu.getItems().add(menuItem);
-        queryTab.setContextMenu(contextMenu);
+
+//        ContextMenu contextMenu = new ContextMenu();
+//        MenuItem menuItem = new MenuItem("关闭");
+//        contextMenu.getItems().add(menuItem);
+//        queryTab.setContextMenu(contextMenu);
+
         showTabPane.getTabs().add(queryTab);
         showTabPane.getSelectionModel().select(queryTab);
+
+//        menuItem.setOnAction(event -> {
+//            showTabPane.getTabs().remove(queryTab);
+//        });
 
         closeButton.setOnAction(event -> {
             showTabPane.getTabs().remove(queryTab);
         });
-        menuItem.setOnAction(event -> {
-            showTabPane.getTabs().remove(queryTab);
-        });
+
         runButton.setOnAction(event -> showTableView(textArea.getText(), tableView));
 
         System.out.println("============> [newQuery] end");
     }
 
+    public void showCita(ActionEvent actionEvent) {
+
+        if (tabMap.containsKey("citaTab")) {
+            showTabPane.getSelectionModel().select(tabMap.get("citaTab"));
+            return;
+        }
+
+        Tab citaTab = new Tab("CITA");
+        tabMap.put("citaTab", citaTab);
+        showTabPane.getTabs().add(citaTab);
+        showTabPane.getSelectionModel().select(citaTab);
+
+        citaTab.setGraphic(
+                new ImageView(new Image(getClass().getResourceAsStream("/image/cita2.png")))
+        );
+        BorderPane borderPane = new BorderPane();
+
+        ToolBar toolBar = new ToolBar();
+        Button closeButton = new Button("Close",
+                new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
+        toolBar.getItems().addAll(closeButton);
+        borderPane.setTop(toolBar);
+        TableView tableView = new TableView();
+        borderPane.setCenter(tableView);
+        citaTab.setContent(borderPane);
+
+        closeButton.setOnAction(event -> {
+            showTabPane.getTabs().remove(citaTab);
+            tabMap.remove("citaTab");
+        });
+
+        Map<String, String> citaInfo = chainControl.getBcinfo();
+
+
+    }
 }
