@@ -29,7 +29,7 @@ public class MainWindowController2 implements Initializable {
     public @FXML Tab objectsTab;
     public @FXML TabPane showTabPane;
     public @FXML TreeView dbTreeView;
-    public @FXML TextArea messageTextArea;
+    //public @FXML TextArea messageTextArea;
     public @FXML Button newConnectionButton;
     public @FXML Button citaButton;
 
@@ -82,13 +82,13 @@ public class MainWindowController2 implements Initializable {
         addButton.setOnAction(event -> addRecord(tableName));
 
         String sql = "select * from " + tableName;
-        showTableView(sql, tableView);
+        showTableView(sql, tableView, null);
 
         System.out.println("============> [showTable] end");
     }
 
 
-    private void showTableView(String sql, TableView tableView) {
+    private void showTableView(String sql, TableView tableView, TextArea messageTextArea) {
         tableView.setTableMenuButtonVisible(true);
         tableView.getColumns().clear();
         tableView.getItems().clear();
@@ -115,11 +115,15 @@ public class MainWindowController2 implements Initializable {
                 data.add(row);
             }
             tableView.setItems(data);
-            messageTextArea.setStyle("-fx-text-fill:#000000;");
-            messageTextArea.setText(sql + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
+            if (messageTextArea != null) {
+                messageTextArea.setStyle("-fx-text-fill:#000000;");
+                messageTextArea.setText(sql + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
+            }
         } else {
-            messageTextArea.setStyle("-fx-text-fill:#ff0000;");
-            messageTextArea.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
+            if (messageTextArea != null) {
+                messageTextArea.setStyle("-fx-text-fill:#ff0000;");
+                messageTextArea.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
+            }
         }
     }
 
@@ -347,9 +351,15 @@ public class MainWindowController2 implements Initializable {
         Tab queryTab = new Tab("query" + queryId++);
         queryTab.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query2.png"))));
+        queryTab.setClosable(true);
+        showTabPane.getTabs().add(queryTab);
+        showTabPane.getSelectionModel().select(queryTab);
+
         BorderPane borderPane = new BorderPane();
+        queryTab.setContent(borderPane);
 
         ToolBar toolBar = new ToolBar();
+        borderPane.setTop(toolBar);
         Button closeButton = new Button("Close",
                 new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
         Button saveButton = new Button("Save",
@@ -357,27 +367,24 @@ public class MainWindowController2 implements Initializable {
         Button runButton = new Button("Run",
                 new ImageView(new Image(getClass().getResourceAsStream("/image/run.png"))));
         toolBar.getItems().addAll(closeButton, saveButton, runButton);
-        borderPane.setTop(toolBar);
+
+        SplitPane splitPane = new SplitPane();
+        borderPane.setCenter(splitPane);
 
         TextArea textArea = new TextArea();
         TableView tableView = new TableView();
-        SplitPane splitPane = new SplitPane();
-        splitPane.getItems().addAll(textArea, tableView); 
+        TextArea messageTextArea = new TextArea();
+        messageTextArea.setEditable(false);
+        splitPane.getItems().addAll(textArea, tableView, messageTextArea);
         splitPane.setOrientation(Orientation.VERTICAL);
-        splitPane.setDividerPosition(0, 0.3);
-        borderPane.setCenter(splitPane);
+        splitPane.setDividerPosition(0, 0.2);
+        splitPane.setDividerPosition(1, 0.85);
 
-        queryTab.setContent(borderPane);
-        queryTab.setClosable(true);
 
 //        ContextMenu contextMenu = new ContextMenu();
 //        MenuItem menuItem = new MenuItem("关闭");
 //        contextMenu.getItems().add(menuItem);
 //        queryTab.setContextMenu(contextMenu);
-
-        showTabPane.getTabs().add(queryTab);
-        showTabPane.getSelectionModel().select(queryTab);
-
 //        menuItem.setOnAction(event -> {
 //            showTabPane.getTabs().remove(queryTab);
 //        });
@@ -386,7 +393,7 @@ public class MainWindowController2 implements Initializable {
             showTabPane.getTabs().remove(queryTab);
         });
 
-        runButton.setOnAction(event -> showTableView(textArea.getText(), tableView));
+        runButton.setOnAction(event -> showTableView(textArea.getText(), tableView, messageTextArea));
 
         System.out.println("============> [newQuery] end");
     }
