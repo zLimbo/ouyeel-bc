@@ -72,7 +72,7 @@ public class SqlController {
                 "&serverTimezone=GMT" +
                 "&allowPublicKeyRetrieval=true";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, userName, password);
             connectSuccess = true;
         } catch (Exception e) {
