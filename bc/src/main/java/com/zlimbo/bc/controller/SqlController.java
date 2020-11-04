@@ -91,11 +91,12 @@ public class SqlController {
 
 
     public List<String> sqlShowTables() {
+        String sql = "show tables";
         List<String> tables = new ArrayList<>();
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         try {
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("show tables");
+            preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 System.out.println("====> table: " + resultSet.getString(1));
                 tables.add(resultSet.getString(1));
@@ -105,8 +106,8 @@ public class SqlController {
         } finally {
             //finally block used to close resources
             try {
-                if (statement != null) {
-                    statement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException se) {
                 se.printStackTrace();
@@ -115,7 +116,7 @@ public class SqlController {
         return tables;
     }
 
-    
+
     public static class SqlQueryResult {
         private final List<String> columns;
         private final List<List<String>> records;
@@ -132,7 +133,7 @@ public class SqlController {
         public List<String> getColumns() {
             return columns;
         }
-        
+
         public List<List<String>> getRecords() {
             return records;
         }
@@ -140,7 +141,7 @@ public class SqlController {
         public long getSpendTime() {
             return spendTime;
         }
-        
+
         public String getErrorMessage() {
             return errorMessage;
         }
@@ -155,14 +156,11 @@ public class SqlController {
         String errorMessage = null;
         List<String> columns = new ArrayList<>();
         List<List<String>> records = new ArrayList<>();
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         try {
-            System.out.println("Connected database successfully...");
-            System.out.println("Creating statement...");
-            statement = connection.createStatement();
-
-            System.out.println("====> query sql: " + sql);
-            ResultSet resultSet = statement.executeQuery(sql);
+            preparedStatement = connection.prepareStatement(sql);
+            System.out.println(preparedStatement.toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
@@ -189,8 +187,8 @@ public class SqlController {
         } finally {
             //finally block used to close resources
             try {
-                if (statement != null) {
-                    statement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException se) {
                 se.printStackTrace();
@@ -199,7 +197,7 @@ public class SqlController {
 
         long end = System.currentTimeMillis();
         long spendTime = end - start;
-        
+
         System.out.println("====================> [sqlQuery] end\n");
         return new SqlQueryResult(columns, records, spendTime, errorMessage);
     }
@@ -209,25 +207,25 @@ public class SqlController {
         System.out.println("====================> [sqlInsert] start");
 
         String errorMessage = null;
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         System.out.println("== sql:" + sql);
         try {
-            statement = connection.createStatement();
-            statement.execute(sql);
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         } catch (Exception e) {
             errorMessage = e.getMessage();
             e.printStackTrace();
         } finally {
             //finally block used to close resources
             try {
-                if (statement != null) {
-                    statement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException se) {
                 se.printStackTrace();
             }
         }
-        
+
         System.out.println("====================> [sqlInsert] end\n");
         return errorMessage;
     }

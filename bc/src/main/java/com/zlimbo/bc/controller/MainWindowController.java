@@ -180,7 +180,7 @@ public class MainWindowController extends AbstractFxmlView implements Initializa
                 StringBuilder stringBuilder = new StringBuilder("INSERT INTO " + tableName + " VALUES(");
                 for (int i = 0; i < textFields.size(); ++i) {
                     TextField textField = textFields.get(i);
-                    stringBuilder.append(textField.getText());
+                    stringBuilder.append("'" + textField.getText() + "'");
                     if (i != textFields.size() - 1) {
                         stringBuilder.append(",");
                     }

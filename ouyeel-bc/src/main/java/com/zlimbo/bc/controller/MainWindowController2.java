@@ -177,7 +177,7 @@ public class MainWindowController2 implements Initializable {
                 StringBuilder stringBuilder = new StringBuilder("INSERT INTO " + tableName + " VALUES(");
                 for (int i = 0; i < textFields.size(); ++i) {
                     TextField textField = textFields.get(i);
-                    stringBuilder.append(textField.getText());
+                    stringBuilder.append("'" + textField.getText() + "'");
                     if (i != textFields.size() - 1) {
                         stringBuilder.append(",");
                     }
@@ -431,6 +431,10 @@ public class MainWindowController2 implements Initializable {
 
         Map<String, String> citaInfo = chainControl.getBcinfo();
 
+
+    }
+
+    public void test(ActionEvent actionEvent) {
 
     }
 }
