@@ -429,14 +429,22 @@ public class MainWindowController2 implements Initializable {
             tabMap.remove("citaTab");
         });
 
-        Map<String, String> citaInfo = chainControl.getBcinfo();
+        TableColumn<List<StringProperty>, String> attributeColumn = new TableColumn<>("attribute");
+        TableColumn<List<StringProperty>, String> valueColumn = new TableColumn<>("value");
+        attributeColumn.setCellValueFactory(data -> data.getValue().get(0));
+        valueColumn.setCellValueFactory(data -> data.getValue().get(1));
+        tableView.getColumns().addAll(attributeColumn, valueColumn);
 
-        TableColumn attribute = new TableColumn("attribute");
-        TableColumn value = new TableColumn("value");
-        tableView.getColumns().addAll(attribute, value);
+        ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
+        List<List<StringProperty>> bcInfo = chainControl.getBcInfo();
 
-
-
+        for (List<StringProperty> list: bcInfo) {
+            List<StringProperty> row = new ArrayList<>();
+            row.add(0, list.get(0));
+            row.add(1, list.get(1));
+            data.add(row);
+        }
+        tableView.setItems(data);
     }
 
     public void upChain(ActionEvent actionEvent) {

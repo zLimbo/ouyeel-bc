@@ -12,9 +12,7 @@ import javafx.beans.property.StringProperty;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ChainControl {
 
@@ -24,23 +22,115 @@ public class ChainControl {
     private int txAllNumber;
     CITAj service;
 
-    private StringProperty peerCount;
-    private StringProperty blockNumber;
-    private StringProperty chainId;
-    private StringProperty chainName;
-    private StringProperty genesisTS;
-    private StringProperty blockId;
-    private StringProperty blockJsonrpc;
-    private StringProperty blockVersion;
-    private StringProperty blockHash;
-    private StringProperty headerTimestamp;
-    private StringProperty headerPrevHash;
-    private StringProperty headerNumber;
-    private StringProperty headerStateRoot;
-    private StringProperty headerTransactionsRoot;
-    private StringProperty headerReceiptsRoot;
-    private StringProperty headerProposer;
-    private StringProperty blockTxNumber;
+    private StringProperty peerCount = new SimpleStringProperty();
+    private StringProperty blockNumber = new SimpleStringProperty();
+    private StringProperty chainId = new SimpleStringProperty();
+    private StringProperty chainName = new SimpleStringProperty();
+    private StringProperty genesisTS = new SimpleStringProperty();
+    private StringProperty blockId = new SimpleStringProperty();
+    private StringProperty blockJsonrpc = new SimpleStringProperty();
+    private StringProperty blockVersion = new SimpleStringProperty();
+    private StringProperty blockHash = new SimpleStringProperty();
+    private StringProperty headerTimestamp = new SimpleStringProperty();
+    private StringProperty headerPrevHash = new SimpleStringProperty();
+    private StringProperty headerNumber = new SimpleStringProperty();
+    private StringProperty headerStateRoot = new SimpleStringProperty();
+    private StringProperty headerTransactionsRoot = new SimpleStringProperty();
+    private StringProperty headerReceiptsRoot = new SimpleStringProperty();
+    private StringProperty headerProposer = new SimpleStringProperty();
+    private StringProperty blockTxNumber = new SimpleStringProperty();
+
+
+    public ChainControl() {
+        txAllNumber = 0;
+        service = CITAj.build(new HttpService(CITA_URL));
+
+        updateBcinfo();
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                updateBcinfo();
+            }
+        }, 3000, 3000);
+    }
+
+    public void updateBcinfo() {
+        System.out.println("============> [updateBcinfo] start");
+
+        try {
+            NetPeerCount netPeerCount = service.netPeerCount().send();
+            BigInteger peerCount = netPeerCount.getQuantity();
+            this.setPeerCount(peerCount.toString());
+
+            AppBlockNumber appBlockNumber = service.appBlockNumber().send();
+            BigInteger blockNumber = appBlockNumber.getBlockNumber();
+            this.setBlockNumber(blockNumber.toString());
+
+
+            DefaultBlockParameter defaultParam = DefaultBlockParameter.valueOf("latest");
+            AppMetaData appMetaData = service.appMetaData(defaultParam).send();
+            AppMetaData.AppMetaDataResult result = appMetaData.getAppMetaDataResult();
+            BigInteger chainId = result.getChainId();
+            String chainName = result.getChainName();
+            String genesisTS = result.getGenesisTimestamp();
+            this.setChainId(chainId.toString());
+            this.setChainName(chainName);
+            this.setGenesisTS(genesisTS);
+
+
+            AppBlock appBlock = service.appGetBlockByNumber(DefaultBlockParameter.valueOf(blockNumber), true).send();
+            this.setBlockId( String.valueOf(appBlock.getId()));
+            this.setBlockJsonrpc(appBlock.getJsonrpc());
+
+            AppBlock.Block block = appBlock.getBlock();
+            this.setBlockVersion(block.getVersion());
+            this.setBlockHash(block.getHash());
+
+            AppBlock.Header header = block.getHeader();
+            this.setHeaderTimestamp(header.getTimestamp().toString());
+            this.setHeaderPrevHash(header.getPrevHash());
+            this.setHeaderNumber(header.getNumber());
+            this.setHeaderStateRoot(header.getStateRoot());
+            this.setHeaderTransactionsRoot(header.getTransactionsRoot());
+            this.setHeaderReceiptsRoot(header.getReceiptsRoot());
+            this.setHeaderProposer(header.getProposer());
+
+            AppBlock.Body body = block.getBody();
+            List<AppBlock.TransactionObject> transactionObjects = body.getTransactions();
+            int blockTxNumber = transactionObjects.size();
+            this.setBlockTxNumber(String.valueOf(blockTxNumber));
+            //this.settxAllNumber( String.valueOf(txAllNumber));
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        System.out.println("============> [updateBcinfo] end\n");
+    }
+
+
+    List<List<StringProperty>> getBcInfo() {
+        List<List<StringProperty>> bcInfo = new ArrayList<>();
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("peerCount"), peerCount));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("peerCount"), peerCount));             
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockNumber"), blockNumber));           
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("chainId"), chainId));               
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("chainName"), chainName));             
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("genesisTS"), genesisTS));             
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockId"), blockId));                       
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockJsonrpc"), blockJsonrpc));                  
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockVersion"), blockVersion));                  
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockHash"), blockHash));                     
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerTimestamp"), headerTimestamp));               
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerPrevHash"), headerPrevHash));                
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerNumber"), headerNumber));                  
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerStateRoot"), headerStateRoot));               
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerTransactionsRoot"), headerTransactionsRoot)); 
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerReceiptsRoot"), headerReceiptsRoot));     
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerProposer"), headerProposer));         
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockTxNumber"), blockTxNumber));                 
+        return bcInfo;
+    }
+
 
     public String getPeerCount() {
         return peerCount.get();
@@ -48,6 +138,10 @@ public class ChainControl {
 
     public StringProperty peerCountProperty() {
         return peerCount;
+    }
+
+    public void setPeerCount(String peerCount) {
+        this.peerCount.set(peerCount);
     }
 
     public String getBlockNumber() {
@@ -58,12 +152,20 @@ public class ChainControl {
         return blockNumber;
     }
 
+    public void setBlockNumber(String blockNumber) {
+        this.blockNumber.set(blockNumber);
+    }
+
     public String getChainId() {
         return chainId.get();
     }
 
     public StringProperty chainIdProperty() {
         return chainId;
+    }
+
+    public void setChainId(String chainId) {
+        this.chainId.set(chainId);
     }
 
     public String getChainName() {
@@ -74,12 +176,20 @@ public class ChainControl {
         return chainName;
     }
 
+    public void setChainName(String chainName) {
+        this.chainName.set(chainName);
+    }
+
     public String getGenesisTS() {
         return genesisTS.get();
     }
 
     public StringProperty genesisTSProperty() {
         return genesisTS;
+    }
+
+    public void setGenesisTS(String genesisTS) {
+        this.genesisTS.set(genesisTS);
     }
 
     public String getBlockId() {
@@ -90,12 +200,20 @@ public class ChainControl {
         return blockId;
     }
 
+    public void setBlockId(String blockId) {
+        this.blockId.set(blockId);
+    }
+
     public String getBlockJsonrpc() {
         return blockJsonrpc.get();
     }
 
     public StringProperty blockJsonrpcProperty() {
         return blockJsonrpc;
+    }
+
+    public void setBlockJsonrpc(String blockJsonrpc) {
+        this.blockJsonrpc.set(blockJsonrpc);
     }
 
     public String getBlockVersion() {
@@ -106,12 +224,20 @@ public class ChainControl {
         return blockVersion;
     }
 
+    public void setBlockVersion(String blockVersion) {
+        this.blockVersion.set(blockVersion);
+    }
+
     public String getBlockHash() {
         return blockHash.get();
     }
 
     public StringProperty blockHashProperty() {
         return blockHash;
+    }
+
+    public void setBlockHash(String blockHash) {
+        this.blockHash.set(blockHash);
     }
 
     public String getHeaderTimestamp() {
@@ -122,12 +248,20 @@ public class ChainControl {
         return headerTimestamp;
     }
 
+    public void setHeaderTimestamp(String headerTimestamp) {
+        this.headerTimestamp.set(headerTimestamp);
+    }
+
     public String getHeaderPrevHash() {
         return headerPrevHash.get();
     }
 
     public StringProperty headerPrevHashProperty() {
         return headerPrevHash;
+    }
+
+    public void setHeaderPrevHash(String headerPrevHash) {
+        this.headerPrevHash.set(headerPrevHash);
     }
 
     public String getHeaderNumber() {
@@ -138,12 +272,20 @@ public class ChainControl {
         return headerNumber;
     }
 
+    public void setHeaderNumber(String headerNumber) {
+        this.headerNumber.set(headerNumber);
+    }
+
     public String getHeaderStateRoot() {
         return headerStateRoot.get();
     }
 
     public StringProperty headerStateRootProperty() {
         return headerStateRoot;
+    }
+
+    public void setHeaderStateRoot(String headerStateRoot) {
+        this.headerStateRoot.set(headerStateRoot);
     }
 
     public String getHeaderTransactionsRoot() {
@@ -154,6 +296,22 @@ public class ChainControl {
         return headerTransactionsRoot;
     }
 
+    public void setHeaderTransactionsRoot(String headerTransactionsRoot) {
+        this.headerTransactionsRoot.set(headerTransactionsRoot);
+    }
+
+    public String getHeaderReceiptsRoot() {
+        return headerReceiptsRoot.get();
+    }
+
+    public StringProperty headerReceiptsRootProperty() {
+        return headerReceiptsRoot;
+    }
+
+    public void setHeaderReceiptsRoot(String headerReceiptsRoot) {
+        this.headerReceiptsRoot.set(headerReceiptsRoot);
+    }
+
     public String getHeaderProposer() {
         return headerProposer.get();
     }
@@ -162,83 +320,19 @@ public class ChainControl {
         return headerProposer;
     }
 
-    public ChainControl() {
-        txAllNumber = 0;
-        service = CITAj.build(new HttpService(CITA_URL));
+    public void setHeaderProposer(String headerProposer) {
+        this.headerProposer.set(headerProposer);
     }
 
+    public String getBlockTxNumber() {
+        return blockTxNumber.get();
+    }
 
-    Map<String, String> getBcinfo() {
-        System.out.println("============> [getBcinfo] start");
-        Map<String, String> hashMap = new HashMap<>();
+    public StringProperty blockTxNumberProperty() {
+        return blockTxNumber;
+    }
 
-        try {
-            NetPeerCount netPeerCount = service.netPeerCount().send();
-            BigInteger peerCount = netPeerCount.getQuantity();
-            hashMap.put("peerCount", peerCount.toString());
-            this.peerCount = new SimpleStringProperty(peerCount.toString());
-
-            AppBlockNumber appBlockNumber = service.appBlockNumber().send();
-            BigInteger blockNumber = appBlockNumber.getBlockNumber();
-            hashMap.put("blockNumber", blockNumber.toString());
-            this.blockNumber = new SimpleStringProperty(blockNumber.toString());
-
-
-            DefaultBlockParameter defaultParam = DefaultBlockParameter.valueOf("latest");
-            AppMetaData appMetaData = service.appMetaData(defaultParam).send();
-            AppMetaData.AppMetaDataResult result = appMetaData.getAppMetaDataResult();
-            BigInteger chainId = result.getChainId();
-            String chainName = result.getChainName();
-            String genesisTS = result.getGenesisTimestamp();
-            hashMap.put("chainId", chainId.toString());
-            this.chainId = new SimpleStringProperty(chainId.toString());
-            hashMap.put("chainName", chainName);
-            this.chainName = new SimpleStringProperty(chainName);
-            hashMap.put("genesisTS", genesisTS);
-            this.genesisTS = new SimpleStringProperty(genesisTS);
-
-
-            AppBlock appBlock = service.appGetBlockByNumber(DefaultBlockParameter.valueOf(blockNumber), true).send();
-            hashMap.put("blockId", String.valueOf(appBlock.getId()));
-            this.blockId = new SimpleStringProperty(String.valueOf(appBlock.getId()));
-            hashMap.put("blockJsonrpc", appBlock.getJsonrpc());
-            this.blockJsonrpc = new SimpleStringProperty(appBlock.getJsonrpc());
-
-            AppBlock.Block block = appBlock.getBlock();
-            hashMap.put("blockVersion", block.getVersion());
-            this.blockVersion = new SimpleStringProperty(block.getVersion());
-            hashMap.put("blockHash", block.getHash());
-            this.blockHash = new SimpleStringProperty(block.getHash());
-
-            AppBlock.Header header = block.getHeader();
-            hashMap.put("headerTimestamp", header.getTimestamp().toString());
-            this.headerTimestamp = new SimpleStringProperty(header.getTimestamp().toString());
-            hashMap.put("headerPrevHash", header.getPrevHash());
-            this.headerPrevHash = new SimpleStringProperty(header.getPrevHash());
-            hashMap.put("headerNumber", header.getNumber());
-            this.headerNumber = new SimpleStringProperty(header.getNumber());
-            hashMap.put("headerStateRoot", header.getStateRoot());
-            this.headerStateRoot = new SimpleStringProperty(header.getStateRoot());
-            hashMap.put("headerTransactionsRoot", header.getTransactionsRoot());
-            this.headerTransactionsRoot = new SimpleStringProperty(header.getTransactionsRoot());
-            hashMap.put("headerReceiptsRoot", header.getReceiptsRoot());
-            this.headerReceiptsRoot = new SimpleStringProperty(header.getReceiptsRoot());
-            hashMap.put("headerProposer", header.getProposer());
-            this.headerProposer = new SimpleStringProperty(header.getProposer());
-
-            AppBlock.Body body = block.getBody();
-            List<AppBlock.TransactionObject> transactionObjects = body.getTransactions();
-            int blockTxNumber = transactionObjects.size();
-            hashMap.put("blockTxNumber", String.valueOf(blockTxNumber));
-            this.blockTxNumber = new SimpleStringProperty(String.valueOf(blockTxNumber));
-            hashMap.put("txAllNumber", String.valueOf(txAllNumber));
-//            this.txAllNumber = new SimpleStringProperty(String.valueOf(txAllNumber));
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-            hashMap = null;
-        }
-
-        System.out.println("============> [getBcinfo] end\n");
-        return hashMap;
+    public void setBlockTxNumber(String blockTxNumber) {
+        this.blockTxNumber.set(blockTxNumber);
     }
 }
