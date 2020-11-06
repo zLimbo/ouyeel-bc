@@ -1,0 +1,61 @@
+<div layout:decorator="base">
+
+    <div layout:fragment="content">
+        <div class="container-fluid  dashboard-content">
+            <!-- ============================================================== -->
+            <!-- hover list  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <!-- ============================================================== -->
+            <!-- hover list  -->
+            <!-- ============================================================== -->
+            <div class="card">
+                <h5 class="card-header">提交结果</h5>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active"
+                           th:text="'哈希值：' + ${invoice.hashValue}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                            th:text="'发票号：' + ${invoice.invoiceNo}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'购方全称：' + ${invoice.buyerName}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'购方税号：' + ${invoice.buyerTaxesNo}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'销方全称：' + ${invoice.sellerName}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'销方税号：' + ${invoice.sellerTaxesNo}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'发票日期：' + ${invoice.invoiceDate}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'发票类型：' + ${invoice.invoiceType}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'税点：' + ${invoice.taxesPoint}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'税费：' + ${invoice.taxes}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'价费：' + ${invoice.price}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'价税合计：' + ${invoice.pricePlusTaxes}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'发票数量：' + ${invoice.invoiceNumber}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'结算单：' + ${invoice.statementSheet}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'结算重量：' + ${invoice.statementWeight}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'时间戳：' + ${invoice.timestamp}"></a>
+                        <a href="#" class="list-group-item list-group-item-action"
+                           th:text="'合约地址：' + ${invoice.contractAddress}"></a>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end hoverlist  -->
+            <!-- ============================================================== -->
+        </div>
+        </div>
+
+    </div>
+</div>
+

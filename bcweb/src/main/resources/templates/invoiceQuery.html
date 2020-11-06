@@ -1,0 +1,56 @@
+<div layout:decorator="base">
+
+    <div layout:fragment="menu">
+    </div>
+
+    <div layout:fragment="content">
+        <div class="container-fluid  dashboard-content">
+            <div class="card">
+                <h5 class="card-header">交易查询</h5>
+                <div class="card-body">
+                    <form id="contract-deploy-form" data-parsley-validate="" novalidate=""
+                          th:action="@{/invoiceQuery}" th:object="${sql}" method="post">
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">SQL语句</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" th:field="*{sql}" required="" placeholder="" class="form-control input-lg">
+                            </div>
+                        </div>
+                        <div class="form-group row text-right">
+                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                <button type="submit" class="btn btn-space btn-primary">提交</button>
+                                <button type="reset" class="btn btn-space btn-secondary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <h5 class="card-header">查询结果</h5>
+                <div class="card-body">
+                    <div class="table-responsive" th:if="${existValue}">
+                        <table class="table table-striped table-bordered first">
+                            <thead>
+                            <tr>
+                                <th th:each="columnName:${columnNames}" th:text="${columnName}"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="list:${columnValues}">
+                                    <td th:each="columnValue:${list}" th:text="${columnValue}"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th th:each="columnName:${columnNames}" th:text="${columnName}"></th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

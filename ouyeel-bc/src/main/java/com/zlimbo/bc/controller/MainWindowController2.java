@@ -431,10 +431,106 @@ public class MainWindowController2 implements Initializable {
 
         Map<String, String> citaInfo = chainControl.getBcinfo();
 
+        TableColumn attribute = new TableColumn("attribute");
+        TableColumn value = new TableColumn("value");
+        tableView.getColumns().addAll(attribute, value);
+
+
 
     }
 
-    public void test(ActionEvent actionEvent) {
+    public void upChain(ActionEvent actionEvent) {
+        System.out.println("====================> [upChain] start");
+//        Dialog<Pair<String, String>> dialog = new Dialog<>();
+//        dialog.setTitle("MySQL - New Connection");
+//        dialog.setHeaderText(null);
+//
+//        ButtonType connectButtonType = new ButtonType("Connect", ButtonBar.ButtonData.OK_DONE);
+//        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+//        dialog.getDialogPane().getButtonTypes().addAll(connectButtonType, cancelButtonType);
+//        Button connectButton = (Button) dialog.getDialogPane().lookupButton(connectButtonType);
+//        connectButton.setDisable(true);
+//
+//        GridPane gridPane = new GridPane();
+//        gridPane.setHgap(10);
+//        gridPane.setVgap(10);
+//        gridPane.setPadding(new Insets(20, 150, 10, 10));
+//
+//        List<TextField> textFields = new ArrayList<>();
+//        Label databaseNameLabel = new Label("Database Name: ");
+//        TextField databaseNameTextField = new TextField();
+//        gridPane.add(databaseNameLabel, 0, 0);
+//        gridPane.add(databaseNameTextField, 1, 0);
+//        textFields.add(databaseNameTextField);
+//
+//        Label hostLabel = new Label("Host: ");
+//        TextField hostTextField = new TextField();
+//        hostTextField.setText("localhost");
+//        gridPane.add(hostLabel, 0, 1);
+//        gridPane.add(hostTextField, 1, 1);
+//        textFields.add(hostTextField);
+//
+//        Label portLabel = new Label("Port: ");
+//        TextField portTextField = new TextField();
+//        portTextField.setText("3306");
+//        gridPane.add(portLabel, 0, 2);
+//        gridPane.add(portTextField, 1, 2);
+//        textFields.add(portTextField);
+//
+//        Label userNameLabel = new Label("User Name: ");
+//        TextField userNameTextField = new TextField();
+//        userNameTextField.setText("root");
+//        gridPane.add(userNameLabel, 0, 3);
+//        gridPane.add(userNameTextField, 1, 3);
+//        textFields.add(userNameTextField);
+//
+//        Label passwordLabel = new Label("Password: ");
+//        PasswordField passwordField = new PasswordField();
+//        gridPane.add(passwordLabel, 0, 4);
+//        gridPane.add(passwordField, 1, 4);
+//        textFields.add(passwordField);
+//
+//        for (TextField textField: textFields) {
+//            textField.textProperty().addListener((observable) -> {
+//                boolean allSet = true;
+//                for (TextField textField1 : textFields) {
+//                    if (textField1.getText().trim().isEmpty()) {
+//                        connectButton.setDisable(true);
+//                        return;
+//                    }
+//                }
+//                connectButton.setDisable(false);
+//            });
+//        }
+//
+//        dialog.getDialogPane().setContent(gridPane);
+//        // 提交数据
+//        dialog.setResultConverter(dialogButton -> {
+//            if (dialogButton == connectButtonType) {
+//                String databaseName = databaseNameTextField.getText();
+//                String host = hostTextField.getText();
+//                String port = portTextField.getText();
+//                String userName = userNameTextField.getText();
+//                String password = passwordField.getText();
+//                SqlController sqlController1 = new SqlController(databaseName, host, port, userName, password);
+//                if (sqlController1.isConnectSuccess()) {
+//                    sqlController = sqlController1;
+//                    showTabPane.getTabs().clear();
+//                    showDatabase();
+//                    newQueryButton.setDisable(false);
+//                } else {
+//                    Alert alert = new Alert(Alert.AlertType.ERROR);
+//                    alert.setTitle("Error Connection");
+//                    alert.setHeaderText("Invalid connection!");
+//
+//                    alert.showAndWait();
+//                }
+//            }
+//            return null;
+//        });
+//
+//        dialog.showAndWait();
 
+        System.out.println("====================> [upChain] end\n");
     }
 }
