@@ -398,13 +398,15 @@ public class MainWindowController2 implements Initializable {
         System.out.println("============> [newQuery] end");
     }
 
-    public void showCita(ActionEvent actionEvent) {
 
+    public void showCita(ActionEvent actionEvent) {
+        System.out.println("============> [showCita] start");
         if (tabMap.containsKey("citaTab")) {
             showTabPane.getSelectionModel().select(tabMap.get("citaTab"));
             return;
         }
 
+        chainControl.updateStart();
         Tab citaTab = new Tab("CITA");
         tabMap.put("citaTab", citaTab);
         showTabPane.getTabs().add(citaTab);
@@ -427,6 +429,7 @@ public class MainWindowController2 implements Initializable {
         closeButton.setOnAction(event -> {
             showTabPane.getTabs().remove(citaTab);
             tabMap.remove("citaTab");
+            chainControl.updateStop();
         });
 
         TableColumn<List<StringProperty>, String> attributeColumn = new TableColumn<>("attribute");
@@ -445,6 +448,7 @@ public class MainWindowController2 implements Initializable {
             data.add(row);
         }
         tableView.setItems(data);
+        System.out.println("============> [showCita] end");
     }
 
     public void upChain(ActionEvent actionEvent) {

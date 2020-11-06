@@ -19,8 +19,9 @@ public class ChainControl {
     private final String CITA_URL = "https://testnet.citahub.com";
     private final String CITA_URL2 = "http://139.196.208.146:1337";
 
-    private int txAllNumber;
-    CITAj service;
+    private int txAllNumber = 0;
+    CITAj service = CITAj.build(new HttpService(CITA_URL));
+    Timer timer = new Timer();
 
     private StringProperty peerCount = new SimpleStringProperty();
     private StringProperty blockNumber = new SimpleStringProperty();
@@ -41,12 +42,8 @@ public class ChainControl {
     private StringProperty blockTxNumber = new SimpleStringProperty();
 
 
-    public ChainControl() {
-        txAllNumber = 0;
-        service = CITAj.build(new HttpService(CITA_URL));
-
+    public void updateStart() {
         updateBcinfo();
-        Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -54,6 +51,12 @@ public class ChainControl {
             }
         }, 3000, 3000);
     }
+
+
+    public void updateStop() {
+        timer.cancel();
+    }
+
 
     public void updateBcinfo() {
         System.out.println("============> [updateBcinfo] start");
@@ -67,7 +70,6 @@ public class ChainControl {
             BigInteger blockNumber = appBlockNumber.getBlockNumber();
             this.setBlockNumber(blockNumber.toString());
 
-
             DefaultBlockParameter defaultParam = DefaultBlockParameter.valueOf("latest");
             AppMetaData appMetaData = service.appMetaData(defaultParam).send();
             AppMetaData.AppMetaDataResult result = appMetaData.getAppMetaDataResult();
@@ -77,7 +79,6 @@ public class ChainControl {
             this.setChainId(chainId.toString());
             this.setChainName(chainName);
             this.setGenesisTS(genesisTS);
-
 
             AppBlock appBlock = service.appGetBlockByNumber(DefaultBlockParameter.valueOf(blockNumber), true).send();
             this.setBlockId( String.valueOf(appBlock.getId()));
