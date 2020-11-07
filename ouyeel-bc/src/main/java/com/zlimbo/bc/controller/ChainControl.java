@@ -21,7 +21,7 @@ public class ChainControl {
 
     private int txAllNumber = 0;
     CITAj service = CITAj.build(new HttpService(CITA_URL));
-    Timer timer = new Timer();
+    Timer timer;
 
     private StringProperty peerCount = new SimpleStringProperty();
     private StringProperty blockNumber = new SimpleStringProperty();
@@ -44,6 +44,7 @@ public class ChainControl {
 
     public void updateStart() {
         updateBcinfo();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -111,24 +112,23 @@ public class ChainControl {
 
     List<List<StringProperty>> getBcInfo() {
         List<List<StringProperty>> bcInfo = new ArrayList<>();
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("peerCount"), peerCount));
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("peerCount"), peerCount));             
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockNumber"), blockNumber));           
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("chainId"), chainId));               
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("chainName"), chainName));             
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("genesisTS"), genesisTS));             
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockId"), blockId));                       
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockJsonrpc"), blockJsonrpc));                  
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockVersion"), blockVersion));                  
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockHash"), blockHash));                     
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerTimestamp"), headerTimestamp));               
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerPrevHash"), headerPrevHash));                
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerNumber"), headerNumber));                  
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerStateRoot"), headerStateRoot));               
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerTransactionsRoot"), headerTransactionsRoot)); 
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerReceiptsRoot"), headerReceiptsRoot));     
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("headerProposer"), headerProposer));         
-        bcInfo.add(Arrays.asList(new SimpleStringProperty("blockTxNumber"), blockTxNumber));                 
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("peer count"), peerCount));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("block number"), blockNumber));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("chain id"), chainId));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("chain name"), chainName));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("genesis timestamp"), genesisTS));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("block id"), blockId));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("block jsonrpc"), blockJsonrpc));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("block version"), blockVersion));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("block hash"), blockHash));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("header timestamp"), headerTimestamp));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("header prev hash"), headerPrevHash));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("header number"), headerNumber));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("header state root"), headerStateRoot));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("header transactions root"), headerTransactionsRoot));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("header receipts root"), headerReceiptsRoot));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("header proposer"), headerProposer));
+        bcInfo.add(Arrays.asList(new SimpleStringProperty("block transaction number"), blockTxNumber));
         return bcInfo;
     }
 

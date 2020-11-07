@@ -406,7 +406,7 @@ public class MainWindowController2 implements Initializable {
             return;
         }
 
-        chainControl.updateStart();
+        chainControl. updateStart();
         Tab citaTab = new Tab("CITA");
         tabMap.put("citaTab", citaTab);
         showTabPane.getTabs().add(citaTab);
