@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.util.Pair;
+import okhttp3.Interceptor;
 
 import java.net.URL;
 import java.util.*;
@@ -37,7 +38,7 @@ public class MainWindowController2 implements Initializable {
     int queryId = 1;
 
     SqlController sqlController;
-    ChainControl chainControl = new ChainControl();
+    Map<String, ChainControl> chainControlMap = new HashMap<>();
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -211,7 +212,7 @@ public class MainWindowController2 implements Initializable {
         GridPane gridPane = new GridPane();
         gridPane.setHgap(10);
         gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(20, 150, 10, 10));
+        gridPane.setPadding(new Insets(20, 150, 10, 30));
 
         List<TextField> textFields = new ArrayList<>();
         Label databaseNameLabel = new Label("Database Name: ");
@@ -399,16 +400,77 @@ public class MainWindowController2 implements Initializable {
     }
 
 
-    public void showCita(ActionEvent actionEvent) {
+    public void connectionCita(ActionEvent actionEvent) {
+        System.out.println("====================> [connectionCita] start");
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        //dialog.setWidth(200);
+        dialog.setTitle("CITA - New Connection");
+        dialog.setHeaderText(null);
+
+        ButtonType connectButtonType = new ButtonType("Connect", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(connectButtonType, cancelButtonType);
+        Button connectButton = (Button) dialog.getDialogPane().lookupButton(connectButtonType);
+        connectButton.setDisable(true);
+
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(30, 60, 10, 20));
+
+        Label citaUrlLabel = new Label("CITA URL: ");
+        TextField citaUrlTextField = new TextField();
+        citaUrlTextField.setPrefWidth(300);
+        citaUrlTextField.textProperty().addListener(observable -> {
+            if (citaUrlTextField.getText().trim().isEmpty()) {
+                connectButton.setDisable(true);
+            } else {
+                connectButton.setDisable(false);
+            }
+        });
+        gridPane.add(citaUrlLabel, 0, 0);
+        gridPane.add(citaUrlTextField, 1, 0);
+
+        dialog.getDialogPane().setContent(gridPane);
+        // 提交数据
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == connectButtonType) {
+                String citaUrl = citaUrlTextField.getText().trim();
+                if (!chainControlMap.containsKey(citaUrl)) {
+                    ChainControl chainControl = new ChainControl(citaUrl);
+                    if (chainControl.isConnectSuccess()) {
+                        chainControlMap.put(citaUrl, chainControl);
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error Connection");
+                        alert.setHeaderText("Invalid connection!");
+                        alert.showAndWait();
+                        return null;
+                    }
+                }
+                showCita(citaUrl);
+            }
+            return null;
+        });
+
+        dialog.showAndWait();
+
+        System.out.println("====================> [connectDatabase] end\n");
+        //showCita();
+    }
+
+
+    public void showCita(String citaUrl) {
         System.out.println("============> [showCita] start");
-        if (tabMap.containsKey("citaTab")) {
-            showTabPane.getSelectionModel().select(tabMap.get("citaTab"));
+        if (tabMap.containsKey(citaUrl)) {
+            showTabPane.getSelectionModel().select(tabMap.get(citaUrl));
             return;
         }
 
-        chainControl. updateStart();
-        Tab citaTab = new Tab("CITA");
-        tabMap.put("citaTab", citaTab);
+        ChainControl chainControl = chainControlMap.get(citaUrl);
+        chainControl.updateStart();
+        Tab citaTab = new Tab(citaUrl + " @CITA");
+        tabMap.put(citaUrl, citaTab);
         showTabPane.getTabs().add(citaTab);
         showTabPane.getSelectionModel().select(citaTab);
 
@@ -428,8 +490,9 @@ public class MainWindowController2 implements Initializable {
 
         closeButton.setOnAction(event -> {
             showTabPane.getTabs().remove(citaTab);
-            tabMap.remove("citaTab");
             chainControl.updateStop();
+            chainControlMap.remove(citaUrl);
+            tabMap.remove(citaUrl);
         });
 
         TableColumn<List<StringProperty>, String> attributeColumn = new TableColumn<>("attribute");
@@ -545,4 +608,6 @@ public class MainWindowController2 implements Initializable {
 
         System.out.println("====================> [upChain] end\n");
     }
+
+
 }

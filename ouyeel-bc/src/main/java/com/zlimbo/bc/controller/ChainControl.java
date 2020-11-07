@@ -20,8 +20,9 @@ public class ChainControl {
     private final String CITA_URL2 = "http://139.196.208.146:1337";
 
     private int txAllNumber = 0;
-    CITAj service = CITAj.build(new HttpService(CITA_URL));
+    CITAj service;
     Timer timer;
+    private boolean connectSuccess;
 
     private StringProperty peerCount = new SimpleStringProperty();
     private StringProperty blockNumber = new SimpleStringProperty();
@@ -40,6 +41,18 @@ public class ChainControl {
     private StringProperty headerReceiptsRoot = new SimpleStringProperty();
     private StringProperty headerProposer = new SimpleStringProperty();
     private StringProperty blockTxNumber = new SimpleStringProperty();
+
+
+    public ChainControl(String citaUrl) {
+        service = CITAj.build(new HttpService(citaUrl));
+        try {
+            service.netPeerCount().send();
+            connectSuccess = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            connectSuccess = false;
+        }
+    }
 
 
     public void updateStart() {
@@ -132,6 +145,9 @@ public class ChainControl {
         return bcInfo;
     }
 
+    public boolean isConnectSuccess() {
+        return connectSuccess;
+    }
 
     public String getPeerCount() {
         return peerCount.get();
