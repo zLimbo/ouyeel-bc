@@ -13,10 +13,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -27,9 +24,16 @@ public class SendController {
 
 
     @GetMapping("/send/S_ST_01")
-    String upChain(Model model) {
+    @ResponseBody
+    String upChain(Model model) throws IOException {
 
-        return "upChain";
+        String jsonStr = "{ \"systemId \":\"1000\", \"requestSn\": \"202004071530500\", \"dataInfo\": { \"companyName\":\"钢厂1\", \"originalBusinessId\":\"原始业务单据号\", \"originalBusinessTime\":\"原始业务时间\", \"transactionName\":\"入厂信息\", \"licenseNum\":\"123456\", \"driverName\":\"张三\" }, \"keyInfo\": { \"subAccountId\":\"123456\" }, \"callbackUrl\": \"http://localhost:8090/cfcaCallback\", \"invokeTime\": \"1585805402901\", \"sign\": \"COMbzExK09YU1NaWoNJCAsFRY7GyjUM9HA4yIuQo3CePQchiCX9ICZZLGnbkV1AjJsSmG9hs5gqUlbon2e2PL5Q1rhtCTvqHIS9r9bf5tQGNzqN699UqlJbmLpmAcmcj9CY+D58ec//JwGVT3fIs4xi1eYUbnTRymaM3vdy+AmU=\" }";
+    
+        JSONObject jsonData = JSONObject.parseObject(jsonStr);
+
+        String result = send("http://127.0.0.1:8082/obst/service/S_ST_01", jsonData, "utf-8");
+
+        return result;
     }
 
     @PostMapping("/send/S_ST_01")

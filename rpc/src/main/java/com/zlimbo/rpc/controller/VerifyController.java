@@ -1,17 +1,14 @@
-package com.zlimbo.bcweb.controller;
+package com.zlimbo.rpc.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.JsonObject;
 import netscape.javascript.JSObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.util.Map;
 
 @Controller
 @RequestMapping("")

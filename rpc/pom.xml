@@ -5,19 +5,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
+        <version>2.3.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zlimbo</groupId>
-    <artifactId>bcweb</artifactId>
+    <artifactId>rpc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bcweb</name>
-    <description>bcweb project for Spring Boot</description>
+    <name>rpc</name>
+    <description>java rpc for ouyeel-bc</description>
 
     <properties>
         <java.version>1.8</java.version>
-        <grpc.version>1.6.1</grpc.version>
-        <protobuf.version>3.3.0</protobuf.version>
     </properties>
 
     <dependencies>
@@ -104,29 +102,6 @@
             <version>20.2.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-netty</artifactId>
-            <version>${grpc.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-protobuf</artifactId>
-            <version>${grpc.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-stub</artifactId>
-            <version>${grpc.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>${protobuf.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -148,7 +123,6 @@
             <artifactId>feign-slf4j</artifactId>
             <version>9.7.0</version>
         </dependency>
-
 
     </dependencies>
 
