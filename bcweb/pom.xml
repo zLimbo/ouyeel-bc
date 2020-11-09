@@ -49,10 +49,11 @@
             <version>2.2.1</version>
         </dependency>
 
+        <!-- 引入热部署jar包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
+            <optional>true</optional> <!-- IntelliJ IDEA本地测试这个true、false热部署都有效 -->
         </dependency>
 
         <dependency>
@@ -142,6 +143,7 @@
             <version>9.7.0</version>
         </dependency>
 
+
     </dependencies>
 
     <build>
@@ -181,6 +183,16 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.2.2.RELEASE</version>
+            </plugin>
+
+            <!-- 引入热部署依赖插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- IntelliJ IDEA本地测试去掉fork也生效 -->
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>

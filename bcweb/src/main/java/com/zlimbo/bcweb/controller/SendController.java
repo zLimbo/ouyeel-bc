@@ -1,6 +1,7 @@
 package com.zlimbo.bcweb.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import netscape.javascript.JSObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -11,18 +12,66 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 
+
 @Controller
 @RequestMapping("")
-public class NetController implements NetService {
+public class SendController {
 
-    //public static Object upChain(String systemId, String requestSn, )
 
+    @GetMapping("/send/S_ST_01")
+    String upChain(Model model) {
+
+        return "upChain";
+    }
+
+    @PostMapping("/send/S_ST_01")
+    String upChain(@RequestBody JSObject json) {
+
+        return null;
+    }
+
+
+    @GetMapping("/send/S_ST_02")
+    String verifyByTxHash() {
+        return null;
+    }
+
+    @PostMapping("/send/S_ST_02")
+    String verifyByTxHash(@RequestBody JSObject json) {
+        return null;
+    }
+
+
+    @GetMapping("/send/S_ST_03")
+    String businessDataValidation() {
+        return null;
+    }
+
+    @PostMapping("/send/S_ST_03")
+    String businessDataValidation(@RequestBody JSObject json) {
+        return null;
+    }
+
+
+    @GetMapping("/send/S_ST_04")
+    String compensateQuery() {
+        return null;
+    }
+
+    @PostMapping("/send/S_ST_04")
+    String compensateQuery(@RequestBody JSObject json) {
+        return null;
+    }
+    
+    
     public static String send(String url, JSONObject jsonObject, String encoding) throws IOException {
         System.out.println("====================> [send] start");
         String body = "";
@@ -50,39 +99,5 @@ public class NetController implements NetService {
         //JSONObject returnJson = new JSONObject();
         System.out.println("====================> [send] end\n");
         return body;
-    }
-
-    @GetMapping("/obst/service/S_ST_05")
-    @ResponseBody
-    public String test() {
-        return "test";
-    }
-
-    @Override
-    public Result upChain(String systemId, String requestSn, Object dataInfo, String businessId,
-                       String callbackUrl, String invokeTime, String sign, String attach) {
-        System.out.println("====================> [upChain] start");
-        return null;
-    }
-
-    @Override
-    public Result verifyByTxHash(String systemId, String requestSn, String txHash,
-                                 String invokeTime, String sign) {
-        System.out.println("====================> [verifyByTxHash] start");
-        return null;
-    }
-
-    @Override
-    public Result businessDataValidation(String systemId, String requestSn, String businessId,
-                                         String txHash, String businessHash, String invokeTime, String sign) {
-        System.out.println("====================> [businessDataValidation] start");
-        return null;
-    }
-
-    @Override
-    public Result compensateQuery(String systemId, String requestSn, String businessId,
-                                  String searchRequestSn, String invokeTime, String sign) {
-        System.out.println("====================> [compensateQuery] start");
-        return null;
     }
 }

@@ -70,7 +70,7 @@ public class InvoiceControl {
 
             //STEP 3: Open a connection
             System.out.println("Connecting to a selected database...");
-            conn = DriverManager.getConnection(ConnectInfo.DB_URL, ConnectInfo.USER, ConnectInfo.PASS);
+            conn = DriverManager.getConnection(ConnectInfo.DB_URL, ConnectInfo.USER, ConnectInfo.PASSWORD);
             System.out.println("Connected database successfully...");
 
             //STEP 4: Execute a query
@@ -153,7 +153,7 @@ public class InvoiceControl {
 
             //STEP 3: Open a connection
             System.out.println("Connecting to a selected database...");
-            conn = DriverManager.getConnection(ConnectInfo.DB_URL, ConnectInfo.USER, ConnectInfo.PASS);
+            conn = DriverManager.getConnection(ConnectInfo.DB_URL, ConnectInfo.USER, ConnectInfo.PASSWORD);
             System.out.println("Connected database successfully...");
 
             //STEP 4: Execute a query
@@ -277,7 +277,7 @@ public class InvoiceControl {
 
             //STEP 3: Open a connection
             System.out.println("Connecting to a selected database...");
-            conn = DriverManager.getConnection(ConnectInfo.DB_URL, ConnectInfo.USER, ConnectInfo.PASS);
+            conn = DriverManager.getConnection(ConnectInfo.DB_URL, ConnectInfo.USER, ConnectInfo.PASSWORD);
             System.out.println("Connected database successfully...");
 
             //STEP 4: Execute a query

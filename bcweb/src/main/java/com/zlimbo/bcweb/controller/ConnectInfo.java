@@ -2,6 +2,8 @@ package com.zlimbo.bcweb.controller;
 
 public class ConnectInfo {
 
+    static final String DATABASE = "ouyeel";
+
     static final String DB_URL =
             "jdbc:mysql://localhost:3306/ouyeel" +
                     "?useSSL=false" +
@@ -11,5 +13,5 @@ public class ConnectInfo {
                     "&allowPublicKeyRetrieval=true";
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "123456";
+    static final String PASSWORD = "123456";
 }
