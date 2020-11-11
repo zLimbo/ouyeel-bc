@@ -27,8 +27,7 @@ public class SendController {
     @ResponseBody
     String upChain(Model model) throws IOException {
 
-        String jsonStr = "{ \"systemId \":\"1000\", \"requestSn\": \"202004071530500\", \"dataInfo\": { \"companyName\":\"钢厂1\", \"originalBusinessId\":\"原始业务单据号\", \"originalBusinessTime\":\"原始业务时间\", \"transactionName\":\"入厂信息\", \"licenseNum\":\"123456\", \"driverName\":\"张三\" }, \"keyInfo\": { \"subAccountId\":\"123456\" }, \"callbackUrl\": \"http://localhost:8090/cfcaCallback\", \"invokeTime\": \"1585805402901\", \"sign\": \"COMbzExK09YU1NaWoNJCAsFRY7GyjUM9HA4yIuQo3CePQchiCX9ICZZLGnbkV1AjJsSmG9hs5gqUlbon2e2PL5Q1rhtCTvqHIS9r9bf5tQGNzqN699UqlJbmLpmAcmcj9CY+D58ec//JwGVT3fIs4xi1eYUbnTRymaM3vdy+AmU=\" }";
-    
+        String jsonStr = "{ \"systemId\":\"1000\", \"requestSn\": \"202004071530500\", \"tableName\": \"upChain\", \"dataInfo\": { \"companyName\":\"钢厂1\", \"originalBusinessId\":\"原始业务单据号\", \"originalBusinessTime\":\"原始业务时间\", \"transactionName\":\"入厂信息\", \"licenseNum\":\"123456\", \"driverName\":\"张三\" }, \"businessId\": \"1234\", \"callbackUrl\": \"http://localhost:8082/cfcaCallback\", \"invokeTime\": \"1585805402901\", \"sign\": \"COMbzExK09YU1NaWoNJCAsFRY7GyjUM9HA4yIuQo3CePQchiCX9ICZZLGnbkV1AjJsSmG9hs5gqUlbon2e2PL5Q1rhtCTvqHIS9r9bf5tQGNzqN699UqlJbmLpmAcmcj9CY+D58ec//JwGVT3fIs4xi1eYUbnTRymaM3vdy+AmU=\", \"attach\": \"0\" }";
         JSONObject jsonData = JSONObject.parseObject(jsonStr);
 
         String result = send("http://127.0.0.1:8082/obst/service/S_ST_01", jsonData, "utf-8");
