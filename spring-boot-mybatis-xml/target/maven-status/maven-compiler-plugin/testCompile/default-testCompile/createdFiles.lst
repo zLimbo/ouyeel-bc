@@ -1,0 +1,3 @@
+com\neo\web\UserControllerTest.class
+com\neo\mapper\UserMapperTest.class
+com\neo\MybatisXmlApplicationTests.class
