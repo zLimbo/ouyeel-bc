@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlimbo.mapper.ChainMapper" >
+
+
+    <insert id="upChain" parameterType="java.lang.String">
+       INSERT INTO ${tableName}
+        VALUES (#{privateKey}, #{systemId}, #{requestSn}, #{dataInfo}, #{txHash})
+    </insert>
+
+    <insert id="insertPrivateKey">
+        INSERT INTO privateKey
+        VALUES (#{systemId}, #{privateKey})
+    </insert>
+
+    <update id="createTable" parameterType="java.lang.String">
+        CREATE TABLE
+            ${tableName}
+        (
+            id VARCHAR(255)
+        )
+    </update>
+
+    <select id="verifyBxTxHash" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT *
+        FROM ${tableName}
+        WHERE txHash = #{txHash}
+    </select>
+
+    <select id="compensateQuery" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT *
+        FROM ${tableName}
+        WHERE requestSn = #{searchRequestSn}
+    </select>
+
+    <select id="queryPrivateKey" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT privateKey
+        FROM privateKey
+        WHERE systemId = #{systemId}
+    </select>
+
+
+</mapper>
