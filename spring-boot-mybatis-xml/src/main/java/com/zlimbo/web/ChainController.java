@@ -12,15 +12,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
 public class ChainController {
 
-
 	@Autowired(required = false)
 	private ChainMapper chainMapper;
-
 
     enum ResultCode {
         SUCCESS(1, "成功"),

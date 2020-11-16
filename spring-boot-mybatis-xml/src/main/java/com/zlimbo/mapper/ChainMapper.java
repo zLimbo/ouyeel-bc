@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface ChainMapper {
-	
 
 	void createTable(@Param("tableName") String tableName);
 
@@ -19,4 +18,5 @@ public interface ChainMapper {
 	List<HashMap<String,Object>> queryPrivateKey(String privateKey, String systemId);
 
 	void insertPrivateKey(String systemId, String privateKey);
+
 }
