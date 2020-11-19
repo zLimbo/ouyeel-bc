@@ -250,17 +250,17 @@ public class ChainController {
                 dataMap.put("secretKey", secretKey);
                 dataMap.put("privateKey", privateKey);
                 dataMap.put("publicKey", publicKey);
-                //dataMap.put("txHash", "");
+                dataMap.put("txHash", "");
                 sqlMapClient.insert("upChain", dataMap);
 
                 // 查询生成的哈希值
-                Map<String, String> parameterMap = new HashMap<>();
-                parameterMap.put("systemId", systemId);
-                parameterMap.put("requestSn", requestSn);
-                List<HashMap<String, String>> resultList = sqlMapClient.queryForList("queryForTx", parameterMap);
-                Map<String, String> resultMap = resultList.get(0);
-                String txHash = resultMap.get("txHash");
-                //String txHash = "12345";
+//                Map<String, String> parameterMap = new HashMap<>();
+//                parameterMap.put("systemId", systemId);
+//                parameterMap.put("requestSn", requestSn);
+//                List<HashMap<String, String>> resultList = sqlMapClient.queryForList("queryForTx", parameterMap);
+//                Map<String, String> resultMap = resultList.get(0);
+//                String txHash = resultMap.get("txHash");
+                String txHash = "12345";
 
                 returnJson.put("code", ResultCode.SUCCESS.getCode());
                 returnJson.put("msg", ResultCode.SUCCESS.getMsg());
@@ -286,7 +286,6 @@ public class ChainController {
         System.out.println("====================> [upChain] end");
         return returnJson.toJSONString();
     }
-
 
 
 

@@ -7,7 +7,6 @@ import java.util.List;
 
 public class SqlController {
 
-
     private Connection connection;
     private String databaseName;
     private String host;

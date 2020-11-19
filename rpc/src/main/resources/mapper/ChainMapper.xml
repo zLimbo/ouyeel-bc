@@ -9,7 +9,7 @@
     
     <insert id="upChain" parameterClass="java.util.HashMap">
        INSERT INTO $tableName$
-        VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#)
+        VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#, #txHash#)
     </insert>
 
     <insert id="insertPrivateKey" parameterClass="java.util.HashMap">
