@@ -33,6 +33,7 @@ public class MainWindowController implements Initializable {
     //public @FXML TextArea messageTextArea;
     public @FXML Button newConnectionButton;
     public @FXML Button citaButton;
+    public @FXML AnchorPane rightShowAchorPane;
 
     Map<String, Tab> tabMap = new HashMap<>();
     int queryId = 1;
