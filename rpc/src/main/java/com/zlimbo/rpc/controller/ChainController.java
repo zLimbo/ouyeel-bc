@@ -240,7 +240,7 @@ public class ChainController {
             String publicKey = "0x0379f6feff204503fd71e6ecb16b1f190d70aae14358ac79e2739fcc2779ecc18e" +
                     "c8e25f861839a8607dc941ddc6c75116b89d7a2cbd6f23189d2265ebb4edd7";
             String secretKey = "0123456789abcdef";
-
+            String txHash = getHashValue(dataInfo);
             try {
                 Map<String, String> dataMap = new HashMap<>();
                 dataMap.put("tableName", tableName);
@@ -250,7 +250,7 @@ public class ChainController {
                 dataMap.put("secretKey", secretKey);
                 dataMap.put("privateKey", privateKey);
                 dataMap.put("publicKey", publicKey);
-                dataMap.put("txHash", "");
+                dataMap.put("txHash", txHash);
                 sqlMapClient.insert("upChain", dataMap);
 
                 // 查询生成的哈希值
@@ -260,7 +260,7 @@ public class ChainController {
 //                List<HashMap<String, String>> resultList = sqlMapClient.queryForList("queryForTx", parameterMap);
 //                Map<String, String> resultMap = resultList.get(0);
 //                String txHash = resultMap.get("txHash");
-                String txHash = "12345";
+
 
                 returnJson.put("code", ResultCode.SUCCESS.getCode());
                 returnJson.put("msg", ResultCode.SUCCESS.getMsg());

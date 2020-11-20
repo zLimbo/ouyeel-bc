@@ -19,6 +19,8 @@ import javafx.util.Pair;
 
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MainWindowController implements Initializable {
@@ -80,18 +82,36 @@ public class MainWindowController implements Initializable {
         });
         addButton.setOnAction(event -> addRecord(tableName));
 
-        String sql = "select * from " + tableName;
-        showTableView(sql, tableView, null);
+        String sql = "SELECT * FROM " + tableName;
+        executeSqlAndShowTableView(sql, tableView, null);
 
         System.out.println("============> [showTable] end");
     }
 
 
-    private void showTableView(String sql, TableView tableView, TextArea messageTextArea) {
+    private void executeSqlAndShowTableView(String sql, TableView tableView, TextArea messageTextArea) {
         tableView.setTableMenuButtonVisible(true);
         tableView.getColumns().clear();
         tableView.getItems().clear();
-        SqlController.SqlQueryResult sqlQueryResult = sqlController.sqlQuery(sql);
+        SqlController.SqlQueryResult sqlQueryResult = null;
+        String sqlUpperCase = sql.toUpperCase();
+        if (sqlUpperCase.startsWith("CREATE TABLE")) {
+            sqlQueryResult = sqlController.sqlCreateTable(sql);
+            showDatabase();
+        } else if (sqlUpperCase.startsWith("INSERT INTO")) {
+            sqlQueryResult = sqlController.sqlInsert(sql);
+            if (sqlQueryResult.getErrorMessage() == null) {
+                Matcher matcher = Pattern.compile("^\\w+\\s+\\w+\\s+(\\w+)").matcher(sql); // 正则获取表名
+                if (matcher.find()) {
+                    String tableName = matcher.group(1);
+                    if (tabMap.containsKey(tableName)) {
+                        showTable(tableName);   // 更新表显示
+                    }
+                }
+            }
+        } else {
+            sqlQueryResult = sqlController.sqlQuery(sql);
+        }
         String errorMessage = sqlQueryResult.getErrorMessage();
         List<String> columns = sqlQueryResult.getColumns();
         List<List<String>> records = sqlQueryResult.getRecords();
@@ -115,7 +135,7 @@ public class MainWindowController implements Initializable {
             }
             tableView.setItems(data);
             if (messageTextArea != null) {
-                messageTextArea.setStyle("-fx-text-fill:#000000;");
+                messageTextArea.setStyle("-fx-text-fill:#00ff00;");
                 messageTextArea.setText(sql + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
             }
         } else {
@@ -271,6 +291,7 @@ public class MainWindowController implements Initializable {
                 if (sqlController1.isConnectSuccess()) {
                     sqlController = sqlController1;
                     showTabPane.getTabs().clear();
+                    tabMap.clear(); // 清空
                     showDatabase();
                     newQueryButton.setDisable(false);
                 } else {
@@ -307,7 +328,7 @@ public class MainWindowController implements Initializable {
             databaseItem.getChildren().add(tableItem);
         }
         dbTreeView.setRoot(databaseItem);
-
+        databaseItem.setExpanded(true);
         dbTreeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -392,7 +413,7 @@ public class MainWindowController implements Initializable {
             showTabPane.getTabs().remove(queryTab);
         });
 
-        runButton.setOnAction(event -> showTableView(textArea.getText(), tableView, messageTextArea));
+        runButton.setOnAction(event -> executeSqlAndShowTableView(textArea.getText(), tableView, messageTextArea));
 
         System.out.println("============> [newQuery] end");
     }
@@ -511,101 +532,5 @@ public class MainWindowController implements Initializable {
         tableView.setItems(data);
         System.out.println("============> [showCita] end");
     }
-
-//    public void upChain(ActionEvent actionEvent) {
-//        System.out.println("====================> [upChain] start");
-////        Dialog<Pair<String, String>> dialog = new Dialog<>();
-////        dialog.setTitle("MySQL - New Connection");
-////        dialog.setHeaderText(null);
-////
-////        ButtonType connectButtonType = new ButtonType("Connect", ButtonBar.ButtonData.OK_DONE);
-////        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-////        dialog.getDialogPane().getButtonTypes().addAll(connectButtonType, cancelButtonType);
-////        Button connectButton = (Button) dialog.getDialogPane().lookupButton(connectButtonType);
-////        connectButton.setDisable(true);
-////
-////        GridPane gridPane = new GridPane();
-////        gridPane.setHgap(10);
-////        gridPane.setVgap(10);
-////        gridPane.setPadding(new Insets(20, 150, 10, 10));
-////
-////        List<TextField> textFields = new ArrayList<>();
-////        Label databaseNameLabel = new Label("Database Name: ");
-////        TextField databaseNameTextField = new TextField();
-////        gridPane.add(databaseNameLabel, 0, 0);
-////        gridPane.add(databaseNameTextField, 1, 0);
-////        textFields.add(databaseNameTextField);
-////
-////        Label hostLabel = new Label("Host: ");
-////        TextField hostTextField = new TextField();
-////        hostTextField.setText("localhost");
-////        gridPane.add(hostLabel, 0, 1);
-////        gridPane.add(hostTextField, 1, 1);
-////        textFields.add(hostTextField);
-////
-////        Label portLabel = new Label("Port: ");
-////        TextField portTextField = new TextField();
-////        portTextField.setText("3306");
-////        gridPane.add(portLabel, 0, 2);
-////        gridPane.add(portTextField, 1, 2);
-////        textFields.add(portTextField);
-////
-////        Label userNameLabel = new Label("User Name: ");
-////        TextField userNameTextField = new TextField();
-////        userNameTextField.setText("root");
-////        gridPane.add(userNameLabel, 0, 3);
-////        gridPane.add(userNameTextField, 1, 3);
-////        textFields.add(userNameTextField);
-////
-////        Label passwordLabel = new Label("Password: ");
-////        PasswordField passwordField = new PasswordField();
-////        gridPane.add(passwordLabel, 0, 4);
-////        gridPane.add(passwordField, 1, 4);
-////        textFields.add(passwordField);
-////
-////        for (TextField textField: textFields) {
-////            textField.textProperty().addListener((observable) -> {
-////                boolean allSet = true;
-////                for (TextField textField1 : textFields) {
-////                    if (textField1.getText().trim().isEmpty()) {
-////                        connectButton.setDisable(true);
-////                        return;
-////                    }
-////                }
-////                connectButton.setDisable(false);
-////            });
-////        }
-////
-////        dialog.getDialogPane().setContent(gridPane);
-////        // 提交数据
-////        dialog.setResultConverter(dialogButton -> {
-////            if (dialogButton == connectButtonType) {
-////                String databaseName = databaseNameTextField.getText();
-////                String host = hostTextField.getText();
-////                String port = portTextField.getText();
-////                String userName = userNameTextField.getText();
-////                String password = passwordField.getText();
-////                SqlController sqlController1 = new SqlController(databaseName, host, port, userName, password);
-////                if (sqlController1.isConnectSuccess()) {
-////                    sqlController = sqlController1;
-////                    showTabPane.getTabs().clear();
-////                    showDatabase();
-////                    newQueryButton.setDisable(false);
-////                } else {
-////                    Alert alert = new Alert(Alert.AlertType.ERROR);
-////                    alert.setTitle("Error Connection");
-////                    alert.setHeaderText("Invalid connection!");
-////
-////                    alert.showAndWait();
-////                }
-////            }
-////            return null;
-////        });
-////
-////        dialog.showAndWait();
-//
-//        System.out.println("====================> [upChain] end\n");
-//    }
-
 
 }

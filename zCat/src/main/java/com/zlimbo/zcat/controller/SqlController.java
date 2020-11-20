@@ -3,6 +3,8 @@ package com.zlimbo.zcat.controller;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class SqlController {
@@ -115,12 +117,62 @@ public class SqlController {
         return tables;
     }
 
-    
+
+    public SqlQueryResult sqlCreateTable(String sql) {
+        System.out.println("====================> [sqlCreateTable] start");
+        long start = System.currentTimeMillis();
+        Matcher matcher = Pattern.compile("^\\w+\\s+\\w+\\s+(\\w+)").matcher(sql);  // 正则获取表名
+        SqlQueryResult sqlQueryResult = new SqlQueryResult();
+        String tableName = null;
+        if (matcher.find()) {
+            tableName = matcher.group(1);
+        }
+        boolean success = false;
+        String errorMessage = null;
+        PreparedStatement preparedStatement = null;
+        System.out.println("== sql:" + sql);
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate(sql);
+            success = true;
+        } catch (Exception e) {
+            sqlQueryResult.setErrorMessage(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        if (success) {
+            System.out.println("tableName: " + tableName);
+            sqlQueryResult = sqlQuery("DESCRIBE " + tableName);
+        }
+
+        long end = System.currentTimeMillis();
+        long spendTime = end - start;
+        sqlQueryResult.setSpendTime(spendTime);
+        System.out.println("====================> [sqlCreateTable] end\n");
+        return sqlQueryResult;
+    }
+
+
     public static class SqlQueryResult {
         private final List<String> columns;
         private final List<List<String>> records;
-        private final String errorMessage;
-        private final long spendTime;
+        private String errorMessage;
+        private long spendTime;
+
+        public SqlQueryResult() {
+            columns = new ArrayList<>();
+            records = new ArrayList<>();
+            errorMessage = null;
+            spendTime = 0;
+        };
 
         public SqlQueryResult(List<String> columns, List<List<String>> records, long spendTime, String errorMessage) {
             this.columns = columns;
@@ -140,9 +192,17 @@ public class SqlController {
         public long getSpendTime() {
             return spendTime;
         }
+
+        public void setSpendTime(long spendTime) {
+            this.spendTime = spendTime;
+        }
         
         public String getErrorMessage() {
             return errorMessage;
+        }
+
+        public void setErrorMessage(String errorMessage) {
+            this.errorMessage = errorMessage;
         }
     }
 
@@ -202,17 +262,19 @@ public class SqlController {
     }
 
 
-    public String sqlInsert(String sql) {
+    public SqlQueryResult sqlInsert(String sql) {
         System.out.println("====================> [sqlInsert] start");
 
-        String errorMessage = null;
+        long start = System.currentTimeMillis();
+
+        SqlQueryResult sqlQueryResult = new SqlQueryResult();
         PreparedStatement preparedStatement = null;
         System.out.println("== sql:" + sql);
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
         } catch (Exception e) {
-            errorMessage = e.getMessage();
+            sqlQueryResult.setErrorMessage(e.getMessage());
             e.printStackTrace();
         } finally {
             //finally block used to close resources
@@ -224,9 +286,11 @@ public class SqlController {
                 se.printStackTrace();
             }
         }
-        
+        long end = System.currentTimeMillis();
+        long spendTime = end - start;
+        sqlQueryResult.setSpendTime(spendTime);
         System.out.println("====================> [sqlInsert] end\n");
-        return errorMessage;
+        return sqlQueryResult;
     }
 
 

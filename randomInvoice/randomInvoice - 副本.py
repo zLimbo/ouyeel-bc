@@ -47,8 +47,8 @@ def randomInvoice():
                 invoiceNumber,
                 statementSheet,
                 statementWeight,
-                timestamp,
-                contractAddress
+                timestamp
+                #contractAddress
         ]
         return invoice
 
@@ -58,8 +58,8 @@ def writeIntoFile(n):
         with open("data_" + str(n) + ".txt", "w") as f:
                 for _ in range(n):
                         invoice = randomInvoice()
-                        result=',\n\t'.join(map("'{0}'".format, invoice))
-                        result = 'insert into invoice values(\n\t'+result
+                        result=','.join(map("'{0}'".format, invoice))
+                        result = 'insert into invoice values('+result
                         result = result+')'
                         print(result)
                         f.write(str(result) + "\n")
