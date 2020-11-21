@@ -3,7 +3,10 @@
 import random
 import time
 import re
-from data import *
+from data2 import *
+
+assign_systemId = 1
+assign_requestSn = 1
 
 def getHexString(n):
         """返回指定长度的随机十六进制字符串"""
@@ -17,25 +20,40 @@ def getOctString(n):
 
 def randomInvoice():
         """获取一个随机的发票数据"""
-        hashValue = getHexString(32);
-        invoiceNo = getOctString(10);
-        (buyerName, buyerTaxesNo), (sellerName, sellerTaxesNo) = random.sample(COMPANY_TAXESNO, 2) # 随机采样
+        global assign_systemId
+        global assign_requestSn
+        systemId = str(assign_systemId).rjust(12, '0')
+        if assign_requestSn % 5 == 0:
+                assign_systemId += 1
+        requestSn = str(assign_requestSn).rjust(18, '0')
+        assign_requestSn += 1
+
+        invoiceNo = getOctString(10)
+        (consumerName, consumerTaxesNo), (sellerName, sellerTaxesNo) = random.sample(COMPANY_TAXESNO, 2) # 随机采样
         invoiceDate = time.strftime("%Y-%m-%d %H:%M:%S")
-        invoiceType = random.choice(INVOICE_KIND);
-        taxesPoint = str(round(10 + random.random() * 10, 2)) + "%";
-        taxes = str(100 + random.randint(0, 1000));
-        price = str(10000 + random.randint(0, 100000));
-        pricePlusTaxes = str(taxes + price);
-        invoiceNumber = str(1 + random.randint(0, 3));
-        statementSheet = str(1 + random.randint(0, 3));
-        statementWeight = str(1 + random.randint(0, 10)) + "kg";
+        invoiceType = random.choice(INVOICE_KIND)
+        taxes_n = 100 + random.randint(0, 1000)
+        price_n = 10000 + random.randint(0, 100000)
+        taxesPoint = str(round(10 + random.random() * 10, 2)) + "%"
+        taxes = str(taxes_n)
+        price = str(price_n)
+        pricePlusTaxes = str(taxes_n + price_n)
+        invoiceNumber = str(1 + random.randint(0, 3))
+        statementSheet = str(1 + random.randint(0, 3))
+        statementWeight = str(1 + random.randint(0, 10)) + "kg"
+        contractAddress = getHexString(16)
+        secretKey = getHexString(16)
+        privateKey = getHexString(16)
+        publicKey = getHexString(32)
+        blockNumber = getHexString(16)
+        txHash = getHexString(32)
         timestamp = str(int(time.time() * 10**9))
-        contractAddress = getHexString(16);
-        invoice = [
-                hashValue, 
+        invoice = [ 
+                systemId,
+                requestSn,
                 invoiceNo,
-                buyerName, 
-                buyerTaxesNo, 
+                consumerName, 
+                consumerTaxesNo, 
                 sellerName, 
                 sellerTaxesNo, 
                 invoiceDate,
@@ -47,8 +65,10 @@ def randomInvoice():
                 invoiceNumber,
                 statementSheet,
                 statementWeight,
+                contractAddress,
+                blockNumber,
+                txHash,
                 timestamp,
-                contractAddress
         ]
         return invoice
 
@@ -62,10 +82,10 @@ def writeIntoFile(n):
                         result = 'insert into invoice values(\n\t'+result
                         result = result+')'
                         print(result)
-                        f.write(str(result) + "\n")
+                        f.write(result + ";\n")
 
 
 # 获取指定数目的随机发票
-num = [5]
+num = [20]
 for n in num:
         writeIntoFile(n)

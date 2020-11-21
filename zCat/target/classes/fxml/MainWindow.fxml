@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zlimbo.zcat.controller.MainWindowController">
+<VBox fx:id = "mainVBox" prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zlimbo.zcat.controller.MainWindowController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -55,7 +55,7 @@
             <Button fx:id="citaButton" mnemonicParsing="false" onAction="#connectionCita" text="Connection CITA" />
          </items>
       </ToolBar>
-    <SplitPane dividerPositions="0.15, 0.85" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.15, 0.7" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane>
                <children>
@@ -65,7 +65,10 @@
                <children>
                   <TabPane fx:id="showTabPane" prefHeight="545.0" prefWidth="441.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
-        <AnchorPane />
+        <AnchorPane fx:id="rightShowAchorPane">
+               <children>
+                  <BorderPane fx:id="rightBorderPane" layoutX="90.0" layoutY="209.0" prefHeight="669.0" prefWidth="379.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
       </items>
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">

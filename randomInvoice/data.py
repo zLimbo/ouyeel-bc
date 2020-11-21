@@ -1,6 +1,7 @@
 #_*_ coding:utf-8 _*_
 
-INVOICE_KIND = ("增值税发票", "普通发票", "专业发票");
+
+INVOICE_KIND = ("addedValueTaxInvoice", "commercialInvoice", "professionalInvoice");
 Hex = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 COMPANY_TAXESNO = (
         ("证券简称", "736763JRERB3H54"),

@@ -34,6 +34,8 @@ public class MainWindowController implements Initializable {
     public @FXML Button newConnectionButton;
     public @FXML Button citaButton;
     public @FXML AnchorPane rightShowAchorPane;
+    public @FXML BorderPane rightBorderPane;
+    public @FXML VBox mainVBox;
 
     Map<String, Tab> tabMap = new HashMap<>();
     int queryId = 1;
@@ -56,6 +58,7 @@ public class MainWindowController implements Initializable {
                 "localhost", "3306", "root", "123456");
         showDatabase();
         newQueryButton.setDisable(false);
+        mainVBox.setStyle("-fx-font: 20 arial;");
 
         System.out.println("============> [initialize] end\n");
     }
@@ -112,6 +115,9 @@ public class MainWindowController implements Initializable {
             }
         } else {
             sqlQueryResult = sqlController.sqlQuery(sql);
+            if (sqlQueryResult.getErrorMessage() == null) {
+                showQuerySingle(sqlQueryResult);
+            }
         }
         String errorMessage = sqlQueryResult.getErrorMessage();
         List<String> columns = sqlQueryResult.getColumns();
@@ -145,6 +151,45 @@ public class MainWindowController implements Initializable {
                 messageTextArea.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
             }
         }
+    }
+
+    private void showQuerySingle(SqlController.SqlQueryResult sqlQueryResult) {
+        System.out.println("====================> [showQuerySingle] start");
+
+        List<String> columns = sqlQueryResult.getColumns();
+        List<List<String>> records = sqlQueryResult.getRecords();
+
+        TableView tableView = new TableView();
+        Pagination pagination = new Pagination();
+        rightBorderPane.setCenter(tableView);
+        rightBorderPane.setBottom(pagination);
+
+        pagination.setPageCount(records.size());
+//        pagination.setPageFactory(pageIndex -> {
+//
+//        });
+
+        TableColumn<List<StringProperty>, String> attributeColumn = new TableColumn<>("attribute");
+        TableColumn<List<StringProperty>, String> valueColumn = new TableColumn<>("value");
+        attributeColumn.setCellValueFactory(data -> data.getValue().get(0));
+        valueColumn.setCellValueFactory(data -> data.getValue().get(1));
+        tableView.getColumns().addAll(attributeColumn, valueColumn);
+
+        ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
+
+
+
+        List<List<StringProperty>> records2 = new ArrayList<>();
+
+        for (int i = 0; i < columns.size(); ++i) {
+            List<StringProperty> row = new ArrayList<>();
+            row.add(0, new SimpleStringProperty(columns.get(i)));
+            row.add(1, new SimpleStringProperty(records.get(0).get(i)));
+            data.add(row);
+        }
+        tableView.setItems(data);
+
+        System.out.println("====================> [showQuerySingle] end\n");
     }
 
 
@@ -393,7 +438,9 @@ public class MainWindowController implements Initializable {
         borderPane.setCenter(splitPane);
 
         TextArea textArea = new TextArea();
+        //textArea.setStyle("-fx-font: 16 arial;");
         TableView tableView = new TableView();
+        tableView.setPlaceholder(new Label());
         TextArea messageTextArea = new TextArea();
         messageTextArea.setEditable(false);
         splitPane.getItems().addAll(textArea, tableView, messageTextArea);
