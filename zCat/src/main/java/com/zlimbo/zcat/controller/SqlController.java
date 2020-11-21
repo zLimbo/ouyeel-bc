@@ -3,8 +3,6 @@ package com.zlimbo.zcat.controller;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class SqlController {

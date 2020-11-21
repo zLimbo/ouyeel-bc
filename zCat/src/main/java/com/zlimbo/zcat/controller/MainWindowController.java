@@ -25,15 +25,12 @@ import java.util.regex.Pattern;
 
 public class MainWindowController implements Initializable {
 
-
     public @FXML Button newQueryButton;
     public @FXML Tab objectsTab;
     public @FXML TabPane showTabPane;
     public @FXML TreeView dbTreeView;
     public @FXML Button newConnectionButton;
     public @FXML Button citaButton;
-    public @FXML AnchorPane rightShowAchorPane;
-    public @FXML BorderPane rightBorderPane;
     public @FXML VBox mainVBox;
 
     Map<String, Tab> tabMap = new HashMap<>();
@@ -50,6 +47,7 @@ public class MainWindowController implements Initializable {
         newQueryButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query.png"))));
         newQueryButton.setDisable(true);
+//
         citaButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
 
@@ -57,6 +55,7 @@ public class MainWindowController implements Initializable {
                 "localhost", "3306", "root", "123456");
         showDatabase();
         newQueryButton.setDisable(false);
+//
         mainVBox.setStyle("-fx-font: 16  arial;");
 
         System.out.println("============> [initialize] end\n");
@@ -126,7 +125,8 @@ public class MainWindowController implements Initializable {
         long spendTime = sqlQueryResult.getSpendTime();
         if (errorMessage == null) {
             TableView tableView = new TableView();
-            tableView.setPlaceholder(new Label());
+            tableView.setPlaceholder(
+                    new ImageView(new Image(getClass().getResourceAsStream("/image/tableEmpty.png"))));
             tableView.setTableMenuButtonVisible(true);
             Pagination pagination = new Pagination();
             pagination.setPageCount(1);
@@ -170,7 +170,8 @@ public class MainWindowController implements Initializable {
         System.out.println("====================> [showQuerySingle] start");
 
         TableView sigleTableView = new TableView();
-        sigleTableView.setPlaceholder(new Label());
+        sigleTableView.setPlaceholder(
+                new ImageView(new Image(getClass().getResourceAsStream("/image/tableEmpty.png"))));
         pagination.setPageCount(records.size());
 
         if (!records.isEmpty()) {
@@ -443,11 +444,12 @@ public class MainWindowController implements Initializable {
         borderPane.setTop(toolBar);
         Button closeButton = new Button("Close",
                 new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
-        Button saveButton = new Button("Save",
-                new ImageView(new Image(getClass().getResourceAsStream("/image/save.png"))));
+//        Button saveButton = new Button("Save",
+//                new ImageView(new Image(getClass().getResourceAsStream("/image/save.png"))));
         Button runButton = new Button("Run",
                 new ImageView(new Image(getClass().getResourceAsStream("/image/run.png"))));
-        toolBar.getItems().addAll(closeButton, saveButton, runButton);
+        //toolBar.getItems().addAll(closeButton, saveButton, runButton);
+        toolBar.getItems().addAll(closeButton, runButton);
 
         SplitPane splitPane = new SplitPane();
         borderPane.setCenter(splitPane);
@@ -458,7 +460,6 @@ public class MainWindowController implements Initializable {
         messageTextArea.setEditable(false);
         splitPane.getItems().add(textArea);
         splitPane.setOrientation(Orientation.VERTICAL);
-
 
 //        ContextMenu contextMenu = new ContextMenu();
 //        MenuItem menuItem = new MenuItem("关闭");
