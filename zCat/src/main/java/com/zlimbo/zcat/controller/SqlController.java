@@ -122,19 +122,12 @@ public class SqlController {
         System.out.println("====================> [sqlCreateTable] start");
         SqlQueryResult sqlQueryResult = new SqlQueryResult();
         long start = System.currentTimeMillis();
-        Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql);  // 正则获取表名
-        String tableName = null;
-        if (matcher.find()) {
-            tableName = matcher.group(1);
-        }
-        boolean success = false;
         String errorMessage = null;
         PreparedStatement preparedStatement = null;
         System.out.println("== sql:" + sql);
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.executeUpdate(sql);
-            success = true;
         } catch (Exception e) {
             sqlQueryResult.setErrorMessage(e.getMessage());
             e.printStackTrace();
@@ -147,10 +140,6 @@ public class SqlController {
             } catch (SQLException se) {
                 se.printStackTrace();
             }
-        }
-        if (success) {
-            System.out.println("tableName: " + tableName);
-            sqlQueryResult = sqlQuery("DESCRIBE " + tableName);
         }
 
         long end = System.currentTimeMillis();
@@ -264,10 +253,9 @@ public class SqlController {
 
     public SqlQueryResult sqlInsert(String sql) {
         System.out.println("====================> [sqlInsert] start");
-
+        SqlQueryResult sqlQueryResult = new SqlQueryResult();
         long start = System.currentTimeMillis();
 
-        SqlQueryResult sqlQueryResult = new SqlQueryResult();
         PreparedStatement preparedStatement = null;
         System.out.println("== sql:" + sql);
         try {

@@ -2,8 +2,6 @@ package com.zlimbo.zcat.controller;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +30,6 @@ public class MainWindowController implements Initializable {
     public @FXML Tab objectsTab;
     public @FXML TabPane showTabPane;
     public @FXML TreeView dbTreeView;
-    //public @FXML TextArea messageTextArea;
     public @FXML Button newConnectionButton;
     public @FXML Button citaButton;
     public @FXML AnchorPane rightShowAchorPane;
@@ -53,8 +50,8 @@ public class MainWindowController implements Initializable {
         newQueryButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query.png"))));
         newQueryButton.setDisable(true);
-//        citaButton.setGraphic(
-//                new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
+        citaButton.setGraphic(
+                new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
 
         sqlController = new SqlController("ouyeel",
                 "localhost", "3306", "root", "123456");
@@ -77,8 +74,8 @@ public class MainWindowController implements Initializable {
                 new ImageView(new Image(getClass().getResourceAsStream("/image/add.png"))));
         toolBar.getItems().addAll(closeButton, addButton);
         borderPane.setTop(toolBar);
-        TableView tableView = new TableView();
-        borderPane.setCenter(tableView);
+        SplitPane tableSplitPane = new SplitPane();
+        borderPane.setCenter(tableSplitPane);
         Tab tableTab = tabMap.get(tableName);
         tableTab.setContent(borderPane);
 
@@ -89,37 +86,35 @@ public class MainWindowController implements Initializable {
         addButton.setOnAction(event -> addRecord(tableName));
 
         String sql = "SELECT * FROM " + tableName;
-        executeSqlAndShowTableView(sql, tableView, null);
+        executeSqlAndShowTableView(sql, tableSplitPane, null);
 
         System.out.println("============> [showTable] end");
     }
 
 
-    private void executeSqlAndShowTableView(String sql, TableView tableView, TextArea messageTextArea) {
-        tableView.setTableMenuButtonVisible(true);
-        tableView.getColumns().clear();
-        tableView.getItems().clear();
+    private boolean executeSqlAndShowTableView(String sql, SplitPane tableSplitPane, TextArea messageTextArea) {
+        boolean success = true;
+        tableSplitPane.getItems().clear();
         SqlController.SqlQueryResult sqlQueryResult = null;
-        String sqlUpperCase = sql.toUpperCase();
-        if (Pattern.matches("(?i)\\s*create\\s+table(.|\\n|\\r)*", sql)) {
+        if (Pattern.matches("(?i)\\s*CREATE\\s+TABLE(.|\\n|\\r)*", sql)) {
             System.out.println("CREATE TABLE!");
             sqlQueryResult = sqlController.sqlCreateTable(sql);
-            showDatabase();
-            Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql);  // 正则获取表名
-            String tableName = null;
-            if (matcher.find()) {
-                tableName = matcher.group(1);
+            if (sqlQueryResult.getErrorMessage() == null) {
+                showDatabase();
+                Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql);  // 正则获取表名
+                if (matcher.find()) {
+                    String tableName = matcher.group(1);
+                    sqlQueryResult = sqlController.sqlQuery("DESCRIBE " + tableName);
+                }
             }
-        } else if (Pattern.matches("(?i)\\s*insert\\s+into(.|\\n|\\r)*", sql)) {
+        } else if (Pattern.matches("(?i)\\s*INSERT\\s+INTO(.|\\n|\\r)*", sql)) {
             System.out.println("INSERT!");
             sqlQueryResult = sqlController.sqlInsert(sql);
             if (sqlQueryResult.getErrorMessage() == null) {
                 Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql); // 正则获取表名
                 if (matcher.find()) {
                     String tableName = matcher.group(1);
-                    if (tabMap.containsKey(tableName)) {
-                        showTable(tableName);   // 更新表显示
-                    }
+                    sqlQueryResult = sqlController.sqlQuery("SELECT * FROM " + tableName);
                 }
             }
         } else {
@@ -130,7 +125,15 @@ public class MainWindowController implements Initializable {
         List<List<String>> records = sqlQueryResult.getRecords();
         long spendTime = sqlQueryResult.getSpendTime();
         if (errorMessage == null) {
-            //tableView.getSelectionModel().setCellSelectionEnabled(true);
+            TableView tableView = new TableView();
+            tableView.setPlaceholder(new Label());
+            tableView.setTableMenuButtonVisible(true);
+            Pagination pagination = new Pagination();
+            pagination.setPageCount(1);
+            tableSplitPane.getItems().addAll(tableView, pagination);
+            tableSplitPane.setOrientation(Orientation.HORIZONTAL);
+            tableSplitPane.setDividerPosition(0, 0.6);
+
             for (int i = 0; i < columns.size(); ++i) {
                 TableColumn<List<StringProperty>, String> tableColumn = new TableColumn<>(columns.get(i));
                 int finalI = i;
@@ -146,59 +149,60 @@ public class MainWindowController implements Initializable {
                 data.add(row);
             }
             tableView.setItems(data);
-            showPagination(tableView, columns, records);
+            showPagination(tableView, pagination, columns, records);
 
             if (messageTextArea != null) {
                 messageTextArea.setStyle("-fx-text-fill:#00ff00;");
                 messageTextArea.setText(sql + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
             }
         } else {
+            success = false;
             if (messageTextArea != null) {
                 messageTextArea.setStyle("-fx-text-fill:#ff0000;");
                 messageTextArea.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
             }
         }
+        return success;
     }
 
 
-    private void showPagination(TableView tableView, List<String> columns, List<List<String>> records) {
+    private void showPagination(TableView tableView, Pagination pagination, List<String> columns, List<List<String>> records) {
         System.out.println("====================> [showQuerySingle] start");
-
 
         TableView sigleTableView = new TableView();
         sigleTableView.setPlaceholder(new Label());
-        Pagination pagination = new Pagination();
-        rightBorderPane.setCenter(pagination);
-
-        TableColumn<List<StringProperty>, String> attributeColumn = new TableColumn<>("attribute");
-        TableColumn<List<StringProperty>, String> valueColumn = new TableColumn<>("value");
-        attributeColumn.setCellValueFactory(data -> data.getValue().get(0));
-        valueColumn.setCellValueFactory(data -> data.getValue().get(1));
-        sigleTableView.getColumns().addAll(attributeColumn, valueColumn);
-
-        ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
-        List<StringProperty> valuePropertyList = new ArrayList<>();
-        for (int i = 0; i < columns.size(); ++i) {
-            List<StringProperty> row = new ArrayList<>();
-            StringProperty valueProperty = new SimpleStringProperty(records.get(0).get(i));
-            valuePropertyList.add(valueProperty);
-            row.add(0, new SimpleStringProperty(columns.get(i)));
-            row.add(1, valueProperty);
-            data.add(row);
-        }
-        sigleTableView.setItems(data);
-
         pagination.setPageCount(records.size());
-        pagination.setPageFactory(pageIndex -> {
-            for (int i = 0; i < columns.size(); ++i) {
-                valuePropertyList.get(i).setValue(records.get(pageIndex).get(i));
-            }
-            return sigleTableView;
-        });
 
-        tableView.getSelectionModel().selectedIndexProperty().addListener(
-                (observable, oldValue, newValue) -> pagination.setCurrentPageIndex(newValue.intValue())
-        );
+        if (!records.isEmpty()) {
+            TableColumn<List<StringProperty>, String> keyColumn = new TableColumn<>("key");
+            TableColumn<List<StringProperty>, String> valueColumn = new TableColumn<>("value");
+            keyColumn.setCellValueFactory(data -> data.getValue().get(0));
+            valueColumn.setCellValueFactory(data -> data.getValue().get(1));
+            sigleTableView.getColumns().addAll(keyColumn, valueColumn);
+
+            ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
+            List<StringProperty> valuePropertyList = new ArrayList<>();
+            for (int i = 0; i < columns.size(); ++i) {
+                List<StringProperty> row = new ArrayList<>();
+                StringProperty valueProperty = new SimpleStringProperty(records.get(0).get(i));
+                valuePropertyList.add(valueProperty);
+                row.add(0, new SimpleStringProperty(columns.get(i)));
+                row.add(1, valueProperty);
+                data.add(row);
+            }
+            sigleTableView.setItems(data);
+
+            pagination.setPageFactory(pageIndex -> {
+                for (int i = 0; i < columns.size(); ++i) {
+                    valuePropertyList.get(i).setValue(records.get(pageIndex).get(i));
+                }
+                return sigleTableView;
+            });
+
+            tableView.getSelectionModel().selectedIndexProperty().addListener(
+                    (observable, oldValue, newValue) -> pagination.setCurrentPageIndex(newValue.intValue())
+            );
+        }
 
         System.out.println("====================> [showQuerySingle] end\n");
     }
@@ -449,15 +453,11 @@ public class MainWindowController implements Initializable {
         borderPane.setCenter(splitPane);
 
         TextArea textArea = new TextArea();
-        //textArea.setStyle("-fx-font: 16 arial;");
-        TableView tableView = new TableView();
-        tableView.setPlaceholder(new Label());
+        SplitPane tableSplitPane = new SplitPane();
         TextArea messageTextArea = new TextArea();
         messageTextArea.setEditable(false);
-        splitPane.getItems().addAll(textArea, tableView, messageTextArea);
+        splitPane.getItems().add(textArea);
         splitPane.setOrientation(Orientation.VERTICAL);
-        splitPane.setDividerPosition(0, 0.2);
-        splitPane.setDividerPosition(1, 0.85);
 
 
 //        ContextMenu contextMenu = new ContextMenu();
@@ -472,7 +472,16 @@ public class MainWindowController implements Initializable {
             showTabPane.getTabs().remove(queryTab);
         });
 
-        runButton.setOnAction(event -> executeSqlAndShowTableView(textArea.getText(), tableView, messageTextArea));
+        runButton.setOnAction(event -> {
+            splitPane.getItems().clear();
+            splitPane.getItems().add(textArea);
+            if (executeSqlAndShowTableView(textArea.getText(), tableSplitPane, messageTextArea)) {
+                splitPane.getItems().add(tableSplitPane);
+            }
+            splitPane.getItems().add(messageTextArea);
+            splitPane.setDividerPosition(0, 0.2);
+            splitPane.setDividerPosition(1, 0.85);
+        });
 
         System.out.println("============> [newQuery] end");
     }
@@ -573,11 +582,11 @@ public class MainWindowController implements Initializable {
             tabMap.remove(citaUrl);
         });
 
-        TableColumn<List<StringProperty>, String> attributeColumn = new TableColumn<>("attribute");
+        TableColumn<List<StringProperty>, String> keyColumn = new TableColumn<>("key");
         TableColumn<List<StringProperty>, String> valueColumn = new TableColumn<>("value");
-        attributeColumn.setCellValueFactory(data -> data.getValue().get(0));
+        keyColumn.setCellValueFactory(data -> data.getValue().get(0));
         valueColumn.setCellValueFactory(data -> data.getValue().get(1));
-        tableView.getColumns().addAll(attributeColumn, valueColumn);
+        tableView.getColumns().addAll(keyColumn, valueColumn);
 
         ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
         List<List<StringProperty>> bcInfo = chainControl.getBcInfo();
