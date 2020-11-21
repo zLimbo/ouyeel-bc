@@ -2,6 +2,8 @@ package com.zlimbo.zcat.controller;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,14 +53,14 @@ public class MainWindowController implements Initializable {
         newQueryButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query.png"))));
         newQueryButton.setDisable(true);
-        citaButton.setGraphic(
-                new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
+//        citaButton.setGraphic(
+//                new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
 
         sqlController = new SqlController("ouyeel",
                 "localhost", "3306", "root", "123456");
         showDatabase();
         newQueryButton.setDisable(false);
-        mainVBox.setStyle("-fx-font: 20 arial;");
+        mainVBox.setStyle("-fx-font: 16  arial;");
 
         System.out.println("============> [initialize] end\n");
     }
@@ -99,13 +101,20 @@ public class MainWindowController implements Initializable {
         tableView.getItems().clear();
         SqlController.SqlQueryResult sqlQueryResult = null;
         String sqlUpperCase = sql.toUpperCase();
-        if (sqlUpperCase.startsWith("CREATE TABLE")) {
+        if (Pattern.matches("(?i)\\s*create\\s+table(.|\\n|\\r)*", sql)) {
+            System.out.println("CREATE TABLE!");
             sqlQueryResult = sqlController.sqlCreateTable(sql);
             showDatabase();
-        } else if (sqlUpperCase.startsWith("INSERT INTO")) {
+            Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql);  // 正则获取表名
+            String tableName = null;
+            if (matcher.find()) {
+                tableName = matcher.group(1);
+            }
+        } else if (Pattern.matches("(?i)\\s*insert\\s+into(.|\\n|\\r)*", sql)) {
+            System.out.println("INSERT!");
             sqlQueryResult = sqlController.sqlInsert(sql);
             if (sqlQueryResult.getErrorMessage() == null) {
-                Matcher matcher = Pattern.compile("^\\w+\\s+\\w+\\s+(\\w+)").matcher(sql); // 正则获取表名
+                Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql); // 正则获取表名
                 if (matcher.find()) {
                     String tableName = matcher.group(1);
                     if (tabMap.containsKey(tableName)) {
@@ -115,17 +124,13 @@ public class MainWindowController implements Initializable {
             }
         } else {
             sqlQueryResult = sqlController.sqlQuery(sql);
-            if (sqlQueryResult.getErrorMessage() == null) {
-                showQuerySingle(sqlQueryResult);
-            }
         }
         String errorMessage = sqlQueryResult.getErrorMessage();
         List<String> columns = sqlQueryResult.getColumns();
         List<List<String>> records = sqlQueryResult.getRecords();
         long spendTime = sqlQueryResult.getSpendTime();
         if (errorMessage == null) {
-            tableView.getSelectionModel().setCellSelectionEnabled(true);
-
+            //tableView.getSelectionModel().setCellSelectionEnabled(true);
             for (int i = 0; i < columns.size(); ++i) {
                 TableColumn<List<StringProperty>, String> tableColumn = new TableColumn<>(columns.get(i));
                 int finalI = i;
@@ -141,6 +146,8 @@ public class MainWindowController implements Initializable {
                 data.add(row);
             }
             tableView.setItems(data);
+            showPagination(tableView, columns, records);
+
             if (messageTextArea != null) {
                 messageTextArea.setStyle("-fx-text-fill:#00ff00;");
                 messageTextArea.setText(sql + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
@@ -153,41 +160,45 @@ public class MainWindowController implements Initializable {
         }
     }
 
-    private void showQuerySingle(SqlController.SqlQueryResult sqlQueryResult) {
+
+    private void showPagination(TableView tableView, List<String> columns, List<List<String>> records) {
         System.out.println("====================> [showQuerySingle] start");
 
-        List<String> columns = sqlQueryResult.getColumns();
-        List<List<String>> records = sqlQueryResult.getRecords();
 
-        TableView tableView = new TableView();
+        TableView sigleTableView = new TableView();
+        sigleTableView.setPlaceholder(new Label());
         Pagination pagination = new Pagination();
-        rightBorderPane.setCenter(tableView);
-        rightBorderPane.setBottom(pagination);
-
-        pagination.setPageCount(records.size());
-//        pagination.setPageFactory(pageIndex -> {
-//
-//        });
+        rightBorderPane.setCenter(pagination);
 
         TableColumn<List<StringProperty>, String> attributeColumn = new TableColumn<>("attribute");
         TableColumn<List<StringProperty>, String> valueColumn = new TableColumn<>("value");
         attributeColumn.setCellValueFactory(data -> data.getValue().get(0));
         valueColumn.setCellValueFactory(data -> data.getValue().get(1));
-        tableView.getColumns().addAll(attributeColumn, valueColumn);
+        sigleTableView.getColumns().addAll(attributeColumn, valueColumn);
 
         ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
-
-
-
-        List<List<StringProperty>> records2 = new ArrayList<>();
-
+        List<StringProperty> valuePropertyList = new ArrayList<>();
         for (int i = 0; i < columns.size(); ++i) {
             List<StringProperty> row = new ArrayList<>();
+            StringProperty valueProperty = new SimpleStringProperty(records.get(0).get(i));
+            valuePropertyList.add(valueProperty);
             row.add(0, new SimpleStringProperty(columns.get(i)));
-            row.add(1, new SimpleStringProperty(records.get(0).get(i)));
+            row.add(1, valueProperty);
             data.add(row);
         }
-        tableView.setItems(data);
+        sigleTableView.setItems(data);
+
+        pagination.setPageCount(records.size());
+        pagination.setPageFactory(pageIndex -> {
+            for (int i = 0; i < columns.size(); ++i) {
+                valuePropertyList.get(i).setValue(records.get(pageIndex).get(i));
+            }
+            return sigleTableView;
+        });
+
+        tableView.getSelectionModel().selectedIndexProperty().addListener(
+                (observable, oldValue, newValue) -> pagination.setCurrentPageIndex(newValue.intValue())
+        );
 
         System.out.println("====================> [showQuerySingle] end\n");
     }

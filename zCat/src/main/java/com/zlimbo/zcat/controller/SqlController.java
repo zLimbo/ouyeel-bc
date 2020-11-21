@@ -120,9 +120,9 @@ public class SqlController {
 
     public SqlQueryResult sqlCreateTable(String sql) {
         System.out.println("====================> [sqlCreateTable] start");
-        long start = System.currentTimeMillis();
-        Matcher matcher = Pattern.compile("^\\w+\\s+\\w+\\s+(\\w+)").matcher(sql);  // 正则获取表名
         SqlQueryResult sqlQueryResult = new SqlQueryResult();
+        long start = System.currentTimeMillis();
+        Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql);  // 正则获取表名
         String tableName = null;
         if (matcher.find()) {
             tableName = matcher.group(1);
