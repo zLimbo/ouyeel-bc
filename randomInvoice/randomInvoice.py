@@ -7,6 +7,7 @@ from data2 import *
 
 assign_systemId = 1
 assign_requestSn = 1
+block_num = 24000
 
 def getHexString(n):
         """返回指定长度的随机十六进制字符串"""
@@ -22,6 +23,7 @@ def randomInvoice():
         """获取一个随机的发票数据"""
         global assign_systemId
         global assign_requestSn
+        global block_num
         systemId = str(assign_systemId).rjust(12, '0')
         if assign_requestSn % 5 == 0:
                 assign_systemId += 1
@@ -45,9 +47,10 @@ def randomInvoice():
         secretKey = getHexString(16)
         privateKey = getHexString(16)
         publicKey = getHexString(32)
-        blockNumber = getHexString(16)
-        txHash = getHexString(32)
-        timestamp = str(int(time.time() * 10**9))
+        block_num += random.randint(10, 20)
+        blockNumber = str(hex(block_num))
+        txHash = getHexString(64)
+        timestamp = str(time.time_ns() // 10**6)
         invoice = [ 
                 systemId,
                 requestSn,
@@ -65,7 +68,7 @@ def randomInvoice():
                 invoiceNumber,
                 statementSheet,
                 statementWeight,
-                contractAddress,
+                #contractAddress,
                 blockNumber,
                 txHash,
                 timestamp,
@@ -86,6 +89,6 @@ def writeIntoFile(n):
 
 
 # 获取指定数目的随机发票
-num = [20]
+num = [21]
 for n in num:
         writeIntoFile(n)

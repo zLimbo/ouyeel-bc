@@ -47,16 +47,16 @@ public class MainWindowController implements Initializable {
         newQueryButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query.png"))));
         newQueryButton.setDisable(true);
-//
-        citaButton.setGraphic(
-                new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
 
-        sqlController = new SqlController("ouyeel",
+//        citaButton.setGraphic(
+//                new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
+//
+        sqlController = new SqlController("blockchainbase",
                 "localhost", "3306", "root", "123456");
         showDatabase();
         newQueryButton.setDisable(false);
 //
-        mainVBox.setStyle("-fx-font: 16  arial;");
+        mainVBox.setStyle("-fx-font: 20  arial;");
 
         System.out.println("============> [initialize] end\n");
     }

@@ -1,28 +1,3 @@
-
-DROP TABLE IF EXISTS invoice;
-CREATE TABLE invoice  (
-	systemId varchar(255) NOT NULL,
-	requestSn varchar(255) NOT NULL,
-	invoiceNo varchar(255) NULL DEFAULT NULL,
-	consumerName varchar(255) NULL DEFAULT NULL,
-	consumerTaxesNo varchar(255) NULL DEFAULT NULL,
-	sellerName varchar(255) NULL DEFAULT NULL,
-	sellerTaxesNo varchar(255) NULL DEFAULT NULL,
-	invoiceDate varchar(255) NULL DEFAULT NULL,
-	invoiceType varchar(255) NULL DEFAULT NULL,
-	taxesPoint varchar(255) NULL DEFAULT NULL,
-	taxes varchar(255) NULL DEFAULT NULL,
-	price varchar(255) NULL DEFAULT NULL,
-	pricePlusTaxes varchar(255) NULL DEFAULT NULL,
-	invoiceNumber varchar(255) NULL DEFAULT NULL,
-	statementSheet varchar(255) NULL DEFAULT NULL,
-	statementWeight varchar(255) NULL DEFAULT NULL,
-	blockNumber varchar(255) NOT NULL,
-	txHash varchar(255) NOT NULL,
-	timestamp varchar(255) NOT NULL,
-	PRIMARY KEY (systemId, requestSn)
-);
-
 insert into invoice values(
 	'000000000001',
 	'000000000000000001',
@@ -423,4 +398,23 @@ insert into invoice values(
 	'0x5edd',
 	'0xd39c063238363d1a361c1749c5454666e5843a3571719f82ee72433766067ba9',
 	'1606029152364');
-
+insert into invoice values(
+	'000000000005',
+	'000000000000000021',
+	'0x7683327947',
+	'Chubb',
+	'735089TDWX0TW69',
+	'United Continental Holdings',
+	'730460TU01YHP88',
+	'2020-11-22 15:12:32',
+	'addedValueTaxInvoice',
+	'16.84%',
+	'112',
+	'71320',
+	'71432',
+	'3',
+	'2',
+	'2kg',
+	'0x5ee9',
+	'0x6cea69c3f69274883a99ea65918e4a68f5f0e3085e8a6fdd8396cdcc63b175e3',
+	'1606029152371');
