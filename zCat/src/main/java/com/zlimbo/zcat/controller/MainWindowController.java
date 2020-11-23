@@ -48,15 +48,15 @@ public class MainWindowController implements Initializable {
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query.png"))));
         newQueryButton.setDisable(true);
 
-//        citaButton.setGraphic(
-//                new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
+        citaButton.setGraphic(
+                new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
 //
         sqlController = new SqlController("blockchainbase",
                 "localhost", "3306", "root", "123456");
         showDatabase();
         newQueryButton.setDisable(false);
 //
-        mainVBox.setStyle("-fx-font: 20  arial;");
+        mainVBox.setStyle("-fx-font: 18  arial;");
 
         System.out.println("============> [initialize] end\n");
     }
@@ -91,11 +91,15 @@ public class MainWindowController implements Initializable {
     }
 
 
-    private boolean executeSqlAndShowTableView(String sql, SplitPane tableSplitPane, TextArea messageTextArea) {
-        boolean success = true;
+    private int executeSqlAndShowTableView(String sql, SplitPane tableSplitPane, TextArea messageTextArea) {
+        int retSign = 0;
         tableSplitPane.getItems().clear();
         SqlController.SqlQueryResult sqlQueryResult = null;
-        if (Pattern.matches("(?i)\\s*CREATE\\s+TABLE(.|\\n|\\r)*", sql)) {
+        String sqlUpCase = sql.toUpperCase().trim();
+        if (sqlUpCase.isEmpty()) {
+            sqlQueryResult = new SqlController.SqlQueryResult();
+            sqlQueryResult.setErrorMessage("empty");
+        } else if (sqlUpCase.startsWith("CREATE")) {
             System.out.println("CREATE TABLE!");
             sqlQueryResult = sqlController.sqlCreateTable(sql);
             if (sqlQueryResult.getErrorMessage() == null) {
@@ -105,19 +109,22 @@ public class MainWindowController implements Initializable {
                     String tableName = matcher.group(1);
                     sqlQueryResult = sqlController.sqlQuery("DESCRIBE " + tableName);
                 }
+                retSign = 1;
             }
-        } else if (Pattern.matches("(?i)\\s*INSERT\\s+INTO(.|\\n|\\r)*", sql)) {
+        } else if (sqlUpCase.startsWith("INSERT")) {
             System.out.println("INSERT!");
             sqlQueryResult = sqlController.sqlInsert(sql);
-            if (sqlQueryResult.getErrorMessage() == null) {
-                Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql); // 正则获取表名
-                if (matcher.find()) {
-                    String tableName = matcher.group(1);
-                    sqlQueryResult = sqlController.sqlQuery("SELECT * FROM " + tableName);
-                }
-            }
-        } else {
+//            if (sqlQueryResult.getErrorMessage() == null) {
+//                Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql); // 正则获取表名
+//                if (matcher.find()) {
+//                    String tableName = matcher.group(1);
+//                    sqlQueryResult = sqlController.sqlQuery("SELECT * FROM " + tableName);
+//                }
+//            }
+            retSign = 2;
+        } else { // Query
             sqlQueryResult = sqlController.sqlQuery(sql);
+            retSign = 3;
         }
         String errorMessage = sqlQueryResult.getErrorMessage();
         List<String> columns = sqlQueryResult.getColumns();
@@ -153,16 +160,16 @@ public class MainWindowController implements Initializable {
 
             if (messageTextArea != null) {
                 messageTextArea.setStyle("-fx-text-fill:#00ff00;");
-                messageTextArea.setText(sql + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
+                messageTextArea.setText(sql.trim() + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
             }
         } else {
-            success = false;
+            retSign = 0;
             if (messageTextArea != null) {
                 messageTextArea.setStyle("-fx-text-fill:#ff0000;");
-                messageTextArea.setText(sql + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
+                messageTextArea.setText(sql.trim() + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
             }
         }
-        return success;
+        return retSign;
     }
 
 
@@ -476,7 +483,8 @@ public class MainWindowController implements Initializable {
         runButton.setOnAction(event -> {
             splitPane.getItems().clear();
             splitPane.getItems().add(textArea);
-            if (executeSqlAndShowTableView(textArea.getText(), tableSplitPane, messageTextArea)) {
+            int sign = executeSqlAndShowTableView(textArea.getText(), tableSplitPane, messageTextArea);
+            if (sign == 3) {
                 splitPane.getItems().add(tableSplitPane);
             }
             splitPane.getItems().add(messageTextArea);

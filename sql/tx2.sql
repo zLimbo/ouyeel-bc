@@ -13,5 +13,7 @@ CREATE TABLE tx (
   privateKey varchar(255),
   publicKey varchar(255),
   txHash varchar(255),
+  onChain varchar(255),
   PRIMARY KEY (systemId, requestSn)
 );
+

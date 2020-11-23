@@ -71,14 +71,14 @@ public class PostController {
         System.out.println("============> [upChain post] start");
         JSONObject dataInfo = JSONObject.parseObject(JSON.toJSONString(invoice));
         JSONObject postData = new JSONObject();
-        postData.put("tableName", "invoice");
+        postData.put("tableName", "tx");
         postData.put("systemId", systemId);
         postData.put("requestSn", requestSn);
         postData.put("dataInfo", dataInfo);
         postData.put("businessId", invoice.getInvoiceNo());
         postData.put("callbackUrl", callbackUrl);
         postData.put("invokeTime", String.valueOf(System.currentTimeMillis()));
-        postData.put("sign", "0x123456789abcdef");
+        postData.put("sign", "0x0123456789abcdef");
         String response = send(postUrl + "/obst/service/S_ST_01", postData, "utf-8");
         JSONObject resJson = JSONObject.parseObject(response);
         System.out.println("============> [upChain post] end");

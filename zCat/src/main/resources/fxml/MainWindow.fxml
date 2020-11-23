@@ -52,7 +52,7 @@
          <items>
             <Button fx:id="newConnectionButton" mnemonicParsing="false" onAction="#newConnection" text="New Connection" textFill="#171717" />
             <Button fx:id="newQueryButton" mnemonicParsing="false" onAction="#newQuery" text="New Query" />
-<!--            <Button fx:id="citaButton" mnemonicParsing="false" onAction="#connectionCita" text="Connection CITA" />-->
+            <Button fx:id="citaButton" mnemonicParsing="false" onAction="#connectionCita" text="Connection CITA" />
          </items>
       </ToolBar>
     <SplitPane dividerPositions="0.15, 0.7" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">

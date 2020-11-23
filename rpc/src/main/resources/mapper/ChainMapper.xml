@@ -9,7 +9,7 @@
     
     <insert id="upChain" parameterClass="java.util.HashMap">
        INSERT INTO $tableName$
-        VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#, #txHash#)
+        VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#, #txHash#, #onChain#)
     </insert>
 
     <insert id="insertPrivateKey" parameterClass="java.util.HashMap">
@@ -27,19 +27,27 @@
     <select id="queryByTxHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
         SELECT *
         FROM $tableName$
-        WHERE txHash = #txHash#
+        WHERE txHash=#txHash#
+    </select>
+
+    <select id="queryByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT *
+        FROM $tableName$
+        WHERE requestSn=#requestSn#
     </select>
 
     <select id="compensateQuery" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
         SELECT *
         FROM $tableName$
-        WHERE requestSn = #searchRequestSn#
+        WHERE requestSn=#searchRequestSn#
     </select>
 
     <select id="queryForKey" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
         SELECT *
         FROM userKey
-        WHERE systemId = #systemId#
+        WHERE systemId=#systemId#
     </select>
+
+
 
 </sqlMap>

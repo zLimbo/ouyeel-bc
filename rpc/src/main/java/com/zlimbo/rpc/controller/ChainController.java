@@ -151,7 +151,7 @@ public class ChainController {
      * 异步回调同时
      * @param callbackUrl
      */
-    private void upChainAsyncCallBack(String callbackUrl, String txHash) {
+    private void upChainAsyncCallBack(String callbackUrl, String tableName, String txHash) {
         System.out.println("============> [upChainAsyncCallBack] start");
         System.out.println("callbackUrl: " + callbackUrl);
         Thread thread = new Thread(() -> {
@@ -168,41 +168,36 @@ public class ChainController {
                 int exceptionCount = 0;
                 while (true) {
                     try {
-                        AppGetTransactionReceipt txReceipt = service.appGetTransactionReceipt(txHash).send();
-                        transactionReceipt = txReceipt.getTransactionReceipt();
-                        if (transactionReceipt != null) {
-                            JSONObject dataJson = new JSONObject();
-                            dataJson.put("code", ResultCode.UP_CHAIN_SUCCESS.getCode());
-                            dataJson.put("msg", ResultCode.UP_CHAIN_SUCCESS.getMsg());
+                        Map<String, String> parameterMap = new HashMap<>();
+                        parameterMap.put("txHash", txHash);
+                        parameterMap.put("tableName", tableName);
+                        List<HashMap<String,Object>> resultList = sqlMapClient.queryForList("queryByTxHash", parameterMap);
 
-                            JSONObject data = new JSONObject();
-                            BigInteger blockNumber = transactionReceipt.getBlockNumber();
-                            AppBlock appBlock = service.appGetBlockByNumber(DefaultBlockParameter.valueOf(blockNumber), true).send();
-                            AppBlock.Header header = appBlock.getBlock().getHeader();
-                            Long blockAddTime = header.getTimestamp();
-
-                            data.put("txHash", txHash);
-                            data.put("blockAddTime", blockAddTime);
-                            data.put("blockNumber", blockNumber);
-                            dataJson.put("data", data);
-
-                            try {
-                                String body = send(callbackUrl, dataJson, "utf-8");
-                                System.out.println("body: " + body);
-                                JSONObject bodyJson = JSONObject.parseObject(body);
-                                if (bodyJson.getBoolean("success")) {
+                        if (!resultList.isEmpty()) {
+                            HashMap<String, Object> resultMap = resultList.get(0);
+                            if ("true".equals(resultMap.get("onChain"))) {
+                                System.out.println("onChain: " + resultMap.get("onChain"));
+                                JSONObject postDataJson = new JSONObject();
+                                postDataJson.put("txHash", txHash);
+                                postDataJson.put("blockAddTime", resultMap.get("blockAddTime"));
+                                postDataJson.put("blockNumer", resultMap.get("blockNumber"));
+                                try {
+                                    String resultString = send(callbackUrl, postDataJson, "utf-8");
+                                    JSONObject resultJson = JSONObject.parseObject(resultString);
+                                    if (resultJson.getBoolean("success")) {
                                     return; // 推送成功，不再推送。
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (Exception e) {
-
+                                break; // 一次推送，跳出循环
                             }
-                            break; // 一次推送，跳出循环
                         }
-                    } catch (IOException e) {
+                    } catch (Exception e) {
+                        e.printStackTrace();
                         if (++exceptionCount == 10) {
                             break; // 十次异常退出循环
                         }
-                        e.printStackTrace();
                     }
                 }
             }
@@ -210,6 +205,7 @@ public class ChainController {
         thread.start();
         System.out.println("============> [upChainAsyncCallBack] end");
     }
+
 
     void testCallback(String callbackUrl) throws IOException {
         System.out.println("============> [testCallback] start");
@@ -244,7 +240,7 @@ public class ChainController {
 
             System.out.println("dataInfo: " + dataInfo);
 
-            testCallback(callbackUrl);
+            //testCallback(callbackUrl);
 //            Map<String, String> parameterMap1 = new HashMap<>();
 //            parameterMap1.put("systemId", systemId);
 //            List<HashMap<String, String>> resultList1 = sqlMapClient.queryForList("queryForKey", parameterMap1);
@@ -256,6 +252,8 @@ public class ChainController {
                     "c8e25f861839a8607dc941ddc6c75116b89d7a2cbd6f23189d2265ebb4edd7";
             String secretKey = "0123456789abcdef";
             String txHash = getHashValue(dataInfo);
+            String onChain = "false";
+            //String txHash = "";
             try {
                 Map<String, String> dataMap = new HashMap<>();
                 dataMap.put("tableName", tableName);
@@ -266,25 +264,25 @@ public class ChainController {
                 dataMap.put("privateKey", privateKey);
                 dataMap.put("publicKey", publicKey);
                 dataMap.put("txHash", txHash);
+                dataMap.put("onChain", onChain);
                 sqlMapClient.insert("upChain", dataMap);
 
                 // 查询生成的哈希值
-//                Map<String, String> parameterMap = new HashMap<>();
-//                parameterMap.put("systemId", systemId);
-//                parameterMap.put("requestSn", requestSn);
-//                List<HashMap<String, String>> resultList = sqlMapClient.queryForList("queryForTx", parameterMap);
-//                Map<String, String> resultMap = resultList.get(0);
-//                String txHash = resultMap.get("txHash");
-
+                Map<String, String> parameterMap = new HashMap<>();
+                parameterMap.put("tableName", tableName);
+                parameterMap.put("requestSn", requestSn);
+                List<HashMap<String, String>> resultList = sqlMapClient.queryForList("queryByRequestSn", parameterMap);
+                Map<String, String> resultMap = resultList.get(0);
+                String resultTxHash = resultMap.get("txHash");
 
                 returnJson.put("code", ResultCode.SUCCESS.getCode());
                 returnJson.put("msg", ResultCode.SUCCESS.getMsg());
                 JSONObject data = new JSONObject();
-                data.put("txHash", txHash);
+                data.put("txHash", resultTxHash);
                 returnJson.put("data", data);
 
                 if (callbackUrl != null) {
-                    upChainAsyncCallBack(callbackUrl, txHash);
+                    upChainAsyncCallBack(callbackUrl, tableName, txHash);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -460,3 +458,65 @@ public class ChainController {
         return returnJson.toJSONString();
     }
 }
+
+
+
+//    private void upChainAsyncCallBack(String callbackUrl, String txHash) {
+//        System.out.println("============> [upChainAsyncCallBack] start");
+//        System.out.println("callbackUrl: " + callbackUrl);
+//        Thread thread = new Thread(() -> {
+//
+//            TransactionReceipt transactionReceipt = null;
+//
+//            for (long time: callbackTimeArray) {
+//                System.out.println("============> [upChainAsyncCallBack thread] time: " + time);
+//                try {
+//                    Thread.sleep(time);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                int exceptionCount = 0;
+//                while (true) {
+//                    try {
+//                        AppGetTransactionReceipt txReceipt = service.appGetTransactionReceipt(txHash).send();
+//                        transactionReceipt = txReceipt.getTransactionReceipt();
+//                        if (transactionReceipt != null) {
+//                            JSONObject dataJson = new JSONObject();
+//                            dataJson.put("code", ResultCode.UP_CHAIN_SUCCESS.getCode());
+//                            dataJson.put("msg", ResultCode.UP_CHAIN_SUCCESS.getMsg());
+//
+//                            JSONObject data = new JSONObject();
+//                            BigInteger blockNumber = transactionReceipt.getBlockNumber();
+//                            AppBlock appBlock = service.appGetBlockByNumber(DefaultBlockParameter.valueOf(blockNumber), true).send();
+//                            AppBlock.Header header = appBlock.getBlock().getHeader();
+//                            Long blockAddTime = header.getTimestamp();
+//
+//                            data.put("txHash", txHash);
+//                            data.put("blockAddTime", blockAddTime);
+//                            data.put("blockNumber", blockNumber);
+//                            dataJson.put("data", data);
+//
+//                            try {
+//                                String body = send(callbackUrl, dataJson, "utf-8");
+//                                System.out.println("body: " + body);
+//                                JSONObject bodyJson = JSONObject.parseObject(body);
+//                                if (bodyJson.getBoolean("success")) {
+//                                    return; // 推送成功，不再推送。
+//                                }
+//                            } catch (Exception e) {
+//
+//                            }
+//                            break; // 一次推送，跳出循环
+//                        }
+//                    } catch (IOException e) {
+//                        if (++exceptionCount == 10) {
+//                            break; // 十次异常退出循环
+//                        }
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
+//        thread.start();
+//        System.out.println("============> [upChainAsyncCallBack] end");
+//    }
