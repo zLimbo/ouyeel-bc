@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>华东师大-欧冶联盟链</title>
+    <meta name="keywords" content="华东师大-欧冶区块链平台"/>
+    <meta name="description" content="华东师大-欧冶区块链平台"/>
+    <link rel="stylesheet" href="icon/iconfont.css">
+    <link href='css/test-1280.css' rel='stylesheet' type='text/css'>
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body ms-controller="viewmodel">
+
+<div class="container-header">
+    <ul class="nowTime">
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="location">
+        <i class="icon iconfont icon-buoumaotubiao23"></i>
+        <span class="areaName"></span>
+    </div>
+    <h3>华东师大-欧冶区块链平台</h3>
+</div>
+
+<div class="container-content">
+    <div class="top">
+        <div class="window-left">
+            <div class="com-count-title">
+                发票数据上链
+
+                <!-- 查询发票 按钮触发模态框 -->
+                <button style="position:absolute; right:220px" id="btn-invoiceQueryStart" class="btn btn-primary btn-sm"
+                        data-toggle="modal" data-target="#myModal-invoiceQuery">查询发票
+                </button>
+                <!-- 插入发票 按钮触发模态框 -->
+                <button style="position:absolute; right:120px" id="btn-insertModal"
+                        class="btn btn-primary btn-sm mybutton"
+                        data-toggle="modal" data-target="#myModal-invoiceInsert">增加发票
+                </button>
+                <!-- 部署合约 按钮触发模态框 -->
+                <button style="position:absolute; right:20px" id="btn-deployContract"
+                        class="btn btn-primary btn-sm mybutton"
+                        data-toggle="modal" data-target="#myModal-deployContract">部署合约
+                </button>
+
+            </div>
+            <div class="com-screen-content">
+                <div class="topRec_List">
+                    <dl>
+                        <dd>日期</dd>
+                        <dd>购买方</dd>
+                        <dd>销售方</dd>
+                        <dd>发票类型</dd>
+                        <dd>税点</dd>
+                        <dd>价费</dd>
+                        <dd>税费</dd>
+                        <dd>价税合计</dd>
+                    </dl>
+                    <div class="maquee">
+                        <ul>
+                            <li th:each="invoice: ${invoices}">
+                                <div th:text="${invoice.invoiceDate}" th:title="${invoice.invoiceDate}"></div>
+                                <div th:text="${invoice.buyerName}" th:title="${invoice.buyerName}"></div>
+                                <div th:text="${invoice.sellerName}" th:title="${invoice.sellerName}"></div>
+                                <div th:text="${invoice.invoiceType}" th:title="${invoice.invoiceType}"></div>
+                                <div th:text="${invoice.taxesPoint}" th:title="${invoice.taxesPoint}"></div>
+                                <div th:text="${invoice.price}" th:title="${invoice.price}"></div>
+                                <div th:text="${invoice.taxes}" th:title="${invoice.taxes}"></div>
+                                <div th:text="${invoice.pricePlusTaxes}" th:title="${invoice.pricePlusTaxes}"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <span class="left-top"></span>
+            <span class="right-top"></span>
+            <span class="left-bottom"></span>
+            <span class="right-bottom"></span>
+        </div>
+        <div class="window-right">
+            <div class="com-count-title">区块链信息</div>
+            <div class="block-chain-info">
+                <div id="info" style="width:100%;height:100%;color:#76dbd1">
+
+                    <form id="form-bcinfo">
+                        <div class="form-group row">
+                            <label for="chainId" class="col-sm-6 col-form-label">区块链ID:</label>
+                            <div class="col-sm-3">
+                                <p id="chainId" th:text="${chainId}"></p>
+                            </div>
+
+                            <label for="chainName" class="col-sm-6 col-form-label">区块链名称:</label>
+                            <div class="col-sm-3">
+                                <p id="chainName" th:text="${chainName}"></p>
+                            </div>
+
+                            <label for="genesisTS" class="col-sm-6 col-form-label">区块链创建时间戳:</label>
+                            <div class="col-sm-3">
+                                <p id="genesisTS" th:text="${genesisTS}"></p>
+                            </div>
+
+                            <label for="peerCount" class="col-sm-6 col-form-label">当前连接节点数:</label>
+                            <div class="col-sm-3">
+                                <p id="peerCount" th:text="${peerCount}"></p>
+                            </div>
+
+                            <label for="blockNumber" class="col-sm-6 col-form-label">块高度:</label>
+                            <div class="col-sm-3">
+                                <p id="blockNumber" th:text="${blockNumber}"></p>
+                            </div>
+
+                            <label for="txAllNumber" class="col-sm-6 col-form-label">总交易数:</label>
+                            <div class="col-sm-3">
+                                <p id="txAllNumber" th:text="${txAllNumber}"></p>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="com-count-title">最新块信息</div>
+            <div class="block-chain-info">
+                <div id="info" style="width:100%;height:100%;color:#76dbd1">
+
+                    <form id="form-bcinfo">
+                        <div class="form-group row">
+                            <label for="blockId" class="col-sm-6 col-form-label">ID:</label>
+                            <div class="col-sm-3">
+                                <p id="blockId" th:text="${blockId}"></p>
+                            </div>
+
+                            <label for="blockJsonrpc" class="col-sm-6 col-form-label">jsonrpc版本:</label>
+                            <div class="col-sm-3">
+                                <p id="blockJsonrpc" th:text="${blockJsonrpc}"></p>
+                            </div>
+
+                            <label for="blockVersion" class="col-sm-6 col-form-label">块版本:</label>
+                            <div class="col-sm-3">
+                                <p id="blockVersion" th:text="${blockVersion}"></p>
+                            </div>
+
+                            <label for="headerTimestamp" class="col-sm-6 col-form-label">时间戳:</label>
+                            <div class="col-sm-3">
+                                <p id="headerTimestamp" th:text="${headerTimestamp}"></p>
+                            </div>
+                            
+                            <label for="blockTxNumber" class="col-sm-6 col-form-label">交易数:</label>
+                            <div class="col-sm-3">
+                                <p id="blockTxNumber" th:text="${blockTxNumber}"></p>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <span class="left-top"></span>
+            <span class="right-top"></span>
+            <span class="left-bottom"></span>
+            <span class="right-bottom"></span>
+        </div>
+    </div>
+
+    <div class="mid">
+        <div class="mid-left">
+            <div class="com-count-title">实时交易金额</div>
+            <div class="com-screen-content">
+
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="main" style="width:720px;height:400px;"></div>
+
+            </div>
+            <span class="left-top"></span>
+            <span class="right-top"></span>
+            <span class="left-bottom"></span>
+            <span class="right-bottom"></span>
+        </div>
+
+        <div class="mid-right">
+            <div class="com-count-title">发票类型</div>
+            <div class="com-screen-content">
+
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="main2" style="width: 600px;height:400px;"></div>
+
+
+            </div>
+            <span class="left-top"></span>
+            <span class="right-top"></span>
+            <span class="left-bottom"></span>
+            <span class="right-bottom"></span>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+
+</div>
+
+<!--<div class="bottom">-->
+<!--&lt;!&ndash;    <div class="mid-left" >&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="com-count-title">资源总量构成</div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="com-screen-content">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div id="main1" style="width:100%;height:300px;"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span class="left-top"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span class="right-top"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span class="left-bottom"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span class="right-bottom"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--</div>-->
+
+
+<!--    <div style="margin:20px; padding:20px; width:60% float:left">-->
+
+<!--    </div>-->
+<!--    <div style="width:20%">-->
+<!--        &lt;!&ndash; 查询发票 按钮触发模态框 &ndash;&gt;-->
+<!--        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-invoiceQuery">查询发票</button>-->
+
+<!--        &lt;!&ndash; 插入发票 按钮触发模态框 &ndash;&gt;-->
+<!--        <button id="btn-insertModal" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-invoiceInsert">增加发票</button>-->
+<!--    </div>-->
+
+<!--    <form class="form-inline my-2 my-lg-0" role="search" method="get" action="/Search/SearchList" target="_blank">-->
+<!--        <div class="input-group">-->
+<!--            <input type="text" class="form-control" name="keyword" placeholder="全站检索">-->
+<!--            <span class="input-group-btn">-->
+<!--    <button type="submit" class="btn btn-secondary">搜索</button>-->
+<!--    </span>-->
+<!--            </div>&lt;!&ndash; /input-group &ndash;&gt;-->
+<!--        </form>-->
+
+<!-- 插入发票 模态框（Modal） -->
+<div class="modal fade" id="myModal-invoiceInsert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog .modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">发票数据</h4>
+            </div>
+            <div class="modal-footer">
+                <form class="form-horizontal" id="form-invoiceInsert" role="form" action="#">
+                    <div class="form-group">
+                        <label for="hashValue" class="col-sm-2 control-label">哈希值:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="hashValue" name="hashValue">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="invoiceNo" class="col-sm-2 control-label">发票号:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="invoiceNo" name="invoiceNo">
+                        </div>
+                        <label for="buyerName" class="col-sm-2 control-label">购方全称:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="buyerName" name="buyerName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="buyerTaxesNo" class="col-sm-2 control-label">购方税号:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="buyerTaxesNo" name="buyerTaxesNo">
+                        </div>
+                        <label for="sellerName" class="col-sm-2 control-label">销方全称:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="sellerName" name="sellerName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="sellerTaxesNo" class="col-sm-2 control-label">销方税号:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="sellerTaxesNo" name="sellerTaxesNo">
+                        </div>
+                        <label for="invoiceDate" class="col-sm-2 control-label">发票日期:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="invoiceDate" name="invoiceDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="invoiceType" class="col-sm-2 control-label">发票类型:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="invoiceType" name="invoiceType">
+                        </div>
+                        <label for="taxesPoint" class="col-sm-2 control-label">税点:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="taxesPoint" name="taxesPoint">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="taxes" class="col-sm-2 control-label">税费:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="taxes" name="taxes">
+                        </div>
+                        <label for="price" class="col-sm-2 control-label">价费:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="price" name="price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="pricePlusTaxes" class="col-sm-2 control-label">价税合计:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="pricePlusTaxes" name="pricePlusTaxes">
+                        </div>
+                        <label for="invoiceNumber" class="col-sm-2 control-label">发票数量:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="invoiceNumber" name="invoiceNumber">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="statementSheet" class="col-sm-2 control-label">结算单:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="statementSheet" name="statementSheet">
+                        </div>
+                        <label for="statementWeight" class="col-sm-2 control-label">结算重量:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="statementWeight" name="statementWeight">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="timestamp" class="col-sm-2 control-label">时间戳:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="timestamp" name="timestamp">
+                        </div>
+                        <label for="contractAddress" class="col-sm-2 control-label">合约地址:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="contractAddress" name="contractAddress">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-default" id="randomInvoice">随机生成</button>
+                    <button type="reset" class="btn btn-default" id="btn-test">重置</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btn-invoiceInsert">提交</button>
+                </form>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 查询发票 模态框（Modal） -->
+<div class="modal fade" id="myModal-invoiceQuery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查询发票</h4>
+            </div>
+            <div class="modal-footer">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="hashValueForQuery" class="col-sm-2 control-label">哈希值:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="hashValueForQuery">
+                        </div>
+                    </div>
+                    <button type="reset" class="btn btn-default" id="btn-test">重置</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btn-invoiceQuery"
+                            data-toggle="modal" data-target="#queryShowModel">查询
+                    </button>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 查询结果 模态框（Modal） -->
+<div class="modal fade" id="queryShowModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel-queryShow">查询结果</h4>
+            </div>
+            <div class="modal-footer">
+                <form class="form-horizontal" id="invoiceInsert" role="form" action="#"
+                      th:action="@{/insertInvoice}" th:object="${invoice}" method="post">
+                    <div class="form-group">
+                        <label for="hashValue" class="col-sm-2 control-label">哈希值:</label>
+                        <div class="col-md-10">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-hashValue">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="invoiceNo" class="col-sm-2 control-label">发票号:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-invoiceNo">
+                        </div>
+                        <label for="buyerName" class="col-sm-2 control-label">购方全称:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-buyerName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="buyerTaxesNo" class="col-sm-2 control-label">购方税号:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-buyerTaxesNo">
+                        </div>
+                        <label for="sellerName" class="col-sm-2 control-label">销方全称:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-sellerName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="sellerTaxesNo" class="col-sm-2 control-label">销方税号:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-sellerTaxesNo">
+                        </div>
+                        <label for="invoiceDate" class="col-sm-2 control-label">发票日期:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-invoiceDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="invoiceType" class="col-sm-2 control-label">发票类型:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-invoiceType">
+                        </div>
+                        <label for="taxesPoint" class="col-sm-2 control-label">税点:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-taxesPoint">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="taxes" class="col-sm-2 control-label">税费:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-taxes">
+                        </div>
+                        <label for="price" class="col-sm-2 control-label">价费:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="pricePlusTaxes" class="col-sm-2 control-label">价税合计:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-pricePlusTaxes">
+                        </div>
+                        <label for="invoiceNumber" class="col-sm-2 control-label">发票数量:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-invoiceNumber">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="statementSheet" class="col-sm-2 control-label">结算单:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-statementSheet">
+                        </div>
+                        <label for="statementWeight" class="col-sm-2 control-label">结算重量:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-statementWeight">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="timestamp" class="col-sm-2 control-label">时间戳:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-timestamp">
+                        </div>
+                        <label for="contractAddress" class="col-sm-2 control-label">合约地址:</label>
+                        <div class="col-md-4">
+                            <input type="text" readonly class="form-control-plaintext form-control"
+                                   value="" id="query-contractAddress">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 部署合约 模态框（Modal） -->
+<div class="modal fade" id="myModal-deployContract" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">部署合约</h4>
+            </div>
+            <div class="modal-footer">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="tableName" class="col-sm-2 control-label">表名:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="tableName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bytecode" class="col-sm-2 control-label">字节码:</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" rows="8" id="bytecode"></textarea>
+<!--                            <input type="text" class="form-control" id="hashValueForQuery">-->
+                        </div>
+                    </div>
+                    <button type="reset" class="btn btn-default" id="btn-test">重置</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btn-deployContract-submit">提交</button>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+</body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script src="js/wonderland.js"></script>
+<script src="js/myscript.js"></script>
+</html>

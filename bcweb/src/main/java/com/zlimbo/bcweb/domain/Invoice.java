@@ -2,15 +2,25 @@ package com.zlimbo.bcweb.domain;
 
 import jnr.ffi.annotations.In;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Invoice {
 
-    private String hashValue;
+//    private static long assignRequestSn = 1;
+//
+//    public static String getAssignRequestSn() {
+//        String assignRequestSnString = String.format("%0" + 12 + "d", assignRequestSn);
+//        assignRequestSn += 1;
+//        return assignRequestSnString;
+//    }
+
+//    private String systemId;
+//    private String requestSn;
     private String invoiceNo;
-    private String buyerName;
-    private String buyerTaxesNo;
+    private String consumerName;
+    private String consumerTaxesNo;
     private String sellerName;
     private String sellerTaxesNo;
     private String invoiceDate;
@@ -22,15 +32,16 @@ public class Invoice {
     private String invoiceNumber;
     private String statementSheet;
     private String statementWeight;
-    private String timestamp;
-    private String contractAddress;
+//    private String blockNumber;
+//    private String txHash;
+//    private String timestamp;
 
     public Invoice() { }
 
-    public Invoice(String hashValue,
+    public Invoice(
                    String invoiceNo,
-                   String buyerName,
-                   String buyerTaxesNo,
+                   String consumerName,
+                   String consumerTaxesNo,
                    String sellerName,
                    String sellerTaxesNo,
                    String invoiceDate,
@@ -41,13 +52,10 @@ public class Invoice {
                    String pricePlusTaxes,
                    String invoiceNumber,
                    String statementSheet,
-                   String statementWeight,
-                   String timestamp,
-                   String contractAddress) {
-        this.hashValue = hashValue;
+                   String statementWeight) {
         this.invoiceNo = invoiceNo;
-        this.buyerName = buyerName;
-        this.buyerTaxesNo = buyerTaxesNo;
+        this.consumerName = consumerName;
+        this.consumerTaxesNo = consumerTaxesNo;
         this.sellerName = sellerName;
         this.sellerTaxesNo = sellerTaxesNo;
         this.invoiceDate = invoiceDate;
@@ -59,17 +67,8 @@ public class Invoice {
         this.invoiceNumber = invoiceNumber;
         this.statementSheet = statementSheet;
         this.statementWeight = statementWeight;
-        this.timestamp = timestamp;
-        this.contractAddress = contractAddress;
     }
 
-    public String getHashValue() {
-        return hashValue;
-    }
-
-    public void setHashValue(String hashValue) {
-        this.hashValue = hashValue;
-    }
 
     public String getInvoiceNo() {
         return invoiceNo;
@@ -79,20 +78,20 @@ public class Invoice {
         this.invoiceNo = invoiceNo;
     }
 
-    public String getBuyerName() {
-        return buyerName;
+    public String getConsumerName() {
+        return consumerName;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    public void setConsumerName(String consumerName) {
+        this.consumerName = consumerName;
     }
 
-    public String getBuyerTaxesNo() {
-        return buyerTaxesNo;
+    public String getConsumerTaxesNo() {
+        return consumerTaxesNo;
     }
 
-    public void setBuyerTaxesNo(String buyerTaxesNo) {
-        this.buyerTaxesNo = buyerTaxesNo;
+    public void setConsumerTaxesNo(String consumerTaxesNo) {
+        this.consumerTaxesNo = consumerTaxesNo;
     }
 
     public String getSellerName() {
@@ -183,34 +182,33 @@ public class Invoice {
         this.statementWeight = statementWeight;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public static String[] getInvoiceKind() {
+        return INVOICE_KIND;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public static List<Character> getHex() {
+        return Hex;
     }
 
-    public String getContractAddress() {
-        return contractAddress;
+    public static void setHex(List<Character> hex) {
+        Hex = hex;
     }
 
-    public void setContractAddress(String contractAddress) {
-        this.contractAddress = contractAddress;
+    public static String[][] getCompanyTaxesno() {
+        return COMPANY_TAXESNO;
     }
-
 
     public static Invoice getRandomInvoice() {
 
         Random random = new Random();
-        Invoice invoice = new Invoice();
 
-        String hashValue = getHexString(32);
-        String invoiceNo = getOctString(10);
-        String[] buyer = COMPANY_TAXESNO[random.nextInt(COMPANY_TAXESNO.length)];
+//        String systemId = "000" + getOctString(3);
+//        String requestSn = getAssignRequestSn();
+        String invoiceNo = "00000" + getOctString(5);
+        String[] consumer = COMPANY_TAXESNO[random.nextInt(COMPANY_TAXESNO.length)];
         String[] seller = COMPANY_TAXESNO[random.nextInt(COMPANY_TAXESNO.length)];
-        String buyerName = buyer[0];
-        String buyerTaxesNo = buyer[1];
+        String consumerName = consumer[0];
+        String consumerTaxesNo = consumer[1];
         String sellerName = seller[0];
         String sellerTaxesNo = seller[1];
         String invoiceDate = new SimpleDateFormat("yyyy-MM-dd" ).format(new Date());
@@ -224,13 +222,12 @@ public class Invoice {
         String invoiceNumber = "" + (1 + random.nextInt(3));
         String statementSheet = "" + (1 + random.nextInt(3));
         String statementWeight = (1 + random.nextInt(10)) + "kg";
-        String timestamp = "" + System.currentTimeMillis();
-        String contractAddress = getHexString(16);
+//        String timestamp = "" + System.currentTimeMillis();
+//        String contractAddress = getHexString(16);
         return new Invoice(
-                hashValue,
                 invoiceNo,
-                buyerName,
-                buyerTaxesNo,
+                consumerName,
+                consumerTaxesNo,
                 sellerName,
                 sellerTaxesNo,
                 invoiceDate,
@@ -241,13 +238,11 @@ public class Invoice {
                 pricePlusTaxes,
                 invoiceNumber,
                 statementSheet,
-                statementWeight,
-                timestamp,
-                contractAddress);
+                statementWeight);
     }
 
 
-    final static String[] INVOICE_KIND = {"增值税发票", "普通发票", "专业发票"};
+    final static String[] INVOICE_KIND = {"addedValueTaxInvoice", "commercialInvoice", "professionalInvoice"};
 
     public static List<Character> Hex =
             Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
@@ -263,7 +258,7 @@ public class Invoice {
     }
 
     public static String getOctString(int length) {
-        StringBuilder stringBuilder = new StringBuilder("0x");
+        StringBuilder stringBuilder = new StringBuilder();
         Random random = new Random();
         while (length-- != 0) {
             stringBuilder.append(Hex.get(random.nextInt(10)));

@@ -1,0 +1,194 @@
+<div layout:decorator="base">
+    <div layout:fragment="menu">
+    </div>
+
+    <div layout:fragment="content">
+        <div class="container-fluid  dashboard-content">
+                    <div class="card">
+                        <h5 class="card-header">交易信息</h5>
+                        <div class="card-body">
+                            <form id="invoice-insert-form" data-parsley-validate="" novalidate=""
+                                  th:action="@{/invoiceInsert}" th:object="${invoice}" method="post">
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">哈希值</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{hashValue}" id="hashValue" name="hashValue" required="" data-parsley-pattern="0[xX][A-Fa-f0-9]{32}" placeholder="0x开头，32位十六进制数" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">发票号</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{invoiceNo}" id="invoiceNo" name="invoiceNo" required="" data-parsley-length="[8,20]" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">购方全称</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{buyerName}" id="buyerName" name="buyerName" required="" data-parsley-length="[1,40]" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">购方税号</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{buyerTaxesNo}" id="buyerTaxesNo" name="buyerTaxesNo" required="" data-parsley-length="[15,20]" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">销方全称</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{sellerName}" id="sellerName" name="sellerName" required="" data-parsley-length="[1,40]" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">销方税号</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{sellerTaxesNo}" id="sellerTaxesNo" name="sellerTaxesNo" required="" data-parsley-length="[15,20]" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">发票日期</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{invoiceDate}" id="invoiceDate" name="invoiceDate" required="" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">发票类型</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{invoiceType}" id="invoiceType" name="invoiceType" required="" data-parsley-length="[1,20]" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+<!--                                <div class="form-group row">-->
+<!--                                    <label class="col-sm-3 col-form-label text-sm-right">发票类型</label>-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <div class="custom-controls-stacked">-->
+<!--                                            <label class="custom-control custom-radio custom-control-inline">-->
+<!--                                                <input type="radio" name="radio-inline" checked="" class="custom-control-input">-->
+<!--                                                <span class="custom-control-label">普通发票</span>-->
+<!--                                            </label>-->
+<!--                                            <label class="custom-control custom-radio custom-control-inline">-->
+<!--                                                <input type="radio" name="radio-inline" class="custom-control-input">-->
+<!--                                                <span class="custom-control-label">专业发票</span>-->
+<!--                                            </label>-->
+<!--                                            <label class="custom-control custom-radio custom-control-inline">-->
+<!--                                                <input type="radio" name="radio-inline" class="custom-control-input">-->
+<!--                                                <span class="custom-control-label">增值税发票</span>-->
+<!--                                            </label>-->
+
+<!--&lt;!&ndash;                                            <label class="custom-control custom-checkbox">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <input th:field="*{ck1}" id="ck1" name="ck1" type="checkbox" data-parsley-multiple="groups" value="bar" data-parsley-mincheck="2" data-parsley-errors-container="#error-container1" class="custom-control-input">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span class="custom-control-label">普通发票</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <label class="custom-control custom-checkbox">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <input th:field="*{ck2}" id="ck2" name="ck2" type="checkbox" data-parsley-multiple="groups" value="bar2" data-parsley-mincheck="2" data-parsley-errors-container="#error-container1" class="custom-control-input">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span class="custom-control-label">专业发票</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <label class="custom-control custom-checkbox">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <input th:field="*{ck3}" id="ck3" name="ck3" type="checkbox" data-parsley-multiple="groups" value="bar3" data-parsley-mincheck="2" required="" data-parsley-errors-container="#error-container1" class="custom-control-input">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span class="custom-control-label">增值税发票</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div id="error-container1"></div>&ndash;&gt;-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">税点</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text"  th:field="*{taxesPoint}" id="taxesPoint" name="taxesPoint" required="" data-parsley-length="[1,40]" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">税费</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input data-parsley-type="number" type="text" th:field="*{taxes}" id="taxes" name="taxes" required="" placeholder="数值" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">价费</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input data-parsley-type="number" type="text" th:field="*{price}" id="price" name="price" required="" placeholder="数值" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">价税合计</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input data-parsley-type="number" type="text" th:field="*{pricePlusTaxes}" id="pricePlusTaxes" name="pricePlusTaxes" required="" placeholder="数值" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">发票数量</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input required="" type="number" th:field="*{invoiceNumber}" id="invoiceNumber" name="invoiceNumber" min="1" max="100" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">结算单</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input  data-parsley-type="number" type="text" th:field="*{statementSheet}" id="statementSheet" name="statementSheet" required="" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">结算重量</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{statementWeight}" id="statementWeight" name="statementWeight" required="" data-parsley-length="[1,40]" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">时间戳</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input data-parsley-type="number" type="text" th:field="*{timestamp}" id="timestamp" name="timestamp" required="" placeholder="数值" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">合约地址</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" th:field="*{contractAddress}" id="contractAddress" name="contractAddress" required="" data-parsley-length="[8,20]" placeholder="" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row text-right">
+                                    <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                        <button type="button" class="btn btn-space btn-dark" id="randomInvoice">随机生成</button>
+                                        <button type="submit" class="btn btn-space btn-primary" id="btn-invoiceInsertSubmit">提交</button>
+                                        <button type="reset" class="btn btn-space btn-secondary">重置</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // 随机生成发票数据
+    $("#randomInvoice").click(function (){
+        $.ajax({
+            type: "GET",
+            url: "/randomInvoice",
+            dataType: "json",
+            success: function (jsonObj) {
+                //var jsonObj = eval("(" + data + ")");
+                $("#hashValue").val(jsonObj.hashValue);
+                $("#invoiceNo").val(jsonObj.invoiceNo);
+                $("#buyerName").val(jsonObj.buyerName);
+                $("#buyerTaxesNo").val(jsonObj.buyerTaxesNo);
+                $("#sellerName").val(jsonObj.sellerName);
+                $("#sellerTaxesNo").val(jsonObj.sellerTaxesNo);
+                $("#invoiceDate").val(jsonObj.invoiceDate);
+                $("#invoiceType").val(jsonObj.invoiceType);
+                $("#taxesPoint").val(jsonObj.taxesPoint);
+                $("#taxes").val(jsonObj.taxes);
+                $("#price").val(jsonObj.price);
+                $("#pricePlusTaxes").val(jsonObj.pricePlusTaxes);
+                $("#invoiceNumber").val(jsonObj.invoiceNumber);
+                $("#statementSheet").val(jsonObj.statementSheet);
+                $("#statementWeight").val(jsonObj.statementWeight);
+                $("#timestamp").val(jsonObj.timestamp);
+                $("#contractAddress").val(jsonObj.contractAddress);
+            }
+        })
+    })
+
+</script>

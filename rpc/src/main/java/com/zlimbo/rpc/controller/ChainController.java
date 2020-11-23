@@ -152,11 +152,14 @@ public class ChainController {
      * @param callbackUrl
      */
     private void upChainAsyncCallBack(String callbackUrl, String txHash) {
+        System.out.println("============> [upChainAsyncCallBack] start");
         System.out.println("callbackUrl: " + callbackUrl);
         Thread thread = new Thread(() -> {
+
             TransactionReceipt transactionReceipt = null;
 
             for (long time: callbackTimeArray) {
+                System.out.println("============> [upChainAsyncCallBack thread] time: " + time);
                 try {
                     Thread.sleep(time);
                 } catch (InterruptedException e) {
@@ -185,6 +188,7 @@ public class ChainController {
 
                             try {
                                 String body = send(callbackUrl, dataJson, "utf-8");
+                                System.out.println("body: " + body);
                                 JSONObject bodyJson = JSONObject.parseObject(body);
                                 if (bodyJson.getBoolean("success")) {
                                     return; // 推送成功，不再推送。
@@ -204,6 +208,16 @@ public class ChainController {
             }
         });
         thread.start();
+        System.out.println("============> [upChainAsyncCallBack] end");
+    }
+
+    void testCallback(String callbackUrl) throws IOException {
+        System.out.println("============> [testCallback] start");
+        JSONObject data = new JSONObject();
+        data.put("ok", 123);
+        String res = send(callbackUrl, data, "utf-8");
+        System.out.println("result: " + res);
+        System.out.println("============> [testCallback] end");
     }
 
 
@@ -230,6 +244,7 @@ public class ChainController {
 
             System.out.println("dataInfo: " + dataInfo);
 
+            testCallback(callbackUrl);
 //            Map<String, String> parameterMap1 = new HashMap<>();
 //            parameterMap1.put("systemId", systemId);
 //            List<HashMap<String, String>> resultList1 = sqlMapClient.queryForList("queryForKey", parameterMap1);
