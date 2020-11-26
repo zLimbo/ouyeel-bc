@@ -1,0 +1,94 @@
+<div layout:decorator="base">
+
+
+    <div layout:fragment="content">
+        <div class="container-fluid  dashboard-content">
+            <!-- ============================================================== -->
+            <!-- hover list  -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <!-- ============================================================== -->
+                    <!-- hover list  -->
+                    <!-- ============================================================== -->
+                    <div class="card">
+                        <h5 class="card-header">响应信息</h5>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">code</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" th:value="${code}" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right">msg</label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" th:value="${msg}" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">请求信息</h5>
+                        <div class="card-body">
+
+                            <div class="form-group row" th:each="key: ${postData.keySet()}">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right" th:text="${key}"></label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" th:value="${postData.get(key)}" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <!--                            <div class="form-group row">-->
+                            <!--                                <label class="col-12 col-sm-3 col-form-label text-sm-right">systemId</label>-->
+                            <!--                                <div class="col-12 col-sm-8 col-lg-6">-->
+                            <!--                                    <input type="text" th:value="${systemId}" class="form-control" readonly>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+
+                            <!--                            <div class="form-group row">-->
+                            <!--                                <label class="col-12 col-sm-3 col-form-label text-sm-right">requestSn</label>-->
+                            <!--                                <div class="col-12 col-sm-8 col-lg-6">-->
+                            <!--                                    <input type="text" th:value="${requestSn}" class="form-control" readonly>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+
+                            <!--                            <div class="form-group row">-->
+                            <!--                                <label class="col-12 col-sm-3 col-form-label text-sm-right">dataInfo</label>-->
+                            <!--                                <div class="col-12 col-sm-8 col-lg-6">-->
+                            <!--                                    <textarea th:text="${data.toJSONString()}" id="dataInfo" name="dataInfo" required="" class="form-control" rows="20" data-parsley-minlength="1" readonly></textarea>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end hoverlist  -->
+                    <!-- ============================================================== -->
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <!-- ============================================================== -->
+                    <!-- hover list  -->
+                    <!-- ============================================================== -->
+                    <div class="card">
+                        <h5 class="card-header">上链数据</h5>
+                        <div class="card-body">
+                            <div class="form-group row" th:each="key: ${data.keySet()}">
+                                <label th:text="${key}" class="col-12 col-sm-3 col-form-label text-sm-right"></label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" th:value="${data.get(key)}" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end hoverlist  -->
+                    <!-- ============================================================== -->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+

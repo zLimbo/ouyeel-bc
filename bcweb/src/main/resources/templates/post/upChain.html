@@ -9,6 +9,7 @@
                 <div class="card-body">
                     <h5  th:text="'systemId:' + ${systemId}"></h5>
                     <h5  th:text="'requestSn: ' + ${requestSn}"></h5>
+                    <h5  th:text="'businessId: ' + ${businessId}"></h5>
                     <form id="invoice-insert-form" data-parsley-validate="" novalidate=""
                           th:action="@{/S_ST_01}" th:object="${invoice}" method="post">
 

@@ -1,0 +1,34 @@
+<div layout:decorator="base">
+    <div layout:fragment="menu">
+    </div>
+
+    <div layout:fragment="content">
+        <div class="container-fluid  dashboard-content">
+            <div class="card">
+                <h5 class="card-header">交易查证</h5>
+                <div class="card-body">
+                    <h5  th:text="'systemId:' + ${systemId}"></h5>
+                    <h5  th:text="'requestSn: ' + ${requestSn}"></h5>
+                    <form id="invoice-insert-form" data-parsley-validate="" novalidate=""
+                          th:action="@{/S_ST_02}" method="post">
+
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">txHash</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" id="txHash" name="txHash" required="" data-parsley-length="[8,100]" placeholder="" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row text-right">
+                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                <button type="submit" class="btn btn-space btn-primary" id="btn-invoiceInsertSubmit">提交</button>
+                                <button type="reset" class="btn btn-space btn-secondary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

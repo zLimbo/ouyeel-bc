@@ -1,10 +1,12 @@
 package com.zlimbo.rpc.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.citahub.cita.protocol.CITAj;
 import com.citahub.cita.protocol.core.DefaultBlockParameter;
 import com.citahub.cita.protocol.core.methods.response.*;
 import com.citahub.cita.protocol.http.HttpService;
+import com.google.gson.JsonObject;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -37,9 +39,14 @@ import java.util.Set;
 enum ResultCode {
     SUCCESS(1, "成功"),
     FAIL(-1, "失败"),
-    PARAMETER_ERROR(105, "业务参数错误"),
+    PARAMETER_ERROR(105, "参数错误"),
+    UP_TX_SUCCESS(1, "上传交易成功"),
+    UP_TX_FAIL(-1, "上传交易失败"),
     UP_CHAIN_SUCCESS(104, "数据已上链，请检查参数"),
+    UP_CHAIN_WAITTING(105, "数据上链中，请稍等"),
     UP_CHAIN_FAIL(101, "上链失败"),
+    VERIFY_TX_SUCCESS(1, "数据验证成功"),
+    VERIFY_TX_FAIL(-1, "数据验证失败"),
     UP_CHAIN_WAIT(102, "上链中"),
     SIGN_VERIFY_FAIL(106, "签名验证失败"),
     NO_REQUEST(107, "请求不存在");
@@ -180,7 +187,7 @@ public class ChainController {
                                 JSONObject postDataJson = new JSONObject();
                                 postDataJson.put("txHash", txHash);
                                 postDataJson.put("blockAddTime", resultMap.get("blockAddTime"));
-                                postDataJson.put("blockNumer", resultMap.get("blockNumber"));
+                                postDataJson.put("blockNumber", resultMap.get("blockNumber"));
                                 try {
                                     String resultString = send(callbackUrl, postDataJson, "utf-8");
                                     JSONObject resultJson = JSONObject.parseObject(resultString);
@@ -275,19 +282,17 @@ public class ChainController {
                 Map<String, String> resultMap = resultList.get(0);
                 String resultTxHash = resultMap.get("txHash");
 
-                returnJson.put("code", ResultCode.SUCCESS.getCode());
-                returnJson.put("msg", ResultCode.SUCCESS.getMsg());
-                JSONObject data = new JSONObject();
-                data.put("txHash", resultTxHash);
-                returnJson.put("data", data);
+                returnJson.put("code", ResultCode.UP_TX_SUCCESS.getCode());
+                returnJson.put("msg", ResultCode.UP_TX_SUCCESS.getMsg());
+                returnJson.put("txHash", resultTxHash);
 
                 if (callbackUrl != null) {
                     upChainAsyncCallBack(callbackUrl, tableName, txHash);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                returnJson.put("code", ResultCode.FAIL.getCode());
-                returnJson.put("msg", ResultCode.FAIL.getMsg());
+                returnJson.put("code", ResultCode.UP_TX_FAIL.getCode());
+                returnJson.put("msg", ResultCode.UP_TX_FAIL.getMsg());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -325,15 +330,19 @@ public class ChainController {
             parameterMap.put("tableName", tableName);
             parameterMap.put("systemId", systemId);
             parameterMap.put("txHash", txHash);
-            List<HashMap<String,Object>> resultList = sqlMapClient.queryForList("queryByTxHash", parameterMap);
+            List<HashMap<String, String>> resultList = sqlMapClient.queryForList("queryByTxHash", parameterMap);
 
             if (!resultList.isEmpty()) {
-                HashMap<String, Object> resultMap = resultList.get(0);
-                returnJson.put("code", ResultCode.UP_CHAIN_SUCCESS.getCode());
-                returnJson.put("msg", ResultCode.UP_CHAIN_SUCCESS.getMsg());
-                JSONObject data = new JSONObject();
-                data.putAll(resultMap);
-                returnJson.put("data", data);
+                HashMap<String, String> resultMap = resultList.get(0);
+                if ("true".equals(resultMap.get("onChain"))) {
+                    returnJson.put("code", ResultCode.UP_CHAIN_SUCCESS.getCode());
+                    returnJson.put("msg", ResultCode.UP_CHAIN_SUCCESS.getMsg());
+                    returnJson.put("data", resultMap.get("dataInfo"));
+                } else {
+                    returnJson.put("code", ResultCode.UP_CHAIN_WAITTING.getCode());
+                    returnJson.put("msg", ResultCode.UP_CHAIN_WAITTING.getMsg());
+                    returnJson.put("data", resultMap.get("dataInfo"));
+                }
             } else {
                 returnJson.put("code", ResultCode.UP_CHAIN_FAIL.getCode());
                 returnJson.put("msg", ResultCode.UP_CHAIN_FAIL.getMsg());
@@ -377,22 +386,25 @@ public class ChainController {
             List<HashMap<String,Object>> resultList = sqlMapClient.queryForList("queryByTxHash", parameterMap);
 
             if (!resultList.isEmpty()) {
-                Map<String, Object> resultMap = resultList.get(0);
+                //Map<String, Object> resultMap = resultList.get(0);
+                JSONObject resultMap = JSONObject.parseObject((String) resultList.get(0).get("dataInfo"));
                 JSONObject dataInfo = dataJson.getJSONObject("dataInfo");
                 // 比较dataInfo内容是否一致
                 boolean same = true;
                 for (String key: dataInfo.keySet()) {
+                    System.out.println("compare: " + dataInfo.get(key) + " ~ " + resultMap.get(key));
                     if (!dataInfo.get(key).equals(resultMap.get(key))) {
                         same = false;
                         break;
                     }
                 }
+
                 if (same) {
-                    returnJson.put("code", ResultCode.UP_CHAIN_SUCCESS.getCode());
-                    returnJson.put("msg", ResultCode.UP_CHAIN_SUCCESS.getMsg());
+                    returnJson.put("code", ResultCode.VERIFY_TX_SUCCESS.getCode());
+                    returnJson.put("msg", ResultCode.VERIFY_TX_SUCCESS.getMsg());
                 } else {
-                    returnJson.put("code", ResultCode.UP_CHAIN_FAIL.getCode());
-                    returnJson.put("msg", ResultCode.UP_CHAIN_FAIL.getMsg());
+                    returnJson.put("code", ResultCode.VERIFY_TX_FAIL.getCode());
+                    returnJson.put("msg", ResultCode.VERIFY_TX_FAIL.getMsg());
                 }
             } else {
                 returnJson.put("code", ResultCode.UP_CHAIN_FAIL.getCode());
@@ -440,7 +452,9 @@ public class ChainController {
                 returnJson.put("code", ResultCode.UP_CHAIN_SUCCESS.getCode());
                 returnJson.put("msg", ResultCode.UP_CHAIN_SUCCESS.getMsg());
                 JSONObject data = new JSONObject();
-                data.putAll(resultMap);
+                data.put("txHash", resultMap.get("txHash"));
+                data.put("blockAddTime", resultMap.get("timestamp"));
+                data.put("blockNumber", resultMap.get("blockNumber"));
                 returnJson.put("data", data);
             } else {
                 returnJson.put("code", ResultCode.UP_CHAIN_FAIL.getCode());
