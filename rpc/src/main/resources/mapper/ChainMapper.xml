@@ -6,10 +6,15 @@
     <select id="test" resultClass="java.util.HashMap">
         select * from sc;
     </select>
-    
-    <insert id="upChain" parameterClass="java.util.HashMap">
+
+    <insert id="upChain2" parameterClass="java.util.HashMap">
        INSERT INTO $tableName$
         VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#, #txHash#, #onChain#)
+    </insert>
+
+    <insert id="upChain" parameterClass="java.util.HashMap">
+       INSERT INTO $tableName$
+        VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#)
     </insert>
 
     <insert id="insertPrivateKey" parameterClass="java.util.HashMap">

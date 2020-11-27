@@ -204,6 +204,8 @@ public class SqlController {
         List<List<String>> records = new ArrayList<>();
         PreparedStatement preparedStatement = null;
         try {
+//            Statement statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery(sql);
             preparedStatement = connection.prepareStatement(sql);
             System.out.println(preparedStatement.toString());
             ResultSet resultSet = preparedStatement.executeQuery();

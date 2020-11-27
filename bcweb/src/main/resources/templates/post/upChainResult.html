@@ -44,27 +44,6 @@
                                     <input type="text" th:value="${postData.get(key)}" class="form-control" readonly>
                                 </div>
                             </div>
-
-<!--                            <div class="form-group row">-->
-<!--                                <label class="col-12 col-sm-3 col-form-label text-sm-right">systemId</label>-->
-<!--                                <div class="col-12 col-sm-8 col-lg-6">-->
-<!--                                    <input type="text" th:value="${systemId}" class="form-control" readonly>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                            <div class="form-group row">-->
-<!--                                <label class="col-12 col-sm-3 col-form-label text-sm-right">requestSn</label>-->
-<!--                                <div class="col-12 col-sm-8 col-lg-6">-->
-<!--                                    <input type="text" th:value="${requestSn}" class="form-control" readonly>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                            <div class="form-group row">-->
-<!--                                <label class="col-12 col-sm-3 col-form-label text-sm-right">dataInfo</label>-->
-<!--                                <div class="col-12 col-sm-8 col-lg-6">-->
-<!--                                    <textarea th:text="${data.toJSONString()}" id="dataInfo" name="dataInfo" required="" class="form-control" rows="20" data-parsley-minlength="1" readonly></textarea>-->
-<!--                                </div>-->
-<!--                            </div>-->
                         </div>
                     </div>
                     <!-- ============================================================== -->
@@ -80,11 +59,11 @@
                         <h5 class="card-header">上链数据</h5>
                         <div class="card-body">
 
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action"
-                                   th:each="key: ${data.keySet()}"
-                                   th:text="${key} + ': ' + ${data.get(key)}">
-                                </a>
+                            <div class="form-group row" th:each="key: ${data.keySet()}">
+                                <label class="col-12 col-sm-3 col-form-label text-sm-right" th:text="${key}"></label>
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <input type="text" th:value="${data.get(key)}" class="form-control" readonly>
+                                </div>
                             </div>
                         </div>
                     </div>

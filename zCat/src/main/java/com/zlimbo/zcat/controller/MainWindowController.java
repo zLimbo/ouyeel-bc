@@ -92,13 +92,13 @@ public class MainWindowController implements Initializable {
 
 
     private int executeSqlAndShowTableView(String sql, SplitPane tableSplitPane, TextArea messageTextArea) {
-        int retSign = 0;
+        int returnFlag = 0;
         tableSplitPane.getItems().clear();
         SqlController.SqlQueryResult sqlQueryResult = null;
         String sqlUpCase = sql.toUpperCase().trim();
         if (sqlUpCase.isEmpty()) {
             sqlQueryResult = new SqlController.SqlQueryResult();
-            sqlQueryResult.setErrorMessage("empty");
+            sqlQueryResult.setErrorMessage("Can not issue empty query.");
         } else if (sqlUpCase.startsWith("CREATE")) {
             System.out.println("CREATE TABLE!");
             sqlQueryResult = sqlController.sqlCreateTable(sql);
@@ -109,7 +109,7 @@ public class MainWindowController implements Initializable {
                     String tableName = matcher.group(1);
                     sqlQueryResult = sqlController.sqlQuery("DESCRIBE " + tableName);
                 }
-                retSign = 1;
+                returnFlag = 1;
             }
         } else if (sqlUpCase.startsWith("INSERT")) {
             System.out.println("INSERT!");
@@ -121,10 +121,10 @@ public class MainWindowController implements Initializable {
 //                    sqlQueryResult = sqlController.sqlQuery("SELECT * FROM " + tableName);
 //                }
 //            }
-            retSign = 2;
+            returnFlag = 2;
         } else { // Query
             sqlQueryResult = sqlController.sqlQuery(sql);
-            retSign = 3;
+            returnFlag = 3;
         }
         String errorMessage = sqlQueryResult.getErrorMessage();
         List<String> columns = sqlQueryResult.getColumns();
@@ -163,13 +163,13 @@ public class MainWindowController implements Initializable {
                 messageTextArea.setText(sql.trim() + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
             }
         } else {
-            retSign = 0;
+            returnFlag = 0;
             if (messageTextArea != null) {
                 messageTextArea.setStyle("-fx-text-fill:#ff0000;");
                 messageTextArea.setText(sql.trim() + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
             }
         }
-        return retSign;
+        return returnFlag;
     }
 
 
@@ -483,8 +483,8 @@ public class MainWindowController implements Initializable {
         runButton.setOnAction(event -> {
             splitPane.getItems().clear();
             splitPane.getItems().add(textArea);
-            int sign = executeSqlAndShowTableView(textArea.getText(), tableSplitPane, messageTextArea);
-            if (sign == 3) {
+            int flag = executeSqlAndShowTableView(textArea.getText(), tableSplitPane, messageTextArea);
+            if (flag == 3) {
                 splitPane.getItems().add(tableSplitPane);
             }
             splitPane.getItems().add(messageTextArea);
