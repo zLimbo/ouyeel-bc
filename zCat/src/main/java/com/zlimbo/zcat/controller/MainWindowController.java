@@ -58,6 +58,9 @@ public class MainWindowController implements Initializable {
 //
         mainVBox.setStyle("-fx-font: 18  arial;");
 
+ //       showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+        showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
+
         System.out.println("============> [initialize] end\n");
     }
 
@@ -79,8 +82,7 @@ public class MainWindowController implements Initializable {
         tableTab.setContent(borderPane);
 
         closeButton.setOnAction(event -> {
-            showTabPane.getTabs().remove(tableTab);
-            tabMap.remove(tableName);
+            closeTab(tableName, tableTab);
         });
         addButton.setOnAction(event -> addRecord(tableName));
 
@@ -383,7 +385,7 @@ public class MainWindowController implements Initializable {
     private void showDatabase() {
         System.out.println("====================> [showDatabase] start");
 
-        //showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+
         if (sqlController == null) {
             return;
         }
@@ -411,18 +413,20 @@ public class MainWindowController implements Initializable {
                         if (tabMap.containsKey(item.getValue())) {
                             tableTab = tabMap.get(item.getValue());
                         } else {
-                            tableTab = new Tab(item.getValue() + " @" + dbTreeView.getRoot().getValue());
+                            String tableTabName = item.getValue();
+
+                            tableTab = new Tab(tableTabName + " @" + dbTreeView.getRoot().getValue());
                             tableTab.setGraphic(
                                     new ImageView(new Image(getClass().getResourceAsStream("/image/table2.png")))
                             );
-                            showTabPane.getTabs().add(tableTab);
-                            tabMap.put(item.getValue(), tableTab);
+                            addTab(tableTabName, tableTab);
+                            tableTab.setOnClosed(event1 -> closeTab(tableTabName, tableTab));
                         }
                         showTable(item.getValue());
                         showTabPane.getSelectionModel().select(tableTab);
                     } else {
-                        showTabPane.getSelectionModel().select(objectsTab);
-                        showDatabase();
+//                        showTabPane.getSelectionModel().select(objectsTab);
+//                        showDatabase();
                     }
                 }
 
@@ -437,13 +441,13 @@ public class MainWindowController implements Initializable {
     public void newQuery(ActionEvent actionEvent) {
         System.out.println("============> [newQuery] start");
 
-        Tab queryTab = new Tab("query" + queryId++);
+        String queryTabName = "query" + queryId++;
+        Tab queryTab = new Tab(queryTabName);
         queryTab.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query2.png"))));
-        queryTab.setClosable(true);
-        showTabPane.getTabs().add(queryTab);
-        showTabPane.getSelectionModel().select(queryTab);
 
+        addTab(queryTabName, queryTab);
+        queryTab.setOnClosed(event -> closeTab(queryTabName, queryTab));
         BorderPane borderPane = new BorderPane();
         queryTab.setContent(borderPane);
 
@@ -477,7 +481,7 @@ public class MainWindowController implements Initializable {
 //        });
 
         closeButton.setOnAction(event -> {
-            showTabPane.getTabs().remove(queryTab);
+            closeTab(queryTabName, queryTab);
         });
 
         runButton.setOnAction(event -> {
@@ -493,6 +497,23 @@ public class MainWindowController implements Initializable {
         });
 
         System.out.println("============> [newQuery] end");
+    }
+
+
+    private void addTab(String tabName, Tab tab) {
+        System.out.println("====================> [addTab] start [tabName = " + tabName + "]");
+        showTabPane.getTabs().add(tab);
+        showTabPane.getSelectionModel().select(tab);
+        tabMap.put(tabName, tab);
+        System.out.println("====================> [addTab] end\n");
+    }
+
+
+    private void closeTab(String tabName, Tab tab) {
+        System.out.println("====================> [closeTab] start [tabName = " + tabName + "]");
+        showTabPane.getTabs().remove(tab);
+        tabMap.remove(tabName);
+        System.out.println("====================> [closeTab] end\n");
     }
 
 
@@ -566,9 +587,8 @@ public class MainWindowController implements Initializable {
         ChainControl chainControl = chainControlMap.get(citaUrl);
         chainControl.updateStart();
         Tab citaTab = new Tab(citaUrl + " @CITA");
-        tabMap.put(citaUrl, citaTab);
-        showTabPane.getTabs().add(citaTab);
-        showTabPane.getSelectionModel().select(citaTab);
+        addTab(citaUrl, citaTab);
+        citaTab.setOnClosed(event -> closeTab(citaUrl, citaTab));
 
         citaTab.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/cita2.png")))
@@ -585,10 +605,9 @@ public class MainWindowController implements Initializable {
         citaTab.setContent(borderPane);
 
         closeButton.setOnAction(event -> {
-            showTabPane.getTabs().remove(citaTab);
             chainControl.updateStop();
             chainControlMap.remove(citaUrl);
-            tabMap.remove(citaUrl);
+            closeTab(citaUrl, citaTab);
         });
 
         TableColumn<List<StringProperty>, String> keyColumn = new TableColumn<>("key");
