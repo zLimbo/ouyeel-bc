@@ -16,6 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.util.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.*;
@@ -25,6 +27,13 @@ import java.util.regex.Pattern;
 
 public class MainWindowController implements Initializable {
 
+
+    final Logger logger = LoggerFactory.getLogger(getClass());
+
+
+    /**
+     * fxml 文件中相应标签（id="xxx"）的映射的对象
+     */
     public @FXML Button newQueryButton;
     public @FXML Tab objectsTab;
     public @FXML TabPane showTabPane;
@@ -33,40 +42,68 @@ public class MainWindowController implements Initializable {
     public @FXML Button citaButton;
     public @FXML VBox mainVBox;
 
-    Map<String, Tab> tabMap = new HashMap<>();
-    int queryId = 1;
 
+    /**
+     * queryTab 分配id
+     */
+    int queryTabId = 1;
+
+
+    /**
+     * sql 相关操作类
+     */
     SqlController sqlController;
+
+
+    /**
+     * 存储显示的 Tab, 方便使用 TabName 查找对应的 Tab
+     */
+    Map<String, Tab> tabMap = new HashMap<>();
+
+
+    /**
+     * 存储 cita
+     */
     Map<String, ChainControl> chainControlMap = new HashMap<>();
 
 
+    /**
+     * 界面初始化的相应配置
+     * @param location
+     * @param resources
+     */
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("============> [initialize] start");
+        logger.debug("[initialize] start");
+
+        // button icon
         newConnectionButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/connection.png"))));
         newQueryButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query.png"))));
-        newQueryButton.setDisable(true);
-
         citaButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/cita.png"))));
-//
+
+        // 没有数据库不显示 query
+        newQueryButton.setDisable(true);
+
+        // 测试
         sqlController = new SqlController("blockchainbase",
                 "localhost", "3306", "root", "123456");
-        showDatabase();
         newQueryButton.setDisable(false);
-//
-        mainVBox.setStyle("-fx-font: 18  arial;");
+        showDatabase();
+
+        // 字体大小
+        mainVBox.setStyle("-fx-font: 20  arial;");
 
  //       showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
         showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
 
-        System.out.println("============> [initialize] end\n");
+        logger.debug("[initialize] end\n");
     }
 
 
     public void showTable(String tableName) {
-        System.out.println("============> [showTable] start");
+        logger.debug("[showTable] start");
 
         BorderPane borderPane = new BorderPane();
         ToolBar toolBar = new ToolBar();
@@ -89,7 +126,7 @@ public class MainWindowController implements Initializable {
         String sql = "SELECT * FROM " + tableName;
         executeSqlAndShowTableView(sql, tableSplitPane, null);
 
-        System.out.println("============> [showTable] end");
+        logger.debug("[showTable] end");
     }
 
 
@@ -102,7 +139,7 @@ public class MainWindowController implements Initializable {
             sqlQueryResult = new SqlController.SqlQueryResult();
             sqlQueryResult.setErrorMessage("Can not issue empty query.");
         } else if (sqlUpCase.startsWith("CREATE")) {
-            System.out.println("CREATE TABLE!");
+            logger.debug("CREATE TABLE!");
             sqlQueryResult = sqlController.sqlCreateTable(sql);
             if (sqlQueryResult.getErrorMessage() == null) {
                 showDatabase();
@@ -114,7 +151,7 @@ public class MainWindowController implements Initializable {
                 returnFlag = 1;
             }
         } else if (sqlUpCase.startsWith("INSERT")) {
-            System.out.println("INSERT!");
+            logger.debug("INSERT!");
             sqlQueryResult = sqlController.sqlInsert(sql);
 //            if (sqlQueryResult.getErrorMessage() == null) {
 //                Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql); // 正则获取表名
@@ -176,7 +213,7 @@ public class MainWindowController implements Initializable {
 
 
     private void showPagination(TableView tableView, Pagination pagination, List<String> columns, List<List<String>> records) {
-        System.out.println("====================> [showQuerySingle] start");
+        logger.debug("[showQuerySingle] start");
 
         TableView sigleTableView = new TableView();
         sigleTableView.setPlaceholder(
@@ -214,12 +251,12 @@ public class MainWindowController implements Initializable {
             );
         }
 
-        System.out.println("====================> [showQuerySingle] end\n");
+        logger.debug("[showQuerySingle] end\n");
     }
 
 
     private void addRecord(String tableName) {
-        System.out.println("====================> [addRecord] start");
+        logger.debug("[addRecord] start");
 
         List<String> columnNames = sqlController.getColumns(tableName);
         List<TextField> textFields = new ArrayList<>();
@@ -282,12 +319,12 @@ public class MainWindowController implements Initializable {
 
         dialog.showAndWait();
         
-        System.out.println("====================> [addRecord] end\n");
+        logger.debug("[addRecord] end\n");
     }
 
 
     public void newConnection(ActionEvent actionEvent) {
-        System.out.println("====================> [connectDatabase] start");
+        logger.debug("[connectDatabase] start");
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("MySQL - New Connection");
         dialog.setHeaderText(null);
@@ -378,12 +415,12 @@ public class MainWindowController implements Initializable {
 
         dialog.showAndWait();
 
-        System.out.println("====================> [connectDatabase] end\n");
+        logger.debug("[connectDatabase] end\n");
     }
 
 
     private void showDatabase() {
-        System.out.println("====================> [showDatabase] start");
+        logger.debug("[showDatabase] start");
 
 
         if (sqlController == null) {
@@ -403,11 +440,11 @@ public class MainWindowController implements Initializable {
         dbTreeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("============> [handle] start\n");
+                logger.debug("[handle] start\n");
 
                 if (event.getClickCount() == 2) {
                     TreeItem<String> item = (TreeItem<String>) dbTreeView.getSelectionModel().getSelectedItem();
-                    System.out.println("====> item name: " + item.getValue());
+                    logger.debug("item name: " + item.getValue());
                     if (item.getValue() != sqlController.getDatabaseName()) {
                         Tab tableTab;
                         if (tabMap.containsKey(item.getValue())) {
@@ -430,22 +467,21 @@ public class MainWindowController implements Initializable {
                     }
                 }
 
-                System.out.println("============> [handle] end\n");
+                logger.debug("[handle] end\n");
             }
         });
 
-        System.out.println("====================> [showDatabase] end\n");
+        logger.debug("[showDatabase] end\n");
     }
 
 
     public void newQuery(ActionEvent actionEvent) {
-        System.out.println("============> [newQuery] start");
+        logger.debug("[newQuery] start");
 
-        String queryTabName = "query" + queryId++;
+        String queryTabName = "query" + queryTabId++;
         Tab queryTab = new Tab(queryTabName);
         queryTab.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query2.png"))));
-
         addTab(queryTabName, queryTab);
         queryTab.setOnClosed(event -> closeTab(queryTabName, queryTab));
         BorderPane borderPane = new BorderPane();
@@ -496,29 +532,29 @@ public class MainWindowController implements Initializable {
             splitPane.setDividerPosition(1, 0.85);
         });
 
-        System.out.println("============> [newQuery] end");
+        logger.debug("[newQuery] end");
     }
 
 
     private void addTab(String tabName, Tab tab) {
-        System.out.println("====================> [addTab] start [tabName = " + tabName + "]");
+        logger.debug("[addTab] start [tabName = " + tabName + "]");
         showTabPane.getTabs().add(tab);
         showTabPane.getSelectionModel().select(tab);
         tabMap.put(tabName, tab);
-        System.out.println("====================> [addTab] end\n");
+        logger.debug("[addTab] end\n");
     }
 
 
     private void closeTab(String tabName, Tab tab) {
-        System.out.println("====================> [closeTab] start [tabName = " + tabName + "]");
+        logger.debug("[closeTab] start [tabName = " + tabName + "]");
         showTabPane.getTabs().remove(tab);
         tabMap.remove(tabName);
-        System.out.println("====================> [closeTab] end\n");
+        logger.debug("[closeTab] end\n");
     }
 
 
     public void connectionCita(ActionEvent actionEvent) {
-        System.out.println("====================> [connectionCita] start");
+        logger.debug("[connectionCita] start");
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         //dialog.setWidth(200);
         dialog.setTitle("CITA - New Connection");
@@ -572,13 +608,13 @@ public class MainWindowController implements Initializable {
 
         dialog.showAndWait();
 
-        System.out.println("====================> [connectDatabase] end\n");
+        logger.debug("[connectDatabase] end\n");
         //showCita();
     }
 
 
     public void showCita(String citaUrl) {
-        System.out.println("============> [showCita] start");
+        logger.debug("[showCita] start");
         if (tabMap.containsKey(citaUrl)) {
             showTabPane.getSelectionModel().select(tabMap.get(citaUrl));
             return;
@@ -587,6 +623,7 @@ public class MainWindowController implements Initializable {
         ChainControl chainControl = chainControlMap.get(citaUrl);
         chainControl.updateStart();
         Tab citaTab = new Tab(citaUrl + " @CITA");
+
         addTab(citaUrl, citaTab);
         citaTab.setOnClosed(event -> closeTab(citaUrl, citaTab));
 
@@ -626,7 +663,7 @@ public class MainWindowController implements Initializable {
             data.add(row);
         }
         tableView.setItems(data);
-        System.out.println("============> [showCita] end");
+        logger.debug("[showCita] end");
     }
 
 }

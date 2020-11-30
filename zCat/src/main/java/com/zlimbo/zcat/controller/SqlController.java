@@ -1,11 +1,16 @@
 package com.zlimbo.zcat.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class SqlController {
+
+    final Logger logger = LoggerFactory.getLogger(getClass());
 
     private Connection connection;
     private String databaseName;
@@ -57,7 +62,7 @@ public class SqlController {
 
 
     public SqlController(String databaseName, String host, String port, String userName, String password) {
-        System.out.println("====================> [SqlControl] start");
+        logger.debug("[SqlControl] start");
 
         this.databaseName = databaseName;
         this.host = host;
@@ -80,7 +85,7 @@ public class SqlController {
             e.printStackTrace();
         }
 
-        System.out.println("====================> [SqlController] end\n");
+        logger.debug("[SqlController] end\n");
     }
 
 
@@ -97,7 +102,7 @@ public class SqlController {
             preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("====> table: " + resultSet.getString(1));
+                logger.debug("table: " + resultSet.getString(1));
                 tables.add(resultSet.getString(1));
             }
         } catch (Exception e) {
@@ -117,12 +122,12 @@ public class SqlController {
 
 
     public SqlQueryResult sqlCreateTable(String sql) {
-        System.out.println("====================> [sqlCreateTable] start");
+        logger.debug("[sqlCreateTable] start");
         SqlQueryResult sqlQueryResult = new SqlQueryResult();
         long start = System.currentTimeMillis();
         String errorMessage = null;
         PreparedStatement preparedStatement = null;
-        System.out.println("== sql:" + sql);
+        logger.debug("== sql:" + sql);
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.executeUpdate(sql);
@@ -143,7 +148,7 @@ public class SqlController {
         long end = System.currentTimeMillis();
         long spendTime = end - start;
         sqlQueryResult.setSpendTime(spendTime);
-        System.out.println("====================> [sqlCreateTable] end\n");
+        logger.debug("[sqlCreateTable] end\n");
         return sqlQueryResult;
     }
 
@@ -195,7 +200,7 @@ public class SqlController {
 
 
     public SqlQueryResult sqlQuery(String sql) {
-        System.out.println("====================> [sqlQuery] start");
+        logger.debug("[sqlQuery] start");
 
         long start = System.currentTimeMillis();
 
@@ -207,7 +212,7 @@ public class SqlController {
 //            Statement statement = connection.createStatement();
 //            ResultSet resultSet = statement.executeQuery(sql);
             preparedStatement = connection.prepareStatement(sql);
-            System.out.println(preparedStatement.toString());
+            logger.debug(preparedStatement.toString());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
@@ -229,9 +234,9 @@ public class SqlController {
         } catch (Exception e) {
             errorMessage = e.getMessage();
             //Handle errors for Class.forName
-            System.out.println("====> Exception");
+            logger.debug("Exception");
             e.printStackTrace();
-            //System.out.println("e.message: " + e.getMessage());
+            //logger.debug("e.message: " + e.getMessage());
         } finally {
             //finally block used to close resources
             try {
@@ -246,18 +251,18 @@ public class SqlController {
         long end = System.currentTimeMillis();
         long spendTime = end - start;
 
-        System.out.println("====================> [sqlQuery] end\n");
+        logger.debug("[sqlQuery] end\n");
         return new SqlQueryResult(columns, records, spendTime, errorMessage);
     }
 
 
     public SqlQueryResult sqlInsert(String sql) {
-        System.out.println("====================> [sqlInsert] start");
+        logger.debug("[sqlInsert] start");
         SqlQueryResult sqlQueryResult = new SqlQueryResult();
         long start = System.currentTimeMillis();
 
         PreparedStatement preparedStatement = null;
-        System.out.println("== sql:" + sql);
+        logger.debug("== sql:" + sql);
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
@@ -277,13 +282,13 @@ public class SqlController {
         long end = System.currentTimeMillis();
         long spendTime = end - start;
         sqlQueryResult.setSpendTime(spendTime);
-        System.out.println("====================> [sqlInsert] end\n");
+        logger.debug("[sqlInsert] end\n");
         return sqlQueryResult;
     }
 
 
     public List<String> getColumns(String tableName) {
-        System.out.println("====================> [getColumns] start");
+        logger.debug("[getColumns] start");
 
         List<String> columns = new ArrayList<>();
         try {
@@ -292,12 +297,12 @@ public class SqlController {
             while (columnSet.next()) {
                 String columnName = columnSet.getString("COLUMN_NAME");
                 columns.add(columnName);
-                System.out.println("== columnName: " + columnName);
+                logger.debug("== columnName: " + columnName);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("====================> [getColumns] end\n");
+        logger.debug("[getColumns] end\n");
         return columns;
     }
 }

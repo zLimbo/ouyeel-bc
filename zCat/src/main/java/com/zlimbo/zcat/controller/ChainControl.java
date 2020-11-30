@@ -9,12 +9,16 @@ import com.citahub.cita.protocol.core.methods.response.NetPeerCount;
 import com.citahub.cita.protocol.http.HttpService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.*;
 
 public class ChainControl {
+
+    final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final String CITA_URL = "https://testnet.citahub.com";
     private final String CITA_URL2 = "http://139.196.208.146:1337";
@@ -73,7 +77,7 @@ public class ChainControl {
 
 
     public void updateBcinfo() {
-        System.out.println("============> [updateBcinfo] start");
+        logger.debug("[updateBcinfo] start");
 
         try {
             NetPeerCount netPeerCount = service.netPeerCount().send();
@@ -119,7 +123,7 @@ public class ChainControl {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        System.out.println("============> [updateBcinfo] end\n");
+        logger.debug("[updateBcinfo] end\n");
     }
 
 
