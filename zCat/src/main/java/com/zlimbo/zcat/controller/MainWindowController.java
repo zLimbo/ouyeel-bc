@@ -25,9 +25,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+/**
+ * 主窗口类
+ */
 public class MainWindowController implements Initializable {
 
 
+    /**
+     * 日志
+     */
     final Logger logger = LoggerFactory.getLogger(getClass());
 
 
@@ -62,7 +68,7 @@ public class MainWindowController implements Initializable {
 
 
     /**
-     * 存储 cita
+     * 存储 cita url 和其相关操作类的映射
      */
     Map<String, ChainControl> chainControlMap = new HashMap<>();
 
@@ -93,44 +99,72 @@ public class MainWindowController implements Initializable {
         showDatabase();
 
         // 字体大小
-        mainVBox.setStyle("-fx-font: 20  arial;");
+        mainVBox.setStyle("-fx-font: 18  arial;");
 
  //       showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
         showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
 
-        logger.debug("[initialize] end\n");
+        logger.debug("[initialize] end");
     }
 
 
+    /**
+     * 显示一个数据库表
+     * @param tableName
+     */
     public void showTable(String tableName) {
         logger.debug("[showTable] start");
 
-        BorderPane borderPane = new BorderPane();
-        ToolBar toolBar = new ToolBar();
-        Button closeButton = new Button("Close",
-                new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
-        Button addButton = new Button("Add",
-                new ImageView(new Image(getClass().getResourceAsStream("/image/add.png"))));
-        toolBar.getItems().addAll(closeButton, addButton);
-        borderPane.setTop(toolBar);
-        SplitPane tableSplitPane = new SplitPane();
-        borderPane.setCenter(tableSplitPane);
-        Tab tableTab = tabMap.get(tableName);
-        tableTab.setContent(borderPane);
+        Tab tableTab;
+        SplitPane tableSplitPane;
+        if (tabMap.containsKey(tableName)) {
+            tableTab = tabMap.get(tableName);
+            tableSplitPane = (SplitPane)((BorderPane)tableTab.getContent()).getCenter();
+        } else {
+            tableTab = new Tab(tableName + " @" + dbTreeView.getRoot().getValue());
+            tableTab.setGraphic(
+                    new ImageView(new Image(getClass().getResourceAsStream("/image/table2.png")))
+            );
+            addTab(tableName, tableTab);
+            tabAddContextMenu(tableName, tableTab);
+            tableTab.setOnClosed(event1 -> closeTab(tableName, tableTab));
+            BorderPane borderPane = new BorderPane();
+            ToolBar toolBar = new ToolBar();
+            Button closeButton = new Button("Close",
+                    new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
+            Button addButton = new Button("Add",
+                    new ImageView(new Image(getClass().getResourceAsStream("/image/add.png"))));
+            toolBar.getItems().addAll(closeButton, addButton);
+            borderPane.setTop(toolBar);
+            tableSplitPane = new SplitPane();
+            borderPane.setCenter(tableSplitPane);
+            tableTab.setContent(borderPane);
 
-        closeButton.setOnAction(event -> {
-            closeTab(tableName, tableTab);
-        });
-        addButton.setOnAction(event -> addRecord(tableName));
+            closeButton.setOnAction(event -> {
+                closeTab(tableName, tableTab);
+            });
+            addButton.setOnAction(event -> addRecord(tableName));
+        }
 
         String sql = "SELECT * FROM " + tableName;
         executeSqlAndShowTableView(sql, tableSplitPane, null);
+
+        showTabPane.getSelectionModel().select(tableTab);
 
         logger.debug("[showTable] end");
     }
 
 
+    /**
+     * 执行sql语句并将其显示在相应的 TableView 中，同时显示结果信息
+     * @param sql
+     * @param tableSplitPane
+     * @param messageTextArea
+     * @return
+     */
     private int executeSqlAndShowTableView(String sql, SplitPane tableSplitPane, TextArea messageTextArea) {
+        logger.debug("[executeSqlAndShowTableView] start");
+        logger.debug("sql: " + sql);
         int returnFlag = 0;
         tableSplitPane.getItems().clear();
         SqlController.SqlQueryResult sqlQueryResult = null;
@@ -153,13 +187,6 @@ public class MainWindowController implements Initializable {
         } else if (sqlUpCase.startsWith("INSERT")) {
             logger.debug("INSERT!");
             sqlQueryResult = sqlController.sqlInsert(sql);
-//            if (sqlQueryResult.getErrorMessage() == null) {
-//                Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql); // 正则获取表名
-//                if (matcher.find()) {
-//                    String tableName = matcher.group(1);
-//                    sqlQueryResult = sqlController.sqlQuery("SELECT * FROM " + tableName);
-//                }
-//            }
             returnFlag = 2;
         } else { // Query
             sqlQueryResult = sqlController.sqlQuery(sql);
@@ -208,10 +235,18 @@ public class MainWindowController implements Initializable {
                 messageTextArea.setText(sql.trim() + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
             }
         }
+        logger.debug("[executeSqlAndShowTableView] start");
         return returnFlag;
     }
 
 
+    /**
+     * 分页显示单个数据的详细情况
+     * @param tableView
+     * @param pagination
+     * @param columns
+     * @param records
+     */
     private void showPagination(TableView tableView, Pagination pagination, List<String> columns, List<List<String>> records) {
         logger.debug("[showQuerySingle] start");
 
@@ -251,10 +286,14 @@ public class MainWindowController implements Initializable {
             );
         }
 
-        logger.debug("[showQuerySingle] end\n");
+        logger.debug("[showQuerySingle] end");
     }
 
 
+    /**
+     * 增加一条数据项
+     * @param tableName
+     */
     private void addRecord(String tableName) {
         logger.debug("[addRecord] start");
 
@@ -318,11 +357,15 @@ public class MainWindowController implements Initializable {
         });
 
         dialog.showAndWait();
-        
-        logger.debug("[addRecord] end\n");
+
+        logger.debug("[addRecord] end");
     }
 
 
+    /**
+     * 连接新的数据库
+     * @param actionEvent
+     */
     public void newConnection(ActionEvent actionEvent) {
         logger.debug("[connectDatabase] start");
         Dialog<Pair<String, String>> dialog = new Dialog<>();
@@ -415,13 +458,15 @@ public class MainWindowController implements Initializable {
 
         dialog.showAndWait();
 
-        logger.debug("[connectDatabase] end\n");
+        logger.debug("[connectDatabase] end");
     }
 
 
+    /**
+     * 显示数据库树形菜单
+     */
     private void showDatabase() {
         logger.debug("[showDatabase] start");
-
 
         if (sqlController == null) {
             return;
@@ -446,35 +491,26 @@ public class MainWindowController implements Initializable {
                     TreeItem<String> item = (TreeItem<String>) dbTreeView.getSelectionModel().getSelectedItem();
                     logger.debug("item name: " + item.getValue());
                     if (item.getValue() != sqlController.getDatabaseName()) {
-                        Tab tableTab;
-                        if (tabMap.containsKey(item.getValue())) {
-                            tableTab = tabMap.get(item.getValue());
-                        } else {
-                            String tableTabName = item.getValue();
-
-                            tableTab = new Tab(tableTabName + " @" + dbTreeView.getRoot().getValue());
-                            tableTab.setGraphic(
-                                    new ImageView(new Image(getClass().getResourceAsStream("/image/table2.png")))
-                            );
-                            addTab(tableTabName, tableTab);
-                            tableTab.setOnClosed(event1 -> closeTab(tableTabName, tableTab));
-                        }
-                        showTable(item.getValue());
-                        showTabPane.getSelectionModel().select(tableTab);
+                        String tableName = item.getValue();
+                        showTable(tableName);
                     } else {
 //                        showTabPane.getSelectionModel().select(objectsTab);
 //                        showDatabase();
                     }
                 }
 
-                logger.debug("[handle] end\n");
+                logger.debug("[handle] end");
             }
         });
 
-        logger.debug("[showDatabase] end\n");
+        logger.debug("[showDatabase] end");
     }
 
 
+    /**
+     * 创建新的查询Tab
+     * @param actionEvent
+     */
     public void newQuery(ActionEvent actionEvent) {
         logger.debug("[newQuery] start");
 
@@ -483,6 +519,7 @@ public class MainWindowController implements Initializable {
         queryTab.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query2.png"))));
         addTab(queryTabName, queryTab);
+        tabAddContextMenu(queryTabName, queryTab);
         queryTab.setOnClosed(event -> closeTab(queryTabName, queryTab));
         BorderPane borderPane = new BorderPane();
         queryTab.setContent(borderPane);
@@ -508,13 +545,6 @@ public class MainWindowController implements Initializable {
         splitPane.getItems().add(textArea);
         splitPane.setOrientation(Orientation.VERTICAL);
 
-//        ContextMenu contextMenu = new ContextMenu();
-//        MenuItem menuItem = new MenuItem("关闭");
-//        contextMenu.getItems().add(menuItem);
-//        queryTab.setContextMenu(contextMenu);
-//        menuItem.setOnAction(event -> {
-//            showTabPane.getTabs().remove(queryTab);
-//        });
 
         closeButton.setOnAction(event -> {
             closeTab(queryTabName, queryTab);
@@ -536,23 +566,53 @@ public class MainWindowController implements Initializable {
     }
 
 
+    /**
+     * 为Tab添加右键菜单
+     * @param tabName
+     * @param tab
+     */
+    private void tabAddContextMenu(String tabName, Tab tab) {
+        logger.debug("[tabAddContextMenu] start [tabName = " + tabName + "]");
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem closeMenuItem = new MenuItem("关闭");
+        closeMenuItem.setOnAction(event -> closeTab(tabName, tab));
+        contextMenu.getItems().add(closeMenuItem);
+        tab.setContextMenu(contextMenu);
+        logger.debug("[tabAddContextMenu] end");
+    }
+
+
+    /**
+     * 添加一个 Tab 的相应操作
+     * @param tabName
+     * @param tab
+     */
     private void addTab(String tabName, Tab tab) {
         logger.debug("[addTab] start [tabName = " + tabName + "]");
         showTabPane.getTabs().add(tab);
         showTabPane.getSelectionModel().select(tab);
         tabMap.put(tabName, tab);
-        logger.debug("[addTab] end\n");
+        logger.debug("[addTab] end");
     }
 
 
+    /**
+     * 删除一个 Tab 的相应操作
+     * @param tabName
+     * @param tab
+     */
     private void closeTab(String tabName, Tab tab) {
         logger.debug("[closeTab] start [tabName = " + tabName + "]");
         showTabPane.getTabs().remove(tab);
         tabMap.remove(tabName);
-        logger.debug("[closeTab] end\n");
+        logger.debug("[closeTab] end");
     }
 
 
+    /**
+     * 连接 cita
+     * @param actionEvent
+     */
     public void connectionCita(ActionEvent actionEvent) {
         logger.debug("[connectionCita] start");
         Dialog<Pair<String, String>> dialog = new Dialog<>();
@@ -608,11 +668,15 @@ public class MainWindowController implements Initializable {
 
         dialog.showAndWait();
 
-        logger.debug("[connectDatabase] end\n");
+        logger.debug("[connectDatabase] end");
         //showCita();
     }
 
 
+    /**
+     * cita Tab 显示
+     * @param citaUrl
+     */
     public void showCita(String citaUrl) {
         logger.debug("[showCita] start");
         if (tabMap.containsKey(citaUrl)) {
@@ -625,6 +689,7 @@ public class MainWindowController implements Initializable {
         Tab citaTab = new Tab(citaUrl + " @CITA");
 
         addTab(citaUrl, citaTab);
+        tabAddContextMenu(citaUrl, citaTab);
         citaTab.setOnClosed(event -> closeTab(citaUrl, citaTab));
 
         citaTab.setGraphic(

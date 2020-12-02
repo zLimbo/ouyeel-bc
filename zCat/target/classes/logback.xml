@@ -83,7 +83,7 @@
     <logger name="java.sql.ResultSet" level="INFO"/>
     <logger name="java.sql.Connection" level="INFO"/>
     <logger name="com.ibatis.common.jdbc.ScriptRunner" level="INFO"/>
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="logfile"/>
         <appender-ref ref="stdout"/>
         <appender-ref ref="error_file" />

@@ -10,6 +10,51 @@ import java.util.List;
 
 public class SqlController {
 
+    public static class SqlQueryResult {
+        private final List<String> columns;
+        private final List<List<String>> records;
+        private String errorMessage;
+        private long spendTime;
+
+        public SqlQueryResult() {
+            columns = new ArrayList<>();
+            records = new ArrayList<>();
+            errorMessage = null;
+            spendTime = 0;
+        };
+
+        public SqlQueryResult(List<String> columns, List<List<String>> records, long spendTime, String errorMessage) {
+            this.columns = columns;
+            this.records = records;
+            this.spendTime = spendTime;
+            this.errorMessage = errorMessage;
+        }
+
+        public List<String> getColumns() {
+            return columns;
+        }
+
+        public List<List<String>> getRecords() {
+            return records;
+        }
+
+        public long getSpendTime() {
+            return spendTime;
+        }
+
+        public void setSpendTime(long spendTime) {
+            this.spendTime = spendTime;
+        }
+
+        public String getErrorMessage() {
+            return errorMessage;
+        }
+
+        public void setErrorMessage(String errorMessage) {
+            this.errorMessage = errorMessage;
+        }
+    }
+
     final Logger logger = LoggerFactory.getLogger(getClass());
 
     private Connection connection;
@@ -50,6 +95,10 @@ public class SqlController {
         return connectSuccess;
     }
 
+    Connection getConnection() {
+        return connection;
+    }
+
     public void finialize() {
         try {
             if (connection != null) {
@@ -61,6 +110,14 @@ public class SqlController {
     }
 
 
+    /**
+     * 数据库连接
+     * @param databaseName
+     * @param host
+     * @param port
+     * @param userName
+     * @param password
+     */
     public SqlController(String databaseName, String host, String port, String userName, String password) {
         logger.debug("[SqlControl] start");
 
@@ -75,6 +132,7 @@ public class SqlController {
                 "&characterEncoding=UTF8" +
                 "&serverTimezone=GMT" +
                 "&allowPublicKeyRetrieval=true";
+        logger.debug("database url: " + url);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, userName, password);
@@ -85,16 +143,16 @@ public class SqlController {
             e.printStackTrace();
         }
 
-        logger.debug("[SqlController] end\n");
+        logger.debug("[SqlController] end");
     }
 
 
-    Connection getConnection() {
-        return connection;
-    }
-
-
+    /**
+     * sql语句: show tables
+     * @return
+     */
     public List<String> sqlShowTables() {
+        logger.debug("[sqlShowTables] start");
         String sql = "show tables";
         List<String> tables = new ArrayList<>();
         PreparedStatement preparedStatement = null;
@@ -117,17 +175,23 @@ public class SqlController {
                 se.printStackTrace();
             }
         }
+        logger.debug("[sqlShowTables] end");
         return tables;
     }
 
 
+    /**
+     * sql语句：create table
+     * @param sql
+     * @return
+     */
     public SqlQueryResult sqlCreateTable(String sql) {
         logger.debug("[sqlCreateTable] start");
+        logger.debug("sql:" + sql);
         SqlQueryResult sqlQueryResult = new SqlQueryResult();
         long start = System.currentTimeMillis();
         String errorMessage = null;
         PreparedStatement preparedStatement = null;
-        logger.debug("== sql:" + sql);
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.executeUpdate(sql);
@@ -148,59 +212,14 @@ public class SqlController {
         long end = System.currentTimeMillis();
         long spendTime = end - start;
         sqlQueryResult.setSpendTime(spendTime);
-        logger.debug("[sqlCreateTable] end\n");
+        logger.debug("[sqlCreateTable] end");
         return sqlQueryResult;
-    }
-
-
-    public static class SqlQueryResult {
-        private final List<String> columns;
-        private final List<List<String>> records;
-        private String errorMessage;
-        private long spendTime;
-
-        public SqlQueryResult() {
-            columns = new ArrayList<>();
-            records = new ArrayList<>();
-            errorMessage = null;
-            spendTime = 0;
-        };
-
-        public SqlQueryResult(List<String> columns, List<List<String>> records, long spendTime, String errorMessage) {
-            this.columns = columns;
-            this.records = records;
-            this.spendTime = spendTime;
-            this.errorMessage = errorMessage;
-        }
-
-        public List<String> getColumns() {
-            return columns;
-        }
-        
-        public List<List<String>> getRecords() {
-            return records;
-        }
-
-        public long getSpendTime() {
-            return spendTime;
-        }
-
-        public void setSpendTime(long spendTime) {
-            this.spendTime = spendTime;
-        }
-        
-        public String getErrorMessage() {
-            return errorMessage;
-        }
-
-        public void setErrorMessage(String errorMessage) {
-            this.errorMessage = errorMessage;
-        }
     }
 
 
     public SqlQueryResult sqlQuery(String sql) {
         logger.debug("[sqlQuery] start");
+        logger.debug("sql:" + sql);
 
         long start = System.currentTimeMillis();
 
@@ -234,9 +253,8 @@ public class SqlController {
         } catch (Exception e) {
             errorMessage = e.getMessage();
             //Handle errors for Class.forName
-            logger.debug("Exception");
             e.printStackTrace();
-            //logger.debug("e.message: " + e.getMessage());
+            logger.error("Exception: " + e.getMessage());
         } finally {
             //finally block used to close resources
             try {
@@ -251,18 +269,23 @@ public class SqlController {
         long end = System.currentTimeMillis();
         long spendTime = end - start;
 
-        logger.debug("[sqlQuery] end\n");
+        logger.debug("[sqlQuery] end");
         return new SqlQueryResult(columns, records, spendTime, errorMessage);
     }
 
 
+    /**
+     * sql语句：insert
+     * @param sql
+     * @return
+     */
     public SqlQueryResult sqlInsert(String sql) {
         logger.debug("[sqlInsert] start");
+        logger.debug("sql:" + sql);
         SqlQueryResult sqlQueryResult = new SqlQueryResult();
         long start = System.currentTimeMillis();
 
         PreparedStatement preparedStatement = null;
-        logger.debug("== sql:" + sql);
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
@@ -282,11 +305,16 @@ public class SqlController {
         long end = System.currentTimeMillis();
         long spendTime = end - start;
         sqlQueryResult.setSpendTime(spendTime);
-        logger.debug("[sqlInsert] end\n");
+        logger.debug("[sqlInsert] end");
         return sqlQueryResult;
     }
 
 
+    /**
+     * 获取某一张表的列数据
+     * @param tableName
+     * @return
+     */
     public List<String> getColumns(String tableName) {
         logger.debug("[getColumns] start");
 
@@ -297,12 +325,12 @@ public class SqlController {
             while (columnSet.next()) {
                 String columnName = columnSet.getString("COLUMN_NAME");
                 columns.add(columnName);
-                logger.debug("== columnName: " + columnName);
+                logger.debug("columnName: " + columnName);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        logger.debug("[getColumns] end\n");
+        logger.debug("[getColumns] end");
         return columns;
     }
 }

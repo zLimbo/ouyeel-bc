@@ -48,6 +48,8 @@ public class ChainControl {
 
 
     public ChainControl(String citaUrl) {
+        logger.debug("[ChainControl] start");
+        logger.debug("cita url: " + citaUrl);
         service = CITAj.build(new HttpService(citaUrl));
         try {
             service.netPeerCount().send();
@@ -56,10 +58,12 @@ public class ChainControl {
             e.printStackTrace();
             connectSuccess = false;
         }
+        logger.debug("[ChainControl] end");
     }
 
 
     public void updateStart() {
+        logger.debug("[updateStart] start");
         updateBcinfo();
         timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -68,11 +72,14 @@ public class ChainControl {
                 updateBcinfo();
             }
         }, 3000, 3000);
+        logger.debug("[updateStart] end");
     }
 
 
     public void updateStop() {
+        logger.debug("[updateStop] start");
         timer.cancel();
+        logger.debug("[updateStop] end");
     }
 
 
@@ -123,11 +130,12 @@ public class ChainControl {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        logger.debug("[updateBcinfo] end\n");
+        logger.debug("[updateBcinfo] end");
     }
 
 
     List<List<StringProperty>> getBcInfo() {
+        logger.debug("[getBcInfo] start");
         List<List<StringProperty>> bcInfo = new ArrayList<>();
         bcInfo.add(Arrays.asList(new SimpleStringProperty("peer count"), peerCount));
         bcInfo.add(Arrays.asList(new SimpleStringProperty("block number"), blockNumber));
@@ -146,6 +154,7 @@ public class ChainControl {
         bcInfo.add(Arrays.asList(new SimpleStringProperty("header receipts root"), headerReceiptsRoot));
         bcInfo.add(Arrays.asList(new SimpleStringProperty("header proposer"), headerProposer));
         bcInfo.add(Arrays.asList(new SimpleStringProperty("block transaction number"), blockTxNumber));
+        logger.debug("[getBcInfo] end");
         return bcInfo;
     }
 
