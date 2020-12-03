@@ -1,608 +1,137 @@
-[33m2020-11-30 19:53:46[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:77[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:53:46[0;39m |[34mINFO [0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:78[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:53:46[0;39m |[31mWARN [0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:79[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:53:46[0;39m |[1;31mERROR[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:80[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:53:54[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:77[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:53:54[0;39m |[34mINFO [0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:78[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:53:54[0;39m |[31mWARN [0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:79[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:53:54[0;39m |[1;31mERROR[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:80[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:57:39[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:77[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:57:39[0;39m |[34mINFO [0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:78[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:57:39[0;39m |[31mWARN [0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:79[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:57:39[0;39m |[1;31mERROR[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:80[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mtest
-[0;39m[33m2020-11-30 19:57:39[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:82[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m============> [initialize] start
-[0;39m[33m2020-11-30 19:57:39[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:65[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====================> [SqlControl] start
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:88[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====================> [SqlController] end
-
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:429[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m====================> [showDatabase] start
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: invoice
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: sc
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: student
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: tmp
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: tmp2
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: tx
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:480[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m====================> [showDatabase] end
-
-[0;39m[33m2020-11-30 19:57:40[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:107[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m============> [initialize] end
-
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:76[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m============> [initialize] start
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:65[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====================> [SqlControl] start
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:88[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====================> [SqlController] end
-
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:423[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m====================> [showDatabase] start
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: invoice
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: sc
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: student
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: tmp
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: tmp2
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m====> table: tx
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:474[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m====================> [showDatabase] end
-
-[0;39m[33m2020-11-30 19:58:08[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:101[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m============> [initialize] end
-
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:76[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] start
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:65[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlControl] start
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:88[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlController] end
-
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:423[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] start
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: invoice
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: sc
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: student
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp2
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tx
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:474[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] end
-
-[0;39m[33m2020-11-30 20:00:37[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:101[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] end
-
-[0;39m[33m2020-11-30 20:01:03[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:479[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] start
-[0;39m[33m2020-11-30 20:01:03[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:540[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = query1]
-[0;39m[33m2020-11-30 20:01:03[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:544[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 20:01:03[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:535[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] end
-[0;39m[33m2020-11-30 20:01:09[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:01:09[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@520ff7dc: select *;
-[0;39m[33m2020-11-30 20:01:09[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:237[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mException
-[0;39m[33m2020-11-30 20:01:09[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:76[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] start
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:65[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlControl] start
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:88[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlController] end
-
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:442[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] start
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: invoice
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: sc
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: student
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp2
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tx
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:480[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] end
-
-[0;39m[33m2020-11-30 20:54:18[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:101[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] end
-
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: invoice
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:551[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = invoice]
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:555[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:540[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = invoice]
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:546[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@4c45e7bf: SELECT * FROM invoice
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: student
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:551[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = student]
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:555[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:540[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = student]
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:546[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@18d6f23a: SELECT * FROM student
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:21[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: tmp
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:551[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = tmp]
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:555[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:540[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = tmp]
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:546[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@23b23e4: SELECT * FROM tmp
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: sc
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:551[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = sc]
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:555[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:540[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = sc]
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:546[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@774f3dc5: SELECT * FROM sc
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:26[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:27[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:27[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: invoice
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@3b1d632b: SELECT * FROM invoice
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:28[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: sc
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@18c0e5c0: SELECT * FROM sc
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:32[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:33[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:33[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: tmp2
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:551[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = tmp2]
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:555[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:540[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = tmp2]
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:546[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@7b1547dc: SELECT * FROM tmp2
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:34[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: tmp2
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@4b0af624: SELECT * FROM tmp2
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: tmp2
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@57e93589: SELECT * FROM tmp2
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: tmp2
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@1b1e0070: SELECT * FROM tmp2
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:44[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:45[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:45[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:45[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:45[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:45[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:45[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:46[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:54:46[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:54:47[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:278[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addRecord] start
-[0;39m[33m2020-11-30 20:54:47[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:291[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[getColumns] start
-[0;39m[33m2020-11-30 20:54:47[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:300[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m== columnName: id
-[0;39m[33m2020-11-30 20:54:47[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:305[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[getColumns] end
-
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:260[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlInsert] start
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:265[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m== sql:INSERT INTO tmp2 VALUES('1');
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:285[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlInsert] end
-
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@76bf9406: SELECT * FROM tmp2
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:50[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:341[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addRecord] end
-
-[0;39m[33m2020-11-30 20:54:52[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:278[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addRecord] start
-[0;39m[33m2020-11-30 20:54:52[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:291[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[getColumns] start
-[0;39m[33m2020-11-30 20:54:52[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:300[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m== columnName: id
-[0;39m[33m2020-11-30 20:54:52[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:305[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[getColumns] end
-
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:260[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlInsert] start
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:265[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m== sql:INSERT INTO tmp2 VALUES('2');
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:285[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlInsert] end
-
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@3b7e3875: SELECT * FROM tmp2
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:54:55[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:341[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addRecord] end
-
-[0;39m[33m2020-11-30 20:55:19[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:76[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] start
-[0;39m[33m2020-11-30 20:55:19[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:65[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlControl] start
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:88[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlController] end
-
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:442[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] start
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: invoice
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: sc
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: student
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp2
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tx
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:480[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] end
-
-[0;39m[33m2020-11-30 20:55:20[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:101[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] end
-
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: student
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:551[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = student]
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:555[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:540[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = student]
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:546[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@7e676de5: SELECT * FROM student
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:55:22[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:462[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:466[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: tmp2
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:110[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:551[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = tmp2]
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:555[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:540[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = tmp2]
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:546[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@346a3f73: SELECT * FROM tmp2
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:235[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:273[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:148[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 20:55:23[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:476[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 20:55:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:560[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] start [tabName = tmp2]
-[0;39m[33m2020-11-30 20:55:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:563[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] end
-
-[0;39m[33m2020-11-30 20:55:31[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:560[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] start [tabName = student]
-[0;39m[33m2020-11-30 20:55:31[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:563[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] end
-
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:82[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] start
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:65[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlControl] start
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:88[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlController] end
-
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:469[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] start
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: invoice
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: sc
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: student
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp2
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tx
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:506[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] end
-
-[0;39m[33m2020-11-30 21:04:30[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:107[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] end
-
-[0;39m[33m2020-11-30 21:04:33[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:515[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] start
-[0;39m[33m2020-11-30 21:04:33[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:586[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = query1]
-[0;39m[33m2020-11-30 21:04:33[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:590[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 21:04:33[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:575[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = query1]
-[0;39m[33m2020-11-30 21:04:33[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:581[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 21:04:33[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:565[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] end
-[0;39m[33m2020-11-30 21:04:41[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:488[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 21:04:41[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:502[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:488[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] start
-
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:492[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36mitem name: sc
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:116[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] start
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:586[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = sc]
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:590[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:575[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = sc]
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:581[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:166[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[executeSqlAndShowTableView] start
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:167[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36msql: SELECT * FROM sc
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:203[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] start
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:215[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mcom.mysql.jdbc.JDBC42PreparedStatement@41e8a0be: SELECT * FROM sc
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:254[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlQuery] end
-
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:251[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] start
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:289[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showQuerySingle] end
-
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:238[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[executeSqlAndShowTableView] start
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:154[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showTable] end
-[0;39m[33m2020-11-30 21:04:42[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:502[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[handle] end
-
-[0;39m[33m2020-11-30 21:04:43[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:595[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] start [tabName = sc]
-[0;39m[33m2020-11-30 21:04:43[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:598[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] end
-
-[0;39m[33m2020-11-30 21:04:45[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:595[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] start [tabName = query1]
-[0;39m[33m2020-11-30 21:04:45[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:598[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] end
-
-[0;39m[33m2020-11-30 21:04:59[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:515[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] start
-[0;39m[33m2020-11-30 21:04:59[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:586[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = query2]
-[0;39m[33m2020-11-30 21:04:59[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:590[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 21:04:59[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:575[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = query2]
-[0;39m[33m2020-11-30 21:04:59[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:581[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 21:04:59[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:565[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] end
-[0;39m[33m2020-11-30 21:05:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:595[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] start [tabName = query2]
-[0;39m[33m2020-11-30 21:05:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:598[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] end
-
-[0;39m[33m2020-11-30 21:05:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:515[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] start
-[0;39m[33m2020-11-30 21:05:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:586[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = query3]
-[0;39m[33m2020-11-30 21:05:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:590[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 21:05:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:575[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = query3]
-[0;39m[33m2020-11-30 21:05:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:581[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 21:05:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:565[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] end
-[0;39m[33m2020-11-30 21:05:12[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:515[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] start
-[0;39m[33m2020-11-30 21:05:12[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:586[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = query4]
-[0;39m[33m2020-11-30 21:05:12[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:590[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 21:05:12[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:575[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = query4]
-[0;39m[33m2020-11-30 21:05:12[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:581[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 21:05:12[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:565[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] end
-[0;39m[33m2020-11-30 21:05:14[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:595[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] start [tabName = query4]
-[0;39m[33m2020-11-30 21:05:14[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:598[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] end
-
-[0;39m[33m2020-11-30 21:05:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:595[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] start [tabName = query3]
-[0;39m[33m2020-11-30 21:05:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:598[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] end
-
-[0;39m[33m2020-11-30 21:05:16[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:515[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] start
-[0;39m[33m2020-11-30 21:05:16[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:586[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = query5]
-[0;39m[33m2020-11-30 21:05:16[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:590[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 21:05:16[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:575[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = query5]
-[0;39m[33m2020-11-30 21:05:16[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:581[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 21:05:16[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:565[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] end
-[0;39m[33m2020-11-30 21:05:17[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:595[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] start [tabName = query5]
-[0;39m[33m2020-11-30 21:05:17[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:598[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] end
-
-[0;39m[33m2020-11-30 21:05:17[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:515[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] start
-[0;39m[33m2020-11-30 21:05:17[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:586[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = query6]
-[0;39m[33m2020-11-30 21:05:17[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:590[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 21:05:17[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:575[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = query6]
-[0;39m[33m2020-11-30 21:05:17[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:581[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 21:05:17[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:565[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] end
-[0;39m[33m2020-11-30 21:05:19[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:595[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] start [tabName = query6]
-[0;39m[33m2020-11-30 21:05:19[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:598[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[closeTab] end
-
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:82[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] start
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:65[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlControl] start
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:88[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlController] end
-
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:469[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] start
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: invoice
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: sc
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: student
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp2
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:105[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tx
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:506[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] end
-
-[0;39m[33m2020-11-30 21:07:15[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:107[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] end
-
-[0;39m[33m2020-11-30 21:21:09[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:82[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] start
-[0;39m[33m2020-11-30 21:21:09[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:122[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlControl] start
-[0;39m[33m2020-11-30 21:21:09[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:135[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mdatabase url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:146[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlController] end
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:469[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] start
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:155[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlShowTables] start
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: invoice
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: sc
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: student
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp2
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tx
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:178[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlShowTables] end
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:506[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] end
-[0;39m[33m2020-11-30 21:21:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:107[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] end
-[0;39m[33m2020-11-30 21:21:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:515[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] start
-[0;39m[33m2020-11-30 21:21:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:591[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = query1]
-[0;39m[33m2020-11-30 21:21:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:595[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-[0;39m[33m2020-11-30 21:21:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:575[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = query1]
-[0;39m[33m2020-11-30 21:21:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:581[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-[0;39m[33m2020-11-30 21:21:11[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:565[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] end
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:82[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] start
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:122[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlControl] start
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:135[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mdatabase url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:146[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlController] end
-
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:469[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] start
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:155[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlShowTables] start
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: invoice
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: sc
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: student
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp2
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tx
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:178[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlShowTables] end
-
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:506[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] end
-
-[0;39m[33m2020-11-30 21:22:10[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:107[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] end
-
-[0;39m[33m2020-11-30 21:22:13[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:515[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] start
-[0;39m[33m2020-11-30 21:22:13[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:591[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] start [tabName = query1]
-[0;39m[33m2020-11-30 21:22:13[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:595[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[addTab] end
-
-[0;39m[33m2020-11-30 21:22:13[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:575[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] start [tabName = query1]
-[0;39m[33m2020-11-30 21:22:13[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:581[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[tabAddContextMenu] end
-
-[0;39m[33m2020-11-30 21:22:13[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:565[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[newQuery] end
-
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:82[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] start
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:122[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlControl] start
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:135[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mdatabase url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:146[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[SqlController] end
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:469[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] start
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:155[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlShowTables] start
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: invoice
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: sc
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: student
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tmp2
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:163[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36mtable: tx
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mSqlController.java:178[0;39m |[32mcom.zlimbo.zcat.controller.SqlController[0;39m |[36m[sqlShowTables] end
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:506[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[showDatabase] end
-[0;39m[33m2020-11-30 21:22:53[0;39m |[39mDEBUG[0;39m |[34mJavaFX Application Thread[0;39m |[34mMainWindowController.java:107[0;39m |[32mcom.zlimbo.zcat.controller.MainWindowController[0;39m |[36m[initialize] end
-[0;39m
+2020-12-03 09:08:20 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: sc
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: student
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp2
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tx
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |MainWindowController.java:111 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-03 09:08:21 |DEBUG |JavaFX Application Thread |Main.java:33 |com.zlimbo.zcat.Main |[start] end
+2020-12-03 09:54:08 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-03 09:54:08 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-03 09:54:08 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-03 09:54:08 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: sc
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: student
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp2
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tx
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |MainWindowController.java:111 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-03 09:54:09 |DEBUG |JavaFX Application Thread |Main.java:33 |com.zlimbo.zcat.Main |[start] end
+2020-12-03 11:20:03 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-03 11:20:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-03 11:20:03 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-03 11:20:03 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: sc
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: student
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp2
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tx
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |MainWindowController.java:111 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-03 11:20:04 |DEBUG |JavaFX Application Thread |Main.java:33 |com.zlimbo.zcat.Main |[start] end
+2020-12-03 12:26:51 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: sc
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: student
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp2
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tx
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:111 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-03 12:26:52 |DEBUG |JavaFX Application Thread |Main.java:33 |com.zlimbo.zcat.Main |[start] end
+2020-12-03 14:30:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-03 14:30:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-03 14:30:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-03 14:30:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: invoice
+2020-12-03 14:30:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:120 |com.zlimbo.zcat.controller.MainWindowController |[showTable] start
+2020-12-03 14:30:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:597 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = invoice]
+2020-12-03 14:30:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:601 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-03 14:30:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:581 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = invoice]
+2020-12-03 14:30:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:587 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-03 14:30:47 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-03 14:30:47 |DEBUG |JavaFX Application Thread |MainWindowController.java:171 |com.zlimbo.zcat.controller.MainWindowController |sql: SELECT * FROM invoice
+2020-12-03 14:30:47 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-03 14:30:47 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:SELECT * FROM invoice
+2020-12-03 14:30:47 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@2078c655: SELECT * FROM invoice
+2020-12-03 14:30:50 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-03 14:30:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:255 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-03 14:30:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:293 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-03 14:30:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-03 14:30:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:158 |com.zlimbo.zcat.controller.MainWindowController |[showTable] end
+2020-12-03 14:30:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-03 14:31:23 |DEBUG |JavaFX Application Thread |MainWindowController.java:521 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-03 14:31:23 |DEBUG |JavaFX Application Thread |MainWindowController.java:597 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = query1]
+2020-12-03 14:31:23 |DEBUG |JavaFX Application Thread |MainWindowController.java:601 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-03 14:31:23 |DEBUG |JavaFX Application Thread |MainWindowController.java:581 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = query1]
+2020-12-03 14:31:23 |DEBUG |JavaFX Application Thread |MainWindowController.java:587 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-03 14:31:23 |DEBUG |JavaFX Application Thread |MainWindowController.java:571 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-03 14:31:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-03 14:31:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:171 |com.zlimbo.zcat.controller.MainWindowController |sql: select * from invoice
+where consumerName='飞乐音响';
+2020-12-03 14:31:56 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-03 14:31:56 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:select * from invoice
+where consumerName='飞乐音响';
+2020-12-03 14:31:56 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@373d5230: select * from invoice
+where consumerName='飞乐音响';
+2020-12-03 14:31:56 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-03 14:31:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:255 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-03 14:31:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:293 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-03 14:31:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-03 14:38:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-03 14:38:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:171 |com.zlimbo.zcat.controller.MainWindowController |sql: select * from invoice
+where consumerName='飞乐音响';
+2020-12-03 14:38:33 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-03 14:38:33 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:select * from invoice
+where consumerName='飞乐音响';
+2020-12-03 14:38:33 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@1af581cb: select * from invoice
+where consumerName='飞乐音响';
+2020-12-03 14:38:33 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-03 14:38:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:255 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-03 14:38:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:293 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-03 14:38:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: sc
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: student
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tmp2
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tx
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-03 16:13:11 |DEBUG |JavaFX Application Thread |MainWindowController.java:111 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-03 16:13:12 |DEBUG |JavaFX Application Thread |Main.java:33 |com.zlimbo.zcat.Main |[start] end

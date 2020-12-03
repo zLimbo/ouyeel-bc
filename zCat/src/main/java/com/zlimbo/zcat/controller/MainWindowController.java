@@ -97,7 +97,11 @@ public class MainWindowController implements Initializable {
                 "localhost", "3306", "root", "123456");
         newQueryButton.setDisable(false);
         showDatabase();
-
+//        try {
+//            sqlController.testInsertMore();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         // 字体大小
         mainVBox.setStyle("-fx-font: 18  arial;");
 
@@ -440,12 +444,14 @@ public class MainWindowController implements Initializable {
                 String password = passwordField.getText();
                 SqlController sqlController1 = new SqlController(databaseName, host, port, userName, password);
                 if (sqlController1.isConnectSuccess()) {
+                    //logger.debug("database connect success");
                     sqlController = sqlController1;
                     showTabPane.getTabs().clear();
                     tabMap.clear(); // 清空
                     showDatabase();
                     newQueryButton.setDisable(false);
                 } else {
+                    //logger.debug("database connect fail");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error Connection");
                     alert.setHeaderText("Invalid connection!");

@@ -18,6 +18,9 @@ import java.util.*;
 
 public class ChainControl {
 
+    /**
+     * 日志
+     */
     final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final String CITA_URL = "https://testnet.citahub.com";
@@ -128,6 +131,7 @@ public class ChainControl {
             this.setBlockTxNumber(String.valueOf(blockTxNumber));
             //this.settxAllNumber( String.valueOf(txAllNumber));
         } catch (IOException ioe) {
+            logger.warn("cita data updata faile:" + ioe.getMessage());
             ioe.printStackTrace();
         }
         logger.debug("[updateBcinfo] end");

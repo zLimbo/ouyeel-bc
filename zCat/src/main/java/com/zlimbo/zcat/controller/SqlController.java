@@ -10,6 +10,11 @@ import java.util.List;
 
 public class SqlController {
 
+    /**
+     * 日志
+     */
+    final Logger logger = LoggerFactory.getLogger(getClass());
+
     public static class SqlQueryResult {
         private final List<String> columns;
         private final List<List<String>> records;
@@ -55,7 +60,6 @@ public class SqlController {
         }
     }
 
-    final Logger logger = LoggerFactory.getLogger(getClass());
 
     private Connection connection;
     private String databaseName;
@@ -105,6 +109,7 @@ public class SqlController {
                 connection.close();
             }
         } catch (Exception e) {
+            logger.error("finialize fail: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -138,6 +143,7 @@ public class SqlController {
             connection = DriverManager.getConnection(url, userName, password);
             connectSuccess = true;
         } catch (Exception e) {
+            logger.error("database connect fail: " + e.getMessage());
             errorMessage = e.getMessage();
             connectSuccess = false;
             e.printStackTrace();
@@ -164,6 +170,7 @@ public class SqlController {
                 tables.add(resultSet.getString(1));
             }
         } catch (Exception e) {
+            logger.error(e.getMessage());
             e.printStackTrace();
         } finally {
             //finally block used to close resources
@@ -172,6 +179,8 @@ public class SqlController {
                     preparedStatement.close();
                 }
             } catch (SQLException se) {
+                logger.error(se.getMessage());
+                logger.error(se.getSQLState());
                 se.printStackTrace();
             }
         }
@@ -196,6 +205,7 @@ public class SqlController {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.executeUpdate(sql);
         } catch (Exception e) {
+            logger.error(e.getMessage());
             sqlQueryResult.setErrorMessage(e.getMessage());
             e.printStackTrace();
         } finally {
@@ -205,6 +215,8 @@ public class SqlController {
                     preparedStatement.close();
                 }
             } catch (SQLException se) {
+                logger.error(se.getMessage());
+                logger.error(se.getSQLState());
                 se.printStackTrace();
             }
         }
@@ -251,10 +263,10 @@ public class SqlController {
             }
             resultSet.close();
         } catch (Exception e) {
+            logger.error(e.getMessage());
             errorMessage = e.getMessage();
             //Handle errors for Class.forName
             e.printStackTrace();
-            logger.error("Exception: " + e.getMessage());
         } finally {
             //finally block used to close resources
             try {
@@ -262,6 +274,8 @@ public class SqlController {
                     preparedStatement.close();
                 }
             } catch (SQLException se) {
+                logger.error(se.getMessage());
+                logger.error(se.getSQLState());
                 se.printStackTrace();
             }
         }
@@ -290,6 +304,7 @@ public class SqlController {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
         } catch (Exception e) {
+            logger.error(e.getMessage());
             sqlQueryResult.setErrorMessage(e.getMessage());
             e.printStackTrace();
         } finally {
@@ -299,6 +314,8 @@ public class SqlController {
                     preparedStatement.close();
                 }
             } catch (SQLException se) {
+                logger.error(se.getMessage());
+                logger.error(se.getSQLState());
                 se.printStackTrace();
             }
         }
@@ -328,9 +345,24 @@ public class SqlController {
                 logger.debug("columnName: " + columnName);
             }
         } catch (Exception e) {
+            logger.error(e.getMessage());
             e.printStackTrace();
         }
         logger.debug("[getColumns] end");
         return columns;
+    }
+
+
+    /**
+     * 插入大量数据测试
+     * @throws Exception
+     */
+    public void testInsertMore() throws Exception{
+        logger.debug("[testInsertMore] start");
+        Statement statement = connection.createStatement();
+        for (int i = 0; i < 10000; ++i) {
+            statement.execute("insert into tmp values(" + i + ")");
+        }
+        logger.debug("[testInsertMore] end");
     }
 }

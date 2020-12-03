@@ -1,7 +1,7 @@
 #_*_ coding:utf-8 _*_
 
 INVOICE_KIND = ("addedValueTaxInvoice", "commercialInvoice", "professionalInvoice");
-Hex = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+Hex = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f');
 COMPANY_TAXESNO = (
     ("State Farm Insurance Cos.", "736763JRERB3H54"),
     ("L Brands", "737462HU9S9DTV8"),
@@ -158,7 +158,7 @@ COMPANY_TAXESNO = (
     ("Eli Lilly", "7387993UQY50UAX"),
     ("Raytheon", "731535U96US9ER7"),
     ("Reynolds American", "730487GDYC4U1C5"),
-    ("Land O'Lakes", "733051IJCDIHO36"),
+    ("Land OLakes", "733051IJCDIHO36"),
     ("Ryder System", "7301833GPSWEYF3"),
     ("Lennar", "734494GFE9MASR1"),
     ("Las Vegas Sands", "736375XKYS179X2"),

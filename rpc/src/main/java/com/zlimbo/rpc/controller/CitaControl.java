@@ -8,6 +8,8 @@ import com.citahub.cita.protocol.core.methods.response.AppBlockNumber;
 import com.citahub.cita.protocol.core.methods.response.AppMetaData;
 import com.citahub.cita.protocol.core.methods.response.NetPeerCount;
 import com.citahub.cita.protocol.http.HttpService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +26,11 @@ import java.util.Map;
 @RequestMapping("")
 public class CitaControl {
 
+    /**
+     * 日志
+     */
+    final Logger logger = LoggerFactory.getLogger(getClass());
+
     private int txAllNumber;
     CITAj service;
 
@@ -37,10 +44,11 @@ public class CitaControl {
     @RequestMapping(value = {"", "index"})
     @ResponseBody
     public ModelAndView chainInfo() throws IOException {
-        System.out.println("----------------------------------chainInfo ok");
+        logger.debug("[chainInfo] start");
         ModelAndView modelAndView = new ModelAndView("index");
         Map<String, String> bcInfo = getBcinfo();
         modelAndView.addAllObjects(bcInfo);
+        logger.debug("[chainInfo] end");
         return modelAndView;
     }
 
@@ -48,16 +56,20 @@ public class CitaControl {
     @RequestMapping(value = "/bcinfoUpdate", method = RequestMethod.GET)
     @ResponseBody
     public String bcinfoUpdate() throws IOException {
-        System.out.println("--------------------------------------------bcinfoUpdate ok");
+        //logger.debug("[bcinfoUpdate] start");
 
         Map<String, String> bcInfo = getBcinfo();
         JSONObject jsonObject = new JSONObject();
         jsonObject.putAll(bcInfo);
+
+        //logger.debug("[bcinfoUpdate] end");
         return jsonObject.toJSONString();
     }
 
 
     Map<String, String> getBcinfo() throws IOException {
+        //logger.debug("[getBcinfo] start");
+
         Map<String, String> hashMap = new HashMap<>();
 
         NetPeerCount netPeerCount = service.netPeerCount().send();
@@ -104,6 +116,7 @@ public class CitaControl {
         txAllNumber += blockTxNumber;
         hashMap.put("txAllNumber", String.valueOf(txAllNumber));
 
+        //logger.debug("[getBcinfo] end");
         return hashMap;
     }
 }
