@@ -1,0 +1,56 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="zCat">
+    <output-path>$PROJECT_DIR$/out/artifacts/zCat</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="com.zlimbo.zcat.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="zCat.jar">
+        <element id="module-output" name="zCat" />
+        <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.2.3" />
+        <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.2.3" />
+        <element id="library" level="project" name="Maven: com.citahub.cita:abi:20.2.0" />
+        <element id="library" level="project" name="Maven: com.citahub.cita:core:20.2.0" />
+        <element id="library" level="project" name="Maven: com.citahub.cita:crypto:20.2.0" />
+        <element id="library" level="project" name="Maven: com.citahub.cita:protobuf:20.2.0" />
+        <element id="library" level="project" name="Maven: com.citahub.cita:rlp:20.2.0" />
+        <element id="library" level="project" name="Maven: com.citahub.cita:tuples:20.2.0" />
+        <element id="library" level="project" name="Maven: com.citahub.cita:utils:20.2.0" />
+        <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.0" />
+        <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.5" />
+        <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.5" />
+        <element id="library" level="project" name="Maven: com.github.jnr:jffi:1.2.14" />
+        <element id="library" level="project" name="Maven: com.github.jnr:jffi:native:1.2.14" />
+        <element id="library" level="project" name="Maven: com.github.jnr:jnr-constants:0.9.6" />
+        <element id="library" level="project" name="Maven: com.github.jnr:jnr-enxio:0.14" />
+        <element id="library" level="project" name="Maven: com.github.jnr:jnr-ffi:2.1.2" />
+        <element id="library" level="project" name="Maven: com.github.jnr:jnr-posix:3.0.33" />
+        <element id="library" level="project" name="Maven: com.github.jnr:jnr-unixsocket:0.15" />
+        <element id="library" level="project" name="Maven: com.github.jnr:jnr-x86asm:1.0.2" />
+        <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.5" />
+        <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.4.0" />
+        <element id="library" level="project" name="Maven: com.squareup.okhttp3:logging-interceptor:3.8.1" />
+        <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:3.8.1" />
+        <element id="library" level="project" name="Maven: com.squareup.okio:okio:1.13.0" />
+        <element id="library" level="project" name="Maven: io.reactivex.rxjava2:rxjava:2.2.3" />
+        <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.40" />
+        <element id="library" level="project" name="Maven: org.abstractj.kalium:kalium:0.7.0" />
+        <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk15on:1.54" />
+        <element id="library" level="project" name="Maven: org.ow2.asm:asm-analysis:5.0.3" />
+        <element id="library" level="project" name="Maven: org.ow2.asm:asm-commons:5.0.3" />
+        <element id="library" level="project" name="Maven: org.ow2.asm:asm-tree:5.0.3" />
+        <element id="library" level="project" name="Maven: org.ow2.asm:asm-util:5.0.3" />
+        <element id="library" level="project" name="Maven: org.ow2.asm:asm:5.0.3" />
+        <element id="library" level="project" name="Maven: org.reactivestreams:reactive-streams:1.0.2" />
+        <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.30" />
+      </element>
+    </root>
+  </artifact>
+</component>

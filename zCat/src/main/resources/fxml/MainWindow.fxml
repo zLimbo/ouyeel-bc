@@ -11,7 +11,7 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu mnemonicParsing="false" text="文件">
           <items>
             <MenuItem mnemonicParsing="false" text="New" />
             <MenuItem mnemonicParsing="false" text="Open…" />
@@ -27,7 +27,7 @@
             <MenuItem mnemonicParsing="false" text="Quit" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
+        <Menu mnemonicParsing="false" text="编辑">
           <items>
             <MenuItem mnemonicParsing="false" text="Undo" />
             <MenuItem mnemonicParsing="false" text="Redo" />
@@ -41,7 +41,7 @@
             <MenuItem mnemonicParsing="false" text="Unselect All" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="帮助">
           <items>
             <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
           </items>
@@ -50,9 +50,9 @@
     </MenuBar>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
          <items>
-            <Button fx:id="newConnectionButton" mnemonicParsing="false" onAction="#newConnection" text="New Connection" textFill="#171717" />
-            <Button fx:id="newQueryButton" mnemonicParsing="false" onAction="#newQuery" text="New Query" />
-            <Button fx:id="citaButton" mnemonicParsing="false" onAction="#connectionCita" text="Connection CITA" />
+            <Button fx:id="newConnectionButton" mnemonicParsing="false" onAction="#newConnection" text="连接数据库" textFill="#171717" />
+            <Button fx:id="citaButton" mnemonicParsing="false" onAction="#connectionCita" text="连接CITA" />
+           <Button fx:id="newQueryButton" mnemonicParsing="false" onAction="#newQuery" text="新建查询" />
          </items>
       </ToolBar>
     <SplitPane dividerPositions="0.15, 0.7" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="zCat.jnlp">
+  <information>
+    <title>zCat</title>
+    <vendor>Unknown</vendor>
+    <description>zCat</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="abi-20.2.0.jar" size="121142" download="eager" />
+    <jar href="asm-5.0.3.jar" size="53231" download="eager" />
+    <jar href="asm-analysis-5.0.3.jar" size="20443" download="eager" />
+    <jar href="asm-commons-5.0.3.jar" size="41717" download="eager" />
+    <jar href="asm-tree-5.0.3.jar" size="29036" download="eager" />
+    <jar href="asm-util-5.0.3.jar" size="43296" download="eager" />
+    <jar href="bcprov-jdk15on-1.54.jar" size="3277268" download="eager" />
+    <jar href="core-20.2.0.jar" size="190694" download="eager" />
+    <jar href="crypto-20.2.0.jar" size="53353" download="eager" />
+    <jar href="gson-2.8.5.jar" size="241622" download="eager" />
+    <jar href="jackson-annotations-2.8.0.jar" size="55784" download="eager" />
+    <jar href="jackson-core-2.8.5.jar" size="281079" download="eager" />
+    <jar href="jackson-databind-2.8.5.jar" size="1236315" download="eager" />
+    <jar href="jffi-1.2.14-native.jar" size="635218" download="eager" />
+    <jar href="jffi-1.2.14.jar" size="149659" download="eager" />
+    <jar href="jnr-constants-0.9.6.jar" size="346364" download="eager" />
+    <jar href="jnr-enxio-0.14.jar" size="27713" download="eager" />
+    <jar href="jnr-ffi-2.1.2.jar" size="678077" download="eager" />
+    <jar href="jnr-posix-3.0.33.jar" size="226126" download="eager" />
+    <jar href="jnr-unixsocket-0.15.jar" size="44889" download="eager" />
+    <jar href="jnr-x86asm-1.0.2.jar" size="219943" download="eager" />
+    <jar href="kalium-0.7.0.jar" size="27639" download="eager" />
+    <jar href="logback-classic-1.2.3.jar" size="290339" download="eager" />
+    <jar href="logback-core-1.2.3.jar" size="471901" download="eager" />
+    <jar href="logging-interceptor-3.8.1.jar" size="8268" download="eager" />
+    <jar href="mysql-connector-java-5.1.40.jar" size="990924" download="eager" />
+    <jar href="okhttp-3.8.1.jar" size="398122" download="eager" />
+    <jar href="okio-1.13.0.jar" size="81811" download="eager" />
+    <jar href="protobuf-20.2.0.jar" size="192557" download="eager" />
+    <jar href="protobuf-java-3.4.0.jar" size="1383882" download="eager" />
+    <jar href="reactive-streams-1.0.2.jar" size="2097" download="eager" />
+    <jar href="rlp-20.2.0.jar" size="4146" download="eager" />
+    <jar href="rxjava-2.2.3.jar" size="2323863" download="eager" />
+    <jar href="slf4j-api-1.7.30.jar" size="41472" download="eager" />
+    <jar href="tuples-20.2.0.jar" size="41102" download="eager" />
+    <jar href="utils-20.2.0.jar" size="12293" download="eager" />
+    <jar href="zCat.jar" size="49064" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="com.zlimbo.zcat.Main"  name="zCat" />
+  <update check="background"/>
+</jnlp>

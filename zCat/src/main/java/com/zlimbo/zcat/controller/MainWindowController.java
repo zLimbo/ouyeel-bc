@@ -81,6 +81,12 @@ public class MainWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         logger.debug("[initialize] start");
 
+        // 字体大小
+        mainVBox.setStyle("-fx-font: 18  arial; -fx-font-family: 'Microsoft YaHei UI'");
+
+        // 显示所有Tab的删除图标;
+        showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
+
         // button icon
         newConnectionButton.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/connection.png"))));
@@ -93,20 +99,13 @@ public class MainWindowController implements Initializable {
         newQueryButton.setDisable(true);
 
         // 测试
-        sqlController = new SqlController("blockchainbase",
-                "localhost", "3306", "root", "123456");
-        newQueryButton.setDisable(false);
-        showDatabase();
-//        try {
-//            sqlController.testInsertMore();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        // 字体大小
-        mainVBox.setStyle("-fx-font: 18  arial;");
+//        sqlController = new SqlController("blockchainbase",
+//                "localhost", "3306", "root", "123456");
+//        newQueryButton.setDisable(false);
+//        showDatabase();
 
- //       showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
-        showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
+
+
 
         logger.debug("[initialize] end");
     }
@@ -125,16 +124,16 @@ public class MainWindowController implements Initializable {
             tableTab = tabMap.get(tableName);
             tableSplitPane = (SplitPane)((BorderPane)tableTab.getContent()).getCenter();
         } else {
-            tableTab = new Tab(tableName + " @" + dbTreeView.getRoot().getValue());
+            tableTab = new Tab(tableName);
             tableTab.setGraphic(
-                    new ImageView(new Image(getClass().getResourceAsStream("/image/table2.png")))
+                    new ImageView(new Image(getClass().getResourceAsStream("/image/table.png")))
             );
             addTab(tableName, tableTab);
             tabAddContextMenu(tableName, tableTab);
             tableTab.setOnClosed(event1 -> closeTab(tableName, tableTab));
             BorderPane borderPane = new BorderPane();
             ToolBar toolBar = new ToolBar();
-            Button closeButton = new Button("Close",
+            Button closeButton = new Button("关闭",
                     new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
             Button addButton = new Button("Add",
                     new ImageView(new Image(getClass().getResourceAsStream("/image/add.png"))));
@@ -230,13 +229,13 @@ public class MainWindowController implements Initializable {
 
             if (messageTextArea != null) {
                 messageTextArea.setStyle("-fx-text-fill:#00ff00;");
-                messageTextArea.setText(sql.trim() + "\n> OK" + "\n> Time: " + (spendTime / 1000.0) + "s");
+                messageTextArea.setText(sql.trim() + "\n> OK" + "\n> 时间: " + (spendTime / 1000.0) + "s");
             }
         } else {
             returnFlag = 0;
             if (messageTextArea != null) {
                 messageTextArea.setStyle("-fx-text-fill:#ff0000;");
-                messageTextArea.setText(sql.trim() + "\n> Error: " + errorMessage + "\n> Time: " + (spendTime / 1000.0) + "s");
+                messageTextArea.setText(sql.trim() + "\n> Error: " + errorMessage + "\n> 时间: " + (spendTime / 1000.0) + "s");
             }
         }
         logger.debug("[executeSqlAndShowTableView] start");
@@ -501,7 +500,7 @@ public class MainWindowController implements Initializable {
                         showTable(tableName);
                     } else {
 //                        showTabPane.getSelectionModel().select(objectsTab);
-//                        showDatabase();
+                        showDatabase();
                     }
                 }
 
@@ -520,7 +519,7 @@ public class MainWindowController implements Initializable {
     public void newQuery(ActionEvent actionEvent) {
         logger.debug("[newQuery] start");
 
-        String queryTabName = "query" + queryTabId++;
+        String queryTabName = "查询[" + (queryTabId++) + "]";
         Tab queryTab = new Tab(queryTabName);
         queryTab.setGraphic(
                 new ImageView(new Image(getClass().getResourceAsStream("/image/query2.png"))));
@@ -532,11 +531,11 @@ public class MainWindowController implements Initializable {
 
         ToolBar toolBar = new ToolBar();
         borderPane.setTop(toolBar);
-        Button closeButton = new Button("Close",
+        Button closeButton = new Button("关闭",
                 new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
 //        Button saveButton = new Button("Save",
 //                new ImageView(new Image(getClass().getResourceAsStream("/image/save.png"))));
-        Button runButton = new Button("Run",
+        Button runButton = new Button("运行",
                 new ImageView(new Image(getClass().getResourceAsStream("/image/run.png"))));
         //toolBar.getItems().addAll(closeButton, saveButton, runButton);
         toolBar.getItems().addAll(closeButton, runButton);
@@ -558,14 +557,15 @@ public class MainWindowController implements Initializable {
 
         runButton.setOnAction(event -> {
             splitPane.getItems().clear();
-            splitPane.getItems().add(textArea);
             int flag = executeSqlAndShowTableView(textArea.getText(), tableSplitPane, messageTextArea);
             if (flag == 3) {
-                splitPane.getItems().add(tableSplitPane);
+                splitPane.getItems().addAll(textArea, tableSplitPane, messageTextArea);
+                splitPane.setDividerPosition(0, 0.2);
+                splitPane.setDividerPosition(1, 0.85);
+            } else {
+                splitPane.getItems().addAll(textArea, messageTextArea);
+                splitPane.setDividerPosition(0, 0.5);
             }
-            splitPane.getItems().add(messageTextArea);
-            splitPane.setDividerPosition(0, 0.2);
-            splitPane.setDividerPosition(1, 0.85);
         });
 
         logger.debug("[newQuery] end");
@@ -704,7 +704,7 @@ public class MainWindowController implements Initializable {
         BorderPane borderPane = new BorderPane();
 
         ToolBar toolBar = new ToolBar();
-        Button closeButton = new Button("Close",
+        Button closeButton = new Button("关闭",
                 new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
         toolBar.getItems().addAll(closeButton);
         borderPane.setTop(toolBar);
