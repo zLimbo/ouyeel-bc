@@ -174,7 +174,7 @@ public class MainWindowController implements Initializable {
         String sqlUpCase = sql.toUpperCase().trim();
         if (sqlUpCase.isEmpty()) {
             sqlQueryResult = new SqlController.SqlQueryResult();
-            sqlQueryResult.setErrorMessage("Can not issue empty query.");
+            sqlQueryResult.setErrorMessage("SQL语句不能为空！");
         } else if (sqlUpCase.startsWith("CREATE")) {
             logger.debug("CREATE TABLE!");
             sqlQueryResult = sqlController.sqlCreateTable(sql);
@@ -259,8 +259,8 @@ public class MainWindowController implements Initializable {
         pagination.setPageCount(records.size());
 
         if (!records.isEmpty()) {
-            TableColumn<List<StringProperty>, String> keyColumn = new TableColumn<>("key");
-            TableColumn<List<StringProperty>, String> valueColumn = new TableColumn<>("value");
+            TableColumn<List<StringProperty>, String> keyColumn = new TableColumn<>("属性");
+            TableColumn<List<StringProperty>, String> valueColumn = new TableColumn<>("值");
             keyColumn.setCellValueFactory(data -> data.getValue().get(0));
             valueColumn.setCellValueFactory(data -> data.getValue().get(1));
             sigleTableView.getColumns().addAll(keyColumn, valueColumn);
@@ -304,11 +304,11 @@ public class MainWindowController implements Initializable {
         List<TextField> textFields = new ArrayList<>();
 
         Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("Add Record");
+        dialog.setTitle("添加记录");
         dialog.setHeaderText(null);
 
-        ButtonType submitButtonType = new ButtonType("Submit", ButtonBar.ButtonData.OK_DONE);
-        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType submitButtonType = new ButtonType("提交", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("取消", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, cancelButtonType);
         Button submitButton = (Button) dialog.getDialogPane().lookupButton(submitButtonType);
         submitButton.setDisable(true);
@@ -372,11 +372,11 @@ public class MainWindowController implements Initializable {
     public void newConnection(ActionEvent actionEvent) {
         logger.debug("[connectDatabase] start");
         Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("MySQL - New Connection");
+        dialog.setTitle("MySQL 新连接");
         dialog.setHeaderText(null);
 
-        ButtonType connectButtonType = new ButtonType("Connect", ButtonBar.ButtonData.OK_DONE);
-        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType connectButtonType = new ButtonType("连接", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("取消", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().addAll(connectButtonType, cancelButtonType);
         Button connectButton = (Button) dialog.getDialogPane().lookupButton(connectButtonType);
         connectButton.setDisable(true);
@@ -452,8 +452,8 @@ public class MainWindowController implements Initializable {
                 } else {
                     //logger.debug("database connect fail");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Connection");
-                    alert.setHeaderText("Invalid connection!");
+                    alert.setTitle("连接错误");
+                    alert.setHeaderText("不正确的连接!");
 
                     alert.showAndWait();
                 }
@@ -623,7 +623,7 @@ public class MainWindowController implements Initializable {
         logger.debug("[connectionCita] start");
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         //dialog.setWidth(200);
-        dialog.setTitle("CITA - New Connection");
+        dialog.setTitle("CITA 连接");
         dialog.setHeaderText(null);
 
         ButtonType connectButtonType = new ButtonType("Connect", ButtonBar.ButtonData.OK_DONE);
