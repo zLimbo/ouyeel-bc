@@ -99,10 +99,10 @@ public class MainWindowController implements Initializable {
         newQueryButton.setDisable(true);
 
         // 测试
-//        sqlController = new SqlController("blockchainbase",
-//                "localhost", "3306", "root", "123456");
-//        newQueryButton.setDisable(false);
-//        showDatabase();
+        sqlController = new SqlController("blockchainbase",
+                "localhost", "3306", "root", "123456");
+        newQueryButton.setDisable(false);
+        showDatabase();
 
 
 
@@ -178,20 +178,24 @@ public class MainWindowController implements Initializable {
         } else if (sqlUpCase.startsWith("CREATE")) {
             logger.debug("CREATE TABLE!");
             sqlQueryResult = sqlController.sqlCreateTable(sql);
+            long spendTime = sqlQueryResult.getSpendTime();
+            returnFlag = 1;
             if (sqlQueryResult.getErrorMessage() == null) {
-                showDatabase();
+                showDatabase(); // 刷新数据库
                 Matcher matcher = Pattern.compile("^\\s*\\w+\\s+\\w+\\s+(\\w+)").matcher(sql);  // 正则获取表名
                 if (matcher.find()) {
                     String tableName = matcher.group(1);
                     sqlQueryResult = sqlController.sqlQuery("DESCRIBE " + tableName);
+                    sqlQueryResult.setSpendTime(spendTime);
+                    returnFlag = 3;
                 }
-                returnFlag = 1;
             }
         } else if (sqlUpCase.startsWith("INSERT")) {
             logger.debug("INSERT!");
             sqlQueryResult = sqlController.sqlInsert(sql);
             returnFlag = 2;
         } else { // Query
+            logger.debug("Query!");
             sqlQueryResult = sqlController.sqlQuery(sql);
             returnFlag = 3;
         }
@@ -238,7 +242,7 @@ public class MainWindowController implements Initializable {
                 messageTextArea.setText(sql.trim() + "\n> Error: " + errorMessage + "\n> 时间: " + (spendTime / 1000.0) + "s");
             }
         }
-        logger.debug("[executeSqlAndShowTableView] start");
+        logger.debug("[executeSqlAndShowTableView] end");
         return returnFlag;
     }
 
@@ -558,6 +562,7 @@ public class MainWindowController implements Initializable {
         runButton.setOnAction(event -> {
             splitPane.getItems().clear();
             int flag = executeSqlAndShowTableView(textArea.getText(), tableSplitPane, messageTextArea);
+            logger.debug("flag: " + flag);
             if (flag == 3) {
                 splitPane.getItems().addAll(textArea, tableSplitPane, messageTextArea);
                 splitPane.setDividerPosition(0, 0.2);
@@ -623,7 +628,7 @@ public class MainWindowController implements Initializable {
         logger.debug("[connectionCita] start");
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         //dialog.setWidth(200);
-        dialog.setTitle("CITA 连接");
+        dialog.setTitle("CITA 新连接");
         dialog.setHeaderText(null);
 
         ButtonType connectButtonType = new ButtonType("Connect", ButtonBar.ButtonData.OK_DONE);

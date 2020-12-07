@@ -13,7 +13,7 @@
     </insert>
 
     <insert id="upChain" parameterClass="java.util.HashMap">
-       INSERT INTO $tableName$
+        INSERT INTO $tableName$
         VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#)
     </insert>
 

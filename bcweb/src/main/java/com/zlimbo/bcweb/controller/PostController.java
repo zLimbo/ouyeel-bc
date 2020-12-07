@@ -17,6 +17,8 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +36,8 @@ import java.util.*;
 @Controller
 @RequestMapping("")
 public class PostController {
+
+    final Logger logger = LoggerFactory.getLogger(getClass());
 
     private static final String LOCAL_URL = "http://127.0.0.1:8082";
     private static final String POST_URL = "http://127.0.0.1:8080";
@@ -87,7 +91,7 @@ public class PostController {
 
         Signature signature = Signature.getInstance("SM3withSm2", bouncyCastleProvider);
 
-        /*
+        /**
          * 签名
          */
         // 签名需要使用私钥，使用私钥 初始化签名实例
@@ -101,7 +105,7 @@ public class PostController {
         System.out.printf("signature[%d]: %s\n", signatureValue.length, Hex.toHexString(signatureValue));
 
 
-        /*
+        /**
          * 验签
          */
         // 签名需要使用公钥，使用公钥 初始化签名实例
@@ -109,7 +113,7 @@ public class PostController {
         // 写入待验签的签名原文到算法中
         signature.update(plainText);
         // 验签
-        System.out.println("Signature verify result: " + signature.verify(signatureValue));
+        logger.debug("Signature verify result: " + signature.verify(signatureValue));
 
         return Hex.toHexString(signatureValue);
     }
@@ -117,12 +121,9 @@ public class PostController {
 
     /**
      * 使用国密SM2签名
-     * @param bytes
+     * @param plainText
      * @return
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
-     * @throws InvalidKeyException
-     * @throws SignatureException
+     * @throws Exception
      */
     String gmSm2Signature(byte[] plainText) throws Exception {
         final Provider bouncyCastleProvider = new BouncyCastleProvider();
@@ -144,16 +145,15 @@ public class PostController {
     }
 
 
-
     @RequestMapping("/onChainTx")
     ModelAndView onChainTx() {
-        System.out.println("============> [onChainTx] start");
+        logger.debug("============> [onChainTx] start");
         ModelAndView modelAndView = new ModelAndView("post/onChainTx");
         for (List<String> onChainTx: onChainTxList) {
-            System.out.println(onChainTx.get(0) + " - " + onChainTx.get(1) + " - " + onChainTx.get(2));
+            logger.debug(onChainTx.get(0) + " - " + onChainTx.get(1) + " - " + onChainTx.get(2));
         }
         modelAndView.addObject("onChainTxList", onChainTxList);
-        System.out.println("============> [onChainTx] end");
+        logger.debug("============> [onChainTx] end");
         return modelAndView;
     }
 
@@ -161,8 +161,8 @@ public class PostController {
     @PostMapping("/callback")
     @ResponseBody
     String callback(@RequestBody JSONObject dataJson) throws IOException {
-        System.out.println("============> [callback] start");
-        System.out.println("callback data: " + dataJson);
+        logger.debug("============> [callback] start");
+        logger.debug("callback data: " + dataJson);
         List<String> onChainTx = Arrays.asList(
                 (String)dataJson.get("txHash"),
                 (String)dataJson.get("blockAddTime"),
@@ -172,18 +172,18 @@ public class PostController {
         successJson.put("success", true);
         successJson.put("msg", "回调接收成功");
         //String resultString = send(LOCAL_URL + "/callbackSuccess", dataJson, "utf-8");
-        //System.out.println("callbackSuccess resultString: " + resultString);
+        //logger.debug("callbackSuccess resultString: " + resultString);
         //callbackSuccess(dataJson);
-        System.out.println("============> [callback] end");
+        logger.debug("============> [callback] end");
         return successJson.toJSONString();
     }
 
 
     @PostMapping("/callbackSuccess")
     ModelAndView callbackSuccess(@RequestBody JSONObject dataJson) {
-        System.out.println("============> [callbackSuccess] start");
+        logger.debug("============> [callbackSuccess] start");
         ModelAndView modelAndView = new ModelAndView("post/callbackSuccess");
-        System.out.println("============> [callbackSuccess] end");
+        logger.debug("============> [callbackSuccess] end");
         return modelAndView;
     }
 
@@ -191,27 +191,27 @@ public class PostController {
     @RequestMapping(value = "/randomInvoice", method = RequestMethod.GET)
     @ResponseBody
     public String randomInvoice() {
-        System.out.println("--------------------------------------------randomInvoice ok");
+        logger.debug("--------------------------------------------randomInvoice ok");
         return JSON.toJSONString(Invoice.getRandomInvoice());
     }
 
 
     @GetMapping("/S_ST_01")
     String upChain(Model model) throws IOException {
-        System.out.println("============> [upChain get] start");
+        logger.debug("============> [upChain get] start");
         requestSn = UUID.randomUUID().toString();
         bussinessId = getBusinessId();
         model.addAttribute("systemId", SYSTEM_ID);
         model.addAttribute("requestSn", requestSn);
         model.addAttribute("businessId", bussinessId);
         model.addAttribute("invoice", new Invoice());
-        System.out.println("============> [upChain get] end");
+        logger.debug("============> [upChain get] end");
         return "post/upChain";
     }
 
     @PostMapping("/S_ST_01")
     ModelAndView upChain(@RequestParam Map<String, Object> params) throws Exception {
-        System.out.println("============> [upChain post] start");
+        logger.debug("============> [upChain post] start");
 
         JSONObject dataInfo = new JSONObject();
         dataInfo.putAll(params);
@@ -226,7 +226,7 @@ public class PostController {
 
         // 私钥签名
         String postDataString = JSONObject.toJSONString(postData, SerializerFeature.PrettyFormat);
-        System.out.println("== postDataString: " + postDataString);
+        logger.debug("== postDataString: " + postDataString);
         String signature = gmSm2Signature(postDataString.getBytes(StandardCharsets.UTF_8));
         postData.put("sign", signature);
 
@@ -241,26 +241,26 @@ public class PostController {
         modelAndView.addObject("txHash", resultJson.get("txHash"));
         modelAndView.addObject("data", dataInfo);
 
-        System.out.println("============> [upChain post] end");
+        logger.debug("============> [upChain post] end");
         return modelAndView;
     }
 
 
     @GetMapping("/S_ST_02")
     String queryByTxHash(Model model) {
-        System.out.println("============> [queryByTxHash get] start");
+        logger.debug("============> [queryByTxHash get] start");
         requestSn = UUID.randomUUID().toString();
         model.addAttribute("systemId", SYSTEM_ID);
         model.addAttribute("requestSn", requestSn);
 
-        System.out.println("============> [queryByTxHash get] end");
+        logger.debug("============> [queryByTxHash get] end");
         return "post/queryByTxHash";
     }
 
     @PostMapping("/S_ST_02")
     ModelAndView queryByTxHash(@RequestParam Map<String, Object> params) throws Exception {
-        System.out.println("============> [queryByTxHash post] start");
-        System.out.println("txHash: " + ((String)params.get("txHash")).trim());
+        logger.debug("============> [queryByTxHash post] start");
+        logger.debug("txHash: " + ((String)params.get("txHash")).trim());
         JSONObject postData = new JSONObject();
         postData.put("tableName", "tx");
         postData.put("systemId", SYSTEM_ID);
@@ -270,13 +270,13 @@ public class PostController {
 
         // 私钥签名
         String postDataString = JSONObject.toJSONString(postData, SerializerFeature.PrettyFormat);
-        System.out.println("== postDataString: " + postDataString);
+        logger.debug("== postDataString: " + postDataString);
         String signature = gmSm2Signature(postDataString.getBytes(StandardCharsets.UTF_8));
         postData.put("sign", signature);
 
         // post远程请求
         String responseString = send(POST_URL + "/obst/service/S_ST_02", postData, "utf-8");
-        System.out.println("response: " + responseString);
+        logger.debug("response: " + responseString);
         JSONObject resultJson = JSONObject.parseObject(responseString);
 
         ModelAndView modelAndView = new ModelAndView("post/queryByTxHashResult");
@@ -285,27 +285,27 @@ public class PostController {
         modelAndView.addObject("msg", resultJson.get("msg"));
         modelAndView.addObject("data", resultJson.getJSONObject("data"));
 
-        System.out.println("============> [queryByTxHash post] end");
+        logger.debug("============> [queryByTxHash post] end");
         return modelAndView;
     }
 
 
     @GetMapping("/S_ST_03")
     String verifyTxDataInfo(Model model) {
-        System.out.println("============> [verifyTxDataInfo get] start");
+        logger.debug("============> [verifyTxDataInfo get] start");
         requestSn = UUID.randomUUID().toString();
         bussinessId = getBusinessId();
         model.addAttribute("systemId", SYSTEM_ID);
         model.addAttribute("requestSn", requestSn);
         model.addAttribute("businessId", bussinessId);
 
-        System.out.println("============> [verifyTxDataInfo get] end");
+        logger.debug("============> [verifyTxDataInfo get] end");
         return "post/verifyTxDataInfo";
     }
 
     @PostMapping("/S_ST_03")
     ModelAndView verifyTxDataInfo(@RequestParam Map<String, Object> params) throws Exception {
-        System.out.println("============> [verifyTxDataInfo post] start");
+        logger.debug("============> [verifyTxDataInfo post] start");
         JSONObject postData = new JSONObject();
         postData.put("tableName", "tx");
         postData.put("systemId", SYSTEM_ID);
@@ -317,13 +317,13 @@ public class PostController {
 
         // 私钥签名
         String postDataString = JSONObject.toJSONString(postData, SerializerFeature.PrettyFormat);
-        System.out.println("== postDataString: " + postDataString);
+        logger.debug("== postDataString: " + postDataString);
         String signature = gmSm2Signature(postDataString.getBytes(StandardCharsets.UTF_8));
         postData.put("sign", signature);
 
         // post远程请求
         String responseString = send(POST_URL + "/obst/service/S_ST_03", postData, "utf-8");
-        System.out.println("response: " + responseString);
+        logger.debug("response: " + responseString);
         JSONObject resultJson = JSONObject.parseObject(responseString);
 
         ModelAndView modelAndView = new ModelAndView("post/verifyTxDataInfoResult");
@@ -331,27 +331,27 @@ public class PostController {
         modelAndView.addObject("code", resultJson.get("code"));
         modelAndView.addObject("msg", resultJson.get("msg"));
 
-        System.out.println("============> [verifyTxDataInfo post] end");
+        logger.debug("============> [verifyTxDataInfo post] end");
         return modelAndView;
     }
 
 
     @GetMapping("/S_ST_04")
     String compensateQuery(Model model) {
-        System.out.println("============> [compensateQuery get] start");
+        logger.debug("============> [compensateQuery get] start");
         requestSn = UUID.randomUUID().toString();
         bussinessId = getBusinessId();
         model.addAttribute("systemId", SYSTEM_ID);
         model.addAttribute("requestSn", requestSn);
         model.addAttribute("businessId", bussinessId);
 
-        System.out.println("============> [compensateQuery get] end");
+        logger.debug("============> [compensateQuery get] end");
         return "post/compensateQuery";
     }
 
     @PostMapping("/S_ST_04")
     ModelAndView compensateQuery(@RequestParam Map<String, Object> params) throws Exception {
-        System.out.println("============> [compensateQuery post] start");
+        logger.debug("============> [compensateQuery post] start");
 
         JSONObject postData = new JSONObject();
         postData.put("tableName", "tx");
@@ -363,13 +363,13 @@ public class PostController {
 
         // 私钥签名
         String postDataString = JSONObject.toJSONString(postData, SerializerFeature.PrettyFormat);
-        System.out.println("== postDataString: " + postDataString);
+        logger.debug("== postDataString: " + postDataString);
         String signature = gmSm2Signature(postDataString.getBytes(StandardCharsets.UTF_8));
         postData.put("sign", signature);
 
         // post远程请求
         String responseString = send(POST_URL + "/obst/service/S_ST_04", postData, "utf-8");
-        System.out.println("response: " + responseString);
+        logger.debug("response: " + responseString);
         JSONObject resultJson = JSONObject.parseObject(responseString);
 
         ModelAndView modelAndView = new ModelAndView("post/compensateQueryResult");
@@ -378,13 +378,13 @@ public class PostController {
         modelAndView.addObject("msg", resultJson.get("msg"));
         modelAndView.addObject("data", resultJson.getJSONObject("data"));
 
-        System.out.println("============> [compensateQuery post] end");
+        logger.debug("============> [compensateQuery post] end");
         return modelAndView;
     }
     
     
-    public static String send(String url, JSONObject jsonObject, String encoding) throws IOException {
-        System.out.println("====================> [send] start");
+    public String send(String url, JSONObject jsonObject, String encoding) throws IOException {
+        logger.debug("====================> [send] start");
         String body = "";
 
         CloseableHttpClient client = HttpClients.createDefault();
@@ -393,7 +393,7 @@ public class PostController {
         StringEntity stringEntity = new StringEntity(jsonObject.toString(), "utf-8");
         stringEntity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
         httpPost.setEntity(stringEntity);
-        System.out.println("== request url: " + url);
+        logger.debug("== request url: " + url);
 
         httpPost.setHeader("Content-type", "application/json");
         httpPost.setHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
@@ -406,9 +406,9 @@ public class PostController {
         }
         EntityUtils.consume(entity);
         response.close();
-        System.out.println("== body: " + body);
+        logger.debug("== body: " + body);
         //JSONObject returnJson = new JSONObject();
-        System.out.println("====================> [send] end\n");
+        logger.debug("====================> [send] end\n");
         return body;
     }
 }
