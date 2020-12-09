@@ -15,6 +15,10 @@ public class SqlController {
      */
     final Logger logger = LoggerFactory.getLogger(getClass());
 
+
+    /**
+     * sql查询结果类
+     */
     public static class SqlQueryResult {
         private final List<String> columns;
         private final List<List<String>> records;
@@ -229,6 +233,11 @@ public class SqlController {
     }
 
 
+    /**
+     * sql 查询
+     * @param sql
+     * @return
+     */
     public SqlQueryResult sqlQuery(String sql) {
         logger.debug("[sqlQuery] start");
         logger.debug("sql:" + sql);

@@ -1,0 +1,39 @@
+2020-12-07 18:58:30 |ERROR |JavaFX Application Thread |SqlController.java:146 |com.zlimbo.zcat.controller.SqlController |database connect fail: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2020-12-07 19:02:39 |ERROR |JavaFX Application Thread |SqlController.java:146 |com.zlimbo.zcat.controller.SqlController |database connect fail: Access denied for user 'root'@'10.11.6.202' (using password: YES)
+2020-12-07 19:04:17 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:04:38 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:04:57 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:04:57 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:06:37 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:06:51 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:20:18 |ERROR |JavaFX Application Thread |SqlController.java:266 |com.zlimbo.zcat.controller.SqlController |Communications link failure
+
+The last packet successfully received from the server was 807,204 milliseconds ago.  The last packet sent successfully to the server was 807,205 milliseconds ago.
+2020-12-07 19:38:48 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:39:10 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:39:25 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:40:05 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:41:18 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:41:30 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |contract and table have existed!
+2020-12-07 19:41:48 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |contract and table have existed!
+2020-12-07 19:41:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |contract and table have existed!
+2020-12-07 19:44:20 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |deploy error when creating table,please try again!
+2020-12-07 19:44:31 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |deploy error when creating table,please try again!
+2020-12-07 19:46:15 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:30 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:49 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:50 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:50 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:47:36 |ERROR |JavaFX Application Thread |SqlController.java:275 |com.zlimbo.zcat.controller.SqlController |Table 'ouyeel.w_packe' doesn't exist
+2020-12-07 19:47:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.

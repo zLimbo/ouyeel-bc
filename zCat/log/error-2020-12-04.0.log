@@ -1,0 +1,1 @@
+2020-12-04 09:49:16 |ERROR |JavaFX Application Thread |SqlController.java:266 |com.zlimbo.zcat.controller.SqlController |You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where v1.consumerName = v2.consumerName' at line 1

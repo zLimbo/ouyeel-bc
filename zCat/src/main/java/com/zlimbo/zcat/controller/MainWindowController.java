@@ -82,7 +82,7 @@ public class MainWindowController implements Initializable {
         logger.debug("[initialize] start");
 
         // 字体大小
-        mainVBox.setStyle("-fx-font: 18  arial; -fx-font-family: 'Microsoft YaHei UI'");
+        mainVBox.setStyle("-fx-font: 20  arial; -fx-font-family: 'Microsoft YaHei UI'");
 
         // 显示所有Tab的删除图标;
         showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
@@ -99,13 +99,12 @@ public class MainWindowController implements Initializable {
         newQueryButton.setDisable(true);
 
         // 测试
-        sqlController = new SqlController("blockchainbase",
+//        sqlController = new SqlController("ouyeel",
+//                "10.11.6.119", "3100", "root", "123456");
+        sqlController = new SqlController("ouyeel",
                 "localhost", "3306", "root", "123456");
         newQueryButton.setDisable(false);
         showDatabase();
-
-
-
 
         logger.debug("[initialize] end");
     }

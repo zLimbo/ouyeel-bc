@@ -113,9 +113,12 @@ public class ChainController {
             Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
             sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
             reader.close();
+            staticLogger.debug("ibatis SqlMapConfig success");
         } catch (IOException e) {
             staticLogger.error(e.getMessage());
             e.printStackTrace();
+            staticLogger.debug("ibatis SqlMapConfig error");
+            staticLogger.error(e.getMessage());
         }
     }
 

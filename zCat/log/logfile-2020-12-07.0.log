@@ -1,0 +1,1014 @@
+2020-12-07 09:09:28 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 09:09:28 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 09:09:28 |DEBUG |JavaFX Application Thread |MainWindowController.java:110 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 09:09:29 |DEBUG |JavaFX Application Thread |Main.java:35 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 09:09:41 |DEBUG |JavaFX Application Thread |MainWindowController.java:377 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] start
+2020-12-07 09:10:09 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-07 09:10:09 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |MainWindowController.java:478 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: sc
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: student
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tx
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |MainWindowController.java:515 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 09:10:10 |DEBUG |JavaFX Application Thread |MainWindowController.java:470 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] end
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:501 |com.zlimbo.zcat.controller.MainWindowController |item name: invoice
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:119 |com.zlimbo.zcat.controller.MainWindowController |[showTable] start
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:602 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = invoice]
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:606 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:586 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = invoice]
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:592 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: SELECT * FROM invoice
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |MainWindowController.java:198 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:SELECT * FROM invoice
+2020-12-07 09:10:14 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@73de591e: SELECT * FROM invoice
+2020-12-07 09:10:35 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 09:10:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:258 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-07 09:10:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:296 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-07 09:10:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 09:10:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:157 |com.zlimbo.zcat.controller.MainWindowController |[showTable] end
+2020-12-07 09:10:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 09:13:59 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 09:13:59 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 09:13:59 |DEBUG |JavaFX Application Thread |MainWindowController.java:110 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 09:14:00 |DEBUG |JavaFX Application Thread |Main.java:35 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 09:14:17 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 09:14:17 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 09:14:17 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-07 09:14:17 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://localhost:3306/blockchainbase?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:478 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: sc
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: student
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: tx
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:515 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:110 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 09:14:18 |DEBUG |JavaFX Application Thread |Main.java:35 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:501 |com.zlimbo.zcat.controller.MainWindowController |item name: invoice
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:119 |com.zlimbo.zcat.controller.MainWindowController |[showTable] start
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:602 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = invoice]
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:606 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:586 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = invoice]
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:592 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: SELECT * FROM invoice
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:198 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:SELECT * FROM invoice
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@c8b8686: SELECT * FROM invoice
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:258 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:296 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:157 |com.zlimbo.zcat.controller.MainWindowController |[showTable] end
+2020-12-07 09:14:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 09:14:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:524 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 09:14:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:602 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 鏌ヨ[1]]
+2020-12-07 09:14:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:606 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 09:14:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:586 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 鏌ヨ[1]]
+2020-12-07 09:14:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:592 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 09:14:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:576 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: select * from invoice;
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |MainWindowController.java:198 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:select * from invoice;
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@67eef6f2: select * from invoice;
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |MainWindowController.java:258 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |MainWindowController.java:296 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 09:14:45 |DEBUG |JavaFX Application Thread |MainWindowController.java:565 |com.zlimbo.zcat.controller.MainWindowController |flag: 3
+2020-12-07 17:21:45 |DEBUG |JavaFX Application Thread |Main.java:27 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 17:21:45 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 17:21:45 |DEBUG |JavaFX Application Thread |MainWindowController.java:110 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 17:21:45 |DEBUG |JavaFX Application Thread |Main.java:36 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 17:21:47 |DEBUG |JavaFX Application Thread |MainWindowController.java:377 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] start
+2020-12-07 17:21:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:470 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] end
+2020-12-07 17:22:11 |DEBUG |JavaFX Application Thread |Main.java:27 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 17:22:11 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 17:22:11 |DEBUG |JavaFX Application Thread |MainWindowController.java:110 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 17:22:11 |DEBUG |JavaFX Application Thread |Main.java:36 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 17:22:13 |DEBUG |JavaFX Application Thread |MainWindowController.java:377 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] start
+2020-12-07 17:22:17 |DEBUG |JavaFX Application Thread |MainWindowController.java:470 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] end
+2020-12-07 18:57:32 |DEBUG |JavaFX Application Thread |Main.java:27 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 18:57:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 18:57:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:110 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 18:57:32 |DEBUG |JavaFX Application Thread |Main.java:36 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 18:57:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:377 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] start
+2020-12-07 18:58:09 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-07 18:58:09 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://10.11.6.119:3100/root?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-07 18:58:30 |ERROR |JavaFX Application Thread |SqlController.java:146 |com.zlimbo.zcat.controller.SqlController |database connect fail: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2020-12-07 18:58:30 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-07 18:58:34 |DEBUG |JavaFX Application Thread |MainWindowController.java:470 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] end
+2020-12-07 18:59:00 |DEBUG |JavaFX Application Thread |Main.java:27 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 18:59:00 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 18:59:00 |DEBUG |JavaFX Application Thread |MainWindowController.java:110 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 18:59:01 |DEBUG |JavaFX Application Thread |Main.java:36 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 18:59:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:377 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] start
+2020-12-07 18:59:35 |DEBUG |JavaFX Application Thread |MainWindowController.java:470 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] end
+2020-12-07 19:02:15 |DEBUG |JavaFX Application Thread |MainWindowController.java:377 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] start
+2020-12-07 19:02:39 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-07 19:02:39 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://10.11.6.119:3306/ouyeel?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-07 19:02:39 |ERROR |JavaFX Application Thread |SqlController.java:146 |com.zlimbo.zcat.controller.SqlController |database connect fail: Access denied for user 'root'@'10.11.6.202' (using password: YES)
+2020-12-07 19:02:39 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-07 19:02:41 |DEBUG |JavaFX Application Thread |MainWindowController.java:470 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] end
+2020-12-07 19:02:42 |DEBUG |JavaFX Application Thread |MainWindowController.java:377 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] start
+2020-12-07 19:03:03 |DEBUG |JavaFX Application Thread |SqlController.java:127 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-07 19:03:03 |DEBUG |JavaFX Application Thread |SqlController.java:140 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://10.11.6.119:3100/ouyeel?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-07 19:03:03 |DEBUG |JavaFX Application Thread |SqlController.java:152 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-07 19:03:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:478 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:03:03 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:03:03 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:03:03 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:03:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:515 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:03:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:470 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] end
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:501 |com.zlimbo.zcat.controller.MainWindowController |item name: invoice
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:119 |com.zlimbo.zcat.controller.MainWindowController |[showTable] start
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:602 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = invoice]
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:606 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:586 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = invoice]
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:592 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: SELECT * FROM invoice
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:198 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:SELECT * FROM invoice
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@2b0a2444: SELECT * FROM invoice
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:258 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:296 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:157 |com.zlimbo.zcat.controller.MainWindowController |[showTable] end
+2020-12-07 19:03:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:03:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:524 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 19:03:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:602 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 查询[1]]
+2020-12-07 19:03:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:606 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:03:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:586 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 查询[1]]
+2020-12-07 19:03:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:592 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:03:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:576 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: desc invoice;
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:198 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:desc invoice;
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@3edc0f53: desc invoice;
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:258 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:296 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:03:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:565 |com.zlimbo.zcat.controller.MainWindowController |flag: 3
+2020-12-07 19:04:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:524 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 19:04:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:602 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 查询[2]]
+2020-12-07 19:04:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:606 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:04:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:586 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 查询[2]]
+2020-12-07 19:04:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:592 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:04:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:576 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 19:04:17 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:04:17 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: create table tmp( id int);
+2020-12-07 19:04:17 |DEBUG |JavaFX Application Thread |MainWindowController.java:179 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:04:17 |DEBUG |JavaFX Application Thread |SqlController.java:198 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:04:17 |DEBUG |JavaFX Application Thread |SqlController.java:199 |com.zlimbo.zcat.controller.SqlController |sql:create table tmp( id int);
+2020-12-07 19:04:17 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:04:17 |DEBUG |JavaFX Application Thread |SqlController.java:227 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:04:17 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:04:17 |DEBUG |JavaFX Application Thread |MainWindowController.java:565 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:04:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:04:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: create table tmp( id varchar(255));
+2020-12-07 19:04:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:179 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:04:38 |DEBUG |JavaFX Application Thread |SqlController.java:198 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:04:38 |DEBUG |JavaFX Application Thread |SqlController.java:199 |com.zlimbo.zcat.controller.SqlController |sql:create table tmp( id varchar(255));
+2020-12-07 19:04:38 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:04:38 |DEBUG |JavaFX Application Thread |SqlController.java:227 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:04:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:04:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:565 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:04:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:04:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: create table tmp ( id varchar(255))
+2020-12-07 19:04:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:179 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:04:56 |DEBUG |JavaFX Application Thread |SqlController.java:198 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:04:56 |DEBUG |JavaFX Application Thread |SqlController.java:199 |com.zlimbo.zcat.controller.SqlController |sql:create table tmp ( id varchar(255))
+2020-12-07 19:04:57 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |SqlController.java:227 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:565 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: create table tmp ( id varchar(255))
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:179 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |SqlController.java:198 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |SqlController.java:199 |com.zlimbo.zcat.controller.SqlController |sql:create table tmp ( id varchar(255))
+2020-12-07 19:04:57 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |SqlController.java:227 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:04:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:565 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:501 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:478 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:515 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:501 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:478 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |SqlController.java:161 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |SqlController.java:169 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |SqlController.java:187 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:515 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:27 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:28 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:28 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:28 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:28 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:29 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:29 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:497 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:501 |com.zlimbo.zcat.controller.MainWindowController |item name: invoice
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:119 |com.zlimbo.zcat.controller.MainWindowController |[showTable] start
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: SELECT * FROM invoice
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:198 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:SELECT * FROM invoice
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@5dfbefda: SELECT * FROM invoice
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:258 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:296 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:157 |com.zlimbo.zcat.controller.MainWindowController |[showTable] end
+2020-12-07 19:06:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:511 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:06:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:06:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: create table tmp2 ( id varchar(255))
+2020-12-07 19:06:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:179 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:06:37 |DEBUG |JavaFX Application Thread |SqlController.java:198 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:06:37 |DEBUG |JavaFX Application Thread |SqlController.java:199 |com.zlimbo.zcat.controller.SqlController |sql:create table tmp2 ( id varchar(255))
+2020-12-07 19:06:37 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |system field lost
+2020-12-07 19:06:37 |DEBUG |JavaFX Application Thread |SqlController.java:227 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:06:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:06:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:565 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:06:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:06:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: create table tmp2 ( 'id' varchar(255))
+2020-12-07 19:06:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:179 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:06:51 |DEBUG |JavaFX Application Thread |SqlController.java:198 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:06:51 |DEBUG |JavaFX Application Thread |SqlController.java:199 |com.zlimbo.zcat.controller.SqlController |sql:create table tmp2 ( 'id' varchar(255))
+2020-12-07 19:06:51 |ERROR |JavaFX Application Thread |SqlController.java:208 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:06:51 |DEBUG |JavaFX Application Thread |SqlController.java:227 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:06:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:06:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:565 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:20:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:169 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:20:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:170 |com.zlimbo.zcat.controller.MainWindowController |sql: desc invoice;
+2020-12-07 19:20:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:198 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 19:20:18 |DEBUG |JavaFX Application Thread |SqlController.java:233 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 19:20:18 |DEBUG |JavaFX Application Thread |SqlController.java:234 |com.zlimbo.zcat.controller.SqlController |sql:desc invoice;
+2020-12-07 19:20:18 |DEBUG |JavaFX Application Thread |SqlController.java:246 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@1725ddb8: desc invoice;
+2020-12-07 19:20:18 |ERROR |JavaFX Application Thread |SqlController.java:266 |com.zlimbo.zcat.controller.SqlController |Communications link failure
+
+The last packet successfully received from the server was 807,204 milliseconds ago.  The last packet sent successfully to the server was 807,205 milliseconds ago.
+2020-12-07 19:20:18 |DEBUG |JavaFX Application Thread |SqlController.java:286 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 19:20:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:245 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:20:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:565 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:24:32 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |SqlController.java:131 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |SqlController.java:144 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://10.11.6.119:3100/ouyeel?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |SqlController.java:156 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:24:33 |DEBUG |JavaFX Application Thread |MainWindowController.java:107 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 19:24:34 |DEBUG |JavaFX Application Thread |Main.java:35 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: invoice
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:116 |com.zlimbo.zcat.controller.MainWindowController |[showTable] start
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:599 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = invoice]
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:603 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:583 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = invoice]
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:589 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: SELECT * FROM invoice
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:195 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |SqlController.java:242 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |SqlController.java:243 |com.zlimbo.zcat.controller.SqlController |sql:SELECT * FROM invoice
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |SqlController.java:255 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@72ebb07c: SELECT * FROM invoice
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |SqlController.java:295 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:255 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:293 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:154 |com.zlimbo.zcat.controller.MainWindowController |[showTable] end
+2020-12-07 19:24:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:24:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:521 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 19:24:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:599 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 鏌ヨ[1]]
+2020-12-07 19:24:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:603 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:24:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:583 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 鏌ヨ[1]]
+2020-12-07 19:24:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:589 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:24:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:573 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: desc invoice;
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:195 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |SqlController.java:242 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |SqlController.java:243 |com.zlimbo.zcat.controller.SqlController |sql:desc invoice;
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |SqlController.java:255 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@59390903: desc invoice;
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |SqlController.java:295 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:255 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:293 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:24:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 3
+2020-12-07 19:24:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:521 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 19:24:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:599 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 鏌ヨ[2]]
+2020-12-07 19:24:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:603 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:24:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:583 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 鏌ヨ[2]]
+2020-12-07 19:24:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:589 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:24:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:573 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 19:38:40 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |SqlController.java:131 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |SqlController.java:144 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://10.11.6.119:3100/ouyeel?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |SqlController.java:156 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |MainWindowController.java:107 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 19:38:41 |DEBUG |JavaFX Application Thread |Main.java:35 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 19:38:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:625 |com.zlimbo.zcat.controller.MainWindowController |[connectionCita] start
+2020-12-07 19:38:44 |DEBUG |JavaFX Application Thread |MainWindowController.java:679 |com.zlimbo.zcat.controller.MainWindowController |[connectDatabase] end
+2020-12-07 19:38:44 |DEBUG |JavaFX Application Thread |MainWindowController.java:521 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 19:38:44 |DEBUG |JavaFX Application Thread |MainWindowController.java:599 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 鏌ヨ[1]]
+2020-12-07 19:38:44 |DEBUG |JavaFX Application Thread |MainWindowController.java:603 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:38:44 |DEBUG |JavaFX Application Thread |MainWindowController.java:583 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 鏌ヨ[1]]
+2020-12-07 19:38:44 |DEBUG |JavaFX Application Thread |MainWindowController.java:589 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:38:44 |DEBUG |JavaFX Application Thread |MainWindowController.java:573 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 19:38:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:38:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice2
+(
+	systemid varchar(255),
+	requestsn varchar(255),
+	txhash varchar(255) NOT NULL PRIMARY KEY,
+	contractaddress varchar(255),
+	onchain int,
+	blockheight varchar(255),
+	
+	invoiceno varchar(255),
+	consumername varchar(255),
+	consumertaxesno varchar(255),
+	sellername varchar(255),
+	sellertaxesno varchar(255),
+	invoicedate varchar(255),
+	invoicetype varchar(255),
+	taxespoint varchar(255),
+	taxes varchar(255),
+	price varchar(255),
+	priceplustaxes varchar(255),
+	invoicenumber varchar(255),
+	statementsheet varchar(255),
+	statementweight varchar(255),
+	timestamps varchar(255)
+);
+
+2020-12-07 19:38:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:38:48 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:38:48 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice2
+(
+	systemid varchar(255),
+	requestsn varchar(255),
+	txhash varchar(255) NOT NULL PRIMARY KEY,
+	contractaddress varchar(255),
+	onchain int,
+	blockheight varchar(255),
+	
+	invoiceno varchar(255),
+	consumername varchar(255),
+	consumertaxesno varchar(255),
+	sellername varchar(255),
+	sellertaxesno varchar(255),
+	invoicedate varchar(255),
+	invoicetype varchar(255),
+	taxespoint varchar(255),
+	taxes varchar(255),
+	price varchar(255),
+	priceplustaxes varchar(255),
+	invoicenumber varchar(255),
+	statementsheet varchar(255),
+	statementweight varchar(255),
+	timestamps varchar(255)
+);
+
+2020-12-07 19:38:48 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:38:48 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:38:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:38:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:39:01 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:39:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:39:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:39:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:39:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:39:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:39:02 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:39:03 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:39:10 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:39:10 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice2(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:39:10 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:39:10 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:39:10 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice2(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:39:10 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:39:10 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:39:10 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:39:10 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:39:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:39:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:39:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:39:25 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:39:25 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:39:25 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:39:25 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:39:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:39:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:40:05 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:40:05 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice2
+(
+	systemid varchar(255),
+	requestsn varchar(255),
+	txhash varchar(255) NOT NULL PRIMARY KEY,
+	contractaddress varchar(255),
+	onchain int,
+	blockheight varchar(255),
+	invoiceno varchar(255),
+	consumername varchar(255),
+	consumertaxesno varchar(255),
+	sellername varchar(255),
+	sellertaxesno varchar(255),
+	invoicedate varchar(255),
+	invoicetype varchar(255),
+	taxespoint varchar(255),
+	taxes varchar(255),
+	price varchar(255),
+	priceplustaxes varchar(255),
+	invoicenumber varchar(255),
+	statementsheet varchar(255),
+	statementweight varchar(255),
+	timestamps varchar(255)
+);
+
+2020-12-07 19:40:05 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:40:05 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:40:05 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice2
+(
+	systemid varchar(255),
+	requestsn varchar(255),
+	txhash varchar(255) NOT NULL PRIMARY KEY,
+	contractaddress varchar(255),
+	onchain int,
+	blockheight varchar(255),
+	invoiceno varchar(255),
+	consumername varchar(255),
+	consumertaxesno varchar(255),
+	sellername varchar(255),
+	sellertaxesno varchar(255),
+	invoicedate varchar(255),
+	invoicetype varchar(255),
+	taxespoint varchar(255),
+	taxes varchar(255),
+	price varchar(255),
+	priceplustaxes varchar(255),
+	invoicenumber varchar(255),
+	statementsheet varchar(255),
+	statementweight varchar(255),
+	timestamps varchar(255)
+);
+
+2020-12-07 19:40:05 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:40:05 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:40:05 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:40:05 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:41:16 |DEBUG |JavaFX Application Thread |MainWindowController.java:521 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 19:41:16 |DEBUG |JavaFX Application Thread |MainWindowController.java:599 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 鏌ヨ[2]]
+2020-12-07 19:41:16 |DEBUG |JavaFX Application Thread |MainWindowController.java:603 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:41:16 |DEBUG |JavaFX Application Thread |MainWindowController.java:583 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 鏌ヨ[2]]
+2020-12-07 19:41:16 |DEBUG |JavaFX Application Thread |MainWindowController.java:589 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:41:16 |DEBUG |JavaFX Application Thread |MainWindowController.java:573 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 19:41:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:41:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice2(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:41:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:41:18 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:41:18 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice2(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:41:18 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:41:18 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:41:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:41:18 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:41:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:41:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice2(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:41:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:41:30 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:41:30 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice2(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:41:30 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |contract and table have existed!
+2020-12-07 19:41:30 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:41:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:41:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:41:37 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:38 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:41:39 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:41:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:41:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:41:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:41:48 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:41:48 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:41:48 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |contract and table have existed!
+2020-12-07 19:41:48 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:41:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:41:48 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:41:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:41:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice4(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:41:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:41:51 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:41:51 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice4(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:41:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |contract and table have existed!
+2020-12-07 19:41:52 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:41:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:41:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:42:56 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:42:57 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: ouyeel
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:42:58 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:43:00 |DEBUG |JavaFX Application Thread |MainWindowController.java:521 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 19:43:00 |DEBUG |JavaFX Application Thread |MainWindowController.java:599 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 鏌ヨ[3]]
+2020-12-07 19:43:00 |DEBUG |JavaFX Application Thread |MainWindowController.java:603 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:43:00 |DEBUG |JavaFX Application Thread |MainWindowController.java:583 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 鏌ヨ[3]]
+2020-12-07 19:43:00 |DEBUG |JavaFX Application Thread |MainWindowController.java:589 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:43:00 |DEBUG |JavaFX Application Thread |MainWindowController.java:573 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: show tables;
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:195 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |SqlController.java:242 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |SqlController.java:243 |com.zlimbo.zcat.controller.SqlController |sql:show tables;
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |SqlController.java:255 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@47d6b245: show tables;
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |SqlController.java:295 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:255 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] start
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:293 |com.zlimbo.zcat.controller.MainWindowController |[showQuerySingle] end
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:43:06 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 3
+2020-12-07 19:44:13 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:44:13 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice6(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:44:13 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:44:13 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:44:13 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice6(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:44:20 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |deploy error when creating table,please try again!
+2020-12-07 19:44:20 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:44:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:44:20 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:44:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:44:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice6(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:44:25 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:44:25 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:44:25 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice6(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+2020-12-07 19:44:31 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |deploy error when creating table,please try again!
+2020-12-07 19:44:31 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:44:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:44:31 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |SqlController.java:131 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |SqlController.java:144 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://10.11.6.119:3100/ouyeel?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |SqlController.java:156 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: invoice
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:45:46 |DEBUG |JavaFX Application Thread |MainWindowController.java:107 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 19:45:47 |DEBUG |JavaFX Application Thread |Main.java:35 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 19:45:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:521 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 19:45:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:599 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 鏌ヨ[1]]
+2020-12-07 19:45:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:603 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:45:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:583 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 鏌ヨ[1]]
+2020-12-07 19:45:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:589 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:45:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:573 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 19:46:15 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:15 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice2
+(
+	systemid varchar(255),
+	requestsn varchar(255),
+	txhash varchar(255) NOT NULL PRIMARY KEY,
+	contractaddress varchar(255),
+	onchain int,
+	blockheight varchar(255),
+	invoiceno varchar(255),
+	consumername varchar(255),
+	consumertaxesno varchar(255),
+	sellername varchar(255),
+	sellertaxesno varchar(255),
+	invoicedate varchar(255),
+	invoicetype varchar(255),
+	taxespoint varchar(255),
+	taxes varchar(255),
+	price varchar(255),
+	priceplustaxes varchar(255),
+	invoicenumber varchar(255),
+	statementsheet varchar(255),
+	statementweight varchar(255),
+	timestamps varchar(255)
+);
+
+2020-12-07 19:46:15 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:15 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:15 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice2
+(
+	systemid varchar(255),
+	requestsn varchar(255),
+	txhash varchar(255) NOT NULL PRIMARY KEY,
+	contractaddress varchar(255),
+	onchain int,
+	blockheight varchar(255),
+	invoiceno varchar(255),
+	consumername varchar(255),
+	consumertaxesno varchar(255),
+	sellername varchar(255),
+	sellertaxesno varchar(255),
+	invoicedate varchar(255),
+	invoicetype varchar(255),
+	taxespoint varchar(255),
+	taxes varchar(255),
+	price varchar(255),
+	priceplustaxes varchar(255),
+	invoicenumber varchar(255),
+	statementsheet varchar(255),
+	statementweight varchar(255),
+	timestamps varchar(255)
+);
+
+2020-12-07 19:46:15 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:15 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:15 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:15 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice2(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:30 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:30 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice2(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:30 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:30 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:30 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:49 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:49 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:49 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:49 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:49 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:49 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:49 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:49 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:49 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:50 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:50 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:50 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice3(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:46:52 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:46:52 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
+2020-12-07 19:47:31 |DEBUG |JavaFX Application Thread |Main.java:26 |com.zlimbo.zcat.Main |[start] start
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:82 |com.zlimbo.zcat.controller.MainWindowController |[initialize] start
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |SqlController.java:131 |com.zlimbo.zcat.controller.SqlController |[SqlControl] start
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |SqlController.java:144 |com.zlimbo.zcat.controller.SqlController |database url: jdbc:mysql://10.11.6.119:3100/ouyeel?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |SqlController.java:156 |com.zlimbo.zcat.controller.SqlController |[SqlController] end
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:475 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] start
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |SqlController.java:165 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] start
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |SqlController.java:173 |com.zlimbo.zcat.controller.SqlController |table: w_packe
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |SqlController.java:191 |com.zlimbo.zcat.controller.SqlController |[sqlShowTables] end
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:512 |com.zlimbo.zcat.controller.MainWindowController |[showDatabase] end
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |MainWindowController.java:107 |com.zlimbo.zcat.controller.MainWindowController |[initialize] end
+2020-12-07 19:47:32 |DEBUG |JavaFX Application Thread |Main.java:35 |com.zlimbo.zcat.Main |[start] end
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:498 |com.zlimbo.zcat.controller.MainWindowController |item name: w_packe
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:116 |com.zlimbo.zcat.controller.MainWindowController |[showTable] start
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:599 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = w_packe]
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:603 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:583 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = w_packe]
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:589 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: SELECT * FROM w_packe
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:195 |com.zlimbo.zcat.controller.MainWindowController |Query!
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |SqlController.java:242 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] start
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |SqlController.java:243 |com.zlimbo.zcat.controller.SqlController |sql:SELECT * FROM w_packe
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |SqlController.java:255 |com.zlimbo.zcat.controller.SqlController |com.mysql.jdbc.JDBC42PreparedStatement@8f9373b: SELECT * FROM w_packe
+2020-12-07 19:47:36 |ERROR |JavaFX Application Thread |SqlController.java:275 |com.zlimbo.zcat.controller.SqlController |Table 'ouyeel.w_packe' doesn't exist
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |SqlController.java:295 |com.zlimbo.zcat.controller.SqlController |[sqlQuery] end
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:154 |com.zlimbo.zcat.controller.MainWindowController |[showTable] end
+2020-12-07 19:47:36 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:47:42 |DEBUG |JavaFX Application Thread |MainWindowController.java:494 |com.zlimbo.zcat.controller.MainWindowController |[handle] start
+
+2020-12-07 19:47:42 |DEBUG |JavaFX Application Thread |MainWindowController.java:508 |com.zlimbo.zcat.controller.MainWindowController |[handle] end
+2020-12-07 19:47:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:521 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] start
+2020-12-07 19:47:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:599 |com.zlimbo.zcat.controller.MainWindowController |[addTab] start [tabName = 鏌ヨ[1]]
+2020-12-07 19:47:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:603 |com.zlimbo.zcat.controller.MainWindowController |[addTab] end
+2020-12-07 19:47:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:583 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] start [tabName = 鏌ヨ[1]]
+2020-12-07 19:47:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:589 |com.zlimbo.zcat.controller.MainWindowController |[tabAddContextMenu] end
+2020-12-07 19:47:43 |DEBUG |JavaFX Application Thread |MainWindowController.java:573 |com.zlimbo.zcat.controller.MainWindowController |[newQuery] end
+2020-12-07 19:47:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:166 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] start
+2020-12-07 19:47:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:167 |com.zlimbo.zcat.controller.MainWindowController |sql: create table invoice(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:47:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:176 |com.zlimbo.zcat.controller.MainWindowController |CREATE TABLE!
+2020-12-07 19:47:51 |DEBUG |JavaFX Application Thread |SqlController.java:202 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] start
+2020-12-07 19:47:51 |DEBUG |JavaFX Application Thread |SqlController.java:203 |com.zlimbo.zcat.controller.SqlController |sql:create table invoice(systemid varchar(255),requestsn varchar(255),txhash varchar(255) NOT NULL PRIMARY KEY,invoiceno varchar(255),consumername varchar(255),consumertaxesno varchar(255),sellername varchar(255),sellertaxesno varchar(255),invoicedate varchar(255),invoicetype varchar(255),taxespoint varchar(255),taxes varchar(255),price varchar(255),priceplustaxes varchar(255),invoicenumber varchar(255),statementsheet varchar(255),statementweight varchar(255),timestamps varchar(255),contractaddress varchar(255),onchain int,blockheight varchar(255));
+
+2020-12-07 19:47:51 |ERROR |JavaFX Application Thread |SqlController.java:212 |com.zlimbo.zcat.controller.SqlController |SQL syntax error,please input correct SQL stmt.
+2020-12-07 19:47:51 |DEBUG |JavaFX Application Thread |SqlController.java:231 |com.zlimbo.zcat.controller.SqlController |[sqlCreateTable] end
+2020-12-07 19:47:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:242 |com.zlimbo.zcat.controller.MainWindowController |[executeSqlAndShowTableView] end
+2020-12-07 19:47:51 |DEBUG |JavaFX Application Thread |MainWindowController.java:562 |com.zlimbo.zcat.controller.MainWindowController |flag: 0
