@@ -38,6 +38,7 @@ import java.util.*;
 public class PostController {
 
     final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final String tableName = "tx6";
 
     private static final String LOCAL_URL = "http://127.0.0.1:8082";
     private static final String POST_URL = "http://127.0.0.1:8080";
@@ -214,9 +215,10 @@ public class PostController {
         logger.debug("============> [upChain post] start");
 
         JSONObject dataInfo = new JSONObject();
-        dataInfo.putAll(params);
+        //dataInfo.putAll(params);
+        dataInfo.put("invoiceno", params.get("invoiceNo"));
         JSONObject postData = new JSONObject();
-        postData.put("tableName", "tx");
+        postData.put("tableName", tableName);
         postData.put("systemId", SYSTEM_ID);
         postData.put("requestSn", requestSn);
         postData.put("dataInfo", dataInfo);
@@ -262,7 +264,7 @@ public class PostController {
         logger.debug("============> [queryByTxHash post] start");
         logger.debug("txHash: " + ((String)params.get("txHash")).trim());
         JSONObject postData = new JSONObject();
-        postData.put("tableName", "tx");
+        postData.put("tableName", tableName);
         postData.put("systemId", SYSTEM_ID);
         postData.put("requestSn", requestSn);
         postData.put("txHash", ((String)params.get("txHash")).trim());
@@ -307,7 +309,7 @@ public class PostController {
     ModelAndView verifyTxDataInfo(@RequestParam Map<String, Object> params) throws Exception {
         logger.debug("============> [verifyTxDataInfo post] start");
         JSONObject postData = new JSONObject();
-        postData.put("tableName", "tx");
+        postData.put("tableName", tableName);
         postData.put("systemId", SYSTEM_ID);
         postData.put("requestSn", requestSn);
         postData.put("businessId", bussinessId);
@@ -354,7 +356,7 @@ public class PostController {
         logger.debug("============> [compensateQuery post] start");
 
         JSONObject postData = new JSONObject();
-        postData.put("tableName", "tx");
+        postData.put("tableName", tableName);
         postData.put("systemId", SYSTEM_ID);
         postData.put("requestSn", requestSn);
         postData.put("businessId", bussinessId);

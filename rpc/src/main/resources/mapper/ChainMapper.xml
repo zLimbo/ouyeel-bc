@@ -4,12 +4,11 @@
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap>
     <select id="test" resultClass="java.util.HashMap">
-        select * from sc;
+        select * from tx6 where txhash='0xff5869b44fb2a389e755304ec3b0015b70206ca4494ab5ff61c0931d39245218'
     </select>
 
     <insert id="upChain2" parameterClass="java.util.HashMap">
-       INSERT INTO $tableName$
-        VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#, #txHash#, #onChain#)
+       INSERT INTO $tableName$ VALUES (#systemId#, #requestSn#, #txHash#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#, #onChain#);
     </insert>
 
     <insert id="upChain" parameterClass="java.util.HashMap">
@@ -32,19 +31,19 @@
     <select id="queryByTxHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
         SELECT *
         FROM $tableName$
-        WHERE txHash=#txHash#
+        WHERE txhash=#txHash#
     </select>
 
     <select id="queryByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
         SELECT *
         FROM $tableName$
-        WHERE requestSn=#requestSn#
+        WHERE requestsn=#requestSn#
     </select>
 
     <select id="compensateQuery" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
         SELECT *
         FROM $tableName$
-        WHERE requestSn=#searchRequestSn#
+        WHERE requestsn=#searchRequestSn#
     </select>
 
     <select id="queryForKey" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">

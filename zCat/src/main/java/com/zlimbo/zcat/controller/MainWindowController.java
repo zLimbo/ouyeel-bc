@@ -82,7 +82,7 @@ public class MainWindowController implements Initializable {
         logger.debug("[initialize] start");
 
         // 字体大小
-        mainVBox.setStyle("-fx-font: 20  arial; -fx-font-family: 'Microsoft YaHei UI'");
+        mainVBox.setStyle("-fx-font: 18  arial; -fx-font-family: 'Microsoft YaHei UI'");
 
         // 显示所有Tab的删除图标;
         showTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
@@ -134,13 +134,17 @@ public class MainWindowController implements Initializable {
             ToolBar toolBar = new ToolBar();
             Button closeButton = new Button("关闭",
                     new ImageView(new Image(getClass().getResourceAsStream("/image/close.png"))));
-            Button addButton = new Button("Add",
+            Button addButton = new Button("添加",
                     new ImageView(new Image(getClass().getResourceAsStream("/image/add.png"))));
             toolBar.getItems().addAll(closeButton, addButton);
             borderPane.setTop(toolBar);
             tableSplitPane = new SplitPane();
             borderPane.setCenter(tableSplitPane);
             tableTab.setContent(borderPane);
+
+//            ToolBar bottomToolBar = new ToolBar();
+//            //bottomToolBar.setOrientation();
+//            borderPane.setBottom(bottomToolBar);
 
             closeButton.setOnAction(event -> {
                 closeTab(tableName, tableTab);

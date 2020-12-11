@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+    <select id="test" resultClass="java.util.HashMap">
+        SELECT *
+        FROM $tableName$
+        WHERE requestsn=#requestSn#
+    </select>
+
+
+    <insert id="upChain" parameterClass="java.util.HashMap">
+        INSERT INTO $tableName$
+        VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#)
+    </insert>
+
+
+    <select id="queryByTxHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT *
+        FROM $tableName$
+        WHERE txhash=#txHash#
+    </select>
+
+    <select id="queryByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT *
+        FROM $tableName$
+        WHERE requestsn=#requestSn#
+    </select>
+
+
+</sqlMap>

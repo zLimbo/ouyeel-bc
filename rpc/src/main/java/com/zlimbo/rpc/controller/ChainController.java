@@ -3,7 +3,6 @@ package com.zlimbo.rpc.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.citahub.cita.protocol.CITAj;
-import com.citahub.cita.protocol.core.methods.response.*;
 import com.citahub.cita.protocol.http.HttpService;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -178,7 +177,7 @@ public class ChainController {
      */
     @RequestMapping("/")
     public String index() {
-        
+
         return "hello";
     }
 
@@ -190,12 +189,15 @@ public class ChainController {
      * @throws IOException
      */
     @RequestMapping("/test")
-    public String test() throws SQLException, IOException {
-        List<HashMap<String, String>> list = sqlMapClient.queryForList("test");
+    public String test() throws SQLException {
+        logger.debug("[test] start");
+        Map<String, String> map = new HashMap<>();
+        map.put("tableName", "tx6");
+        map.put("requestSn", "0xff5869b44fb2a389e755304ec3b0015b70206ca4494ab5ff61c0931d39245218");
+        List<HashMap<String, String>> list = sqlMapClient.queryForList("queryByTxHash", map);
         String txHash = "1234";
-        AppGetTransactionReceipt txReceipt = service.appGetTransactionReceipt(txHash).send();
-        logger.debug("TransactionReceipt: " + txReceipt.getTransactionReceipt());
-        return "test";
+        logger.debug("[test] end");
+        return String.valueOf(list.size());
     }
 
 
@@ -276,16 +278,21 @@ public class ChainController {
                         Map<String, String> parameterMap = new HashMap<>();
                         parameterMap.put("txHash", txHash);
                         parameterMap.put("tableName", tableName);
-                        List<HashMap<String,Object>> resultList = sqlMapClient.queryForList("queryByTxHash", parameterMap);
-
+                        logger.debug("queryByTxHash...");
+                        logger.debug("tableName: " + tableName);
+                        logger.debug("txHash: [{}]", txHash);
+                        List<HashMap<String, String>> resultList = sqlMapClient.queryForList("queryByTxHash", parameterMap);
+                        logger.debug("queryByTxHash success");
+                        logger.debug("result num: " + resultList.size());
                         if (!resultList.isEmpty()) {
-                            HashMap<String, Object> resultMap = resultList.get(0);
-                            if ("1".equals(resultMap.get("onChain"))) {
-                                logger.debug("onChain: " + resultMap.get("onChain"));
+                            HashMap<String, String> resultMap = resultList.get(0);
+                            logger.debug("onChain: " + resultMap.get("onchain"));
+                            if ("1".equals(resultMap.get("onchain"))) {
+
                                 JSONObject postDataJson = new JSONObject();
                                 postDataJson.put("txHash", txHash);
-                                postDataJson.put("blockAddTime", resultMap.get("blockAddTime"));
-                                postDataJson.put("blockNumber", resultMap.get("blockNumber"));
+                                postDataJson.put("blockAddTime", resultMap.get("blockaddtime"));
+                                postDataJson.put("blockNumber", resultMap.get("blockheight"));
                                 try {
                                     String resultString = send(callbackUrl, postDataJson, "utf-8");
                                     JSONObject resultJson = JSONObject.parseObject(resultString);
@@ -325,117 +332,28 @@ public class ChainController {
         logger.debug("[testCallback] end");
     }
 
-//    @RequestMapping(
-//            value = "/address",
-//            method = RequestMethod.POST,
-//            produces = "application/json;charset=UTF-8")
-//    String rpcInterface(@RequestBody JSONObject dataJson) {
-//        // 处理输入的 json 数据
-//        // 返回响应消息
-//        return "reponseDataJsonString";
-//    }
-
-    /**
-     * 业务数据上链存证接口, 将业务信息进行上链存证。不对业务数据进行关联。
-     * @param dataJson
-     * @return
-     */
-    @RequestMapping(value = "/obst/service/S_ST_01", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    String upChain(@RequestBody JSONObject dataJson) {
-        logger.debug("[upChain] start");
-        JSONObject returnJson = new JSONObject();
-        try {
-            logger.debug("request json: " + dataJson.toJSONString());
-
-            // 从json中获取签名用公钥进行验证
-            String sign = (String) dataJson.get("sign");
-            dataJson.remove("sign");
-            String dataString = JSONObject.toJSONString(dataJson, SerializerFeature.PrettyFormat);
-            // 验签失败，返回
-            if (!gmSm2VerifySignature(dataString.getBytes(StandardCharsets.UTF_8), Hex.decode(sign))) {
-                logger.debug("gmSm2VerifySignature fail");
-                returnJson.put("code", ResultCode.SIGN_VERIFY_FAIL.getCode());
-                returnJson.put("msg", ResultCode.SIGN_VERIFY_FAIL.getMsg());
-                return returnJson.toJSONString();
-            }
-
-            String tableName = (String)dataJson.get("tableName");
-            String systemId = (String) dataJson.get("systemId");
-            String requestSn = (String) dataJson.get("requestSn");
-            String dataInfo = dataJson.getJSONObject("dataInfo").toJSONString();
-            String businessId = (String) dataJson.get("businessId");
-            String callbackUrl = (String)dataJson.get("callbackUrl");
-            String invokeTime = (String) dataJson.get("invokeTime");
-            String attach = (String) dataJson.get("attach");
-
-            String privateKey = "0x67d7273b1e670ca5b0482381b631cee28a33ac03d8839244ae97df6f74bc027d";
-            String publicKey = "0x0379f6feff204503fd71e6ecb16b1f190d70aae14358ac79e2739fcc2779ecc18e" +
-                    "c8e25f861839a8607dc941ddc6c75116b89d7a2cbd6f23189d2265ebb4edd7";
-            String secretKey = "0123456789abcdef";
-            String txHash = getHashValue(dataInfo);
-            String onChain = "1";
-            try {
-                Map<String, String> dataMap = new HashMap<>();
-                dataMap.put("tableName", tableName);
-                dataMap.put("systemId", systemId);
-                dataMap.put("requestSn", requestSn);
-                dataMap.put("dataInfo", dataInfo);
-                dataMap.put("secretKey", secretKey);
-                dataMap.put("privateKey", privateKey);
-                dataMap.put("publicKey", publicKey);
-                dataMap.put("txHash", txHash);
-                dataMap.put("onChain", onChain);
-                sqlMapClient.insert("upChain2", dataMap);
-
-                // 查询生成的哈希值
-                Map<String, String> parameterMap = new HashMap<>();
-                parameterMap.put("tableName", tableName);
-                parameterMap.put("requestSn", requestSn);
-                List<HashMap<String, String>> resultList = sqlMapClient.queryForList("queryByRequestSn", parameterMap);
-                Map<String, String> resultMap = resultList.get(0);
-                String resultTxHash = resultMap.get("txHash");
-
-                logger.debug("UP_TX_SUCCESS");
-                returnJson.put("code", ResultCode.UP_TX_SUCCESS.getCode());
-                returnJson.put("msg", ResultCode.UP_TX_SUCCESS.getMsg());
-                returnJson.put("txHash", resultTxHash);
-
-                if (callbackUrl != null) {
-                    upChainAsyncCallBack(callbackUrl, tableName, txHash);
-                }
-            } catch (Exception e) {
-                logger.error(e.getMessage());
-                e.printStackTrace();
-                returnJson.put("code", ResultCode.UP_TX_FAIL.getCode());
-                returnJson.put("msg", ResultCode.UP_TX_FAIL.getMsg());
-            }
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            e.printStackTrace();
-            returnJson.clear();
-            returnJson.put("code", ResultCode.PARAMETER_ERROR.getCode());
-            returnJson.put("msg", ResultCode.PARAMETER_ERROR.getMsg());
-        }
-        logger.debug(returnJson.toJSONString());
-        logger.debug("[upChain] end");
-        return returnJson.toJSONString();
+    @RequestMapping(
+            value = "/address",
+            method = RequestMethod.POST,
+            produces = "application/json;charset=UTF-8")
+    String rpcInterface(@RequestBody JSONObject dataJson) {
+        // 处理输入的 json 数据
+        // 返回响应消息
+        return "reponseDataJsonString";
     }
-
-
-
 
 //    /**
 //     * 业务数据上链存证接口, 将业务信息进行上链存证。不对业务数据进行关联。
 //     * @param dataJson
 //     * @return
 //     */
-//    @RequestMapping(value = "/obst/service/S_ST_01",
-//            method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+//    @RequestMapping(value = "/obst/service/S_ST_01", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 //    String upChain(@RequestBody JSONObject dataJson) {
 //        logger.debug("[upChain] start");
 //        JSONObject returnJson = new JSONObject();
 //        try {
 //            logger.debug("request json: " + dataJson.toJSONString());
+//
 //            // 从json中获取签名用公钥进行验证
 //            String sign = (String) dataJson.get("sign");
 //            dataJson.remove("sign");
@@ -447,7 +365,7 @@ public class ChainController {
 //                returnJson.put("msg", ResultCode.SIGN_VERIFY_FAIL.getMsg());
 //                return returnJson.toJSONString();
 //            }
-//            // 获取json数据
+//
 //            String tableName = (String)dataJson.get("tableName");
 //            String systemId = (String) dataJson.get("systemId");
 //            String requestSn = (String) dataJson.get("requestSn");
@@ -457,17 +375,13 @@ public class ChainController {
 //            String invokeTime = (String) dataJson.get("invokeTime");
 //            String attach = (String) dataJson.get("attach");
 //
-//            // 根据systemId查找公私钥
-//            Map<String, String> parameterMap1 = new HashMap<>();
-//            parameterMap1.put("systemId", systemId);
-//            List<HashMap<String, String>> resultList1 = sqlMapClient.queryForList("queryForKey", parameterMap1);
-//            HashMap<String, String> resultMap1 = resultList1.get(0);
-//            String privateKey = resultMap1.get("privateKey");
-//            String publicKey = resultMap1.get("publicKey");
+//            String privateKey = "0x67d7273b1e670ca5b0482381b631cee28a33ac03d8839244ae97df6f74bc027d";
+//            String publicKey = "0x0379f6feff204503fd71e6ecb16b1f190d70aae14358ac79e2739fcc2779ecc18e" +
+//                    "c8e25f861839a8607dc941ddc6c75116b89d7a2cbd6f23189d2265ebb4edd7";
 //            String secretKey = "0123456789abcdef";
-//
+//            String txHash = getHashValue(dataInfo);
+//            String onChain = "1";
 //            try {
-//                // 交易上链
 //                Map<String, String> dataMap = new HashMap<>();
 //                dataMap.put("tableName", tableName);
 //                dataMap.put("systemId", systemId);
@@ -476,41 +390,155 @@ public class ChainController {
 //                dataMap.put("secretKey", secretKey);
 //                dataMap.put("privateKey", privateKey);
 //                dataMap.put("publicKey", publicKey);
-//                sqlMapClient.insert("upChain", dataMap);
+//                dataMap.put("txHash", txHash);
+//                dataMap.put("onchain", onChain);
+//                sqlMapClient.insert("upChain2", dataMap);
 //
 //                // 查询生成的哈希值
 //                Map<String, String> parameterMap = new HashMap<>();
 //                parameterMap.put("tableName", tableName);
 //                parameterMap.put("requestSn", requestSn);
-//                List<HashMap<String, String>> resultList =
-//                        sqlMapClient.queryForList("queryByRequestSn", parameterMap);
+//                List<HashMap<String, String>> resultList = sqlMapClient.queryForList("queryByRequestSn", parameterMap);
 //                Map<String, String> resultMap = resultList.get(0);
 //                String resultTxHash = resultMap.get("txHash");
 //
-//                // 返回响应
+//                logger.debug("UP_TX_SUCCESS");
 //                returnJson.put("code", ResultCode.UP_TX_SUCCESS.getCode());
 //                returnJson.put("msg", ResultCode.UP_TX_SUCCESS.getMsg());
 //                returnJson.put("txHash", resultTxHash);
 //
-//                // 如果有回调地址，则进行异步回调
 //                if (callbackUrl != null) {
-//                    upChainAsyncCallBack(callbackUrl, tableName, resultTxHash);
+//                    upChainAsyncCallBack(callbackUrl, tableName, txHash);
 //                }
 //            } catch (Exception e) {
+//                logger.error(e.getMessage());
 //                e.printStackTrace();
 //                returnJson.put("code", ResultCode.UP_TX_FAIL.getCode());
 //                returnJson.put("msg", ResultCode.UP_TX_FAIL.getMsg());
 //            }
 //        } catch (Exception e) {
+//            logger.error(e.getMessage());
 //            e.printStackTrace();
 //            returnJson.clear();
 //            returnJson.put("code", ResultCode.PARAMETER_ERROR.getCode());
 //            returnJson.put("msg", ResultCode.PARAMETER_ERROR.getMsg());
 //        }
-//
+//        logger.debug(returnJson.toJSONString());
 //        logger.debug("[upChain] end");
 //        return returnJson.toJSONString();
 //    }
+
+
+
+
+    /**
+     * 业务数据上链存证接口, 将业务信息进行上链存证。不对业务数据进行关联。
+     * @param dataJson
+     * @return
+     */
+    @RequestMapping(value = "/obst/service/S_ST_01",
+            method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    String upChain(@RequestBody JSONObject dataJson) {
+        logger.debug("[upChain] start");
+        JSONObject returnJson = new JSONObject();
+        try {
+            logger.debug("request json: " + dataJson.toJSONString());
+            // 从json中获取签名用公钥进行验证
+            String sign = (String) dataJson.get("sign");
+            dataJson.remove("sign");
+            String dataString = JSONObject.toJSONString(dataJson, SerializerFeature.PrettyFormat);
+            // 验签失败，返回
+            if (!gmSm2VerifySignature(dataString.getBytes(StandardCharsets.UTF_8), Hex.decode(sign))) {
+                logger.debug("gmSm2VerifySignature fail");
+                returnJson.put("code", ResultCode.SIGN_VERIFY_FAIL.getCode());
+                returnJson.put("msg", ResultCode.SIGN_VERIFY_FAIL.getMsg());
+                return returnJson.toJSONString();
+            }
+            // 获取json数据
+            String tableName = (String)dataJson.get("tableName");
+            String systemId = (String) dataJson.get("systemId");
+            String requestSn = (String) dataJson.get("requestSn");
+            String dataInfo = dataJson.getJSONObject("dataInfo").toJSONString();
+            String businessId = (String) dataJson.get("businessId");
+            String callbackUrl = (String)dataJson.get("callbackUrl");
+            String invokeTime = (String) dataJson.get("invokeTime");
+            String attach = (String) dataJson.get("attach");
+
+            // 根据systemId查找公私钥
+//            Map<String, String> parameterMap1 = new HashMap<>();
+//            parameterMap1.put("systemId", systemId);
+//            List<HashMap<String, String>> resultList1 = sqlMapClient.queryForList("queryForKey", parameterMap1);
+//            HashMap<String, String> resultMap1 = resultList1.get(0);
+//            String privateKey = resultMap1.get("privateKey");
+//            String publicKey = resultMap1.get("publicKey");
+            String privateKey = "d6c83aee4bfbeb135a2dcef8c803b186d0678a99002b09d3c60c22aca7105005";
+            String publicKey = "2204404536ab867d9a964bfcc5e6fdaa7d77e509ce5891d38b3ebbb036e5c225994" +
+                    "597ea6d0bdff3539fd3062b3943a1c7dd75d173f35101b71298e9f7f08d51";
+            String secretKey = "0123456789abcdef";
+
+            try {
+                // 交易上链
+                Map<String, String> dataMap = new HashMap<>();
+                dataMap.put("tableName", tableName);
+                dataMap.put("systemId", systemId);
+                dataMap.put("requestSn", requestSn);
+                dataMap.put("dataInfo", dataInfo);
+                dataMap.put("secretKey", secretKey);
+                dataMap.put("privateKey", privateKey);
+                dataMap.put("publicKey", publicKey);
+                logger.debug("upChain...");
+                String sql = "INSERT INTO " + dataMap.get("tableName") + " VALUES (" +
+                        "\'" + dataMap.get("systemId") + "\', " +
+                        "\'" + dataMap.get("requestSn") + "\', " +
+                        "\'" + dataMap.get("dataInfo") + "\', " +
+                        "\'" + dataMap.get("secretKey") + "\', " +
+                        "\'" + dataMap.get("privateKey") + "\', " +
+                        "\'" + dataMap.get("publicKey") + "\')";
+                logger.debug("sql: " + sql);
+                Object obj = sqlMapClient.insert("upChain", dataMap);
+                //logger.debug(obj.toString());
+                logger.debug("upChain success");
+                // 查询生成的哈希值
+                Map<String, String> parameterMap = new HashMap<>();
+                parameterMap.put("tableName", tableName);
+                parameterMap.put("requestSn", requestSn);
+                logger.debug("queryByRequestSn...");
+                String sql2 = "SELECT * FROM " + parameterMap.get("tableName") + " " +
+                        "WHERE requestsn=\'" + parameterMap.get("requestSn") + "\'";
+                //
+                 Thread.sleep(10000);
+                logger.debug("sql2: " + sql2);
+                List<HashMap<String, String>> resultList =
+                        sqlMapClient.queryForList("queryByRequestSn", parameterMap);
+                logger.debug("queryByRequestSnl success");
+                Map<String, String> resultMap = resultList.get(0);
+                String resultTxHash = resultMap.get("txhash");
+                logger.debug("txHash: " + resultTxHash);
+
+                // 返回响应
+                returnJson.put("code", ResultCode.UP_TX_SUCCESS.getCode());
+                returnJson.put("msg", ResultCode.UP_TX_SUCCESS.getMsg());
+                returnJson.put("txHash", resultTxHash);
+
+                // 如果有回调地址，则进行异步回调
+                if (callbackUrl != null) {
+                    upChainAsyncCallBack(callbackUrl, tableName, resultTxHash);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                returnJson.put("code", ResultCode.UP_TX_FAIL.getCode());
+                returnJson.put("msg", ResultCode.UP_TX_FAIL.getMsg());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnJson.clear();
+            returnJson.put("code", ResultCode.PARAMETER_ERROR.getCode());
+            returnJson.put("msg", ResultCode.PARAMETER_ERROR.getMsg());
+        }
+
+        logger.debug("[upChain] end");
+        return returnJson.toJSONString();
+    }
 
 
     /**
@@ -555,7 +583,8 @@ public class ChainController {
 
             if (!resultList.isEmpty()) {
                 HashMap<String, String> resultMap = resultList.get(0);
-                if ("1".equals(resultMap.get("onChain"))) {
+                logger.debug("onChain: " + resultMap.get("onchain"));
+                if ("1".equals(resultMap.get("onchain"))) {
                     logger.debug("UP_CHAIN_SUCCESS");
                     returnJson.put("code", ResultCode.UP_CHAIN_SUCCESS.getCode());
                     returnJson.put("msg", ResultCode.UP_CHAIN_SUCCESS.getMsg());
@@ -625,8 +654,8 @@ public class ChainController {
             List<HashMap<String,Object>> resultList = sqlMapClient.queryForList("queryByTxHash", parameterMap);
 
             if (!resultList.isEmpty()) {
-                //Map<String, Object> resultMap = resultList.get(0);
-                JSONObject resultMap = JSONObject.parseObject((String) resultList.get(0).get("dataInfo"));
+                Map<String, Object> resultMap = resultList.get(0);
+//                JSONObject resultMap = JSONObject.parseObject((String) resultList.get(0).get("dataInfo"));
                 JSONObject dataInfo = dataJson.getJSONObject("dataInfo");
 
                 // 对数据进行验证，比较dataInfo内容是否一致
@@ -706,12 +735,14 @@ public class ChainController {
             Map<String, String> parameterMap = new HashMap<>();
             parameterMap.put("tableName", tableName);
             parameterMap.put("searchRequestSn", searchRequestSn);
-            List<HashMap<String,Object>> resultList = sqlMapClient.queryForList("compensateQuery", parameterMap);
-
+            List<HashMap<String,String>> resultList = sqlMapClient.queryForList("compensateQuery", parameterMap);
+            logger.debug("result num: " + resultList.size());
             if (!resultList.isEmpty()) {
                 logger.debug("UP_CHAIN_SUCCESS");
-                HashMap<String, Object> resultMap = resultList.get(0);
-                if ("1".equals(resultMap.get("onChain"))) {
+                HashMap<String, String> resultMap = resultList.get(0);
+                String onChain = resultMap.get("onchain");
+                logger.debug("onChain: [{}] [{}]", onChain, "1".equals(onChain));
+                if ("1".equals(onChain)) {
                     logger.debug("sql query empty");
                     returnJson.put("code", ResultCode.UP_CHAIN_SUCCESS.getCode());
                     returnJson.put("msg", ResultCode.UP_CHAIN_SUCCESS.getMsg());
