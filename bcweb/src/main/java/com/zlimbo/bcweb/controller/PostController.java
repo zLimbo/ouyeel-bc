@@ -27,7 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
-import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.*;
@@ -38,7 +37,7 @@ import java.util.*;
 public class PostController {
 
     final Logger logger = LoggerFactory.getLogger(getClass());
-    private static final String tableName = "tx6";
+    private static final String tableName = "invoice";
 
     private static final String LOCAL_URL = "http://127.0.0.1:8082";
     private static final String POST_URL = "http://127.0.0.1:8080";
@@ -165,9 +164,9 @@ public class PostController {
         logger.debug("============> [callback] start");
         logger.debug("callback data: " + dataJson);
         List<String> onChainTx = Arrays.asList(
-                (String)dataJson.get("txHash"),
-                (String)dataJson.get("blockAddTime"),
-                (String)dataJson.get("blockNumber"));
+                (String)dataJson.get(ChainParam.TX_HASH),
+                (String)dataJson.get(ChainParam.BLOCK_TIME),
+                (String)dataJson.get(ChainParam.BLOCK_HEIGHT));
         onChainTxList.add(onChainTx);
         JSONObject successJson = new JSONObject();
         successJson.put("success", true);
@@ -197,41 +196,84 @@ public class PostController {
     }
 
 
-    @GetMapping("/S_ST_01")
-    String upChain(Model model) throws IOException {
-        logger.debug("============> [upChain get] start");
-        requestSn = UUID.randomUUID().toString();
-        bussinessId = getBusinessId();
-        model.addAttribute("systemId", SYSTEM_ID);
-        model.addAttribute("requestSn", requestSn);
-        model.addAttribute("businessId", bussinessId);
-        model.addAttribute("invoice", new Invoice());
-        logger.debug("============> [upChain get] end");
-        return "post/upChain";
-    }
+//    @GetMapping("/S_ST_01")
+//    String upChain(Model model) throws IOException {
+//        logger.debug("============> [upChain get] start");
+//        requestSn = UUID.randomUUID().toString();
+//        bussinessId = getBusinessId();
+//        model.addAttribute("systemId", SYSTEM_ID);
+//        model.addAttribute("requestSn", requestSn);
+//        model.addAttribute("businessId", bussinessId);
+//        model.addAttribute("invoice", new Invoice());
+//        logger.debug("============> [upChain get] end");
+//        return "post/upChain";
+//    }
 
-    @PostMapping("/S_ST_01")
-    ModelAndView upChain(@RequestParam Map<String, Object> params) throws Exception {
+//    @PostMapping("/S_ST_01")
+//    ModelAndView upChain(@RequestParam Map<String, Object> params) throws Exception {
+//        logger.debug("============> [upChain post] start");
+//
+//        JSONObject dataInfo = new JSONObject();
+//        //dataInfo.putAll(params);
+//        dataInfo.put("invoiceno", params.get("invoiceNo"));
+//        JSONObject postData = new JSONObject();
+//        postData.put("tableName", tableName);
+//        postData.put("systemId", SYSTEM_ID);
+//        postData.put("requestSn", requestSn);
+//        postData.put("dataInfo", dataInfo);
+//        postData.put("businessId", bussinessId);
+//        postData.put("callbackUrl", CALLBACK_URL);
+//        postData.put("invokeTime", String.valueOf(System.currentTimeMillis()));
+//
+//        // 私钥签名
+//        String postDataString = JSONObject.toJSONString(postData, SerializerFeature.PrettyFormat);
+//        logger.debug("== postDataString: " + postDataString);
+//        String signature = gmSm2Signature(postDataString.getBytes(StandardCharsets.UTF_8));
+//        postData.put("sign", signature);
+//
+//        // post远程请求
+//        String response = send(POST_URL + "/obst/service/S_ST_01", postData, "utf-8");
+//        JSONObject resultJson = JSONObject.parseObject(response);
+//
+//        ModelAndView modelAndView = new ModelAndView("post/upChainResult");
+//        modelAndView.addObject("postData", postData);
+//        modelAndView.addObject("code", resultJson.get("code"));
+//        modelAndView.addObject("msg", resultJson.get("msg"));
+//        modelAndView.addObject("txHash", resultJson.get("txHash"));
+//        modelAndView.addObject("data", dataInfo);
+//
+//        logger.debug("============> [upChain post] end");
+//        return modelAndView;
+//    }
+
+
+    @GetMapping("/S_ST_01")
+    ModelAndView testUpChain() throws Exception {
         logger.debug("============> [upChain post] start");
 
-        JSONObject dataInfo = new JSONObject();
-        //dataInfo.putAll(params);
-        dataInfo.put("invoiceno", params.get("invoiceNo"));
         JSONObject postData = new JSONObject();
-        postData.put("tableName", tableName);
-        postData.put("systemId", SYSTEM_ID);
-        postData.put("requestSn", requestSn);
-        postData.put("dataInfo", dataInfo);
-        postData.put("businessId", bussinessId);
-        postData.put("callbackUrl", CALLBACK_URL);
-        postData.put("invokeTime", String.valueOf(System.currentTimeMillis()));
 
-        // 私钥签名
-        String postDataString = JSONObject.toJSONString(postData, SerializerFeature.PrettyFormat);
-        logger.debug("== postDataString: " + postDataString);
-        String signature = gmSm2Signature(postDataString.getBytes(StandardCharsets.UTF_8));
-        postData.put("sign", signature);
+        for (String key: ChainParam.UP_CHAIN_PARAM) {
+            postData.put(key, key);
+        }
 
+        postData.put(ChainParam.TABLE_NAME, "invoice");
+        postData.put(ChainParam.REQUEST_SN, UUID.randomUUID().toString());
+        postData.put(ChainParam.INVOKE_TIME, "2019-03-05 11:11:11.12");
+        postData.put(ChainParam.KEY_ID, "00006");
+        postData.put(ChainParam.ACCOUNT_ID, "00002");
+        postData.put(ChainParam.CALLBACK_URL, CALLBACK_URL);
+        postData.put(ChainParam.SECRET_KEY, "0123456789abcdef");
+        postData.put(ChainParam.PRIVATE_KEY, "d6c83aee4bfbeb135a2dcef8c803b186d0678a99002b09d3c60c22aca7105005");
+        postData.put(ChainParam.PUBLIC_KEY, "2204404536ab867d9a964bfcc5e6fdaa7d77e509ce5891d38b3ebbb036e5c225994597ea6d0bdff3539fd3062b3943a1c7dd75d173f35101b71298e9f7f08d51");
+        String dataInfoStr = "{\"CONSUMER_NAME\":\"数据学院\",\"CONSUMER_TAXES_NO\":\"12100000425006133D\",\"INVOICE_DATE\":\"2020-10-03\",\"INVOICE_NO\":\"3100982170\",\"INVOICE_NUMBER\":\"1\",\"INVOICE_TYPE\":\"增值税\",\"PRICE\":\"1000\",\"PRICE_PLUS_TAXES\":\"1000\",\"SELLER_NAME\":\"华东师大\",\"SELLER_TAXES_NO\":\"913100003245878130\",\"STATEMENT_SHEET\":\"1\",\"STATEMENT_WEIGHT\":\"1kg\",\"TAXES\":\"150\",\"TAXES_POINT\":\"17%\",\"TIMESTAMPS\":\"1601712721\"}";
+        JSONObject dataInfo = JSONObject.parseObject(dataInfoStr);
+        logger.debug("dataInfo: \n" + dataInfo.getString(JSONObject.DEFFAULT_DATE_FORMAT));
+        postData.put(ChainParam.DATA_INFO, dataInfo);
+
+
+        String postJsonStr = postData.toJSONString();
+        logger.debug("postJsonStr: " + postJsonStr);
         // post远程请求
         String response = send(POST_URL + "/obst/service/S_ST_01", postData, "utf-8");
         JSONObject resultJson = JSONObject.parseObject(response);
@@ -240,7 +282,7 @@ public class PostController {
         modelAndView.addObject("postData", postData);
         modelAndView.addObject("code", resultJson.get("code"));
         modelAndView.addObject("msg", resultJson.get("msg"));
-        modelAndView.addObject("txHash", resultJson.get("txHash"));
+        modelAndView.addObject("txHash", resultJson.get(ChainParam.TX_HASH));
         modelAndView.addObject("data", dataInfo);
 
         logger.debug("============> [upChain post] end");
@@ -264,11 +306,11 @@ public class PostController {
         logger.debug("============> [queryByTxHash post] start");
         logger.debug("txHash: " + ((String)params.get("txHash")).trim());
         JSONObject postData = new JSONObject();
-        postData.put("tableName", tableName);
-        postData.put("systemId", SYSTEM_ID);
-        postData.put("requestSn", requestSn);
-        postData.put("txHash", ((String)params.get("txHash")).trim());
-        postData.put("invokeTime", String.valueOf(System.currentTimeMillis()));
+        postData.put(ChainParam.TABLE_NAME, tableName);
+        postData.put(ChainParam.SYSTEM_ID, SYSTEM_ID);
+        postData.put(ChainParam.REQUEST_SN, requestSn);
+        postData.put(ChainParam.TX_HASH, ((String)params.get("txHash")).trim());
+        postData.put(ChainParam.INVOKE_TIME, String.valueOf(System.currentTimeMillis()));
 
         // 私钥签名
         String postDataString = JSONObject.toJSONString(postData, SerializerFeature.PrettyFormat);
@@ -285,7 +327,7 @@ public class PostController {
         modelAndView.addObject("postData", postData);
         modelAndView.addObject("code", resultJson.get("code"));
         modelAndView.addObject("msg", resultJson.get("msg"));
-        modelAndView.addObject("data", resultJson.getJSONObject("data"));
+        modelAndView.addObject("data", resultJson.getJSONObject(ChainParam.DATA_INFO));
 
         logger.debug("============> [queryByTxHash post] end");
         return modelAndView;
@@ -309,13 +351,13 @@ public class PostController {
     ModelAndView verifyTxDataInfo(@RequestParam Map<String, Object> params) throws Exception {
         logger.debug("============> [verifyTxDataInfo post] start");
         JSONObject postData = new JSONObject();
-        postData.put("tableName", tableName);
-        postData.put("systemId", SYSTEM_ID);
-        postData.put("requestSn", requestSn);
-        postData.put("businessId", bussinessId);
-        postData.put("txHash", ((String)params.get("txHash")).trim());
-        postData.put("dataInfo", params.get("dataInfo"));
-        postData.put("invokeTime", String.valueOf(System.currentTimeMillis()));
+        postData.put(ChainParam.TABLE_NAME, tableName);
+        postData.put(ChainParam.SYSTEM_ID, SYSTEM_ID);
+        postData.put(ChainParam.REQUEST_SN, requestSn);
+        postData.put(ChainParam.BUSINESS_ID, bussinessId);
+        postData.put(ChainParam.TX_HASH, ((String)params.get("txHash")).trim());
+        postData.put(ChainParam.DATA_INFO, params.get("dataInfo"));
+        postData.put(ChainParam.INVOKE_TIME, String.valueOf(System.currentTimeMillis()));
 
         // 私钥签名
         String postDataString = JSONObject.toJSONString(postData, SerializerFeature.PrettyFormat);
@@ -356,12 +398,15 @@ public class PostController {
         logger.debug("============> [compensateQuery post] start");
 
         JSONObject postData = new JSONObject();
-        postData.put("tableName", tableName);
-        postData.put("systemId", SYSTEM_ID);
-        postData.put("requestSn", requestSn);
-        postData.put("businessId", bussinessId);
-        postData.put("searchRequestSn", ((String)params.get("searchRequestSn")).trim());
-        postData.put("invokeTime", String.valueOf(System.currentTimeMillis()));
+        postData.put(ChainParam.TABLE_NAME, tableName);
+        postData.put(ChainParam.SYSTEM_ID, SYSTEM_ID);
+        postData.put(ChainParam.REQUEST_SN, requestSn);
+        postData.put(ChainParam.BUSINESS_ID, bussinessId);
+        postData.put(ChainParam.SEARCH_REQUEST_SN, ((String)params.get("searchRequestSn")).trim());
+        postData.put(ChainParam.INVOKE_TIME, String.valueOf(System.currentTimeMillis()));
+
+
+
 
         // 私钥签名
         String postDataString = JSONObject.toJSONString(postData, SerializerFeature.PrettyFormat);
@@ -378,7 +423,7 @@ public class PostController {
         modelAndView.addObject("postData", postData);
         modelAndView.addObject("code", resultJson.get("code"));
         modelAndView.addObject("msg", resultJson.get("msg"));
-        modelAndView.addObject("data", resultJson.getJSONObject("data"));
+        modelAndView.addObject("data", resultJson.getJSONObject(ChainParam.DATA_INFO));
 
         logger.debug("============> [compensateQuery post] end");
         return modelAndView;

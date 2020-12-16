@@ -2,56 +2,47 @@
 <!DOCTYPE sqlMap
         PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
 <sqlMap>
-    <select id="test" resultClass="java.util.HashMap">
-        select * from tx6 where txhash='0xff5869b44fb2a389e755304ec3b0015b70206ca4494ab5ff61c0931d39245218'
+
+    <select id="test" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT *
+        FROM invoice;
     </select>
 
-    <insert id="upChain2" parameterClass="java.util.HashMap">
-       INSERT INTO $tableName$ VALUES (#systemId#, #requestSn#, #txHash#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#, #onChain#);
+
+    <insert id="insertTx" parameterClass="java.util.HashMap">
+        INSERT INTO $TABLE_NAME$
+        VALUES (#SYSTEM_ID#, #REQUEST_SN#, #INVOKE_TIME#, #BUSINESS_ID#, #CALLBACK_URL#, #KEY_ID#, #ACCOUNT_ID#, #DATA_INFO#, #SECRET_KEY#, #PRIVATE_KEY#, #PUBLIC_KEY#)
     </insert>
 
-    <insert id="upChain" parameterClass="java.util.HashMap">
-        INSERT INTO $tableName$
-        VALUES (#systemId#, #requestSn#, #dataInfo#, #secretKey#, #privateKey#, #publicKey#)
-    </insert>
 
-    <insert id="insertPrivateKey" parameterClass="java.util.HashMap">
-        INSERT INTO privateKey
-        VALUES (#systemId#, #privateKey#)
-    </insert>
-
-    <update id="createTable" parameterClass="java.util.HashMap">
-        CREATE TABLE $tableName$
-        (
-            id VARCHAR(255)
-        )
-    </update>
-
-    <select id="queryByTxHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <select id="queryAllByTxHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
         SELECT *
-        FROM $tableName$
-        WHERE txhash=#txHash#
+        FROM $TABLE_NAME$
+        WHERE TX_HASH=#TX_HASH#
     </select>
 
-    <select id="queryByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-        SELECT *
-        FROM $tableName$
-        WHERE requestsn=#requestSn#
+
+    <select id="queryTxHashByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT TX_HASH
+        FROM $TABLE_NAME$
+        WHERE REQUEST_SN=#REQUEST_SN#
     </select>
 
-    <select id="compensateQuery" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+
+    <select id="queryAllByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
         SELECT *
-        FROM $tableName$
-        WHERE requestsn=#searchRequestSn#
+        FROM $TABLE_NAME$
+        WHERE REQUEST_SN=#REQUEST_SN#
     </select>
 
-    <select id="queryForKey" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-        SELECT *
-        FROM userKey
-        WHERE systemId=#systemId#
-    </select>
 
+    <select id="queryCallbackByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT ON_CHAIN, TX_HASH, BLOCK_TIME, BLOCK_HEIGHT
+        FROM $TABLE_NAME$
+        WHERE REQUEST_SN=#REQUEST_SN#
+    </select>
 
 
 </sqlMap>
