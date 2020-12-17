@@ -1,4 +1,4 @@
-package com.zlimbo.rpc.fm.business;
+package com.ouyeel.obfm.fm.business;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -15,7 +15,7 @@ public interface IOrderService {
      * @param inJson
      * @return JSONObject类型包含 txHash systemId requestSn businessId
      */
-    public JSONObject upChain(JSONObject inJson);
+    JSONObject upChain(JSONObject inJson);
 
     /**
      * 链上查询
@@ -23,7 +23,7 @@ public interface IOrderService {
      * @param inJson
      * @return JSONObject类型包含  txHash invokeTime blockTime blockHeight  dataInfo
      */
-    public JSONObject queryChain(JSONObject inJson);
+    JSONObject queryChain(JSONObject inJson);
 
     /**
      * 验证接口
@@ -31,7 +31,7 @@ public interface IOrderService {
      * @param inJson
      * @return JSONObject类型包含 success message
      */
-    public JSONObject checkChain(JSONObject inJson);
+    JSONObject checkChain(JSONObject inJson);
 
     /**
      * 补偿查询
@@ -39,5 +39,5 @@ public interface IOrderService {
      * @param inJson
      * @return  JSONObject类型包含  txHash blockHeight blockTime dataInfo
      */
-    public JSONObject reQueryChain(JSONObject inJson);
+    JSONObject reQueryChain(JSONObject inJson);
 }

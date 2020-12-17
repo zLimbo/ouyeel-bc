@@ -1,4 +1,4 @@
-package com.zlimbo.rpc.fm.business.impl;
+package com.ouyeel.obfm.fm.business.impl;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -21,8 +21,8 @@ public enum ResponseCode {
     NO_REQUEST(107, "请求不存在"),
     QUERY_FAIL(108, "查询失败，请重试");
 
-    private Integer code;
-    private String msg;
+    private final Integer code;
+    private final String msg;
 
     ResponseCode(Integer code, String msg) {
         this.code = code;

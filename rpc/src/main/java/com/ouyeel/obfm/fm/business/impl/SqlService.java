@@ -1,4 +1,4 @@
-package com.zlimbo.rpc.fm.business.impl;
+package com.ouyeel.obfm.fm.business.impl;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;

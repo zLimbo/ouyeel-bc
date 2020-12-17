@@ -1,4 +1,4 @@
-package com.zlimbo.rpc.fm.business.impl;
+package com.ouyeel.obfm.fm.business.impl;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -26,11 +26,11 @@ public class AsyncCallback {
 
 
     static class CallbackThreadTask implements Runnable, Comparable<CallbackThreadTask> {
-        private String callbackUrl;
-        private String tableName;
-        private String requestSn;
-        private int callBackTimeIndex;
-        private Long callbackTime;
+        private final String callbackUrl;
+        private final String tableName;
+        private final String requestSn;
+        private final int callBackTimeIndex;
+        private final Long callbackTime;
 
         public CallbackThreadTask(String callbackUrl,
                                   String tableName,
@@ -84,7 +84,7 @@ public class AsyncCallback {
     /**
      * 线程池，优先队列，回调时间早的先回调
      */
-    private static ExecutorService threadPoolExecutor = new ThreadPoolExecutor(
+    private static final ExecutorService threadPoolExecutor = new ThreadPoolExecutor(
             ChainParam.CORE_POOL_SIZE,
             ChainParam.MAXIMUM_POOL_SIZE,
             ChainParam.KEEP_ALIVET_TIME,

@@ -1,5 +1,7 @@
 package com.zlimbo.chainservice.impl;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -69,4 +71,90 @@ public class ChainParam {
     final static int MAXIMUM_POOL_SIZE = 20;
     final static int KEEP_ALIVET_TIME = 1000;
     final static long[] CALL_BACK_TIMES = new long[]{ 1000L * 8, 1000L * 16, 1000L * 60};
+
+
+    /**
+     * 小驼峰转大写下划线
+     * @param inString
+     * @return
+     */
+    static public String smallHumpToUpperUnderline(String inString) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < inString.length(); ++i) {
+            char c = inString.charAt(i);
+            if ('A' <= c && c <= 'Z') {
+                stringBuilder.append('_');
+                stringBuilder.append(c);
+            } else {
+                stringBuilder.append((char) (c - 'a' + 'A'));
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+
+    /**
+     * json的键小驼峰转大写下划线
+     * @param inJson
+     * @return
+     */
+    static public JSONObject smallHumpToUpperUnderline(JSONObject inJson) {
+        JSONObject outJson = new JSONObject();
+        for (String key: inJson.keySet()) {
+            Object value = inJson.get(key);
+            if (value instanceof JSONObject) {
+                value = smallHumpToUpperUnderline((JSONObject) value);
+            }
+            String newKey = smallHumpToUpperUnderline(key);
+            outJson.put(newKey, value);
+        }
+        return outJson;
+    }
+
+
+    /**
+     * 大写下划线转小驼峰
+     * @param inString
+     * @return
+     */
+    static public String upperUnderlineToSmallHump(String inString) {
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean afterUnderline = false;
+        for (int i = 0; i < inString.length(); ++i) {
+            char c = inString.charAt(i);
+            if (c == '_') {
+                afterUnderline = true;
+                continue;
+            }
+            if (afterUnderline) {
+                stringBuilder.append(c);
+                afterUnderline = false;
+            } else {
+                stringBuilder.append((char)(c - 'A' + 'a'));
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+
+    /**
+     * json的键大写下划线转小驼峰
+     * @param inJson
+     * @return
+     */
+    static public JSONObject upperUnderlineToSmallHump(JSONObject inJson) {
+        JSONObject outJson = new JSONObject();
+        for (String key: inJson.keySet()) {
+            Object value = inJson.get(key);
+            if (value instanceof JSONObject) {
+                value = upperUnderlineToSmallHump((JSONObject) value);
+            }
+            String newKey = upperUnderlineToSmallHump(key);
+            outJson.put(newKey, value);
+        }
+        return outJson;
+    }
+
+
+
 }

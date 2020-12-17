@@ -1,4 +1,4 @@
-package com.zlimbo.rpc;
+package com.ouyeel.obfm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

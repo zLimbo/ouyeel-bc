@@ -1,4 +1,6 @@
-package com.zlimbo.bcweb.controller;
+package com.ouyeel.obfm.fm.business.impl;
+
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +9,7 @@ import java.util.Set;
  * 相关参数设置
  */
 public class ChainParam {
+
 
     final static String SYSTEM_ID = "SYSTEM_ID";
     final static String REQUEST_SN = "REQUEST_SN";
@@ -18,7 +21,9 @@ public class ChainParam {
     final static String TX_HASH = "TX_HASH";
     final static String PRIVATE_KEY = "PRIVATE_KEY";
     final static String PUBLIC_KEY = "PUBLIC_KEY";
-    final static String SECRET_KEY = "SECRET_KEY";
+//    final static String SECRET_KEY = "SECRET_KEY";
+    final static String SM4_KEY = "SM4_KEY";
+    final static String SM4_IV = "SM4_IV";
     final static String DATA_INFO = "DATA_INFO";
     final static String CONTRACT_ADDRESS = "CONTRACT_ADDRESS";
     final static String ON_CHAIN = "ON_CHAIN";
@@ -41,7 +46,9 @@ public class ChainParam {
             ChainParam.ACCOUNT_ID,
             ChainParam.PRIVATE_KEY,
             ChainParam.PUBLIC_KEY,
-            ChainParam.SECRET_KEY,
+//            ChainParam.SECRET_KEY,
+            ChainParam.SM4_KEY,
+            ChainParam.SM4_IV,
             ChainParam.DATA_INFO
     };
 
@@ -57,10 +64,12 @@ public class ChainParam {
             add(ChainParam.TX_HASH);
             add(ChainParam.PRIVATE_KEY);
             add(ChainParam.PUBLIC_KEY);
-            add(ChainParam.SECRET_KEY);
+//            add(ChainParam.SECRET_KEY);
+            add(ChainParam.SM4_KEY);
+            add(ChainParam.SM4_IV);
             add(ChainParam.CONTRACT_ADDRESS);
             add(ChainParam.ON_CHAIN);
-//            add(ChainParam.BLOCK_TIME);
+            add(ChainParam.BLOCK_TIME);
             add(ChainParam.BLOCK_HEIGHT);
         }
     };
@@ -83,10 +92,32 @@ public class ChainParam {
             if ('A' <= c && c <= 'Z') {
                 stringBuilder.append('_');
                 stringBuilder.append(c);
+            } else if ('a' <= c && c <= 'z'){
+                stringBuilder.append((char) (c - 'a' + 'A'));
+            } else {
+                stringBuilder.append(c);
             }
-            stringBuilder.append((char)(c - 'a' + 'A'));
         }
         return stringBuilder.toString();
+    }
+
+
+    /**
+     * json的键小驼峰转大写下划线
+     * @param inJson
+     * @return
+     */
+    static public JSONObject smallHumpToUpperUnderline(JSONObject inJson) {
+        JSONObject outJson = new JSONObject();
+        for (String key: inJson.keySet()) {
+            Object value = inJson.get(key);
+            if (value instanceof JSONObject) {
+                value = smallHumpToUpperUnderline((JSONObject) value);
+            }
+            String newKey = smallHumpToUpperUnderline(key);
+            outJson.put(newKey, value);
+        }
+        return outJson;
     }
 
 
@@ -108,8 +139,49 @@ public class ChainParam {
                 stringBuilder.append(c);
                 afterUnderline = false;
             } else {
-                stringBuilder.append((char)(c - 'A' + 'a'));
+                if ('A' <= c && c <= 'Z') {
+                    stringBuilder.append((char) (c - 'A' + 'a'));
+                } else {
+                    stringBuilder.append(c);
+                }
             }
+        }
+        return stringBuilder.toString();
+    }
+
+
+    /**
+     * json的键大写下划线转小驼峰
+     * @param inJson
+     * @return
+     */
+    static public JSONObject upperUnderlineToSmallHump(JSONObject inJson) {
+        JSONObject outJson = new JSONObject();
+        for (String key: inJson.keySet()) {
+            Object value = inJson.get(key);
+            if (value instanceof JSONObject) {
+                value = upperUnderlineToSmallHump((JSONObject) value);
+            }
+            String newKey = upperUnderlineToSmallHump(key);
+            outJson.put(newKey, value);
+        }
+        return outJson;
+    }
+
+
+    /**
+     * 字符串中的大写字母变小写
+     * @param key
+     * @return
+     */
+    static public String lowerCase(String key) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < key.length(); ++i) {
+            char c = key.charAt(i);
+            if ('A' <= c && c <= 'Z') {
+                c = (char) (c - 'A' + 'a');
+            }
+            stringBuilder.append(c);
         }
         return stringBuilder.toString();
     }

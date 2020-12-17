@@ -1,4 +1,4 @@
-package com.zlimbo.rpc.fm.service;
+package com.ouyeel.obfm.fm.service;
 
 /***
  * 类说明：

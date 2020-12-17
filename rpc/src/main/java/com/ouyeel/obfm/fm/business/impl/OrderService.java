@@ -1,7 +1,8 @@
-package com.zlimbo.rpc.fm.business.impl;
+package com.ouyeel.obfm.fm.business.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zlimbo.rpc.fm.business.IOrderService;
+import com.ouyeel.obfm.fm.business.IOrderService;
+import com.ouyeel.obfm.utils.SecurityUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +14,25 @@ public class OrderService implements IOrderService {
 
     final static Logger logger = LoggerFactory.getLogger(OrderService.class);
 
+    /**
+     * 获取相关的密钥
+     * @param keyId
+     * @param accountId
+     * @return
+     */
+    private static Map<String, String> obtainKey(String keyId, String accountId) {
+        if (keyId == null || accountId == null) {
+            return null;
+        }
+        Map<String, String> outMap = new HashMap<>();
+        Map<String, String> sm4KeyMap = SecurityUtil.getSm4Key(keyId);
+        outMap.put(ChainParam.SM4_KEY, ChainParam.lowerCase(sm4KeyMap.get("SM4key")));
+        outMap.put(ChainParam.SM4_IV, ChainParam.lowerCase(sm4KeyMap.get("SM4iv")));
+        outMap.put(ChainParam.PUBLIC_KEY, ChainParam.lowerCase(SecurityUtil.getPublicKey(accountId)));
+        outMap.put(ChainParam.PRIVATE_KEY, ChainParam.lowerCase(SecurityUtil.getPrivateKey(accountId)));
+        return outMap;
+    }
+
 
     /**
      * 业务数据上链存证接口, 将业务信息进行上链存证。不对业务数据进行关联。
@@ -21,17 +41,13 @@ public class OrderService implements IOrderService {
      */
     public JSONObject upChain(JSONObject inJson) {
         logger.debug("[upChain] start");
+
+        inJson = ChainParam.smallHumpToUpperUnderline(inJson);
         logger.debug("inJson: [{}]", inJson.toJSONString());
 
-        /**
-         * 如果传入的inJson字段里没有密钥，须从这里获取
-         */
-//        // sm4 的秘钥
-//        inJson.put(ChainParam.SECRET_KEY, SecurityUtil.getSm4Key(inJson.getString(ChainParam.KEY_ID)));
-//        // publickey
-//        inJson.put(ChainParam.PUBLIC_KEY, SecurityUtil.getPublicKey(inJson.getString(ChainParam.ACCOUNT_ID)));
-//        // privatekey
-//        inJson.put(ChainParam.PRIVATE_KEY, SecurityUtil.getPrivateKey(inJson.getString(ChainParam.ACCOUNT_ID)));
+        Map<String, String> keys =
+                obtainKey(inJson.getString(ChainParam.KEY_ID), inJson.getString(ChainParam.ACCOUNT_ID));
+        inJson.putAll(keys);
 
         JSONObject outJson = new JSONObject();
 
@@ -89,6 +105,9 @@ public class OrderService implements IOrderService {
         outJson.put(ChainParam.SYSTEM_ID, paramMap.get(ChainParam.SYSTEM_ID));
         outJson.put(ChainParam.REQUEST_SN, paramMap.get(ChainParam.REQUEST_SN));
         outJson.put(ChainParam.BUSINESS_ID, paramMap.get(ChainParam.BUSINESS_ID));
+
+        outJson = ChainParam.upperUnderlineToSmallHump(outJson);
+        logger.debug("outJson: [{}]", outJson.toJSONString());
         logger.debug("[upChain] end");
         return outJson;
     }
@@ -101,6 +120,8 @@ public class OrderService implements IOrderService {
      */
     public JSONObject queryChain(JSONObject inJson) {
         logger.debug("[queryByTxHash] start");
+
+        inJson = ChainParam.smallHumpToUpperUnderline(inJson);
         logger.debug("inJson: [{}]", inJson.toJSONString());
 
         JSONObject outJson = new JSONObject();
@@ -146,6 +167,8 @@ public class OrderService implements IOrderService {
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_FAIL);
         }
 
+        outJson = ChainParam.upperUnderlineToSmallHump(outJson);
+        logger.debug("outJson: [{}]", outJson.toJSONString());
         logger.debug("[queryByTxHash] end");
         return outJson;
     }
@@ -158,6 +181,8 @@ public class OrderService implements IOrderService {
      */
     public JSONObject checkChain(JSONObject inJson) {
         logger.debug("[verifyTxDataInfo] start");
+
+        inJson = ChainParam.smallHumpToUpperUnderline(inJson);
         logger.debug("inJson: [{}]", inJson.toJSONString());
 
         JSONObject outJson = new JSONObject();
@@ -187,17 +212,13 @@ public class OrderService implements IOrderService {
             Map<String, String> queryResultMap = queryResulList.get(0);
             JSONObject dataInfo = inJson.getJSONObject(ChainParam.DATA_INFO);
             JSONObject chainDataInfo = getDataInfo(queryResultMap);
-            logger.debug("dataInfo =? chainDataInfo [{}]", dataInfo.equals(chainDataInfo));
             logger.debug("dataInfo:         [{}]", dataInfo);
             logger.debug("chainDataInfo:    [{}]", chainDataInfo);
-            for (String key: dataInfo.keySet()) {
-                logger.debug("compare [{}]: [{}] =? [{}]", key, dataInfo.get(key), queryResultMap.get(key));
-                if (!dataInfo.get(key).equals(queryResultMap.get(key))) {
-                    logger.debug(dataInfo.get(key) + " != " + queryResultMap.get(key));
-                    logger.debug("VERIFY_TX_FAIL");
-                    ResponseCode.putCodeAndMsg(outJson, ResponseCode.VERIFY_TX_FAIL);
-                    return outJson;
-                }
+            logger.debug("dataInfo =? chainDataInfo [{}]", dataInfo.equals(chainDataInfo));
+            if (!dataInfo.equals(chainDataInfo)) {
+                logger.debug("VERIFY_TX_FAIL");
+                ResponseCode.putCodeAndMsg(outJson, ResponseCode.VERIFY_TX_FAIL);
+                return outJson;
             }
             logger.debug("VERIFY_TX_SUCCESS");
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.VERIFY_TX_SUCCESS);
@@ -206,6 +227,8 @@ public class OrderService implements IOrderService {
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_FAIL);
         }
 
+        outJson = ChainParam.upperUnderlineToSmallHump(outJson);
+        logger.debug("outJson: [{}]", outJson.toJSONString());
         logger.debug("[verifyTxDataInfo] end");
         return outJson;
     }
@@ -218,6 +241,8 @@ public class OrderService implements IOrderService {
      */
     public JSONObject reQueryChain(JSONObject inJson) {
         logger.debug("[compensateQuery] start");
+
+        inJson = ChainParam.smallHumpToUpperUnderline(inJson);
         logger.debug("inJson: [{}]", inJson.toJSONString());
 
         JSONObject outJson = new JSONObject();
@@ -265,12 +290,14 @@ public class OrderService implements IOrderService {
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_FAIL);
         }
 
+        outJson = ChainParam.upperUnderlineToSmallHump(outJson);
+        logger.debug("outJson: [{}]", outJson.toJSONString());
         logger.debug("[compensateQuery] end");
         return outJson;
     }
 
 
-    JSONObject getDataInfo(Map<String, String> queryResultMap) {
+    static public JSONObject getDataInfo(Map<String, String> queryResultMap) {
         JSONObject dataInfo = new JSONObject();
         for (String key: queryResultMap.keySet()) {
             if (!ChainParam.SYSTEM_PARAM.contains(key)) {
