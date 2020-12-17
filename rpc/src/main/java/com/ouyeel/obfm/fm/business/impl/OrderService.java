@@ -26,8 +26,8 @@ public class OrderService implements IOrderService {
         }
         Map<String, String> outMap = new HashMap<>();
         Map<String, String> sm4KeyMap = SecurityUtil.getSm4Key(keyId);
-        outMap.put(ChainParam.SM4_KEY, ChainParam.lowerCase(sm4KeyMap.get("SM4key")));
-        outMap.put(ChainParam.SM4_IV, ChainParam.lowerCase(sm4KeyMap.get("SM4iv")));
+        outMap.put(ChainParam.SM4_KEY, ChainParam.lowerCase(sm4KeyMap.get(ChainParam.SM4_KEY)));
+        outMap.put(ChainParam.SM4_IV, ChainParam.lowerCase(sm4KeyMap.get(ChainParam.SM4_IV)));
         outMap.put(ChainParam.PUBLIC_KEY, ChainParam.lowerCase(SecurityUtil.getPublicKey(accountId)));
         outMap.put(ChainParam.PRIVATE_KEY, ChainParam.lowerCase(SecurityUtil.getPrivateKey(accountId)));
         return outMap;
@@ -157,7 +157,7 @@ public class OrderService implements IOrderService {
                     outJson.put(key, queryResultMap.get(key));
                 }
                 JSONObject dataInfo = getDataInfo(queryResultMap);
-                outJson.put("DATA_INFO", dataInfo);
+                outJson.put(ChainParam.DATA_INFO, dataInfo);
             } else {
                 logger.debug("UP_CHAIN_WAITTING");
                 ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_WAITTING);

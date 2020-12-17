@@ -3,7 +3,7 @@
         PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
-<sqlMap>
+<sqlMap namespace="Chain">
 
     <select id="test" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
         SELECT *
@@ -13,7 +13,7 @@
 
     <insert id="insertTx" parameterClass="java.util.HashMap">
         INSERT INTO $TABLE_NAME$
-        VALUES (#SYSTEM_ID#, #REQUEST_SN#, #INVOKE_TIME#, #BUSINESS_ID#, #CALLBACK_URL#, #KEY_ID#, #ACCOUNT_ID#, #DATA_INFO#, #SECRET_KEY#, #PRIVATE_KEY#, #PUBLIC_KEY#)
+        VALUES (#SYSTEM_ID#, #REQUEST_SN#, #INVOKE_TIME#, #BUSINESS_ID#, #CALLBACK_URL#, #KEY_ID#, #ACCOUNT_ID#, #DATA_INFO#, #SM4_KEY#, #SM4_IV#, #PRIVATE_KEY#, #PUBLIC_KEY#)
     </insert>
 
 

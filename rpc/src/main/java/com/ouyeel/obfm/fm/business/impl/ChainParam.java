@@ -11,29 +11,28 @@ import java.util.Set;
 public class ChainParam {
 
 
-    final static String SYSTEM_ID = "SYSTEM_ID";
-    final static String REQUEST_SN = "REQUEST_SN";
-    final static String INVOKE_TIME = "INVOKE_TIME";
-    final static String BUSINESS_ID = "BUSINESS_ID";
-    final static String CALLBACK_URL = "CALLBACK_URL";
-    final static String KEY_ID = "KEY_ID";
-    final static String ACCOUNT_ID = "ACCOUNT_ID";
-    final static String TX_HASH = "TX_HASH";
-    final static String PRIVATE_KEY = "PRIVATE_KEY";
-    final static String PUBLIC_KEY = "PUBLIC_KEY";
-//    final static String SECRET_KEY = "SECRET_KEY";
-    final static String SM4_KEY = "SM4_KEY";
-    final static String SM4_IV = "SM4_IV";
-    final static String DATA_INFO = "DATA_INFO";
-    final static String CONTRACT_ADDRESS = "CONTRACT_ADDRESS";
-    final static String ON_CHAIN = "ON_CHAIN";
-    final static String BLOCK_TIME = "BLOCK_TIME";
-    final static String BLOCK_HEIGHT = "BLOCK_HEIGHT";
+    final public static String SYSTEM_ID = "SYSTEM_ID";
+    final public static String REQUEST_SN = "REQUEST_SN";
+    final public static String INVOKE_TIME = "INVOKE_TIME";
+    final public static String BUSINESS_ID = "BUSINESS_ID";
+    final public static String CALLBACK_URL = "CALLBACK_URL";
+    final public static String KEY_ID = "KEY_ID";
+    final public static String ACCOUNT_ID = "ACCOUNT_ID";
+    final public static String TX_HASH = "TX_HASH";
+    final public static String PRIVATE_KEY = "PRIVATE_KEY";
+    final public static String PUBLIC_KEY = "PUBLIC_KEY";
+    final public static String SM4_KEY = "SM4_KEY";
+    final public static String SM4_IV = "SM4_IV";
+    final public static String DATA_INFO = "DATA_INFO";
+    final public static String CONTRACT_ADDRESS = "CONTRACT_ADDRESS";
+    final public static String ON_CHAIN = "ON_CHAIN";
+    final public static String BLOCK_TIME = "BLOCK_TIME";
+    final public static String BLOCK_HEIGHT = "BLOCK_HEIGHT";
 
-    final static String TABLE_NAME = "TABLE_NAME";
-    final static String SEARCH_REQUEST_SN = "SEARCH_REQUEST_SN";
-    final static String ON_CHAIN_SUCCESS = "1";
-    final static String SUCCESS = "success";
+    final public static String TABLE_NAME = "TABLE_NAME";
+    final public static String SEARCH_REQUEST_SN = "SEARCH_REQUEST_SN";
+    final public static String ON_CHAIN_SUCCESS = "1";
+    final public static String SUCCESS = "success";
 
     final static String[] UP_CHAIN_PARAM = {
             ChainParam.TABLE_NAME,
