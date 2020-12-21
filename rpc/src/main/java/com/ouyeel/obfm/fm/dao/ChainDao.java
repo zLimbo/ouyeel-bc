@@ -3,8 +3,7 @@ package com.ouyeel.obfm.fm.dao;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
-import com.ouyeel.obfm.fm.business.impl.ChainParam;
-import com.ouyeel.obfm.fm.business.impl.SqlService;
+import com.ouyeel.obfm.fm.business.impl.ChainConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ChainDao implements Dao {
-    final static Logger logger = LoggerFactory.getLogger(SqlService.class);
+    final static Logger logger = LoggerFactory.getLogger(ChainDao.class);
 
     /**
      * ibatis 连接
@@ -27,18 +26,19 @@ public class ChainDao implements Dao {
     static {
         logger.debug("ibatis SqlMapConfig ...");
         try {
-            Reader reader = Resources.getResourceAsReader("ChainMapper.xml");
+            Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
             sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
             reader.close();
             logger.debug("ibatis SqlMapConfig success");
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.debug("ibatis SqlMapConfig error");
             logger.error(e.getMessage());
             e.printStackTrace();
         }
     }
 
-    public static SqlMapClient getSqlMapClient() {
+    @Override
+    public SqlMapClient getSqlMapClient() {
         return sqlMapClient;
     }
 
@@ -46,9 +46,9 @@ public class ChainDao implements Dao {
     @Override
     public boolean insertTx(Map<String, String> paramMap) {
         logger.debug("insertTx start");
-        logger.debug(ChainParam.DATA_INFO + ": " + paramMap.get(ChainParam.DATA_INFO));
+        logger.debug(ChainConfig.DATA_INFO + ": " + paramMap.get(ChainConfig.DATA_INFO));
         try {
-            Object insertResult =  sqlMapClient.insert("Chain.insertTx", paramMap);
+            Object insertResult =  sqlMapClient.insert("insertTx", paramMap);
             logger.debug("insertResult: [{}]", insertResult);
         } catch (SQLException e) {
             logger.debug("insertTx fail");
@@ -66,14 +66,14 @@ public class ChainDao implements Dao {
         logger.debug("queryTxHashByRequestSn start");
         String txHash = null;
         Map<String, String> queryParamMap = new HashMap<>();
-        queryParamMap.put(ChainParam.TABLE_NAME, tableName);
-        queryParamMap.put(ChainParam.REQUEST_SN, requestSn);
+        queryParamMap.put(ChainConfig.TABLE_NAME, tableName);
+        queryParamMap.put(ChainConfig.REQUEST_SN, requestSn);
         logger.debug("queryTxHashByRequestSn...");
         try {
             List<Map<String, String>> queryResulList =
-                    sqlMapClient.queryForList("Chain.queryTxHashByRequestSn", queryParamMap);
+                    sqlMapClient.queryForList("queryTxHashByRequestSn", queryParamMap);
             Map<String, String> queryResultMap = queryResulList.get(0);
-            txHash = queryResultMap.get(ChainParam.TX_HASH);
+            txHash = queryResultMap.get(ChainConfig.TX_HASH);
             logger.debug("txHash: [{}]", txHash);
         } catch (SQLException e) {
             logger.debug("queryTxHashByRequestSn fail");
@@ -88,12 +88,12 @@ public class ChainDao implements Dao {
     public List<Map<String, String>> queryAllByTxHash(String tableName, String txHash) {
         logger.debug("queryAllByTxHash start");
         Map<String, String> queryParamMap = new HashMap<>();
-        queryParamMap.put(ChainParam.TABLE_NAME, tableName);
-        queryParamMap.put(ChainParam.TX_HASH, txHash);
+        queryParamMap.put(ChainConfig.TABLE_NAME, tableName);
+        queryParamMap.put(ChainConfig.TX_HASH, txHash);
         List<Map<String, String>> queryResulList = null;
         logger.debug("queryAllByTxHash...");
         try {
-            queryResulList = sqlMapClient.queryForList("Chain.queryAllByTxHash", queryParamMap);
+            queryResulList = sqlMapClient.queryForList("queryAllByTxHash", queryParamMap);
         } catch (SQLException e) {
             logger.debug("queryAllByTxHash fail");
             logger.error(e.getMessage());
@@ -109,12 +109,12 @@ public class ChainDao implements Dao {
     public List<Map<String, String>> queryAllByRequestSn(String tableName, String requestSn) {
         logger.debug("queryAllByRequestSn start");
         Map<String, String> queryParamMap = new HashMap<>();
-        queryParamMap.put(ChainParam.TABLE_NAME, tableName);
-        queryParamMap.put(ChainParam.REQUEST_SN, requestSn);
+        queryParamMap.put(ChainConfig.TABLE_NAME, tableName);
+        queryParamMap.put(ChainConfig.REQUEST_SN, requestSn);
         List<Map<String,String>> queryResulList = null;
         logger.debug("queryAllByRequestSn...");
         try {
-            queryResulList = sqlMapClient.queryForList("Chain.queryAllByRequestSn", queryParamMap);
+            queryResulList = sqlMapClient.queryForList("queryAllByRequestSn", queryParamMap);
         } catch (SQLException e) {
             logger.debug("queryAllByRequestSn fail");
             logger.error(e.getMessage());
@@ -130,12 +130,12 @@ public class ChainDao implements Dao {
     public List<Map<String, String>> queryCallbackByRequestSn(String tableName, String requestSn) {
         logger.debug("queryCallbackByRequestSn start");
         Map<String, String> queryParamMap = new HashMap<>();
-        queryParamMap.put(ChainParam.TABLE_NAME, tableName);
-        queryParamMap.put(ChainParam.REQUEST_SN, requestSn);
+        queryParamMap.put(ChainConfig.TABLE_NAME, tableName);
+        queryParamMap.put(ChainConfig.REQUEST_SN, requestSn);
         List<Map<String, String>> queryResulList = null;
         logger.debug("queryByTxHash...");
         try {
-            queryResulList = sqlMapClient.queryForList("Chain.queryCallbackByRequestSn", queryParamMap);
+            queryResulList = sqlMapClient.queryForList("queryCallbackByRequestSn", queryParamMap);
         } catch (SQLException e) {
             logger.debug("queryByTxHash fail");
             logger.error(e.getMessage());

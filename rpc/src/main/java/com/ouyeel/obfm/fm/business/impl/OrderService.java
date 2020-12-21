@@ -14,22 +14,30 @@ public class OrderService implements IOrderService {
 
     final static Logger logger = LoggerFactory.getLogger(OrderService.class);
 
+
     /**
      * 获取相关的密钥
-     * @param keyId
-     * @param accountId
+     * @param systemId
      * @return
      */
-    private static Map<String, String> obtainKey(String keyId, String accountId) {
-        if (keyId == null || accountId == null) {
-            return null;
-        }
+    private static Map<String, String> obtainKey(String systemId) {
         Map<String, String> outMap = new HashMap<>();
-        Map<String, String> sm4KeyMap = SecurityUtil.getSm4Key(keyId);
-        outMap.put(ChainParam.SM4_KEY, ChainParam.lowerCase(sm4KeyMap.get(ChainParam.SM4_KEY)));
-        outMap.put(ChainParam.SM4_IV, ChainParam.lowerCase(sm4KeyMap.get(ChainParam.SM4_IV)));
-        outMap.put(ChainParam.PUBLIC_KEY, ChainParam.lowerCase(SecurityUtil.getPublicKey(accountId)));
-        outMap.put(ChainParam.PRIVATE_KEY, ChainParam.lowerCase(SecurityUtil.getPrivateKey(accountId)));
+
+        Map<String, String> sm4KeyMap = SecurityUtil.getSm4Key(systemId);
+        String sm4Key = sm4KeyMap.get(ChainConfig.SM4_KEY);
+        String sm4Iv = sm4KeyMap.get(ChainConfig.SM4_IV);
+        String publicKey = SecurityUtil.getPublicKey(systemId);
+        String privateKey = SecurityUtil.getPrivateKey(systemId);
+        logger.debug("systemId: [{}]", systemId);
+        logger.debug("sm4Key: [{}]", sm4Key);
+        logger.debug("sm4Iv: [{}]", sm4Iv);
+        logger.debug("publicKey: [{}]", publicKey);
+        logger.debug("privateKey: [{}]", privateKey);
+        outMap.put(ChainConfig.SM4_KEY, ChainConfig.lowerCase(sm4Key));
+        outMap.put(ChainConfig.SM4_IV, ChainConfig.lowerCase(sm4Iv));
+        outMap.put(ChainConfig.PUBLIC_KEY, ChainConfig.lowerCase(publicKey));
+        outMap.put(ChainConfig.PRIVATE_KEY, ChainConfig.lowerCase(privateKey));
+
         return outMap;
     }
 
@@ -42,74 +50,94 @@ public class OrderService implements IOrderService {
     public JSONObject upChain(JSONObject inJson) {
         logger.debug("[upChain] start");
 
-        inJson = ChainParam.smallHumpToUpperUnderline(inJson);
+        JSONObject outJson = new JSONObject();
+        try {
+            inJson = ChainConfig.smallHumpToUpperUnderline(JSONObject.parseObject(inJson.toJSONString()));
+        } catch (Exception e) {
+            logger.error("PARAMETER_ERROR!");
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_ERROR);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
+        }
         logger.debug("inJson: [{}]", inJson.toJSONString());
 
-        Map<String, String> keys =
-                obtainKey(inJson.getString(ChainParam.KEY_ID), inJson.getString(ChainParam.ACCOUNT_ID));
-        inJson.putAll(keys);
+        try {
+            Map<String, String> keys = obtainKey(inJson.getString(ChainConfig.SYSTEM_ID));
+            inJson.putAll(keys);
+        } catch (Exception e) {
+            logger.error("OBTAIN_KEY_FAIL!");
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.OBTAIN_KEY_FAIL);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
+        }
 
-        JSONObject outJson = new JSONObject();
 
         /**
          * dataInfo单独获取，但字段参数统一检查，为空则返回参数为空错误码
          */
         Map<String, String> paramMap = new HashMap<>();
-        for (String key: ChainParam.UP_CHAIN_PARAM) {
+        for (String key: ChainConfig.UP_CHAIN_PARAM) {
             if (inJson.get(key) == null) {
-                ResponseCode.putCodeAndMsg(outJson, ResponseCode.NULL_PARAMETER);
-                return outJson;
+                ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_LOSS);
+                return ChainConfig.upperUnderlineToSmallHump(outJson);
             }
-            if (!ChainParam.DATA_INFO.equals(key)) {
+            if (!ChainConfig.DATA_INFO.equals(key)) {
                 paramMap.put(key, String.valueOf(inJson.get(key)));
             }
         }
-
-        paramMap.put(ChainParam.DATA_INFO, inJson.getJSONObject(ChainParam.DATA_INFO).toJSONString());
+        /**
+         * 检查dataInfo
+         */
+        try {
+            paramMap.put(ChainConfig.DATA_INFO, inJson.getJSONObject(ChainConfig.DATA_INFO).toJSONString());
+        } catch (Exception e) {
+            logger.error("DATA_INFO_ERROR");
+            logger.error(e.getMessage());
+            e.printStackTrace();
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.DATA_INFO_ERROR);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
+        }
 
         /**
          * 上链
          */
         logger.debug("upChain...");
-        boolean insertResult = SqlService.insertTx(paramMap);
+        boolean insertResult = ChainConfig.CHAIN_DAO.insertTx(paramMap);
         if (!insertResult) {
             logger.debug("upChain fail");
-            ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_FAIL);
-            return outJson;
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.NO_TX);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
         logger.debug("upChain success");
         ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_TX_SUCCESS);
 
         /**
-         * 添加异步回调任务到线程池，回调发送上链结果（异步线程池，线程池大小在 ChainParam 类内定义）
+         * 添加异步回调任务到线程池，回调发送上链结果（异步线程池，线程池大小在 ChainConfig 类内定义）
          */
-        if (paramMap.get(ChainParam.CALLBACK_URL) != null) {
+        if (paramMap.get(ChainConfig.CALLBACK_URL) != null) {
             AsyncCallback.addTask(
-                    paramMap.get(ChainParam.CALLBACK_URL),
-                    paramMap.get(ChainParam.TABLE_NAME),
-                    paramMap.get(ChainParam.REQUEST_SN));
+                    paramMap.get(ChainConfig.CALLBACK_URL),
+                    paramMap.get(ChainConfig.TABLE_NAME),
+                    paramMap.get(ChainConfig.REQUEST_SN));
         }
 
         /**
          * 查询hash值
          */
-        String txHash = SqlService.queryTxHashByRequestSn(
-                paramMap.get(ChainParam.TABLE_NAME), paramMap.get(ChainParam.REQUEST_SN));
+        String txHash = ChainConfig.CHAIN_DAO.queryTxHashByRequestSn(
+                paramMap.get(ChainConfig.TABLE_NAME), paramMap.get(ChainConfig.REQUEST_SN));
         if (txHash != null) {
             logger.debug("txHash: [{}]", txHash);
-            outJson.put(ChainParam.TX_HASH, txHash);
+            outJson.put(ChainConfig.TX_HASH, txHash);
         } else {
             logger.debug("query txHash fail");
         }
 
-        outJson.put(ChainParam.SYSTEM_ID, paramMap.get(ChainParam.SYSTEM_ID));
-        outJson.put(ChainParam.REQUEST_SN, paramMap.get(ChainParam.REQUEST_SN));
-        outJson.put(ChainParam.BUSINESS_ID, paramMap.get(ChainParam.BUSINESS_ID));
+        outJson.put(ChainConfig.SYSTEM_ID, paramMap.get(ChainConfig.SYSTEM_ID));
+        outJson.put(ChainConfig.REQUEST_SN, paramMap.get(ChainConfig.REQUEST_SN));
+        outJson.put(ChainConfig.BUSINESS_ID, paramMap.get(ChainConfig.BUSINESS_ID));
 
-        outJson = ChainParam.upperUnderlineToSmallHump(outJson);
         logger.debug("outJson: [{}]", outJson.toJSONString());
         logger.debug("[upChain] end");
-        return outJson;
+        return ChainConfig.upperUnderlineToSmallHump(outJson);
     }
 
 
@@ -121,56 +149,60 @@ public class OrderService implements IOrderService {
     public JSONObject queryChain(JSONObject inJson) {
         logger.debug("[queryByTxHash] start");
 
-        inJson = ChainParam.smallHumpToUpperUnderline(inJson);
-        logger.debug("inJson: [{}]", inJson.toJSONString());
-
         JSONObject outJson = new JSONObject();
+        try {
+            inJson = ChainConfig.smallHumpToUpperUnderline(JSONObject.parseObject(inJson.toJSONString()));
+        } catch (Exception e) {
+            logger.error("PARAMETER_ERROR!");
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_ERROR);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
+        }
+        logger.debug("inJson: [{}]", inJson.toJSONString());
 
         /**
          * 检查参数
          */
-        if (inJson.get(ChainParam.TABLE_NAME) == null || inJson.get(ChainParam.TX_HASH) == null) {
-            ResponseCode.putCodeAndMsg(outJson, ResponseCode.NULL_PARAMETER);
-            return outJson;
+        if (inJson.get(ChainConfig.TABLE_NAME) == null || inJson.get(ChainConfig.TX_HASH) == null) {
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_LOSS);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
-        String tableName = String.valueOf(inJson.get(ChainParam.TABLE_NAME));
-        String txHash = String.valueOf(inJson.get(ChainParam.TX_HASH));
+        String tableName = String.valueOf(inJson.get(ChainConfig.TABLE_NAME));
+        String txHash = String.valueOf(inJson.get(ChainConfig.TX_HASH));
 
         /**
          * 根据 txHash 查询上链交易数据
          */
-        List<Map<String, String>> queryResulList = SqlService.queryAllByTxHash(tableName, txHash);
+        List<Map<String, String>> queryResulList = ChainConfig.CHAIN_DAO.queryAllByTxHash(tableName, txHash);
         if (queryResulList == null) {
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.QUERY_FAIL);
-            return outJson;
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
 
         if (!queryResulList.isEmpty()) {
             Map<String, String> queryResultMap = queryResulList.get(0);
-            logger.debug("onChain: [{}]", queryResultMap.get(ChainParam.ON_CHAIN));
-            if (ChainParam.ON_CHAIN_SUCCESS.equals(queryResultMap.get(ChainParam.ON_CHAIN))) {
+            logger.debug("onChain: [{}]", queryResultMap.get(ChainConfig.ON_CHAIN));
+            if (ChainConfig.ON_CHAIN_SUCCESS.equals(queryResultMap.get(ChainConfig.ON_CHAIN))) {
                 logger.debug("UP_CHAIN_SUCCESS");
                 ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_SUCCESS);
-                String[] keys = {ChainParam.TX_HASH, ChainParam.INVOKE_TIME,
-                        ChainParam.BLOCK_TIME, ChainParam.BLOCK_HEIGHT};
+                String[] keys = {ChainConfig.TX_HASH, ChainConfig.INVOKE_TIME,
+                        ChainConfig.BLOCK_TIME, ChainConfig.BLOCK_HEIGHT};
                 for (String key: keys) {
                     outJson.put(key, queryResultMap.get(key));
                 }
                 JSONObject dataInfo = getDataInfo(queryResultMap);
-                outJson.put(ChainParam.DATA_INFO, dataInfo);
+                outJson.put(ChainConfig.DATA_INFO, dataInfo);
             } else {
                 logger.debug("UP_CHAIN_WAITTING");
                 ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_WAITTING);
             }
         } else {
-            logger.debug("UP_CHAIN_FAIL");
-            ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_FAIL);
+            logger.debug("NO_TX");
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.NO_TX);
         }
 
-        outJson = ChainParam.upperUnderlineToSmallHump(outJson);
         logger.debug("outJson: [{}]", outJson.toJSONString());
         logger.debug("[queryByTxHash] end");
-        return outJson;
+        return ChainConfig.upperUnderlineToSmallHump(outJson);
     }
 
 
@@ -182,35 +214,40 @@ public class OrderService implements IOrderService {
     public JSONObject checkChain(JSONObject inJson) {
         logger.debug("[verifyTxDataInfo] start");
 
-        inJson = ChainParam.smallHumpToUpperUnderline(inJson);
-        logger.debug("inJson: [{}]", inJson.toJSONString());
-
         JSONObject outJson = new JSONObject();
+        try {
+            inJson = ChainConfig.smallHumpToUpperUnderline(JSONObject.parseObject(inJson.toJSONString()));
+        } catch (Exception e) {
+            logger.error("PARAMETER_ERROR!");
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_ERROR);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
+        }
+        logger.debug("inJson: [{}]", inJson.toJSONString());
 
         /**
          * 检查参数
          */
-        if (inJson.get(ChainParam.TABLE_NAME) == null ||
-                inJson.get(ChainParam.TX_HASH) == null ||
-                inJson.getJSONObject(ChainParam.DATA_INFO) == null) {
-            ResponseCode.putCodeAndMsg(outJson, ResponseCode.NULL_PARAMETER);
-            return outJson;
+        if (inJson.get(ChainConfig.TABLE_NAME) == null ||
+                inJson.get(ChainConfig.TX_HASH) == null ||
+                inJson.getJSONObject(ChainConfig.DATA_INFO) == null) {
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_LOSS);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
-        String tableName = String.valueOf(inJson.get(ChainParam.TABLE_NAME));
-        String txHash = String.valueOf(inJson.get(ChainParam.TX_HASH));
+        String tableName = String.valueOf(inJson.get(ChainConfig.TABLE_NAME));
+        String txHash = String.valueOf(inJson.get(ChainConfig.TX_HASH));
         
         /**
          * 根据 txHash 查询上链交易数据
          */
-        List<Map<String, String>> queryResulList = SqlService.queryAllByTxHash(tableName, txHash);
+        List<Map<String, String>> queryResulList = ChainConfig.CHAIN_DAO.queryAllByTxHash(tableName, txHash);
         if (queryResulList == null) {
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.QUERY_FAIL);
-            return outJson;
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
 
         if (!queryResulList.isEmpty()) {
             Map<String, String> queryResultMap = queryResulList.get(0);
-            JSONObject dataInfo = inJson.getJSONObject(ChainParam.DATA_INFO);
+            JSONObject dataInfo = inJson.getJSONObject(ChainConfig.DATA_INFO);
             JSONObject chainDataInfo = getDataInfo(queryResultMap);
             logger.debug("dataInfo:         [{}]", dataInfo);
             logger.debug("chainDataInfo:    [{}]", chainDataInfo);
@@ -218,19 +255,18 @@ public class OrderService implements IOrderService {
             if (!dataInfo.equals(chainDataInfo)) {
                 logger.debug("VERIFY_TX_FAIL");
                 ResponseCode.putCodeAndMsg(outJson, ResponseCode.VERIFY_TX_FAIL);
-                return outJson;
+                return ChainConfig.upperUnderlineToSmallHump(outJson);
             }
             logger.debug("VERIFY_TX_SUCCESS");
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.VERIFY_TX_SUCCESS);
         } else {
-            logger.debug("UP_CHAIN_FAIL");
-            ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_FAIL);
+            logger.debug("NO_TX");
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.NO_TX);
         }
 
-        outJson = ChainParam.upperUnderlineToSmallHump(outJson);
         logger.debug("outJson: [{}]", outJson.toJSONString());
         logger.debug("[verifyTxDataInfo] end");
-        return outJson;
+        return ChainConfig.upperUnderlineToSmallHump(outJson);
     }
 
 
@@ -242,68 +278,75 @@ public class OrderService implements IOrderService {
     public JSONObject reQueryChain(JSONObject inJson) {
         logger.debug("[compensateQuery] start");
 
-        inJson = ChainParam.smallHumpToUpperUnderline(inJson);
-        logger.debug("inJson: [{}]", inJson.toJSONString());
-
         JSONObject outJson = new JSONObject();
+        try {
+            inJson = ChainConfig.smallHumpToUpperUnderline(JSONObject.parseObject(inJson.toJSONString()));
+        } catch (Exception e) {
+            logger.error("PARAMETER_ERROR!");
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_ERROR);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
+        }
+        logger.debug("inJson: [{}]", inJson.toJSONString());
 
         /**
          * 检查参数
          */
-        if (inJson.get(ChainParam.TABLE_NAME) == null || inJson.get(ChainParam.SEARCH_REQUEST_SN) == null) {
-            ResponseCode.putCodeAndMsg(outJson, ResponseCode.NULL_PARAMETER);
-            return outJson;
+        if (inJson.get(ChainConfig.TABLE_NAME) == null || inJson.get(ChainConfig.SEARCH_REQUEST_SN) == null) {
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_LOSS);
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
 
-        String tableName = String.valueOf(inJson.get(ChainParam.TABLE_NAME));
-        String searchRequestSn = String.valueOf(inJson.get(ChainParam.SEARCH_REQUEST_SN));
+        String tableName = String.valueOf(inJson.get(ChainConfig.TABLE_NAME));
+        String searchRequestSn = String.valueOf(inJson.get(ChainConfig.SEARCH_REQUEST_SN));
 
 
         /**
          * 根据 searchRequestSn 补偿查询
          */
-        List<Map<String, String>> queryResulList = SqlService.queryAllByRequestSn(tableName, searchRequestSn);
+        List<Map<String, String>> queryResulList = ChainConfig.CHAIN_DAO.queryAllByRequestSn(tableName, searchRequestSn);
         if (queryResulList == null) {
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.QUERY_FAIL);
-            return outJson;
+            return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
 
         if (!queryResulList.isEmpty()) {
             Map<String, String> queryResultMap = queryResulList.get(0);
-            logger.debug("onChain: [{}]", queryResultMap.get(ChainParam.ON_CHAIN));
-            if (ChainParam.ON_CHAIN_SUCCESS.equals(queryResultMap.get(ChainParam.ON_CHAIN))) {
+            logger.debug("onChain: [{}]", queryResultMap.get(ChainConfig.ON_CHAIN));
+            if (ChainConfig.ON_CHAIN_SUCCESS.equals(queryResultMap.get(ChainConfig.ON_CHAIN))) {
                 logger.debug("UP_CHAIN_SUCCESS");
                 ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_SUCCESS);
-                String[] keys = {ChainParam.TX_HASH, ChainParam.BLOCK_HEIGHT, ChainParam.BLOCK_TIME};
+                String[] keys = {ChainConfig.TX_HASH, ChainConfig.BLOCK_HEIGHT, ChainConfig.BLOCK_TIME};
                 for (String key: keys) {
                     outJson.put(key, queryResultMap.get(key));
                 }
                 JSONObject dataInfo = getDataInfo(queryResultMap);
-                outJson.put("DATA_INFO", dataInfo);
+                outJson.put(ChainConfig.DATA_INFO, dataInfo);
             } else {
                 logger.debug("UP_CHAIN_WAITTING");
                 ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_WAITTING);
-                outJson.put("data", queryResultMap.get(ChainParam.TX_HASH));
+                outJson.put(ChainConfig.TX_HASH, queryResultMap.get(ChainConfig.TX_HASH));
             }
         } else {
-            logger.debug("UP_CHAIN_FAIL");
-            ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_CHAIN_FAIL);
+            logger.debug("NO_TX");
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.NO_TX);
         }
 
-        outJson = ChainParam.upperUnderlineToSmallHump(outJson);
         logger.debug("outJson: [{}]", outJson.toJSONString());
         logger.debug("[compensateQuery] end");
-        return outJson;
+        return ChainConfig.upperUnderlineToSmallHump(outJson);
     }
 
 
     static public JSONObject getDataInfo(Map<String, String> queryResultMap) {
+        logger.debug("[getDataInfo] start");
         JSONObject dataInfo = new JSONObject();
         for (String key: queryResultMap.keySet()) {
-            if (!ChainParam.SYSTEM_PARAM.contains(key)) {
+            if (!ChainConfig.SYSTEM_PARAM.contains(key)) {
+                logger.debug(key + " : " + queryResultMap.get(key));
                 dataInfo.put(key, queryResultMap.get(key));
             }
         }
+        logger.debug("[getDataInfo] end");
         return dataInfo;
     }
 }

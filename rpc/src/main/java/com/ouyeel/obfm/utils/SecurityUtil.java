@@ -1,9 +1,10 @@
 package com.ouyeel.obfm.utils;
 
-import com.ouyeel.obfm.fm.business.impl.ChainParam;
+import com.ouyeel.obfm.fm.business.impl.ChainConfig;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public  class SecurityUtil {
 
@@ -13,28 +14,50 @@ public  class SecurityUtil {
     {
         SecretMap = new HashMap<String, Map<String, String>>();
         Map<String,String>  keyMap = new HashMap<String,String>();
-        keyMap.put(ChainParam.PUBLIC_KEY, "0489A82A1A82CEE4AAEAE2B8910584F7ACC561192B09C8613650347EF57ABC46F377B682F0B572EEEA55CC1E74DECD7596C3E39121570FF5D646ABD5EDC5AFB09E");
-        keyMap.put(ChainParam.PRIVATE_KEY, "00CA258FB2D851E94C82D5CD93FBE8398F90F0EB5AEB1E0BD90E996A9BF99CA79E");
-        SecretMap.put("A_BE_BS_03",keyMap); // keyId
+        keyMap.put(ChainConfig.PUBLIC_KEY, "2204404536ab867d9a964bfcc5e6fdaa7d77e509ce5891d38b3ebbb036e5c225994597ea6d0bdff3539fd3062b3943a1c7dd75d173f35101b71298e9f7f08d51");
+        keyMap.put(ChainConfig.PRIVATE_KEY, "d6c83aee4bfbeb135a2dcef8c803b186d0678a99002b09d3c60c22aca7105005");
+        SecretMap.put("002",keyMap); // systemId
 
         SM4KeyMap = new HashMap<String, Map<String, String>>();
         Map<String,String>  smkeyMap = new HashMap<String,String>();
-        smkeyMap.put(ChainParam.SM4_KEY, "6DAA9BF10B97AB19F983EEDAC9D70A53");
-        smkeyMap.put(ChainParam.SM4_IV, "06A19559FDB5B1274CA0F4C5265C9D88");
-        SecretMap.put("QXLD",keyMap);   // accountId
+        smkeyMap.put(ChainConfig.SM4_KEY, "0123456789abcdef0123456789abcdef");
+        smkeyMap.put(ChainConfig.SM4_IV, "0123456789abcdef0123456789abcdef");
+
+        SM4KeyMap.put("001", smkeyMap);   // systemId
+
     }
 
-    public static String getPrivateKey(String accountId){
-       return SecretMap.get(accountId).get(ChainParam.PRIVATE_KEY);
+    public static String getPrivateKey(String systemId){
+        systemId = "002"; // 测试
+       return SecretMap.get(systemId).get(ChainConfig.PRIVATE_KEY);
     }
-    public static String getPublicKey(String accountId){
-        return SecretMap.get(accountId).get(ChainParam.PUBLIC_KEY);
+    public static String getPublicKey(String systemId){
+        systemId = "002"; // 测试
+        return SecretMap.get(systemId).get(ChainConfig.PUBLIC_KEY);
     }
-    public static Map<String,String> getKeys(String accountId){
-        return SecretMap.get(accountId);
+    public static Map<String,String> getKeys(String systemId){
+        return SecretMap.get(systemId);
     }
 
-    public static Map<String, String> getSm4Key(String keyId){
-        return SM4KeyMap.get(keyId);
+    public static Map<String, String> getSm4Key(String systemId){
+        if (!SM4KeyMap.containsKey(systemId)) {
+            Map<String,String>  smkeyMap = new HashMap<String,String>();
+            smkeyMap.put(ChainConfig.SM4_KEY, randomHexString(32));
+            smkeyMap.put(ChainConfig.SM4_IV, randomHexString(32));
+            SM4KeyMap.put(systemId, smkeyMap);   // systemId
+        }
+        return SM4KeyMap.get(systemId);
+    }
+
+
+    static String randomHexString(int n) {
+        StringBuilder stringBuilder = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < n; ++i) {
+            Integer integer = random.nextInt(16);
+            stringBuilder.append(Integer.toHexString(integer));
+        }
+        System.out.println(stringBuilder.substring(0, n));
+        return stringBuilder.substring(0, n);
     }
 }

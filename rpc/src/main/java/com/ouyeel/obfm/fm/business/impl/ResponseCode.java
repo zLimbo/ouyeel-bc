@@ -8,18 +8,20 @@ import com.alibaba.fastjson.JSONObject;
 public enum ResponseCode {
     SUCCESS(1, "成功"),
     FAIL(-1, "失败"),
-    NULL_PARAMETER(105, "空参数错误"),
-    UP_TX_SUCCESS(1, "上传交易成功"),
-    UP_TX_FAIL(-1, "上传交易失败"),
-    UP_CHAIN_SUCCESS(104, "数据已上链，请检查参数"),
-    UP_CHAIN_WAITTING(105, "数据上链中，请稍等"),
-    UP_CHAIN_FAIL(101, "上链失败"),
-    VERIFY_TX_SUCCESS(1, "数据验证成功"),
-    VERIFY_TX_FAIL(-1, "数据验证失败"),
-    UP_CHAIN_WAIT(102, "上链中"),
-    SIGN_VERIFY_FAIL(106, "签名验证失败"),
-    NO_REQUEST(107, "请求不存在"),
-    QUERY_FAIL(108, "查询失败，请重试");
+    PARAMETER_LOSS(100, "缺少相应参数"),
+    PARAMETER_ERROR(200, "参数错误"),
+    UP_TX_SUCCESS(101, "上传交易成功"),
+    UP_TX_FAIL(201, "上传交易失败"),
+    UP_CHAIN_SUCCESS(102, "数据已上链，请检查参数"),
+    NO_TX(202, "链上无此交易"),
+    UP_CHAIN_WAITTING(302, "数据上链中，请稍等"),
+    VERIFY_TX_SUCCESS(103, "数据验证成功"),
+    VERIFY_TX_FAIL(203, "数据验证失败"),
+    SIGN_VERIFY_FAIL(204, "签名验证失败"),
+    NO_REQUEST(105, "请求不存在"),
+    QUERY_FAIL(106, "查询失败，请重试"),
+    OBTAIN_KEY_FAIL(207, "获取密钥失败"),
+    DATA_INFO_ERROR(208, "dataInfo参数错误");
 
     private final Integer code;
     private final String msg;
@@ -38,7 +40,7 @@ public enum ResponseCode {
     }
 
     public static void putCodeAndMsg(JSONObject json, ResponseCode responseCode) {
-        json.put("code", responseCode.getCode());
-        json.put("msg", responseCode.getMsg());
+        json.put(ChainConfig.CODE, responseCode.getCode());
+        json.put(ChainConfig.MSG, responseCode.getMsg());
     }
 }

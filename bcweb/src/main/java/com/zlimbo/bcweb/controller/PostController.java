@@ -256,18 +256,19 @@ public class PostController {
         for (String key: ChainParam.UP_CHAIN_PARAM) {
             postData.put(key, key);
         }
-
         postData.put(ChainParam.TABLE_NAME, "invoice");
         postData.put(ChainParam.REQUEST_SN, UUID.randomUUID().toString());
         postData.put(ChainParam.INVOKE_TIME, "2019-03-05 11:11:11.12");
-        postData.put(ChainParam.KEY_ID, "00006");
-        postData.put(ChainParam.ACCOUNT_ID, "00002");
+        Random random = new Random();
+        postData.put(ChainParam.TABLE_NAME, "invoice");
+        postData.put(ChainParam.SYSTEM_ID, "0000" + random.nextInt(9999));
+        postData.put(ChainParam.KEY_ID, "001");
+        postData.put(ChainParam.ACCOUNT_ID, "002");
         postData.put(ChainParam.CALLBACK_URL, CALLBACK_URL);
-        postData.put(ChainParam.SECRET_KEY, "0123456789abcdef");
-        postData.put(ChainParam.PRIVATE_KEY, "d6c83aee4bfbeb135a2dcef8c803b186d0678a99002b09d3c60c22aca7105005");
-        postData.put(ChainParam.PUBLIC_KEY, "2204404536ab867d9a964bfcc5e6fdaa7d77e509ce5891d38b3ebbb036e5c225994597ea6d0bdff3539fd3062b3943a1c7dd75d173f35101b71298e9f7f08d51");
+
         String dataInfoStr = "{\"CONSUMER_NAME\":\"数据学院\",\"CONSUMER_TAXES_NO\":\"12100000425006133D\",\"INVOICE_DATE\":\"2020-10-03\",\"INVOICE_NO\":\"3100982170\",\"INVOICE_NUMBER\":\"1\",\"INVOICE_TYPE\":\"增值税\",\"PRICE\":\"1000\",\"PRICE_PLUS_TAXES\":\"1000\",\"SELLER_NAME\":\"华东师大\",\"SELLER_TAXES_NO\":\"913100003245878130\",\"STATEMENT_SHEET\":\"1\",\"STATEMENT_WEIGHT\":\"1kg\",\"TAXES\":\"150\",\"TAXES_POINT\":\"17%\",\"TIMESTAMPS\":\"1601712721\"}";
         JSONObject dataInfo = JSONObject.parseObject(dataInfoStr);
+        dataInfo = ChainParam.upperUnderlineToSmallHump(dataInfo);
         logger.debug("dataInfo: \n" + dataInfo.getString(JSONObject.DEFFAULT_DATE_FORMAT));
         postData.put(ChainParam.DATA_INFO, dataInfo);
 
@@ -356,7 +357,7 @@ public class PostController {
         postData.put(ChainParam.REQUEST_SN, requestSn);
         postData.put(ChainParam.BUSINESS_ID, bussinessId);
         postData.put(ChainParam.TX_HASH, ((String)params.get("txHash")).trim());
-        postData.put(ChainParam.DATA_INFO, params.get("dataInfo"));
+        postData.put(ChainParam.DATA_INFO, JSONObject.parseObject((String) params.get("dataInfo")));
         postData.put(ChainParam.INVOKE_TIME, String.valueOf(System.currentTimeMillis()));
 
         // 私钥签名
