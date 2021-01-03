@@ -5,6 +5,7 @@ import com.ouyeel.obfm.fm.dao.ChainDao;
 import com.ouyeel.obfm.fm.dao.Dao;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -115,12 +116,12 @@ public class ChainConfig {
      * @param inJson
      * @return
      */
-    static public JSONObject smallHumpToUpperUnderline(JSONObject inJson) {
+    static public JSONObject smallHumpToUpperUnderline(Map<String, Object> inJson) {
         JSONObject outJson = new JSONObject();
         for (String key: inJson.keySet()) {
             Object value = inJson.get(key);
-            if (value instanceof JSONObject) {
-                value = smallHumpToUpperUnderline((JSONObject) value);
+            if (value instanceof Map) {
+                value = smallHumpToUpperUnderline((Map<String, Object>) value);
             }
             String newKey = smallHumpToUpperUnderline(key);
             outJson.put(newKey, value);
@@ -163,12 +164,12 @@ public class ChainConfig {
      * @param inJson
      * @return
      */
-    static public JSONObject upperUnderlineToSmallHump(JSONObject inJson) {
+    static public JSONObject upperUnderlineToSmallHump(Map<String, Object> inJson) {
         JSONObject outJson = new JSONObject();
         for (String key: inJson.keySet()) {
             Object value = inJson.get(key);
-            if (value instanceof JSONObject) {
-                value = upperUnderlineToSmallHump((JSONObject) value);
+            if (value instanceof Map) {
+                value = upperUnderlineToSmallHump((Map)value);
             }
             String newKey = upperUnderlineToSmallHump(key);
             outJson.put(newKey, value);

@@ -48,7 +48,7 @@ public class ChainControl {
     @RequestMapping(value = "/bcinfoUpdate", method = RequestMethod.GET)
     @ResponseBody
     public String bcinfoUpdate() throws IOException {
-        System.out.println("--------------------------------------------bcinfoUpdate ok");
+//        System.out.println("--------------------------------------------bcinfoUpdate ok");
 
         Map<String, String> bcInfo = getBcinfo();
         JSONObject jsonObject = new JSONObject();

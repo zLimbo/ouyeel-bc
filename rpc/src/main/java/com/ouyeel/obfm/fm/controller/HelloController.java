@@ -6,6 +6,7 @@ import com.ouyeel.obfm.fm.business.impl.ChainConfig;
 import com.ouyeel.obfm.fm.business.impl.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,14 +20,16 @@ import java.util.Map;
 @RestController
 public class HelloController {
 
+    long time = 0;
+    int count = 0;
 
     /**
      * 日志
      */
     final static Logger logger = LoggerFactory.getLogger(HelloController.class);
 
-
-    private IOrderService orderService = new OrderService();
+    @Autowired
+    private IOrderService orderService;
 
     /**
      * index
@@ -51,9 +54,19 @@ public class HelloController {
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     String upChain(@RequestBody JSONObject inJson) {
         logger.debug("[upChain] start");
-        //System.out.println("[upChain] start");
+
+//        System.out.println(Thread.currentThread().getName());
+
+        ++count;
+        long start = System.currentTimeMillis();
 
         JSONObject outJson = orderService.upChain(inJson);
+//        JSONObject outJson = new JSONObject();
+        long end = System.currentTimeMillis();
+        time += end - start;
+        System.out.println("HelloController: " + count + ": " + (end - start) / 1000.0 + " s" +
+                ", cur:" + 1 / ((end - start) / 1000.0) + " tps" +
+                ", sum:" + count / (time / 1000.0) + " tps ThreadName: " + Thread.currentThread().getName());
 
         logger.debug("[upChain] end");
         return outJson.toJSONString();
@@ -71,7 +84,7 @@ public class HelloController {
         logger.debug("[queryByTxHash] start");
 
         JSONObject outJson = orderService.queryChain(inJson);
-
+//        JSONObject outJson = new JSONObject();
         logger.debug("[queryByTxHash] end");
         return outJson.toJSONString();
     }

@@ -5,30 +5,36 @@ import com.ouyeel.obfm.fm.business.IOrderService;
 import com.ouyeel.obfm.utils.SecurityUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
+import java.sql.SQLSyntaxErrorException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class OrderService implements IOrderService {
 
     final static Logger logger = LoggerFactory.getLogger(OrderService.class);
 
+    static int count = 0;
+    static long time = 0;
 
     /**
      * 获取相关的密钥
      * @param systemId
      * @return
      */
-    private static Map<String, String> obtainKey(String systemId) {
+    private static Map<String, String> obtainKey(String keyId, String accountId) {
         Map<String, String> outMap = new HashMap<>();
 
-        Map<String, String> sm4KeyMap = SecurityUtil.getSm4Key(systemId);
+        Map<String, String> sm4KeyMap = SecurityUtil.getSm4Key(keyId);
         String sm4Key = sm4KeyMap.get(ChainConfig.SM4_KEY);
         String sm4Iv = sm4KeyMap.get(ChainConfig.SM4_IV);
-        String publicKey = SecurityUtil.getPublicKey(systemId);
-        String privateKey = SecurityUtil.getPrivateKey(systemId);
-        logger.debug("systemId: [{}]", systemId);
+        String publicKey = SecurityUtil.getPublicKey(accountId);
+        String privateKey = SecurityUtil.getPrivateKey(accountId);
+        logger.debug("keyId: [{}]", keyId);
+        logger.debug("accountId: [{}]", accountId);
         logger.debug("sm4Key: [{}]", sm4Key);
         logger.debug("sm4Iv: [{}]", sm4Iv);
         logger.debug("publicKey: [{}]", publicKey);
@@ -52,19 +58,22 @@ public class OrderService implements IOrderService {
 
         JSONObject outJson = new JSONObject();
         try {
-            inJson = ChainConfig.smallHumpToUpperUnderline(JSONObject.parseObject(inJson.toJSONString()));
+            inJson = ChainConfig.smallHumpToUpperUnderline(inJson);
         } catch (Exception e) {
             logger.error("PARAMETER_ERROR!");
+            e.printStackTrace();
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_ERROR);
             return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
         logger.debug("inJson: [{}]", inJson.toJSONString());
+        //System.out.println("inJson: " + inJson.toJSONString());
 
         try {
-            Map<String, String> keys = obtainKey(inJson.getString(ChainConfig.SYSTEM_ID));
+            Map<String, String> keys = obtainKey(
+                    inJson.getString(ChainConfig.KEY_ID), inJson.getString(ChainConfig.ACCOUNT_ID));
             inJson.putAll(keys);
         } catch (Exception e) {
-            logger.error("OBTAIN_KEY_FAIL!");
+            logger.debug("OBTAIN_KEY_FAIL!");
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.OBTAIN_KEY_FAIL);
             return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
@@ -101,9 +110,10 @@ public class OrderService implements IOrderService {
          */
         logger.debug("upChain...");
         boolean insertResult = ChainConfig.CHAIN_DAO.insertTx(paramMap);
+
         if (!insertResult) {
             logger.debug("upChain fail");
-            ResponseCode.putCodeAndMsg(outJson, ResponseCode.NO_TX);
+            ResponseCode.putCodeAndMsg(outJson, ResponseCode.UP_TX_FAIL);
             return ChainConfig.upperUnderlineToSmallHump(outJson);
         }
         logger.debug("upChain success");
@@ -112,13 +122,15 @@ public class OrderService implements IOrderService {
         /**
          * 添加异步回调任务到线程池，回调发送上链结果（异步线程池，线程池大小在 ChainConfig 类内定义）
          */
-        if (paramMap.get(ChainConfig.CALLBACK_URL) != null) {
-            AsyncCallback.addTask(
-                    paramMap.get(ChainConfig.CALLBACK_URL),
-                    paramMap.get(ChainConfig.TABLE_NAME),
-                    paramMap.get(ChainConfig.REQUEST_SN));
-        }
+//        if (paramMap.get(ChainConfig.CALLBACK_URL) != null) {
+//            AsyncCallback.addTask(
+//                    paramMap.get(ChainConfig.CALLBACK_URL),
+//                    paramMap.get(ChainConfig.TABLE_NAME),
+//                    paramMap.get(ChainConfig.REQUEST_SN));
+//        }
 
+        ++count;
+        long start = System.currentTimeMillis();
         /**
          * 查询hash值
          */
@@ -130,6 +142,12 @@ public class OrderService implements IOrderService {
         } else {
             logger.debug("query txHash fail");
         }
+
+        long end = System.currentTimeMillis();
+        time += end - start;
+        System.out.println("OrderService query txHash: " + count + ": " + (end - start) / 1000.0 + " s" +
+                ", cur:" + 1 / ((end - start) / 1000.0) + " tps" +
+                ", sum:" + count / (time / 1000.0) + " tps ThreadName: " + Thread.currentThread().getName());
 
         outJson.put(ChainConfig.SYSTEM_ID, paramMap.get(ChainConfig.SYSTEM_ID));
         outJson.put(ChainConfig.REQUEST_SN, paramMap.get(ChainConfig.REQUEST_SN));
@@ -151,7 +169,7 @@ public class OrderService implements IOrderService {
 
         JSONObject outJson = new JSONObject();
         try {
-            inJson = ChainConfig.smallHumpToUpperUnderline(JSONObject.parseObject(inJson.toJSONString()));
+            inJson = ChainConfig.smallHumpToUpperUnderline(inJson);
         } catch (Exception e) {
             logger.error("PARAMETER_ERROR!");
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_ERROR);
@@ -216,7 +234,7 @@ public class OrderService implements IOrderService {
 
         JSONObject outJson = new JSONObject();
         try {
-            inJson = ChainConfig.smallHumpToUpperUnderline(JSONObject.parseObject(inJson.toJSONString()));
+            inJson = ChainConfig.smallHumpToUpperUnderline(inJson);
         } catch (Exception e) {
             logger.error("PARAMETER_ERROR!");
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_ERROR);
@@ -280,7 +298,7 @@ public class OrderService implements IOrderService {
 
         JSONObject outJson = new JSONObject();
         try {
-            inJson = ChainConfig.smallHumpToUpperUnderline(JSONObject.parseObject(inJson.toJSONString()));
+            inJson = ChainConfig.smallHumpToUpperUnderline(inJson);
         } catch (Exception e) {
             logger.error("PARAMETER_ERROR!");
             ResponseCode.putCodeAndMsg(outJson, ResponseCode.PARAMETER_ERROR);

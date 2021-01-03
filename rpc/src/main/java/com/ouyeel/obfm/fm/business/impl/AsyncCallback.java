@@ -24,6 +24,7 @@ public class AsyncCallback {
     
     final static Logger logger = LoggerFactory.getLogger(AsyncCallback.class);
 
+    static long count = 0;
 
     static class CallbackThreadTask implements Runnable, Comparable<CallbackThreadTask> {
         private final String callbackUrl;
@@ -118,6 +119,7 @@ public class AsyncCallback {
      * @return 布尔值：回调是否成功
      */
     private static boolean callback(String callbackUrl, String tableName, String requestSn) {
+        System.out.println(count++);
         logger.debug("[callback] start");
         logger.debug("requestSn: [{}]", requestSn);
         List<Map<String, String>> queryResulList = ChainConfig.CHAIN_DAO.queryCallbackByRequestSn(tableName, requestSn);

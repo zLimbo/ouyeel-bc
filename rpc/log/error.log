@@ -1,308 +1,151 @@
-2020-12-20 14:57:07 |ERROR |http-nio-8080-exec-1 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while executing mapped statement.  
---- Check the insertTx.  
---- Check the statement or the result map.  
---- Cause: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+2021-01-03 19:25:59 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:25:59 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:26:01 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:26:01 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:26:01 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:26:01 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:26:01 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:26:01 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:26:01 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:26:01 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:26:18 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:26:18 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:26:27 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:26:27 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:26:27 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:26:27 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:26:27 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:26:27 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:26:27 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:26:27 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:27:22 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:27:22 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:30:51 |ERROR |pool-1-thread-3 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure during rollback(). Transaction resolution unknown.
+2021-01-03 19:30:51 |ERROR |pool-1-thread-5 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure during rollback(). Transaction resolution unknown.
+2021-01-03 19:30:51 |ERROR |pool-1-thread-2 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure during rollback(). Transaction resolution unknown.
+2021-01-03 19:30:51 |ERROR |pool-1-thread-4 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure during rollback(). Transaction resolution unknown.
+2021-01-03 19:30:51 |ERROR |pool-1-thread-1 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure during rollback(). Transaction resolution unknown.
+2021-01-03 19:30:59 |ERROR |pool-1-thread-2 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-2020-12-20 14:57:29 |ERROR |http-nio-8080-exec-1 |DirectJDKLog.java:175 |org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] |Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] with root cause
-java.net.SocketException: Software caused connection abort: connect
-	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
-	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:75)
-	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
-	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
-	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
-	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:162)
-	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
-	at java.net.Socket.connect(Socket.java:606)
-	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:211)
-	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:300)
-	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2251)
-	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
-	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
-	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
-	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
-	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
-	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
-	at java.sql.DriverManager.getConnection(DriverManager.java:664)
-	at java.sql.DriverManager.getConnection(DriverManager.java:247)
-	at com.ibatis.common.jdbc.SimpleDataSource.popConnection(SimpleDataSource.java:580)
-	at com.ibatis.common.jdbc.SimpleDataSource.getConnection(SimpleDataSource.java:222)
-	at com.ibatis.sqlmap.engine.transaction.jdbc.JdbcTransaction.init(JdbcTransaction.java:48)
-	at com.ibatis.sqlmap.engine.transaction.jdbc.JdbcTransaction.getConnection(JdbcTransaction.java:89)
-	at com.ibatis.sqlmap.engine.mapping.statement.GeneralStatement.executeQueryForList(GeneralStatement.java:123)
-	at com.ibatis.sqlmap.engine.impl.SqlMapExecutorDelegate.queryForList(SqlMapExecutorDelegate.java:615)
-	at com.ibatis.sqlmap.engine.impl.SqlMapExecutorDelegate.queryForList(SqlMapExecutorDelegate.java:589)
-	at com.ibatis.sqlmap.engine.impl.SqlMapSessionImpl.queryForList(SqlMapSessionImpl.java:118)
-	at com.ibatis.sqlmap.engine.impl.SqlMapSessionImpl.queryForList(SqlMapSessionImpl.java:122)
-	at com.ibatis.sqlmap.engine.impl.SqlMapClientImpl.queryForList(SqlMapClientImpl.java:99)
-	at com.ouyeel.obfm.fm.controller.HelloController.index(HelloController.java:38)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-2020-12-20 14:59:27 |ERROR |http-nio-8080-exec-1 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while executing mapped statement.  
---- Check the insertTx.  
---- Check the statement or the result map.  
---- Cause: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+2021-01-03 19:31:02 |ERROR |pool-1-thread-5 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-2020-12-20 17:53:05 |ERROR |http-nio-8080-exec-6 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while executing mapped statement.  
---- Check the insertTx.  
---- Check the statement or the result map.  
---- Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Communications link failure during rollback(). Transaction resolution unknown.
-2020-12-20 17:53:16 |ERROR |http-nio-8080-exec-1 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 17:53:38 |ERROR |http-nio-8080-exec-2 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 17:53:56 |ERROR |http-nio-8080-exec-3 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 18:07:51 |ERROR |http-nio-8080-exec-3 |DirectJDKLog.java:175 |org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] |Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
-java.lang.NullPointerException: null
-	at com.ouyeel.obfm.fm.business.impl.OrderService.upChain(OrderService.java:86)
-	at com.ouyeel.obfm.fm.controller.HelloController.upChain(HelloController.java:54)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-2020-12-20 18:08:07 |ERROR |http-nio-8080-exec-4 |DirectJDKLog.java:175 |org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] |Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
-java.lang.NullPointerException: null
-	at com.ouyeel.obfm.fm.business.impl.OrderService.upChain(OrderService.java:86)
-	at com.ouyeel.obfm.fm.controller.HelloController.upChain(HelloController.java:54)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-2020-12-20 18:11:00 |ERROR |http-nio-8080-exec-1 |OrderService.java:85 |com.ouyeel.obfm.fm.business.impl.OrderService |PARAMETER_LOSS
-2020-12-20 18:11:00 |ERROR |http-nio-8080-exec-1 |OrderService.java:86 |com.ouyeel.obfm.fm.business.impl.OrderService |null
-2020-12-20 18:11:10 |ERROR |http-nio-8080-exec-2 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
+2021-01-03 19:31:11 |ERROR |pool-1-thread-1 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2021-01-03 19:31:17 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:31:17 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:31:21 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:31:21 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:31:24 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:31:24 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:31:25 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:31:25 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:31:32 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:31:32 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:31:38 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:31:38 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:32:24 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:32:24 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:32:35 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:32:35 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:32:35 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:32:35 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:33:17 |ERROR |pool-1-thread-3 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure during rollback(). Transaction resolution unknown.
+2021-01-03 19:33:17 |ERROR |pool-1-thread-1 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |  
 --- The error occurred in mapper/ChainMapper.xml.  
 --- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 18:12:03 |ERROR |http-nio-8080-exec-4 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while executing mapped statement.  
---- Check the insertTx.  
---- Check the statement or the result map.  
---- Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Communications link failure during rollback(). Transaction resolution unknown.
-2020-12-20 18:12:54 |ERROR |http-nio-8080-exec-1 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 18:13:35 |ERROR |http-nio-8080-exec-3 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 18:14:01 |ERROR |http-nio-8080-exec-4 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 18:21:11 |ERROR |http-nio-8080-exec-1 |OrderService.java:92 |com.ouyeel.obfm.fm.business.impl.OrderService |DATA_INFO_ERROR
-2020-12-20 18:21:11 |ERROR |http-nio-8080-exec-1 |OrderService.java:93 |com.ouyeel.obfm.fm.business.impl.OrderService |null
-2020-12-20 18:23:55 |ERROR |http-nio-8080-exec-1 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 18:24:06 |ERROR |http-nio-8080-exec-2 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 18:25:40 |ERROR |http-nio-8080-exec-1 |OrderService.java:67 |com.ouyeel.obfm.fm.business.impl.OrderService |OBTAIN_KEY_FAIL!
-2020-12-20 18:25:55 |ERROR |http-nio-8080-exec-1 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the insertTx-InlineParameterMap.  
---- Check the statement (update failed).  
---- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
-2020-12-20 18:32:05 |ERROR |http-nio-8080-exec-5 |ChainDao.java:120 |com.ouyeel.obfm.fm.dao.ChainDao |  
---- The error occurred in mapper/ChainMapper.xml.  
---- The error occurred while applying a parameter map.  
---- Check the queryAllByRequestSn-InlineParameterMap.  
+--- Check the queryCallbackByRequestSn-InlineParameterMap.  
 --- Check the statement (query failed).  
---- Cause: java.sql.SQLException: Table 'ouyeel.tx' doesn't exist
+--- Cause: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 41,724 milliseconds ago.  The last packet sent successfully to the server was 44,295 milliseconds ago.
+2021-01-03 19:33:17 |ERROR |pool-1-thread-4 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure during rollback(). Transaction resolution unknown.
+2021-01-03 19:33:20 |ERROR |pool-1-thread-5 |ChainDao.java:164 |com.ouyeel.obfm.fm.dao.ChainDao |Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2021-01-03 19:33:29 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:33:29 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:33:29 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:33:29 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:33:29 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:33:29 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:33:42 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:33:42 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:33:42 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:33:42 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:33:54 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:33:54 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:33:54 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:33:54 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:33:54 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:33:54 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:34:46 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:34:46 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:34:46 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:34:46 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:34:51 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:34:51 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:34:53 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:34:53 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:35:00 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:35:00 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:35:00 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:35:00 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:35:00 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:35:00 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:35:07 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:35:07 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:35:08 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:35:08 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:35:08 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:35:08 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:35:14 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:35:14 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:35:14 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:35:14 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:22 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:22 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:22 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:22 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:31 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:31 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:31 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:31 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:41 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:41 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:41 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:41 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:41 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:41 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:50 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:50 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:52 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:52 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:55 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:55 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:55 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:55 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:36:55 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:36:55 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:37:10 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:37:10 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:37:12 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:37:12 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:37:15 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:37:15 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:38:00 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:38:00 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:38:00 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:38:00 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:38:08 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:38:08 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:38:08 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:38:08 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:38:14 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:38:14 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:38:18 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:38:18 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2021-01-03 19:38:19 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2021-01-03 19:38:19 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect

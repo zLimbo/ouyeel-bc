@@ -1,0 +1,289 @@
+2020-12-21 15:59:25 |ERROR |http-nio-8080-exec-1 |DirectJDKLog.java:175 |org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] |Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] with root cause
+java.net.SocketException: Software caused connection abort: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:75)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:162)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
+	at java.net.Socket.connect(Socket.java:606)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:211)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:300)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2251)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.ibatis.common.jdbc.SimpleDataSource.popConnection(SimpleDataSource.java:580)
+	at com.ibatis.common.jdbc.SimpleDataSource.getConnection(SimpleDataSource.java:222)
+	at com.ibatis.sqlmap.engine.transaction.jdbc.JdbcTransaction.init(JdbcTransaction.java:48)
+	at com.ibatis.sqlmap.engine.transaction.jdbc.JdbcTransaction.getConnection(JdbcTransaction.java:89)
+	at com.ibatis.sqlmap.engine.mapping.statement.GeneralStatement.executeQueryForList(GeneralStatement.java:123)
+	at com.ibatis.sqlmap.engine.impl.SqlMapExecutorDelegate.queryForList(SqlMapExecutorDelegate.java:615)
+	at com.ibatis.sqlmap.engine.impl.SqlMapExecutorDelegate.queryForList(SqlMapExecutorDelegate.java:589)
+	at com.ibatis.sqlmap.engine.impl.SqlMapSessionImpl.queryForList(SqlMapSessionImpl.java:118)
+	at com.ibatis.sqlmap.engine.impl.SqlMapSessionImpl.queryForList(SqlMapSessionImpl.java:122)
+	at com.ibatis.sqlmap.engine.impl.SqlMapClientImpl.queryForList(SqlMapClientImpl.java:99)
+	at com.ouyeel.obfm.fm.controller.HelloController.index(HelloController.java:39)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-12-21 15:59:43 |ERROR |http-nio-8080-exec-3 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: error
+2020-12-21 16:16:42 |ERROR |http-nio-8080-exec-1 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: fields is not complete
+2020-12-21 16:19:09 |ERROR |http-nio-8080-exec-1 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 16:19:27 |ERROR |http-nio-8080-exec-2 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: fields is not complete
+2020-12-21 16:20:35 |ERROR |http-nio-8080-exec-4 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: insert error!
+2020-12-21 16:21:53 |ERROR |http-nio-8080-exec-6 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: insert error!
+2020-12-21 16:22:24 |ERROR |pool-1-thread-1 |AsyncCallback.java:141 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-21 16:22:24 |ERROR |pool-1-thread-1 |AsyncCallback.java:142 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |null
+2020-12-21 16:22:41 |ERROR |pool-1-thread-2 |AsyncCallback.java:141 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-21 16:22:41 |ERROR |pool-1-thread-2 |AsyncCallback.java:142 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |null
+2020-12-21 16:23:41 |ERROR |pool-1-thread-3 |AsyncCallback.java:141 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-21 16:23:41 |ERROR |pool-1-thread-3 |AsyncCallback.java:142 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |null
+2020-12-21 16:24:01 |ERROR |pool-1-thread-4 |AsyncCallback.java:141 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-21 16:24:01 |ERROR |pool-1-thread-4 |AsyncCallback.java:142 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |null
+2020-12-21 16:24:22 |ERROR |pool-1-thread-1 |AsyncCallback.java:141 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-21 16:24:22 |ERROR |pool-1-thread-1 |AsyncCallback.java:142 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |null
+2020-12-21 16:24:38 |ERROR |pool-1-thread-1 |AsyncCallback.java:141 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-21 16:24:38 |ERROR |pool-1-thread-1 |AsyncCallback.java:142 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |null
+2020-12-21 16:25:17 |ERROR |pool-1-thread-5 |AsyncCallback.java:141 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-21 16:25:17 |ERROR |pool-1-thread-5 |AsyncCallback.java:142 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |null
+2020-12-21 16:25:39 |ERROR |pool-1-thread-1 |AsyncCallback.java:141 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-21 16:25:39 |ERROR |pool-1-thread-1 |AsyncCallback.java:142 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |null
+2020-12-21 16:27:41 |ERROR |http-nio-8080-exec-2 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: insert error!
+2020-12-21 19:28:56 |ERROR |http-nio-8080-exec-4 |ChainDao.java:55 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 19:30:32 |ERROR |http-nio-8080-exec-1 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 19:33:36 |ERROR |http-nio-8080-exec-1 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 19:33:36 |ERROR |http-nio-8080-exec-1 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:27:50 |ERROR |http-nio-8080-exec-3 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:27:50 |ERROR |http-nio-8080-exec-3 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:28:10 |ERROR |http-nio-8080-exec-4 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:28:10 |ERROR |http-nio-8080-exec-4 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:29:10 |ERROR |http-nio-8080-exec-5 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:29:10 |ERROR |http-nio-8080-exec-5 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:29:29 |ERROR |http-nio-8080-exec-6 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:29:29 |ERROR |http-nio-8080-exec-6 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:29:37 |ERROR |http-nio-8080-exec-7 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: insert error!
+2020-12-21 20:29:37 |ERROR |http-nio-8080-exec-7 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |insert error!
+2020-12-21 20:30:56 |ERROR |http-nio-8080-exec-1 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: fields is not complete
+2020-12-21 20:30:56 |ERROR |http-nio-8080-exec-1 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |fields is not complete
+2020-12-21 20:31:26 |ERROR |http-nio-8080-exec-3 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: fields is not complete
+2020-12-21 20:31:26 |ERROR |http-nio-8080-exec-3 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |fields is not complete
+2020-12-21 20:32:07 |ERROR |http-nio-8080-exec-6 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: insert error!
+2020-12-21 20:32:07 |ERROR |http-nio-8080-exec-6 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |insert error!
+2020-12-21 20:34:04 |ERROR |http-nio-8080-exec-1 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:34:04 |ERROR |http-nio-8080-exec-1 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:35:14 |ERROR |http-nio-8080-exec-3 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:35:14 |ERROR |http-nio-8080-exec-3 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:35:33 |ERROR |http-nio-8080-exec-1 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:35:33 |ERROR |http-nio-8080-exec-1 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:35:48 |ERROR |http-nio-8080-exec-2 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: insert error!
+2020-12-21 20:35:48 |ERROR |http-nio-8080-exec-2 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |insert error!
+2020-12-21 20:35:57 |ERROR |http-nio-8080-exec-3 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: insert error!
+2020-12-21 20:35:57 |ERROR |http-nio-8080-exec-3 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |insert error!
+2020-12-21 20:36:04 |ERROR |http-nio-8080-exec-4 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: insert error!
+2020-12-21 20:36:04 |ERROR |http-nio-8080-exec-4 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |insert error!
+2020-12-21 20:38:27 |ERROR |http-nio-8080-exec-1 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:38:27 |ERROR |http-nio-8080-exec-1 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:38:39 |ERROR |http-nio-8080-exec-1 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:38:39 |ERROR |http-nio-8080-exec-1 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:38:43 |ERROR |http-nio-8080-exec-3 |ChainDao.java:56 |com.ouyeel.obfm.fm.dao.ChainDao |  
+--- The error occurred in mapper/ChainMapper.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the insertTx-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: sm4_key or sm4_iv is not correspond with the first appearance
+2020-12-21 20:38:43 |ERROR |http-nio-8080-exec-3 |ChainDao.java:57 |com.ouyeel.obfm.fm.dao.ChainDao |sm4_key or sm4_iv is not correspond with the first appearance

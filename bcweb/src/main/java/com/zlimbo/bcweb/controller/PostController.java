@@ -262,7 +262,7 @@ public class PostController {
         Random random = new Random();
         postData.put(ChainParam.TABLE_NAME, "invoice");
         postData.put(ChainParam.SYSTEM_ID, "0000" + random.nextInt(9999));
-        postData.put(ChainParam.KEY_ID, "001");
+        postData.put(ChainParam.KEY_ID, "0000" + random.nextInt(9999999));
         postData.put(ChainParam.ACCOUNT_ID, "002");
         postData.put(ChainParam.CALLBACK_URL, CALLBACK_URL);
 
@@ -276,14 +276,32 @@ public class PostController {
         String postJsonStr = postData.toJSONString();
         logger.debug("postJsonStr: " + postJsonStr);
         // post远程请求
+
+        long time = 0;
+
+        int num = 1000;
+        for (int count = 0; count < num; ++count) {
+            long start = System.currentTimeMillis();
+            String response = send(POST_URL + "/obst/service/S_ST_01", postData, "utf-8");
+            long end = System.currentTimeMillis();
+            time += end - start;
+            System.out.println(count + ": " + (end - start) / 1000.0 + " s" +
+                    "\tcur:" + 1 / ((end - start) / 1000.0) + " tps" +
+                    "\tsum:" + count / (time / 1000.0) + " tps\t" +
+                    response);
+            postData.put(ChainParam.REQUEST_SN, UUID.randomUUID().toString());
+        }
+
+        double tps = num / (time / 1000.0);
+        System.out.println("tps: " + tps + " tps");
+        logger.debug("tps: {} tps", tps);
+
         String response = send(POST_URL + "/obst/service/S_ST_01", postData, "utf-8");
         JSONObject resultJson = JSONObject.parseObject(response);
-
+        resultJson.put("tps", tps);
         ModelAndView modelAndView = new ModelAndView("post/upChainResult");
         modelAndView.addObject("postData", postData);
-        modelAndView.addObject("code", resultJson.get("code"));
-        modelAndView.addObject("msg", resultJson.get("msg"));
-        modelAndView.addObject("txHash", resultJson.get(ChainParam.TX_HASH));
+        modelAndView.addObject("resultJson", resultJson);
         modelAndView.addObject("data", dataInfo);
 
         logger.debug("============> [upChain post] end");

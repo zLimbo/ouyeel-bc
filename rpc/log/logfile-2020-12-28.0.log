@@ -1,0 +1,260 @@
+2020-12-28 09:35:49 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:35:49 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 1051 ms
+2020-12-28 09:35:49 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:35:49 |ERROR |main |DirectJDKLog.java:175 |org.apache.catalina.util.LifecycleBase |Failed to start component [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:226)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:259)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:197)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:311)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:164)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.ouyeel.obfm.RpcApplication.main(RpcApplication.java:10)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:444)
+	at sun.nio.ch.Net.bind(Net.java:436)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:225)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:236)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1085)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1171)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:568)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1005)
+	... 14 common frames omitted
+2020-12-28 09:35:49 |INFO  |main |ConditionEvaluationReportLoggingListener.java:142 |org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener |
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-12-28 09:35:49 |ERROR |main |LoggingFailureAnalysisReporter.java:42 |org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter |
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2020-12-28 09:35:49 |INFO  |main |ExecutorConfigurationSupport.java:208 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:37:03 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:37:03 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 862 ms
+2020-12-28 09:37:03 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:37:03 |ERROR |main |DirectJDKLog.java:175 |org.apache.catalina.util.LifecycleBase |Failed to start component [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:226)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:259)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:197)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:311)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:164)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.ouyeel.obfm.RpcApplication.main(RpcApplication.java:10)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:444)
+	at sun.nio.ch.Net.bind(Net.java:436)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:225)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:236)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1085)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1171)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:568)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1005)
+	... 14 common frames omitted
+2020-12-28 09:37:03 |INFO  |main |ConditionEvaluationReportLoggingListener.java:142 |org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener |
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-12-28 09:37:03 |ERROR |main |LoggingFailureAnalysisReporter.java:42 |org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter |
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2020-12-28 09:37:03 |INFO  |main |ExecutorConfigurationSupport.java:208 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:38:03 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:38:03 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 959 ms
+2020-12-28 09:38:03 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:38:04 |ERROR |main |DirectJDKLog.java:175 |org.apache.catalina.util.LifecycleBase |Failed to start component [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:226)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:259)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:197)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:311)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:164)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.ouyeel.obfm.RpcApplication.main(RpcApplication.java:10)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:444)
+	at sun.nio.ch.Net.bind(Net.java:436)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:225)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:236)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1085)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1171)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:568)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1005)
+	... 14 common frames omitted
+2020-12-28 09:38:04 |INFO  |main |ConditionEvaluationReportLoggingListener.java:142 |org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener |
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-12-28 09:38:04 |ERROR |main |LoggingFailureAnalysisReporter.java:42 |org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter |
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2020-12-28 09:38:04 |INFO  |main |ExecutorConfigurationSupport.java:208 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:39:29 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:39:29 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 826 ms
+2020-12-28 09:39:29 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:39:29 |ERROR |main |DirectJDKLog.java:175 |org.apache.catalina.util.LifecycleBase |Failed to start component [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:226)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:259)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:197)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:311)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:164)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.ouyeel.obfm.RpcApplication.main(RpcApplication.java:10)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:444)
+	at sun.nio.ch.Net.bind(Net.java:436)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:225)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:236)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1085)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1171)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:568)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1005)
+	... 14 common frames omitted
+2020-12-28 09:39:29 |INFO  |main |ConditionEvaluationReportLoggingListener.java:142 |org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener |
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-12-28 09:39:29 |ERROR |main |LoggingFailureAnalysisReporter.java:42 |org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter |
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2020-12-28 09:39:29 |INFO  |main |ExecutorConfigurationSupport.java:208 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:44:24 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:44:24 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 1069 ms
+2020-12-28 09:44:24 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:44:24 |INFO  |main |TomcatWebServer.java:204 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat started on port(s): 8080 (http) with context path ''
+2020-12-28 09:46:22 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:524 |org.springframework.web.servlet.DispatcherServlet |Initializing Servlet 'dispatcherServlet'
+2020-12-28 09:46:22 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:546 |org.springframework.web.servlet.DispatcherServlet |Completed initialization in 4 ms
+2020-12-28 09:47:26 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:47:26 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 891 ms
+2020-12-28 09:47:26 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:47:26 |INFO  |main |TomcatWebServer.java:204 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat started on port(s): 8080 (http) with context path ''
+2020-12-28 09:47:30 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:524 |org.springframework.web.servlet.DispatcherServlet |Initializing Servlet 'dispatcherServlet'
+2020-12-28 09:47:30 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:546 |org.springframework.web.servlet.DispatcherServlet |Completed initialization in 3 ms
+2020-12-28 09:53:48 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:53:48 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 1050 ms
+2020-12-28 09:53:48 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:53:48 |INFO  |main |TomcatWebServer.java:204 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat started on port(s): 8080 (http) with context path ''
+2020-12-28 09:53:48 |INFO  |http-nio-8080-exec-2 |FrameworkServlet.java:524 |org.springframework.web.servlet.DispatcherServlet |Initializing Servlet 'dispatcherServlet'
+2020-12-28 09:53:48 |INFO  |http-nio-8080-exec-2 |FrameworkServlet.java:546 |org.springframework.web.servlet.DispatcherServlet |Completed initialization in 3 ms
+2020-12-28 09:54:14 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:14 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:14 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:14 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:14 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:14 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:54:14 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:54:14 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:54:14 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:54:14 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:54:32 |ERROR |pool-1-thread-2 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:32 |ERROR |pool-1-thread-2 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:54:32 |ERROR |pool-1-thread-4 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:32 |ERROR |pool-1-thread-3 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:32 |ERROR |pool-1-thread-1 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:32 |ERROR |pool-1-thread-5 |AsyncCallback.java:143 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |callback send fail
+2020-12-28 09:54:32 |ERROR |pool-1-thread-4 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:54:32 |ERROR |pool-1-thread-3 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:54:32 |ERROR |pool-1-thread-1 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:54:32 |ERROR |pool-1-thread-5 |AsyncCallback.java:144 |com.ouyeel.obfm.fm.business.impl.AsyncCallback |Connect to 127.0.0.1:8082 [/127.0.0.1] failed: Connection refused: connect
+2020-12-28 09:55:25 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:55:25 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 773 ms
+2020-12-28 09:55:25 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:55:25 |INFO  |main |TomcatWebServer.java:204 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat started on port(s): 8080 (http) with context path ''
+2020-12-28 09:55:30 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:524 |org.springframework.web.servlet.DispatcherServlet |Initializing Servlet 'dispatcherServlet'
+2020-12-28 09:55:30 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:546 |org.springframework.web.servlet.DispatcherServlet |Completed initialization in 3 ms
+2020-12-28 09:56:06 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:56:06 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 759 ms
+2020-12-28 09:56:06 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:56:06 |INFO  |main |TomcatWebServer.java:204 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat started on port(s): 8080 (http) with context path ''
+2020-12-28 09:56:11 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:524 |org.springframework.web.servlet.DispatcherServlet |Initializing Servlet 'dispatcherServlet'
+2020-12-28 09:56:11 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:546 |org.springframework.web.servlet.DispatcherServlet |Completed initialization in 4 ms
+2020-12-28 09:57:00 |INFO  |main |TomcatWebServer.java:90 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat initialized with port(s): 8080 (http)
+2020-12-28 09:57:00 |INFO  |main |ServletWebServerApplicationContext.java:296 |org.springframework.web.context.ContextLoader |Root WebApplicationContext: initialization completed in 784 ms
+2020-12-28 09:57:00 |INFO  |main |ExecutorConfigurationSupport.java:171 |org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor |Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-28 09:57:00 |INFO  |main |TomcatWebServer.java:204 |org.springframework.boot.web.embedded.tomcat.TomcatWebServer |Tomcat started on port(s): 8080 (http) with context path ''
+2020-12-28 09:57:34 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:524 |org.springframework.web.servlet.DispatcherServlet |Initializing Servlet 'dispatcherServlet'
+2020-12-28 09:57:34 |INFO  |http-nio-8080-exec-1 |FrameworkServlet.java:546 |org.springframework.web.servlet.DispatcherServlet |Completed initialization in 3 ms
