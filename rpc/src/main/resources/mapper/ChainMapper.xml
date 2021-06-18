@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+
+    <select id="test" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SHOW TABLES;
+    </select>
+
+
+    <insert id="insertTx" parameterClass="java.util.HashMap">
+        INSERT INTO $TABLE_NAME$(SYSTEM_ID, REQUEST_SN, INVOKE_TIME, BUSINESS_ID, CALLBACK_URL, KEY_ID, ACCOUNT_ID, DATA_INFO, SM4_KEY, SM4_IV, PRI_KEY, PUB_KEY, PUB_INFO)
+        VALUES (#SYSTEM_ID#, #REQUEST_SN#, #INVOKE_TIME#, #BUSINESS_ID#, #CALLBACK_URL#, #KEY_ID#, #ACCOUNT_ID#, #DATA_INFO#, #SM4_KEY#, #SM4_IV#, #PRIVATE_KEY#, #PUBLIC_KEY#, '')
+    </insert>
+
+
+    <select id="queryAllByTxHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT *
+        FROM $TABLE_NAME$
+        WHERE TX_HASH=#TX_HASH#
+            LIMIT 1
+    </select>
+
+
+    <select id="queryTxHashByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT TX_HASH
+        FROM $TABLE_NAME$
+        WHERE REQUEST_SN=#REQUEST_SN#
+            LIMIT 1
+    </select>
+
+
+    <select id="queryAllByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT *
+        FROM $TABLE_NAME$
+        WHERE REQUEST_SN=#REQUEST_SN#
+            LIMIT 1
+    </select>
+
+
+    <select id="queryCallbackByRequestSn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT ON_CHAIN, TX_HASH, BLOCK_TIME, BLOCK_HEIGHT
+        FROM $TABLE_NAME$
+        WHERE REQUEST_SN=#REQUEST_SN#
+            LIMIT 1
+    </select>
+
+    <select id="queryState" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        select $STATE$
+        from $TABLE_NAME$
+            using state
+    </select>
+
+    <select id="queryStateWithBlockHeight" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        select $STATE$
+        from $TABLE_NAME$
+            using state
+        where block_height=#BLOCK_HEIGHT#
+    </select>
+
+
+</sqlMap>

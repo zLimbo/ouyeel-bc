@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+    <properties resource="application.properties" />
+    <settings cacheModelsEnabled="true" enhancementEnabled="true"
+              maxSessions="64" maxTransactions="20" maxRequests="128"
+              useStatementNamespaces="true" />
+    <transactionManager type="JDBC">
+        <dataSource type="SIMPLE">
+            <property name="JDBC.Driver" value="${spring.datasource.driver-class-name1}" />
+            <property name="JDBC.ConnectionURL" value="${spring.datasource.url1}" />
+            <property name="JDBC.Username" value="${spring.datasource.username1}" />
+            <property name="JDBC.Password" value="${spring.datasource.password1}" />
+        </dataSource>
+    </transactionManager>
+    <sqlMap resource="mapper/ChainMapper.xml" />
+</sqlMapConfig>
